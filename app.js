@@ -17,7 +17,7 @@ const ICON = {
 /* ---------- state (browser only; wrapped so it never breaks the page) ---------- */
 let unit = null, S = null, idx = 0, view = "start", lastResult = null, reveal = {clue:false, where:false}, confirmReset = false;
 const key = () => "bio-notes:" + unit.id;
-function blank(){ return {name:"", notes:{}, status:{}, misses:{}, tries:{}, lastText:{}, best:{}, revealed:{}, idx:0}; }
+function blank(){ return {name:"", notes:{}, status:{}, misses:{}, tries:{}, lastText:{}, best:{}, revealed:{}, src:{}, idx:0}; }
 function load(){ try { const r = localStorage.getItem(key()); return r ? Object.assign(blank(), JSON.parse(r)) : blank(); } catch(e){ return blank(); } }
 /* Autosave: every change is written to this browser right away, so closing the
    tab, shutting down, or walking away keeps the work. Backup files cover a
@@ -95,6 +95,49 @@ function wireSavePanel(){
   paintSaved();
 }
 
+/* ---------- note integrity: paste setting, how each note was entered, sheet code ---------- */
+function pasteAllowed(){
+  const entry = (window.CATALOG || []).find(c => c.id === unit.id) || {};
+  if (typeof entry.paste === "boolean") return entry.paste;
+  return !!(window.SETTINGS && window.SETTINGS.allowPaste);
+}
+function srcOf(n){ S.src = S.src || {}; return S.src[n] = S.src[n] || {s:0, t:0, p:0}; }
+function wireNoteBox(box, n){
+  const block = e => { if (!pasteAllowed()){ e.preventDefault(); setTip("Pasting is turned off for this quiz. Say or type your note in your own words."); } };
+  box.addEventListener("paste", block);
+  box.addEventListener("drop", block);
+  box.addEventListener("input", e => {
+    const t = e.inputType || "";
+    if (t === "insertFromPaste" || t === "insertFromDrop") srcOf(n).p += (e.data || "x").length;
+    else if (t.indexOf("insert") === 0) srcOf(n).t += (e.data || " ").length;
+  });
+}
+function wordsOf(t){ return new Set(norm(t).trim().split(" ").filter(w => w.length > 2)); }
+function nearSample(Q, text){
+  const a = wordsOf(text), b = wordsOf(Q.model); if (!a.size || !b.size) return false;
+  let same = 0; a.forEach(w => { if (b.has(w)) same++; });
+  return same / Math.max(a.size, b.size) >= 0.8;
+}
+function entryLine(Q){
+  const src = (S.src || {})[Q.n] || {s:0, t:0, p:0}, how = [];
+  if (src.s) how.push("spoken"); if (src.t) how.push("typed"); if (src.p) how.push("PASTED");
+  const parts = ["Entered: " + (how.join(" + ") || "not recorded")];
+  const tries = (S.tries || {})[Q.n] || 0;
+  if (tries) parts.push(tries + (tries === 1 ? " try" : " tries"));
+  if ((S.revealed || {})[Q.n]) parts.push(nearSample(Q, S.notes[Q.n] || "") ? "sample shown, close copy of sample" : "sample shown");
+  return parts.join(" | ");
+}
+/* Sheet code: a short fingerprint of the name, quiz, and every note. The same notes
+   always give the same code, so a printout can be matched to the student's screen. */
+function sheetCode(){
+  let h = 2166136261 >>> 0;
+  const str = [unit.id, (S.name || "").trim().toLowerCase()].concat(unit.questions.map(Q => (S.notes[Q.n] || "").trim())).join("\u0001");
+  for (let i = 0; i < str.length; i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let c = "";
+  for (let i = 0; i < 6; i++){ c += A[h % 32]; h = Math.floor(h / 32); }
+  return c.slice(0, 3) + "-" + c.slice(3);
+}
+
 /* ---------- speech out ---------- */
 function speak(text){
   try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate = 0.9; u.lang = "en-US"; speechSynthesis.speak(u); } catch(e){}
@@ -111,19 +154,20 @@ function toggleMic(){
   stopSpeak();
   rec = new SR(); rec.lang = "en-US"; rec.continuous = true; rec.interimResults = true;
   const base = box.value.trim() ? box.value.trim() + " " : "";
+  let heard = 0;
   rec.onresult = e => {
     let txt = "";
     for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
     txt = txt.trim();
     if (!base && txt) txt = txt[0].toUpperCase() + txt.slice(1);
-    box.value = base + txt; S.notes[q().n] = box.value; save();
+    box.value = base + txt; S.notes[q().n] = box.value; heard = txt.length; save();
   };
   rec.onerror = e => {
     if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture"){ micBlocked = true; showMicTip(); }
     else if (e.error === "no-speech") setTip("I did not hear anything. Tap Speak and try again.");
     else if (e.error === "network") setTip("Speech needs the internet. Check Wi-Fi, or type your note.");
   };
-  rec.onend = () => { listening = false; paintMic(); };
+  rec.onend = () => { listening = false; paintMic(); if (heard) { srcOf(q().n).s += heard; writeNow(); } };
   try { rec.start(); listening = true; paintMic(); setTip("Listening. Tap Stop when you finish."); } catch(e){ showMicTip(); }
 }
 function paintMic(){ const b = $("#mic"); if (!b) return; b.classList.toggle("on", listening); b.querySelector("span").textContent = listening ? "Stop" : "Speak"; b.setAttribute("aria-pressed", listening); }
@@ -245,6 +289,7 @@ function renderQuestion(){
   $("#clue").onclick = () => { reveal.clue = !reveal.clue; keepNote(); renderQuestion(); if (reveal.clue) speak("Clue. " + Q.guide); };
   $("#where").onclick = () => { reveal.where = !reveal.where; keepNote(); renderQuestion(); };
   $("#note").oninput = e => { S.notes[Q.n] = e.target.value; save(); };
+  wireNoteBox($("#note"), Q.n);
   $("#mic").onclick = toggleMic;
   $("#check").onclick = doCheck;
   $("#readnote").onclick = () => { const v = $("#note").value.trim(); speak(v || "Your note is empty."); };
@@ -334,20 +379,27 @@ function renderSheet(){
     body += `<div class="item"><span class="num">${Q.n}.</span><span class="p">${esc(Q.prompt)}</span>
       <div class="a ${a?"":"empty"}">${a ? esc(a) : "(no note yet)"}</div>
       ${Q.draw ? `<div class="box">${esc(Q.draw)}</div>` : ""}
-      <div class="src">${esc(Q.where)}</div></div>`;
+      <div class="src">${esc(Q.where)}</div>
+      ${a ? `<div class="how${((S.src||{})[Q.n]||{}).p ? " flag" : ""}">${esc(entryLine(Q))}</div>` : ""}</div>`;
   });
+  const pasted = unit.questions.filter(Q => ((S.src||{})[Q.n]||{}).p).length;
+  const samples = unit.questions.filter(Q => (S.revealed||{})[Q.n]).length;
+  const code = sheetCode(), who = (S.name || "").trim();
+  const wmText = `${who || "NO NAME"} \u00b7 ${unit.title} \u00b7 ${date}`;
+  const wm = `<div class="wm" aria-hidden="true">${Array.from({length: 14}, () => `<span>${esc(wmText)}</span>`).join("")}</div>`;
   const missing = unit.questions.filter(Q => S.status[Q.n] !== "done").map(Q => Q.n);
   app.innerHTML = `
   <div class="row spread noprint">
     <button class="btn big" id="back">Back to notes</button>
     <div class="row">
-      <button class="btn" id="copy">Copy notes</button>
-      <button class="btn primary big" id="print">${ICON.print}<span>Print my notes</span></button>
+      <button class="btn primary big" id="print" ${who ? "" : "disabled"}>${ICON.print}<span>Print my notes</span></button>
     </div>
   </div>
   <div class="noprint">
     <p class="tip" id="ptip">${done===n ? `All ${n} notes are complete.` : `${done} of ${n} notes are complete. Still to finish: ${missing.join(", ")}.`}</p>
-    <p class="small">If Print does nothing, press Ctrl + P.</p>
+    ${who ? "" : `<label class="field" for="sheet-name">Type your name to print your notes
+      <input id="sheet-name" autocomplete="name"></label>`}
+    <p class="small">If Print does nothing, press Ctrl + P. Sheet code: <b>${code}</b></p>
   </div>
   ${savePanel()}
   <div class="noprint">
@@ -356,18 +408,16 @@ function renderSheet(){
   </div>
   <article class="sheet" id="sheet">
     <h2>${esc(unit.title)}: My Notes</h2>
-    <div class="meta"><span>Name: ${esc(S.name || "________________________")}</span><span>${esc(date)}</span><span>Complete: ${done} of ${n}</span></div>
+    <div class="meta"><span>Name: ${esc(who || "________________________")}</span><span>${esc(date)}</span><span>Complete: ${done} of ${n}</span></div>
+    <div class="meta2"><span>Sheet code: <b>${code}</b></span><span>Notes pasted: ${pasted}</span><span>Sample notes shown: ${samples}</span></div>
     ${body}
     <p class="disc">${esc(unit.disclosure)}</p>
+    ${wm}
   </article>`;
+  if ($("#sheet-name")) $("#sheet-name").onchange = e => { S.name = e.target.value.trim(); writeNow(); renderSheet(); };
   wireSavePanel();
   $("#back").onclick = () => { view = "q"; render(); };
   $("#print").onclick = () => { try { window.print(); } catch(e){} };
-  $("#copy").onclick = () => {
-    const txt = unit.questions.map(Q => `${Q.n}. ${Q.prompt}\n${(S.notes[Q.n]||"").trim()}`).join("\n\n");
-    const done = () => { $("#ptip").textContent = "Notes copied. Paste them into a Google Doc to print."; };
-    try { navigator.clipboard.writeText(txt).then(done, () => selectSheet()); } catch(e){ selectSheet(); }
-  };
   $("#reset").onclick = () => {
     $("#confirm").innerHTML = `<div class="confirm row"><span>Erase every note on this device?</span>
       <button class="btn" id="yes">Yes, erase</button><button class="btn" id="no">Keep my notes</button></div>`;
@@ -375,7 +425,6 @@ function renderSheet(){
     $("#no").onclick = () => { $("#confirm").innerHTML = ""; };
   };
 }
-function selectSheet(){ try { const r = document.createRange(); r.selectNodeContents($("#sheet")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("#ptip").textContent = "Notes selected. Press Ctrl + C to copy."; } catch(e){} }
 
 /* ---------- boot ---------- */
 (function boot(){

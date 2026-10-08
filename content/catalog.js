@@ -10,9 +10,15 @@
      title   what students see
      type    "Quiz" or "Test"
      show    false hides it from the menu (the direct link still works)
+     paste   optional: true allows pasting on this quiz (overrides SETTINGS)
      v       bump this number after editing a unit.js so students get
              the new version instead of an old cached copy
    ================================================================== */
+/* Settings for every quiz. allowPaste:false blocks pasting into the note box,
+   so students must say or type their notes. To allow pasting on one quiz only,
+   add paste:true to that quiz's line below. */
+window.SETTINGS = { allowPaste: false };
+
 window.CATALOG = [
   { id:"u1q1", unit:"Unit 1: Homeostasis and the Human Body", title:"Characteristics of Life",              type:"Quiz 1",   show:true, v:1 },
   { id:"u1q2", unit:"Unit 1: Homeostasis and the Human Body", title:"Homeostasis and the Respiratory System", type:"Quiz 2", show:true, v:1 },

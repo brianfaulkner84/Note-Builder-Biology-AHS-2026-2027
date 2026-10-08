@@ -122,3 +122,14 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .sample{background:var(--card);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 14px;display:flex;flex-direction:column;gap:6px}
 .sample p{margin:0}
 .sample-text{font-size:var(--t-l)}
+
+/* sheet integrity: entry marks, sheet code, name watermark */
+.sheet{position:relative;overflow:hidden}
+.sheet > *:not(.wm){position:relative;z-index:1}
+.sheet .meta2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:10pt;color:#333;margin-top:-4px;margin-bottom:8px}
+.sheet .how{grid-column:2;font-size:8.5pt;color:#555;font-family:var(--f-mono)}
+.sheet .how.flag{color:#b42318;font-weight:700}
+.wm{position:absolute;inset:-20%;pointer-events:none;z-index:0;display:flex;flex-wrap:wrap;align-content:space-around;justify-content:space-around;
+  transform:rotate(-28deg);opacity:.08;color:#000;font:700 20pt/1 var(--f-body)}
+.wm span{white-space:nowrap;padding:40px 30px}
+@media print{ .wm{position:fixed;inset:-25%;opacity:.07} }
