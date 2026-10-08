@@ -47,6 +47,7 @@ UNITS.push({
   { n:5, heading:"Cell Theory and Microscopes", prompt:"Compare light microscopes and electron microscopes.",
     guide:"Which one can show living cells, and why can't the other?", where:"Slide: Intro 8 | Book: Light Microscopes and Cell Stains, Electron Microscopes, pp. 191 to 192",
     model:"A light microscope uses light and can show living cells. An electron microscope uses a beam of electrons and shows more detail, but the samples must be nonliving, so it cannot show living cells.",
+    watch:[ W(/electron\w*.{0,40}(can|able to) (see|show|view) (living|live)/, "Check that. Electron microscope samples must be nonliving.") ],
     ideas:[
       I("Light microscope", [near(/light/, /living|alive|\blive\b/, 70)], "Which microscope can show living cells?", "Read the Light Microscope box on Slide Intro 8."),
       I("Electron microscope", [near(/electron/, /nonliving|non living|not (be )?(alive|living)|dead|can.?t|cannot|kill/, 90)], "Can an electron microscope show living cells? Why not?", "Slide Intro 8: what must be true about electron microscope samples?")
@@ -76,6 +77,7 @@ UNITS.push({
   { n:9, heading:"Two Kinds of Cells", prompt:"List the four things every cell has, and name the organelle found in ALL cells.",
     guide:"What do a bacterium and a brain cell both have? Which organelle is on that list?", where:"Slide: Intro 9, Organelles 13 | Book: Prokaryotes and Eukaryotes, p. 193",
     model:"Every cell has a cell membrane, DNA, cytoplasm, and ribosomes. The ribosome is the organelle found in all cells.",
+    watch:[ W(/\b(nucleus|nuclei|mitochondri\w*) (is|are) (found )?in (all|every)/, "Check that. Which organelle is found in ALL cells, even bacteria?") ],
     ideas:[
       I("Outer barrier", [T.membrane], "What thin barrier wraps around every cell?", "Slide Intro 9, first box."),
       I("Instructions", [/\bdna\b|\bd n a\b|genetic/], "What carries the cell's instructions?", "Slide Intro 9, second box."),
@@ -99,6 +101,7 @@ UNITS.push({
   { n:12, heading:"Levels of Organization", prompt:"Define the word \"organelle.\"",
     guide:"What does the word mean, and what body part is it named after?", where:"Slide: Organelles 7 | Book: Cell Organization, p. 196",
     model:"An organelle is a structure inside a cell that has a specific job. The word means little organ, named after the organs in your body.",
+    watch:[ W(/(little|tiny|small) cell/, "Check that. Organelle means little organ.", "What the word means") ],
     ideas:[
       I("What the word means", [/(little|small|tiny|mini) organ/], "What does the word organelle mean?", "Slide Organelles 7. Think: organ plus a small ending."),
       I("What it has", [/job|function|role|task|purpose/], "What does each organelle have, like your organs do?", "Your heart pumps blood. Your stomach digests food. Each organ has a ___.")
@@ -113,6 +116,7 @@ UNITS.push({
   { n:14, heading:"Control, Boundaries, Protein Line", prompt:"Explain the job of the cell membrane.",
     guide:"What does it control, and what does \"selectively permeable\" mean?", where:"Slide: Organelles 10 | Book: Cell Membranes, p. 204",
     model:"The cell membrane regulates what enters and leaves the cell. Selectively permeable means it lets some things through but not others.",
+    watch:[ W(/(?<!not )\b(everything|nothing) (can )?(gets?|goes?|pass\w*)/, "Check that. Does everything get through, nothing, or only some things?") ],
     ideas:[
       I("The job", [/regulat|control|decid|choos|gate ?keep|guard|filter/], "What job does the membrane do at the border of the cell?", "Slide Organelles 10 calls it the gatekeeper."),
       I("In and out", IN_OUT, "It controls what does what?", "Things cross the border in two directions. Name both."),
@@ -121,6 +125,7 @@ UNITS.push({
   { n:15, heading:"Control, Boundaries, Protein Line", prompt:"Describe the cytoplasm.",
     guide:"What is it, and which energy process happens there?", where:"Slide: Organelles 11 | Book: Cell Organization, p. 196 (the energy process is on the slide only)",
     model:"The cytoplasm is the fluid inside the cell membrane but outside the nucleus. The organelles sit in it. Glycolysis happens in the cytoplasm.",
+    watch:[ W(/inside the nucleus/, "Check that. The cytoplasm is outside the nucleus.") ],
     ideas:[
       I("What it is", [/fluid|liquid|jelly|gel|goo|watery/], "What is the cytoplasm made of?", "Slide Organelles 11, the WHAT IT DOES box."),
       I("Energy process", [T.glycolysis], "Which energy process happens in the cytoplasm?", "Slide Organelles 11, KEY TERMS. It starts with \"glyco.\"")
@@ -137,6 +142,7 @@ UNITS.push({
   { n:17, heading:"Control, Boundaries, Protein Line", prompt:"State the job of the ribosome.",
     guide:"What does it build?", where:"Slide: Organelles 13 | Book: Ribosomes, p. 200",
     model:"Ribosomes build (assemble) proteins by following instructions from DNA.",
+    watch:[ W(/(make|build|assembl)\w* (lipids?|sugar|energy|dna|fat)\b/, "Check that. What do ribosomes build?", "What it builds") ],
     ideas:[
       I("What it builds", [/protein/], "What does a ribosome build?", "Slide Organelles 13, KEY TERMS."),
       I("Its job", [/build|make|assembl|produc|creat|put\w* together/], "What does the ribosome do with those parts?", "Slide Organelles 13: it ___ proteins.")
@@ -144,6 +150,7 @@ UNITS.push({
   { n:18, heading:"Control, Boundaries, Protein Line", prompt:"Compare rough ER and smooth ER.",
     guide:"What is the ER's job? What covers rough ER that smooth ER does not have?", where:"Slide: Organelles 14 | Book: Endoplasmic Reticulum, p. 200",
     model:"The ER is an assembly line where proteins and parts of the cell membrane are built. Rough ER is covered with ribosomes and helps build proteins. Smooth ER has no ribosomes; it makes lipids.",
+    watch:[ W(/smooth (er )?(has|is covered (in|with)) ribosomes/, "Check that. Which kind of ER has ribosomes?") ],
     ideas:[
       I("ER's job", [/(build|make|produc|assembl)\w*.{0,40}(protein|lipid|membrane)/, /assembly line/], "What is the ER's job?", "Slide Organelles 14, WHAT IT DOES."),
       I("Rough ER", [near(/rough/, T.ribosome, 50)], "What covers rough ER?", "Rough ER is bumpy. What are the bumps? Slide Organelles 14."),
@@ -152,6 +159,7 @@ UNITS.push({
   { n:19, heading:"Control, Boundaries, Protein Line", prompt:"Explain the job of the Golgi apparatus.",
     guide:"What does it do to proteins before they leave?", where:"Slide: Organelles 15 | Book: Golgi Apparatus, p. 201",
     model:"The Golgi apparatus modifies, sorts, and packages proteins for storage or to ship out of the cell.",
+    watch:[ W(/golgi.{0,30}(makes?|builds?|assembles?) (the )?proteins/, "Check that. Ribosomes build proteins. What does the Golgi do to them?") ],
     ideas:[
       I("What it does", [/modif|sort|packag|finish|label|ship|customiz|prepare/], "What does the Golgi do to proteins before they leave?", "Slide Organelles 15 uses three verbs. Think of a shop that boxes up a product."),
       I("What it works on", [/protein/], "What does the Golgi work on?", "Slide Organelles 15, WHAT IT DOES.")

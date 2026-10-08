@@ -19,6 +19,7 @@ UNITS.push({
   { n:1, heading:"Heart Structure", prompt:"State the main job of the circulatory system.",
     guide:"What does it carry to the body, and what does it carry away?", where:S + "3 | Book: Chapter 33.1, p. 948",
     model:"The circulatory system transports oxygen, nutrients, and other substances throughout the body, and it removes wastes from the tissues.",
+    watch:[ W(/digest|hormone|filter\w* (the )?air/, "Check that. That is a different body system\'s job.") ],
     ideas:[
       I("What it delivers", [/oxygen|nutrient|food|sugar/], "What does the circulatory system carry to the body?", "Slide 3, the first line."),
       I("What it removes", [/waste|carbon dioxide|co ?2/], "What does it carry away?", "Slide 3, the second line.")
@@ -26,6 +27,7 @@ UNITS.push({
   { n:2, heading:"Heart Structure", prompt:"Define atrium.",
     guide:"Upper or lower chamber? Does blood enter or leave here? How many are there?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"An atrium is an upper chamber of the heart that receives blood entering the heart. The heart has two atria.",
+    watch:[ W(/\b(lower|bottom)\b|pumps? (the )?blood out/, "Check that. The atria are the upper chambers that receive blood.") ],
     ideas:[
       I("Upper or lower", [/upper|top/], "Is an atrium an upper or lower chamber?", "Picture the heart diagram. Where are the atria?"),
       I("Its job", [/enter|receiv|accept|come\w* in|collect/], "Does blood enter or leave the heart through the atria?", "Slide 4: atria where blood ___.")
@@ -33,6 +35,7 @@ UNITS.push({
   { n:3, heading:"Heart Structure", prompt:"Define ventricle.",
     guide:"Upper or lower chamber? Does blood enter or leave here? How many are there?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"A ventricle is a lower chamber of the heart that pumps blood out of the heart. The heart has two ventricles.",
+    watch:[ W(/\b(upper|top)\b|receiv/, "Check that. The ventricles are the lower chambers that pump blood out.") ],
     ideas:[
       I("Upper or lower", [/lower|bottom/], "Is a ventricle an upper or lower chamber?", "Picture the heart diagram. Where are the ventricles?"),
       I("Its job", [/pump|exit|leave|out/], "Does blood enter or leave the heart through the ventricles?", "Slide 4: ventricles where blood ___.")
@@ -40,6 +43,7 @@ UNITS.push({
   { n:4, heading:"Heart Structure", prompt:"Define septum.",
     guide:"What does it divide? What does it keep from mixing?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"The septum is the wall that divides the left and right sides of the heart. It keeps oxygen-rich blood from mixing with oxygen-poor blood.",
+    watch:[ W(/valve|one (direction|way)/, "Check that. Keeping blood moving one way is the job of the valves.", "What it divides") ],
     ideas:[
       I("What it divides", [either(LEFT, RIGHT, 30), /divid|separat|split/], "What does the septum divide?", "Slide 4: wall that divides the left side from the ___."),
       I("What it prevents", [/mix/], "What does the septum keep from mixing?", "Slide 4, the second line under Septum.")
@@ -47,10 +51,12 @@ UNITS.push({
   { n:5, heading:"Heart Structure", prompt:"Define myocardium.",
     guide:"What is the heart wall mostly made of?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"The myocardium is the thick layer of cardiac muscle that makes up most of the heart wall.",
+    watch:[ W(/\bbone\b|valve|divides? the/, "Check that. The myocardium is the heart muscle.", "What it is") ],
     ideas:[ I("What it is", [/muscle/], "What is the myocardium made of?", "Slide 4: the heart is made mostly of cardiac ___.") ]},
   { n:6, heading:"Heart Structure", prompt:"Define valve.",
     guide:"Which way does a valve let blood flow?", where:"Book: Chapter 33.1, p. 949",
     model:"A valve is a flap that keeps blood flowing in only one direction, so it cannot flow backward.",
+    watch:[ W(/divid|separat/, "Check that. Dividing the two sides is the septum\'s job.", "Its job") ],
     ideas:[ I("Its job", [/one (direction|way)|backward|back ?flow|wrong way|same direction/], "Which way does a valve let blood flow?", "A valve works like a one-way door.") ]},
   { n:7, heading:"Blood Flow Pathways", prompt:"Define pulmonary circulation.",
     guide:"Between the heart and what? Which side of the heart pumps it?", where:"Book: Chapter 33.1, p. 950",
@@ -60,10 +66,12 @@ UNITS.push({
   { n:8, heading:"Blood Flow Pathways", prompt:"Define systemic circulation.",
     guide:"Between the heart and what? Which side of the heart pumps it?", where:"Book: Chapter 33.1, p. 950",
     model:"Systemic circulation carries blood between the heart and the rest of the body. The left side of the heart pumps oxygen-rich blood to the body.",
+    watch:[ W(/(only|just) (to )?the lungs|heart and (the )?lungs/, "Check that. Systemic means the rest of the body. Which pathway goes to the lungs?", "Heart and body") ],
     ideas:[ I("Heart and body", [BODY], "Systemic circulation carries blood between the heart and what?", "Think: the whole system of the body.") ]},
   { n:9, heading:"Blood Flow Pathways", prompt:"Identify which chambers and vessels are involved in pulmonary circulation.",
     guide:"Which chamber pumps blood to the lungs? Where does the blood come back in?", where:"Book: Chapter 33.1, p. 950",
     model:"The right ventricle pumps oxygen-poor blood through the pulmonary arteries to the lungs. Oxygen-rich blood comes back through the pulmonary veins into the left atrium.",
+    watch:[ W(/left ventricle (pumps? )?(the )?(blood )?(to|into) the lungs/, "Check that. Which side of the heart pumps blood to the lungs?") ],
     ideas:[
       I("Pumps to the lungs", [near(RIGHT, T.ventricle, 15)], "Which chamber pumps blood to the lungs?", "The right side of the heart handles the lungs. Which chamber pumps?"),
       I("Comes back to", [near(LEFT, T.atrium, 15)], "Which chamber does blood return to from the lungs?", "Blood from the lungs enters an upper chamber on the other side.")
@@ -71,6 +79,7 @@ UNITS.push({
   { n:10, heading:"Blood Flow Pathways", prompt:"Identify which chambers and vessels are involved in systemic circulation.",
     guide:"Which chamber pumps blood to the body? Through which large artery? Where does the blood come back in?", where:"Book: Chapter 33.1, p. 950",
     model:"The left ventricle pumps oxygen-rich blood through the aorta to the body. Oxygen-poor blood comes back through veins into the right atrium.",
+    watch:[ W(/right ventricle (pumps? )?(the )?(blood )?(to|into|through) the (body|aorta)/, "Check that. Which side of the heart pumps blood to the body?") ],
     ideas:[
       I("Pumps to the body", [near(LEFT, T.ventricle, 15)], "Which chamber pumps blood to the body?", "The strongest chamber is on the left side, at the bottom."),
       I("The big artery", [/aorta|a ?orta/], "What is the large artery leaving the left ventricle?", "It is labeled F on the quiz diagram."),
@@ -97,6 +106,7 @@ UNITS.push({
   { n:13, heading:"Blood Vessels", prompt:"Describe capillaries and why their walls are only one cell thick.",
     guide:"How big are they? What has to pass through their walls?", where:S + "6 | Book: Chapter 33.1, pp. 951 to 952",
     model:"Capillaries are the smallest blood vessels. Their walls are one cell thick so oxygen, nutrients, and wastes can pass easily between the blood and the body's cells.",
+    watch:[ W(/(?<!cell )\bthick\b|\blargest\b|\bbiggest\b/, "Check that. Capillaries are the smallest, thinnest blood vessels.") ],
     ideas:[
       I("Size", [/small|tiny|thin/], "How big are capillaries?", "Slide 6, Capillaries."),
       I("Why one cell thick", [/pass|exchang|diffus|through|move|cross|get (in|out)/], "Why are their walls only one cell thick?", "What has to pass between the blood and the cells?")
@@ -104,6 +114,7 @@ UNITS.push({
   { n:14, heading:"Blood Vessels", prompt:"Describe veins and how they keep blood moving back to the heart.",
     guide:"Which way do veins carry blood? What two things help push it back?", where:S + "6 | Book: Chapter 33.1, pp. 951 to 952",
     model:"Veins carry blood back toward the heart. Valves keep the blood from flowing backward, and skeletal muscles squeeze the veins to push blood along.",
+    watch:[ W(/away from (the )?heart/, "Check that. Veins carry blood back to the heart.", "Which way") ],
     ideas:[
       I("Which way", [/(back )?(to|toward|towards|into) the heart/], "Which way do veins carry blood?", "Slide 6: veins bring blood ___ to the heart."),
       I("Valves", [/valve/], "What inside veins keeps blood from flowing backward?", "Slide 6, Veins."),

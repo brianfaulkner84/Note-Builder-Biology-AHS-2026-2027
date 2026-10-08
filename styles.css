@@ -133,3 +133,11 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
   transform:rotate(-28deg);opacity:.08;color:#000;font:700 20pt/1 var(--f-body)}
 .wm span{white-space:nowrap;padding:34px 28px}
 @media print{ .wm{position:fixed;inset:-25%;opacity:.07} }
+
+/* marked note: wrong parts and extra parts */
+.marked{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.marked p{margin:0}
+.marked-text{font-size:var(--t-m);line-height:1.7}
+.mk.wrong{color:var(--rec);background:var(--rec-bg);text-decoration:line-through;text-decoration-thickness:2px;border-radius:4px;padding:0 2px}
+.mk.extra{text-decoration:underline dotted var(--warn);text-decoration-thickness:3px;text-underline-offset:4px}
+.legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:var(--t-s)}

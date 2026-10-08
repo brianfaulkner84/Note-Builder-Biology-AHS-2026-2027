@@ -53,6 +53,7 @@ UNITS.push({
   { n:5, heading:"Digestive System", prompt:"Describe carbohydrates: function, monomer, and examples.",
     guide:"What does the body use them for? What is the building block? Name foods.", where:"Slide: Nutrition slideshow 5, Enzymes slideshow 5 | " + B302,
     model:"Carbohydrates are the main source of energy. Their monomer is a simple sugar (monosaccharide), like glucose. Examples: bread, pasta, potatoes, fruit.",
+    watch:[ W(/amino acid|fatty acid/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/energy/], "What does the body use carbohydrates for?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/simple sugar|mono ?sacchar|glucose/], "What is the monomer of a carbohydrate?", "It is a single sugar unit."),
@@ -61,6 +62,7 @@ UNITS.push({
   { n:6, heading:"Digestive System", prompt:"Describe lipids: function, monomer, and examples.",
     guide:"What does the body use them for? What are the building blocks? Name foods.", where:"Slide: Nutrition slideshow 6 to 7, Enzymes slideshow 5 | " + B302,
     model:"Lipids store energy and form cell membranes and waterproof coverings. Their building blocks are fatty acids and glycerol. Examples: butter, oil, fats.",
+    watch:[ W(/amino acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/stor|membrane|insulat|waterproof|energy/], "What does the body use lipids for?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/fatty acid|glycerol/], "What are the building blocks of lipids?", "Fatty ___ and glycerol."),
@@ -69,6 +71,7 @@ UNITS.push({
   { n:7, heading:"Digestive System", prompt:"Describe proteins: function, monomer, and examples.",
     guide:"What do proteins do? What is the building block? Name foods.", where:"Slide: Nutrition slideshow 8, Enzymes slideshow 5 | " + B302,
     model:"Proteins build and repair the body, act as enzymes that control the rates of reactions, and transport substances. Their monomer is the amino acid. Examples: meat, eggs, beans.",
+    watch:[ W(/fatty acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/enzyme|build|repair|growth|transport|control|structure|muscle/], "What do proteins do in the body?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/amino/], "What is the monomer of a protein?", "Nutrition slideshow, Slide 8."),
@@ -92,6 +95,7 @@ UNITS.push({
   { n:10, heading:"Digestive System", prompt:"Compare mechanical and chemical digestion.",
     guide:"Which one only changes size? Which one uses enzymes? Give an example of each.", where:"Slide: Digestive slideshow 3 | " + B302,
     model:"Mechanical digestion breaks food into smaller pieces without changing its chemical makeup, like chewing or the stomach churning. Chemical digestion uses enzymes to break food into small molecules the body can use, like amylase breaking down starch.",
+    watch:[ W(/mechanical (digestion )?(uses|needs|is done by) enzymes|chemical (digestion )?(is|means) (chew|teeth)/, "Check that. Which kind uses enzymes, and which is chewing?") ],
     ideas:[
       I("Mechanical", [either(/mechanical/, /chew|piece|physical|smaller|churn|teeth|size/, 60)], "What does mechanical digestion do?", "Digestive slideshow, Slide 3, left side."),
       I("Chemical", [either(/chemical/, /enzyme|molecule|amylase|pepsin|acid/, 60)], "What does chemical digestion use?", "Digestive slideshow, Slide 3, right side.")
@@ -99,6 +103,7 @@ UNITS.push({
   { n:11, heading:"Digestive System", prompt:"Explain how digestive enzymes work and how pH and temperature affect them.",
     guide:"What do amylase and pepsin break down? What happens to an enzyme that gets too hot or is in the wrong pH?", where:"Slide: Digestive slideshow 10, Enzymes slideshow 7 to 8 | " + B302,
     model:"Enzymes are proteins that speed up reactions. Each one fits a specific molecule, like a lock and key. Amylase breaks down starch in the mouth. Pepsin breaks down protein in the stomach and works best at low (acidic) pH. Too much heat or the wrong pH changes the enzyme's shape (denatures it), so it stops working.",
+    watch:[ W(/amylase.{0,30}protein|pepsin.{0,30}(starch|carb)/, "Check that. Which enzyme breaks down starch, and which breaks down protein?") ],
     ideas:[
       I("Amylase", [either(/amylase|amyl/, /starch|carb|sugar/, 50)], "What does amylase break down?", "Digestive slideshow, Slide 4."),
       I("Pepsin", [either(/pepsin/, /protein/, 50)], "What does pepsin break down?", "Digestive slideshow, Slide 6."),
@@ -107,6 +112,7 @@ UNITS.push({
   { n:12, heading:"Digestive System", prompt:"Describe the structure and function of villi in the small intestine.",
     guide:"What do villi look like? Why does more surface area matter?", where:"Slide: Digestive slideshow 7 | " + B302,
     model:"Villi are tiny, finger-like projections lining the small intestine. They greatly increase the surface area, so more nutrients are absorbed into the blood.",
+    watch:[ W(/(less|smaller|decreas\w*|lower) (the )?surface/, "Check that. Villi make the surface area bigger.") ],
     ideas:[
       I("Structure", [/finger|tiny|bump|projection|fold/], "What do villi look like?", "Digestive slideshow, Slide 7."),
       I("Surface area", [/surface area|more (room|space|area)/], "What do villi increase?", "Digestive slideshow, Slide 7."),
@@ -115,6 +121,7 @@ UNITS.push({
   { n:13, heading:"Circulatory System", prompt:"Describe basic heart structure, including the left atrium.",
     guide:"How many chambers? Which are upper and lower? What does the left atrium receive?", where:"Slide: Circulatory slideshow 4 to 5 | " + B331,
     model:"The heart has four chambers: two atria on top that receive blood and two ventricles on the bottom that pump blood out. The septum divides the left and right sides. The left atrium receives oxygen-rich blood from the lungs. On a diagram, the heart's left side is on the viewer's right.",
+    watch:[ W(/\b(2|two|3|three) chambers/, "Check that. How many chambers does the heart have?", "Four chambers") ],
     ideas:[
       I("Four chambers", [/\b(4|four)\b/], "How many chambers does the heart have?", "Circulatory slideshow, Slide 4."),
       I("Atria and ventricles", [either(T.atrium, T.ventricle, 120)], "Name the upper and lower chambers.", "Circulatory slideshow, Slide 4."),
@@ -123,6 +130,7 @@ UNITS.push({
   { n:14, heading:"Circulatory System", prompt:"Distinguish pulmonary circulation from systemic circulation.",
     guide:"Where does each pathway carry blood?", where:"Book: Chapter 33.1, p. 950",
     model:"Pulmonary circulation carries blood between the heart and the lungs. Systemic circulation carries blood between the heart and the rest of the body.",
+    watch:[ W(/pulmonary.{0,40}(rest of the body|whole body)|systemic.{0,40}lungs/, "Check that. Which pathway goes to the lungs, and which goes to the body?") ],
     ideas:[
       I("Pulmonary", [either(/pulmonary/, /lungs?/, 90)], "Where does pulmonary circulation carry blood?", "Pulmonary means lungs."),
       I("Systemic", [either(/systemic/, /\bbody\b/, 90)], "Where does systemic circulation carry blood?", "Systemic means the whole body system.")
@@ -130,6 +138,7 @@ UNITS.push({
   { n:15, heading:"Circulatory System", prompt:"Explain how the structure of arteries, veins, and capillaries fits their function.",
     guide:"Why thick walls? Why valves? Why one cell thick?", where:"Slide: Circulatory slideshow 6 | " + B331,
     model:"Arteries carry blood away from the heart at high pressure, so they have thick, elastic walls. Veins carry low-pressure blood back to the heart, so they have valves to keep it from flowing backward. Capillaries have walls one cell thick so oxygen and nutrients can pass into the cells.",
+    watch:[ W(/arter\w*.{0,30}(back to|toward) the heart|veins?.{0,30}away from the heart/, "Check that. Arteries carry blood away from the heart; veins bring it back.") ],
     ideas:[
       I("Arteries", [either(T.artery, /thick|elastic|pressure/, 60)], "Why do arteries have thick, elastic walls?", "Circulatory slideshow, Slide 6."),
       I("Veins", [either(T.vein, /valve/, 60)], "What do veins have to keep blood moving the right way?", "Circulatory slideshow, Slide 6."),
@@ -152,6 +161,7 @@ UNITS.push({
   { n:18, heading:"Respiratory System", prompt:"Explain how gas exchange happens at the alveoli.",
     guide:"Which way does oxygen move? Which way does carbon dioxide move? Why?", where:"Slide: Respiratory slideshow 6 to 7 | " + B333,
     model:"Gas exchange happens between the alveoli and the capillaries by diffusion. Oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into the alveoli to be breathed out.",
+    watch:[ W(/oxygen (moves |goes )?(from|out of) the blood/, "Check that. Oxygen moves from the alveoli into the blood.") ],
     ideas:[
       I("Oxygen", [near(/oxygen|\bo ?2\b/, /blood|capillar/, 60)], "Which way does oxygen move?", "From the air sacs into the ___."),
       I("Carbon dioxide", [near(T.co2, /alveol|lungs?|out|exhal|breath/, 60)], "Which way does carbon dioxide move?", "From the blood into the ___."),
@@ -160,6 +170,7 @@ UNITS.push({
   { n:19, heading:"Respiratory System", prompt:"Describe the roles of the diaphragm and rib cage in breathing.",
     guide:"What happens when you inhale? When you exhale?", where:"Slide: Respiratory slideshow 11 | " + B333,
     model:"When you inhale, the diaphragm contracts and moves down and the rib cage rises, making the chest bigger and pulling air in. When you exhale, the diaphragm and rib cage relax, making the chest smaller and pushing air out.",
+    watch:[ W(/inhal\w*.{0,25}relax/, "Check that. When you inhale, does the diaphragm contract or relax?", "Inhale") ],
     ideas:[
       I("Inhale", [either(/inhal|breath\w* in/, /contract|down|rise|up|bigger|expand/, 60)], "What happens when you inhale?", "The diaphragm tightens and pulls down."),
       I("Exhale", [either(/exhal|breath\w* out/, /relax|smaller|push|up\b/, 60)], "What happens when you exhale?", "The muscles relax.")
@@ -174,6 +185,7 @@ UNITS.push({
   { n:21, heading:"Scientific Skills", prompt:"Distinguish independent and dependent variables.",
     guide:"Which one do you change? Which one do you measure?", where:"Book: Lesson 1.1, Designing Controlled Experiments",
     model:"The independent variable is the one you change on purpose. The dependent variable is the one you measure; it responds to the change.",
+    watch:[ W(/\bindependent\w*.{0,30}measur|(?<!in)dependent\w*.{0,25}(you change|change on purpose)/, "Check that. Which variable do you change, and which do you measure?") ],
     ideas:[
       I("Independent", [either(/independent/, /change|manipulat|control|test|choose/, 50)], "What is the independent variable?", "It is the one you ___ on purpose."),
       I("Dependent", [either(/(?<!in)dependent/, /measur|respon|result|observ|depends/, 50)], "What is the dependent variable?", "It is the one you ___.")
@@ -188,6 +200,7 @@ UNITS.push({
   { n:23, heading:"Scientific Skills", prompt:"Explain how to read and interpret data from a graph or data table.",
     guide:"What do you check first? Which axis is which variable?", where:"Book: Lesson 1.1, Collecting and Analyzing Data",
     model:"Read the title and the axis labels and units first. The independent variable goes on the x-axis and the dependent variable goes on the y-axis. Then look for the trend: does the line go up, go down, or stay the same?",
+    watch:[ W(/\bindependent\w*.{0,30}(y ?axis|vertical)/, "Check that. The independent variable goes on the x-axis.") ],
     ideas:[
       I("Labels first", [/title|label|units?|axis|axes|key/], "What do you read first on a graph?", "Start with the title and the labels."),
       I("Which axis", [either(/x ?axis|horizontal|bottom/, /independent/, 60), either(/y ?axis|vertical|side/, /dependent/, 60)], "Which variable goes on the x-axis?", "The x-axis holds the variable you change."),

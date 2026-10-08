@@ -24,6 +24,7 @@ UNITS.push({
   { n:2, heading:"Body Organization and Tissues", prompt:"Define epithelial tissue.",
     guide:"What does it line or cover? Give an example.", where:H + "6 | " + B30,
     model:"Epithelial tissue lines the inside and outside surfaces of the body, like the skin and the stomach lining.",
+    watch:[ W(/epithelial\w*.{0,30}(bone|blood|fat|impulse)/, "Check that. Bone, blood, and fat are a different tissue type.") ],
     ideas:[
       I("Its job", [/line|lining|cover|surface|wrap/], "What does epithelial tissue do?", "Slide 6 calls it the wrapping paper."),
       I("Example", [/skin|stomach|lining|mouth|intestin/], "Give one example.", "Slide 6 gives two examples.")
@@ -31,6 +32,7 @@ UNITS.push({
   { n:3, heading:"Body Organization and Tissues", prompt:"Define connective tissue.",
     guide:"What does it do? Name examples.", where:H + "6 | " + B30,
     model:"Connective tissue supports the body and connects its parts. Examples: bone, blood, and fat.",
+    watch:[ W(/(lines?|lining|covers?) (the )?(surfaces?|skin|stomach)/, "Check that. Lining surfaces is the job of a different tissue type.") ],
     ideas:[
       I("Its job", [/support|connect|hold|glue|scaffold/], "What does connective tissue do?", "Slide 6 calls it the glue and scaffolding."),
       I("Example", [/bone|blood|fat|cartilage|tendon|ligament/], "Give one example.", "Slide 6 gives three examples.")
@@ -38,10 +40,12 @@ UNITS.push({
   { n:4, heading:"Body Organization and Tissues", prompt:"Define nervous tissue.",
     guide:"What does it carry through the body?", where:H + "6 | " + B30,
     model:"Nervous tissue transmits nerve impulses (messages) throughout the body.",
+    watch:[ W(/\bmov(e|es|ing|ement)\b/, "Check that. Movement is the job of muscle tissue. What does nervous tissue carry?", "Its job") ],
     ideas:[ I("Its job", [/impulse|signal|message|electric|transmit|communicat/], "What does nervous tissue carry?", "Slide 6 calls it the messenger.") ]},
   { n:5, heading:"Body Organization and Tissues", prompt:"Define muscle tissue.",
     guide:"What does it make possible?", where:H + "6 | " + B30,
     model:"Muscle tissue makes movement possible, both voluntary and involuntary.",
+    watch:[ W(/impulse|signal|message/, "Check that. Carrying signals is the job of nervous tissue.", "Its job") ],
     ideas:[ I("Its job", [/\bmov|motion|contract/], "What does muscle tissue make possible?", "Slide 6 calls it the mover.") ]},
   { n:6, heading:"Homeostasis", prompt:"Define homeostasis.",
     guide:"What does the body keep constant, even when things change?", where:H + "9 | " + B30,
@@ -53,6 +57,7 @@ UNITS.push({
   { n:7, heading:"Homeostasis", prompt:"Define feedback inhibition (negative feedback).",
     guide:"What does the response do to the original change?", where:H + "10 | " + B30,
     model:"Feedback inhibition (negative feedback) is when a change causes a response that pushes conditions back toward normal. Example: a thermostat turns the furnace on when the room gets cold.",
+    watch:[ W(/(further|farther|more) away from normal|makes? (it|the change) (bigger|worse|stronger)|amplif/, "Check that. Negative feedback pushes conditions back toward normal.") ],
     ideas:[ I("What the response does", [/back (toward|to)|normal|oppos|revers|undo|counter|set point/], "What does the response do to the original change?", "Slide 10: a response that opposes the stimulus, pushing things back toward ___.") ]},
   { n:8, heading:"Homeostasis", prompt:"Explain how the body responds to changes in body temperature.",
     guide:"What is the control center? What happens when you are too cold? Too hot?", where:H + "12 | " + B30,
@@ -66,14 +71,17 @@ UNITS.push({
   { n:9, heading:"The Respiratory System", prompt:"Define pharynx.",
     guide:"Where is it, and what passes through it?", where:R + "4 | " + B33,
     model:"The pharynx is the throat, behind the nose and mouth. It is a passageway for both air and food.",
+    watch:[ W(/voice ?box|wind ?pipe/, "Check that. The voice box and windpipe are other structures. The pharynx is the throat.") ],
     ideas:[ I("Air and food", [either(/air/, /food/, 40)], "What two things pass through the pharynx?", "Slide 4: passageway for ___ and ___.") ]},
   { n:10, heading:"The Respiratory System", prompt:"Define larynx.",
     guide:"What is its nickname?", where:R + "4 | " + B33,
     model:"The larynx is the voice box.",
+    watch:[ W(/wind ?pipe/, "Check that. The windpipe is the trachea. What is the larynx?", "Nickname") ],
     ideas:[ I("Nickname", [/voice|vocal|speak|talk|sound/], "What is the larynx's nickname?", "Slide 4: the ___ box.") ]},
   { n:11, heading:"The Respiratory System", prompt:"Define trachea.",
     guide:"What is its nickname, and where does it carry air?", where:R + "4 | " + B33,
     model:"The trachea is the windpipe. It carries air down to the bronchi.",
+    watch:[ W(/voice ?box/, "Check that. The voice box is the larynx. What is the trachea?", "Nickname") ],
     ideas:[
       I("Nickname", [/wind ?pipe/], "What is the trachea's nickname?", "Slide 4: the ___ pipe."),
       I("Where it carries air", [/bronch|lung|down/], "Where does it carry air?", "It carries air down to the ___.")
@@ -81,6 +89,7 @@ UNITS.push({
   { n:12, heading:"The Respiratory System", prompt:"Define bronchus.",
     guide:"Where does it branch from, and where does each one lead?", where:R + "5 | " + B33,
     model:"A bronchus is a tube that branches off the trachea. There are two bronchi, and each one leads to a lung.",
+    watch:[ W(/air sacs?|gas exchange/, "Check that. The air sacs are alveoli. A bronchus is a tube.") ],
     ideas:[
       I("Branches from", [T.trachea, /wind ?pipe/], "Where does a bronchus branch from?", "It branches off the windpipe."),
       I("Leads to", [/lung/], "Where does each bronchus lead?", "Slide 5: each leads to one ___.")
@@ -88,6 +97,7 @@ UNITS.push({
   { n:13, heading:"The Respiratory System", prompt:"Define alveolus.",
     guide:"What is it, and what happens there?", where:R + "5 | " + B33,
     model:"An alveolus is a tiny air sac in the lungs where gas exchange happens.",
+    watch:[ W(/\btubes?\b/, "Check that. An alveolus is a tiny sac, not a tube.", "What it is") ],
     ideas:[
       I("What it is", [/sac|bag|balloon|pocket|bubble/], "What is an alveolus?", "Slide 5: tiny air ___."),
       I("What happens there", [/gas exchange|exchang|oxygen|carbon dioxide/], "What happens in the alveoli?", "Slide 5: site of ___ exchange.")
@@ -95,6 +105,7 @@ UNITS.push({
   { n:14, heading:"The Respiratory System", prompt:"Define diaphragm.",
     guide:"Where is this muscle, and what does it do?", where:"Slide: Respiratory slideshow 11 | " + B33,
     model:"The diaphragm is a large, dome-shaped muscle under the lungs. It contracts and relaxes to move air in and out of the lungs.",
+    watch:[ W(/\bbone\b/, "Check that. The diaphragm is a muscle, not a bone.") ],
     ideas:[
       I("What it is", [/muscle/], "What kind of structure is the diaphragm?", "It is a big sheet of ___ under the lungs."),
       I("Its job", [/breath|inhal|exhal|air (in|out)|contract|lung/], "What does it do?", "Watch Slide 11: what happens to the lungs when it moves?")
@@ -128,6 +139,7 @@ UNITS.push({
   { n:18, heading:"The Respiratory System", prompt:"Explain the role of the medulla oblongata in breathing.",
     guide:"What does it sense in the blood, and what does it tell the lungs to do?", where:R + "9 to 10 | " + B33,
     model:"When carbon dioxide in the blood rises, sensors in the blood vessels signal the medulla oblongata. The medulla tells the lungs to breathe faster, which lowers the carbon dioxide back to normal.",
+    watch:[ W(/oxygen (rises|goes up|increases|gets high)/, "Check that. The medulla responds to rising carbon dioxide.", "What it senses") ],
     ideas:[
       I("What it senses", [T.co2], "What rises in the blood that the medulla responds to?", "Slide 10, first step."),
       I("What it does", [/faster|more|increas|speed|quick|harder|deeper/], "What does the medulla tell the lungs to do?", "Slide 10, last step.")

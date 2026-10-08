@@ -114,6 +114,19 @@ Each check that is not complete, with a changed note, counts as one try. Checkin
 
 Students also get "Nice, you added a key idea" when a try adds one, and "You stuck with it" when they finish after two or more tries. The try count lives in the student's saved work and backup file.
 
+## Wrong and extra information
+
+After a check, the feedback shows the student's note with problem sentences marked:
+
+- **Red, crossed out:** the sentence contains a common mistake for that prompt (a "watch" in the unit file), like "the molecules stop at equilibrium" or "an atrium is a lower chamber." A **Cross out the red part** button removes those sentences from the note.
+- **Dotted underline:** the sentence matches none of the prompt's key ideas. It may be extra correct information or something off topic, so the student decides whether to keep it.
+
+Red marking only works where a prompt has a mistake check. 120 of the 189 prompts have at least one. Add more with `W(pattern, message, unlessLabel)` in that prompt's `watch` list.
+
+## My Own Notes page
+
+Every quiz ends with an optional **My Own Notes** page (the "+" circle) for memory tricks, examples, or facts that do not fit the guided prompts. It is not checked or counted in "Complete: X of Y," and it prints at the end of the sheet only if the student wrote something. Pasting is still blocked there. A unit can turn it off with `freeNote: false`.
+
 ## How the checker works
 
 Each prompt has 2 to 4 key ideas. Each idea has:

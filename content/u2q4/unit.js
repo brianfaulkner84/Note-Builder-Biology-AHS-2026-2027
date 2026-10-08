@@ -18,6 +18,7 @@ UNITS.push({
   { n:1, heading:"Glycolysis", prompt:"Define glycolysis.",
     guide:"What does the word mean? What is glucose split into, and how many carbons does each piece have?", where:"Slide: Glycolysis 5 | Book: Glycolysis, p. 254",
     model:"Glycolysis means splitting sugar. One glucose (6 carbons) is split into 2 molecules of pyruvic acid, with 3 carbons each.",
+    watch:[ W(/\b(2|two|4|four) carbons? each/, "Check that. Glucose has 6 carbons and is split in half. How many does each piece have?", "Carbons") ],
     ideas:[
       I("What the word means", [/split\w* (the )?sugar|sugar split|break\w* (down )?(the )?sugar|sugar.{0,20}(split|break)/], "What does the word glycolysis mean?", "Glyco = ___. Lysis = ___. Slide Glycolysis 5."),
       I("What glucose becomes", [PYR], "What is glucose split into?", "Slide Glycolysis 5, THE SPLIT box."),
@@ -34,6 +35,7 @@ UNITS.push({
   { n:3, heading:"Glycolysis", prompt:"Calculate the ATP account for glycolysis.",
     guide:"How many ATP are spent to start? How many are made in total? What is the net gain? Show the math.", where:"Slide: Glycolysis 6 to 8 | Book: ATP Production, p. 254",
     model:"The cell spends 2 ATP to start. Glycolysis makes 4 ATP in total. Net gain: 4 - 2 = 2 ATP per glucose.",
+    watch:[ W(/net (gain )?(is |of |was )?(4|four)\b(?! (minus )?(2|two))/, "Check that. Net means what is left after paying back the 2 ATP spent.") ],
     ideas:[
       I("Spent to start", [/(spend|spent|use|used|invest|put in|need|start)\w*.{0,30}\b(2|two)\b/, /\b(2|two) ?(atp)?.{0,25}(spend|spent|start|invest|in\b)/], "How many ATP are spent to start?", "Slide Glycolysis 6, the 2 ATP in box."),
       I("Total made", [/\b(4|four)\b/], "How many ATP are made in total?", "Slide Glycolysis 6, the 4 ATP out box."),
@@ -72,6 +74,7 @@ UNITS.push({
     guide:"Where are the two membranes, matrix, and intermembrane space? Which stage happens where?", where:"Slide: Krebs-ETC 4 | Book: The Krebs Cycle, p. 256; Electron Transport, p. 258",
     draw:"Sketch a mitochondrion. Label the outer membrane, inner membrane, matrix, and intermembrane space.",
     model:"A mitochondrion has an outer membrane and a folded inner membrane. The matrix is the innermost space, where the Krebs cycle happens. The intermembrane space is between the two membranes, where H+ ions pile up. The electron transport chain is in the inner membrane.",
+    watch:[ W(/krebs.{0,40}inter ?membrane/, "Check that. Where does the Krebs cycle happen?", "Matrix") ],
     ideas:[
       I("Two membranes", [either(/outer/, /inner/, 60)], "Name the two membranes.", "Slide Krebs-ETC 4, MEMBRANES."),
       I("Matrix", [either(/matrix/, T.krebs, 60)], "What is the innermost space called, and which stage happens there?", "Slide Krebs-ETC 4, MATRIX."),
@@ -115,6 +118,7 @@ UNITS.push({
   { n:13, heading:"The Electron Transport Chain", prompt:"Explain why the cell needs oxygen.",
     guide:"What is oxygen's job at the end of the chain? What does it form? What happens if oxygen runs out?", where:"Slide: Krebs-ETC 13 | Book: Electron Transport, p. 258",
     model:"Oxygen is the final electron acceptor at the end of the chain. It picks up the used electrons and H+ and forms water. If oxygen runs out, the chain backs up, NADH cannot unload, and the Krebs cycle and ETC stop.",
+    watch:[ W(/oxygen.{0,30}(makes?|forms?) (carbon dioxide|co2)/, "Check that. What does oxygen form at the end of the chain?", "What it forms") ],
     ideas:[
       I("Oxygen's job", [/final (electron )?acceptor|accept|pick\w* up (the )?(used )?electrons|last stop|end of the chain/], "What is oxygen's job at the end of the chain?", "Slide Krebs-ETC 13, Makes water."),
       I("What it forms", [T.water], "What does oxygen form?", "Slide Krebs-ETC 13, Makes water."),
@@ -132,6 +136,7 @@ UNITS.push({
   { n:15, heading:"The Electron Transport Chain", prompt:"Calculate the ATP made from one glucose with oxygen.",
     guide:"How many ATP from each stage? What is the total? Which stage makes the most?", where:"Slide: Krebs-ETC 16 to 18 | Book: The Totals, p. 260",
     model:"Glycolysis 2 + Krebs cycle 2 + electron transport chain 32 = about 36 ATP per glucose. The electron transport chain makes the most.",
+    watch:[ W(/(glycolysis|krebs\w*( cycle)?) makes (the )?most/, "Check that. Which stage makes the most ATP?", "Makes the most") ],
     ideas:[
       I("Each stage", [/\b32\b|thirty ?two/], "How many ATP does each stage make?", "Slide Krebs-ETC 18, answer 1."),
       I("Total", [/\b36\b|thirty ?six/], "What is the total from one glucose with oxygen?", "Slide Krebs-ETC 16, KEY TERMS."),
@@ -148,6 +153,7 @@ UNITS.push({
   { n:17, heading:"Why Fermentation Happens", prompt:"Explain why humans undergo fermentation.",
     guide:"What is missing? What does fermentation give back to glycolysis? How many ATP does the cell still get?", where:"Slide: Fermentation 5 | Book: Fermentation, p. 262",
     model:"When oxygen is missing, fermentation turns NADH back into NAD+. That gives NAD+ back to glycolysis so it can keep going and keep making 2 ATP per glucose.",
+    watch:[ W(/fermentation (makes|gives|produces) (a lot|lots|more|tons) (of )?atp/, "Check that. Fermentation keeps glycolysis going, so the cell still gets only 2 ATP.") ],
     ideas:[
       I("What is missing", [/oxygen|\bo2\b/], "What is missing that makes the cell switch to fermentation?", "Slide Fermentation 4, the title."),
       I("What it gives back", [T.nad, /regenerat|back into nad|turns? .{0,15}back/], "What does fermentation give back to glycolysis?", "Slide Fermentation 5, WHAT IT DOES."),
@@ -156,6 +162,7 @@ UNITS.push({
   { n:18, heading:"Two Types of Fermentation", prompt:"Describe alcoholic fermentation.",
     guide:"Who does it? What does it make? How does it make bread rise?", where:"Slide: Fermentation 7 | Book: Alcoholic Fermentation, p. 263",
     model:"Yeast do alcoholic fermentation. Pyruvic acid and NADH make ethyl alcohol, carbon dioxide, and NAD+. The CO2 bubbles make bread dough rise.",
+    watch:[ W(/lactic/, "Check that. Yeast make a different product. What is it?", "Makes alcohol") ],
     ideas:[
       I("Who", [/yeast/], "Who does alcoholic fermentation?", "Slide Fermentation 7, under the title."),
       I("Makes alcohol", [T.alcohol], "What does it make?", "Slide Fermentation 7, The reaction."),
@@ -172,6 +179,7 @@ UNITS.push({
   { n:20, heading:"Two Types of Fermentation", prompt:"Describe lactic acid fermentation.",
     guide:"Who does it? What does it make? Does it give off CO2? Name two foods it helps make.", where:"Slide: Fermentation 9 | Book: Lactic Acid Fermentation, p. 263",
     model:"Humans (muscle cells) and many bacteria do lactic acid fermentation. Pyruvic acid and NADH make lactic acid and NAD+. It does not give off CO2. It helps make yogurt and cheese.",
+    watch:[ W(/(give|gives|release|releases|makes?) (off )?(carbon dioxide|co2)/, "Check that. Does lactic acid fermentation give off CO2?", "CO2") ],
     ideas:[
       I("Who", [/human|muscle|people|us\b|bacteria|animal/], "Who does lactic acid fermentation?", "Slide Fermentation 9, under the title."),
       I("What it makes", [T.lactic], "What does it make?", "Slide Fermentation 9, The reaction."),

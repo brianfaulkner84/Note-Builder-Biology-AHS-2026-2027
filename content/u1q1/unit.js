@@ -22,6 +22,7 @@ UNITS.push({
   { n:2, heading:"Vocabulary", prompt:"Define DNA.",
     guide:"What does DNA hold, and how is it passed on?", where:BOOK + ", Characteristics of Living Things",
     model:"DNA is the molecule that holds an organism's genetic code. It is passed from parents to offspring.",
+    watch:[ W(/dna is (a )?(protein|sugar|lipid|fat)\b/, "Check that. DNA holds the genetic code. Is it really a protein or a sugar?") ],
     ideas:[
       I("What it is", [/molecule|genetic|code|instructions|information|blueprint/], "What does DNA hold?", "It holds the universal genetic ___."),
       I("Passed on", [/parent|offspring|pass|inherit|child|kids/], "How do living things get their DNA?", "Slide 5: a child inherits traits from ___.")
@@ -29,6 +30,7 @@ UNITS.push({
   { n:3, heading:"Vocabulary", prompt:"Define stimulus.",
     guide:"What does an organism respond to? Give one example.", where:BOOK + ", Characteristics of Living Things",
     model:"A stimulus is a signal that an organism responds to. Example: a plant bends toward light.",
+    watch:[ W(/stimulus (is|means) (the|a|your) (response|reaction)/, "Check that. The stimulus is the signal. The reaction to it is the response.") ],
     ideas:[
       I("Definition", [/signal|something .{0,20}(respond|react)|change in (the )?(environment|surroundings)|cause\w* (a )?(reaction|response)/], "What is a stimulus?", "Read Slide 8: organisms respond to stimuli, which are ___ in their surroundings."),
       I("Example", [/light|sound|knock|noise|heat|cold|hot|touch|smell|food|danger|loud/], "Give one example of a stimulus.", "Slide 8 gives two examples.")
@@ -41,6 +43,7 @@ UNITS.push({
   { n:5, heading:"Vocabulary", prompt:"Define asexual reproduction.",
     guide:"How many parents? How do the offspring compare to the parent?", where:BOOK + ", Characteristics of Living Things",
     model:"Asexual reproduction is when one parent makes offspring that are genetically identical to it. Example: bacteria splitting in two.",
+    watch:[ W(/\b(2|two) parents|both parents|mom and dad/, "Check that. Asexual reproduction needs how many parents?", "How many parents") ],
     ideas:[
       I("How many parents", [/\b(1|one) parent|single parent|only one|by itself|on its own/], "How many parents are needed for asexual reproduction?", "Slide 7: asexually means ___ parent."),
       I("The offspring", [/identical|same|copy|clone|exact/], "How do the offspring compare to the parent?", "Are they the same as the parent or different?")
@@ -62,10 +65,12 @@ UNITS.push({
   { n:8, heading:"Vocabulary", prompt:"Define biosphere.",
     guide:"Where on Earth does life exist?", where:BOOK,
     model:"The biosphere is the part of Earth where all life exists, including land, water, and air.",
+    watch:[ W(/\b(only|just) (the )?(oceans?|land|air|atmosphere|sky)\b/, "Check that. The biosphere is every part of Earth where life exists.") ],
     ideas:[ I("Definition", [/(part|portion|area|place|where|zone|layer)\w*.{0,30}(life|living|organisms)|(all|every) (life|living)/], "What is the biosphere?", "Bio = life. Sphere = the ball of Earth. Put them together.") ]},
   { n:9, heading:"Characteristics of Life", prompt:"Describe cellular organization.",
     guide:"What are all living things made of?", where:"Slide: " + DECK + " 4 | " + BOOK,
     model:"Living things are made of one or more cells. Example: humans have trillions of cells; an amoeba is one cell.",
+    watch:[ W(/\b(atoms?|molecules?) (are|is) the (basic|smallest)/, "Check that. What is the smallest unit that is alive?") ],
     ideas:[ I("Made of cells", [/cells?/], "What are all living things made of?", "Slide 4: one or more ___.") ]},
   { n:10, heading:"Characteristics of Life", prompt:"Describe the genetic code (DNA).",
     guide:"Where is the information stored, and how is it passed on?", where:"Slide: " + DECK + " 5 | " + BOOK,
@@ -112,6 +117,7 @@ UNITS.push({
   { n:16, heading:"Characteristics of Life", prompt:"Describe evolution as a characteristic of life.",
     guide:"Who changes, one organism or a group? Over how long?", where:"Slide: " + DECK + " 11 | " + BOOK,
     model:"As a group, populations of organisms change and adapt over many generations. One organism does not evolve in its lifetime.",
+    watch:[ W(/(one|an individual|a single) (organism|animal|person|plant|creature)\w* (evolv|changes? over)/, "Check that. Does one organism evolve, or a group?", "A group") ],
     ideas:[
       I("A group", [/group|population|species/], "Does one organism evolve, or a group?", "Slide 11, the title."),
       I("Over generations", [/generation|time|years/], "Over how long does evolution happen?", "Slide 11: over many ___.")
@@ -119,6 +125,7 @@ UNITS.push({
   { n:17, heading:"Alive or Not Alive?", prompt:"Explain how to decide if something is alive.",
     guide:"How many of the characteristics must it show? Give one tricky example.", where:"Slide: " + DECK + " 13 to 21 | " + BOOK + ", Figure 1-12, Is It Alive?",
     model:"Something is alive only if it shows all eight characteristics of life. Example: fire grows and uses energy, but it has no cells or DNA, so it is not alive.",
+    watch:[ W(/\b(fire|campfire|computer virus|crystal|cloud|car|robot|toy)s? (is|are|counts? as) (alive|living)/, "Check that. Does it have cells and DNA?") ],
     ideas:[
       I("The rule", [/all (8|eight)|all (of )?the characteristics|every (one|characteristic)|checklist/], "How many of the characteristics must a living thing show?", "Slide 12: every living thing shows ___."),
       I("Tricky example", [/fire|campfire|mule|seed|virus|crystal|car|cloud|toy|robot|coral|mushroom/], "Give one tricky example and decide if it is alive.", "Slides 14 to 21 walk through four tricky examples.")

@@ -209,9 +209,17 @@ function openUnit(id){
   document.head.appendChild(s);
 }
 function setHash(id){ try { history.replaceState(null, "", "#" + id); } catch(e){} }
-function pickUnit(u){ unit = u; S = load(); idx = Math.min(S.idx||0, unit.questions.length-1); view = "start"; render(); }
+/* Every quiz ends with an optional "My Own Notes" page. A unit can turn it off with freeNote:false. */
+function addFreeNote(u){
+  if (u.freeNote === false || u.questions.some(q => q.free)) return;
+  u.questions.push({ n: u.questions[u.questions.length - 1].n + 1, free: true, heading: "My Own Notes",
+    prompt: "Add any other notes you want for this quiz or test.",
+    guide: "Anything that helps you: a memory trick, an example, a drawing idea, or a fact you want to remember.",
+    where: "Your class notes, homework, and slides", model: "" });
+}
+function pickUnit(u){ addFreeNote(u); unit = u; S = load(); idx = Math.min(S.idx||0, unit.questions.length-1); view = "start"; render(); }
 
-function counts(){ const n = unit.questions.length; const done = unit.questions.filter(x=>S.status[x.n]==="done").length; return {n, done}; }
+function counts(){ const qs = unit.questions.filter(x => !x.free); const n = qs.length; const done = qs.filter(x=>S.status[x.n]==="done").length; return {n, done}; }
 
 function renderStart(){
   const {n, done} = counts();
@@ -252,12 +260,12 @@ function renderQuestion(){
   const note = S.notes[Q.n] || "";
   app.innerHTML = `
   <div class="top noprint">
-    <div class="row spread"><span class="eyebrow">${esc(unit.title)}</span><span class="eyebrow">Note ${idx+1} of ${n}</span></div>
-    <nav class="dots" aria-label="Jump to a note">${unit.questions.map((x,i)=>`<button class="dot ${S.status[x.n]||""} ${i===idx?"here":""}" data-i="${i}" aria-label="Note ${x.n}${S.status[x.n]==="done"?", done":""}">${x.n}</button>`).join("")}</nav>
+    <div class="row spread"><span class="eyebrow">${esc(unit.title)}</span><span class="eyebrow">${q().free ? "Optional: my own notes" : "Note " + (idx+1) + " of " + n}</span></div>
+    <nav class="dots" aria-label="Jump to a note">${unit.questions.map((x,i)=>`<button class="dot ${S.status[x.n]||""} ${i===idx?"here":""}" data-i="${i}" aria-label="${x.free ? "My own notes" : "Note " + x.n}${S.status[x.n]==="done"?", done":""}">${x.free ? "+" : x.n}</button>`).join("")}</nav>
   </div>
   <section class="card">
     <div class="heading">Heading: ${esc(Q.heading)}</div>
-    <h2 class="prompt" id="prompt">${Q.n}. ${promptHTML(Q.prompt)}</h2>
+    <h2 class="prompt" id="prompt">${Q.free ? "" : Q.n + ". "}${promptHTML(Q.prompt)}</h2>
     <div class="row">
       <button class="btn" id="read">${ICON.speak}<span>Read to me</span></button>
       <button class="btn" id="clue" aria-expanded="${reveal.clue}">${ICON.clue}<span>Clue</span></button>
@@ -271,7 +279,7 @@ function renderQuestion(){
     <textarea id="note" class="note" spellcheck="true" placeholder="Tap Speak, or type here.">${esc(note)}</textarea>
     <div class="row">
       <button class="btn big mic" id="mic" aria-pressed="false">${ICON.mic}<span>Speak</span></button>
-      <button class="btn primary big" id="check">${ICON.check}<span>Check my note</span></button>
+      <button class="btn primary big" id="check">${ICON.check}<span>${Q.free ? "Save my note" : "Check my note"}</span></button>
       <button class="btn" id="readnote">${ICON.speak}<span>Read my note</span></button>
     </div>
     <p class="tip" id="tip"></p>
@@ -309,6 +317,14 @@ const SAMPLE_AT = 3;
 function doCheck(){
   if (listening){ try { rec.stop(); } catch(e){} }
   const Q = q(); const text = $("#note").value; S.notes[Q.n] = text;
+  if (Q.free){
+    S.status[Q.n] = text.trim() ? "done" : ""; writeNow();
+    app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n]} here`;
+    $("#fb").innerHTML = `<div class="fb ok"><h3>${text.trim() ? "Saved. These notes will print at the end of your sheet." : "Nothing to save yet. This page is optional."}</h3>
+      ${text.trim() ? "<p>The checker does not check this page, so make sure everything here is correct.</p>" : ""}</div>`;
+    if (text.trim()) speak("Saved. The checker does not check this page, so make sure everything here is correct.");
+    return;
+  }
   const r = checkNote(Q, text);
   S.misses[Q.n] = S.misses[Q.n] || {};
   const changed = (S.lastText[Q.n] || "") !== text.trim();
@@ -332,6 +348,37 @@ function hintFor(Q, idea){
   const h = idea.hints || [];
   if (level(Q) === 1 || h.length < 2) return h[0] || `Look here: ${Q.where}.`;
   return `${h[h.length - 1]} (${Q.where})`;
+}
+/* Shows the note with problem sentences marked: red and crossed out for a common
+   mistake, dotted amber for a sentence that matches none of the key ideas. */
+function markedNoteHTML(text, marks){
+  if (!marks || !marks.length) return "";
+  let html = "", at = 0;
+  marks.forEach(m => {
+    html += esc(text.slice(at, m.start));
+    html += `<span class="mk ${m.kind}">${esc(text.slice(m.start, m.end))}</span>`;
+    at = m.end;
+  });
+  html += esc(text.slice(at));
+  const wrong = marks.some(m => m.kind === "wrong"), extra = marks.some(m => m.kind === "extra");
+  return `<div class="marked">
+    <p class="eyebrow">Your note, checked</p>
+    <p class="marked-text">${html}</p>
+    <ul class="legend">
+      ${wrong ? `<li><span class="mk wrong">Red</span> = this part is not correct. Fix it or cross it out.</li>` : ""}
+      ${extra ? `<li><span class="mk extra">Dotted</span> = this part does not match a key idea for this note. Keep it only if it is correct and belongs here.</li>` : ""}
+    </ul>
+    ${wrong ? `<div class="row"><button class="btn" id="crossout">Cross out the red part</button></div>` : ""}
+  </div>`;
+}
+function crossOut(marks){
+  const box = $("#note"); let text = box.value;
+  marks.filter(m => m.kind === "wrong").sort((a,b) => b.start - a.start).forEach(m => { text = text.slice(0, m.start) + text.slice(m.end); });
+  text = text.replace(/\s+([.,!?])/g, "$1").replace(/[ \t]{2,}/g, " ").trim();
+  box.value = text; S.notes[q().n] = text; writeNow();
+  $("#fb").innerHTML = `<div class="fb more"><h3>Crossed out.</h3><p>Now add the correct idea, then check your note again.</p></div>`;
+  speak("Crossed out. Now add the correct idea, then check your note again.");
+  box.focus();
 }
 function paintFeedback(r, talk){
   const Q = q(), fb = $("#fb");
@@ -359,6 +406,7 @@ function paintFeedback(r, talk){
     <h3>${esc(head)}</h3>
     ${lead ? `<p class="lead">${esc(lead)}</p>` : ""}
     ${chips}
+    ${markedNoteHTML(S.notes[Q.n] || "", r.marks)}
     ${sample ? `<div class="sample"><p class="eyebrow">One way to say it</p><p class="sample-text">${esc(Q.model)}</p>
       <p>Read it, then say or type it in your own words and check again. You've got this.</p></div>` : `<ul class="miss">${lines.join("")}</ul>`}
     <div class="row"><button class="btn" id="readfb">${ICON.speak}<span>Read this to me</span></button></div></div>`;
@@ -366,6 +414,7 @@ function paintFeedback(r, talk){
     ? `You have worked hard on this one. Here is one way to say it. ${Q.model} Now say it in your own words and check again.`
     : [head, lead].concat(r.warnings, miss.map(i=>hintFor(Q,i))).filter(Boolean).join(" ");
   $("#readfb").onclick = () => speak(said);
+  if ($("#crossout")) $("#crossout").onclick = () => crossOut(r.marks);
   if (talk) speak(said);
 }
 
@@ -374,9 +423,10 @@ function renderSheet(){
   const date = new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
   let lastH = "", body = "";
   unit.questions.forEach(Q => {
-    if (Q.heading !== lastH){ body += `<h3>${esc(Q.heading)}</h3>`; lastH = Q.heading; }
     const a = (S.notes[Q.n]||"").trim();
-    body += `<div class="item"><span class="num">${Q.n}.</span><span class="p">${esc(Q.prompt)}</span>
+    if (Q.free && !a) return;
+    if (Q.heading !== lastH){ body += `<h3>${esc(Q.heading)}</h3>`; lastH = Q.heading; }
+    body += `<div class="item"><span class="num">${Q.free ? "+" : Q.n + "."}</span><span class="p">${esc(Q.prompt)}</span>
       <div class="a ${a?"":"empty"}">${a ? esc(a) : "(no note yet)"}</div>
       ${Q.draw ? `<div class="box">${esc(Q.draw)}</div>` : ""}
       <div class="src">${esc(Q.where)}</div>
@@ -388,7 +438,7 @@ function renderSheet(){
   const short = new Date().toLocaleDateString(undefined, {month:"numeric", day:"numeric", year:"numeric"});
   const wmText = `${who || "NO NAME"} \u00b7 ${short}`;
   const wm = `<div class="wm" aria-hidden="true">${Array.from({length: 40}, () => `<span>${esc(wmText)}</span>`).join("")}</div>`;
-  const missing = unit.questions.filter(Q => S.status[Q.n] !== "done").map(Q => Q.n);
+  const missing = unit.questions.filter(Q => !Q.free && S.status[Q.n] !== "done").map(Q => Q.n);
   app.innerHTML = `
   <div class="row spread noprint">
     <button class="btn big" id="back">Back to notes</button>

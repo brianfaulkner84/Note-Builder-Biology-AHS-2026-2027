@@ -49,6 +49,7 @@ UNITS.push({
   { n:5, heading:"ATP and ADP", prompt:"Describe the ATP molecule.",
     guide:"What does ATP stand for? What three parts make it up?", where:"Slide: Energy 10 | Book: Chemical Energy and ATP, p. 226",
     model:"ATP stands for adenosine triphosphate. It is made of adenine, ribose (a 5-carbon sugar), and three phosphate groups. It is the main energy source of the cell.",
+    watch:[ W(/\b(2|two|di) ?phosphates?/, "Check that. How many phosphates does ATP have?", "Part 3") ],
     ideas:[
       I("What ATP stands for", [/adenosine ?tri ?phosphate|adenosine tri/], "What does ATP stand for?", "Slide Energy 10, the line under the title."),
       I("Part 1", [/adenine/], "Name the base in ATP.", "Slide Energy 10, the THREE PARTS box."),
@@ -107,6 +108,7 @@ UNITS.push({
   { n:12, heading:"Autotrophs and Heterotrophs", prompt:"Compare autotrophs and heterotrophs.",
     guide:"How does each one get energy? Give two examples of each.", where:"Slide: Energy 19 | Book: Heterotrophs and Autotrophs, p. 228",
     model:"Autotrophs make their own food using energy from sunlight. Examples: plants and algae. Heterotrophs get energy by eating or absorbing other living things. Examples: animals and mushrooms.",
+    watch:[ W(/auto\w*.{0,30}\beat/, "Check that. Autotrophs make their own food. Which group eats?", "Autotrophs") ],
     ideas:[
       I("Autotrophs", [near(/auto/, /(make|makes|making|produce)\w* (their|its) own food|sun|light|photo/, 80)], "How does an autotroph get energy?", "\"Auto\" means self. Slide Energy 19."),
       I("Autotroph examples", [/plant|algae|tree|grass/], "Give examples of autotrophs.", "Slide Energy 19, the Examples row."),
@@ -125,6 +127,7 @@ UNITS.push({
   { n:14, heading:"Photosynthesis Basics", prompt:"Define photosynthesis.",
     guide:"What does the word mean? Which kind of energy becomes which kind?", where:"Slide: Photosynthesis 4 | Book: Heterotrophs and Autotrophs, p. 228",
     model:"Photosynthesis means using light to put something together. Plants use light energy to make sugar, so light energy becomes chemical energy stored in sugar.",
+    watch:[ W(/chemical (energy )?(into|to|becomes) light/, "Check that. Which energy goes in, and which comes out?") ],
     ideas:[
       I("What the word means", [/(light|photo).{0,30}(put\w* together|build|synthes|make)/, /put\w* together/], "What does the word photosynthesis mean?", "Photo means ___. Synthesis means ___. Slide Photosynthesis 4."),
       I("Energy change", [near(/light/, /chemical/, 60)], "Which kind of energy becomes which kind?", "Slide Photosynthesis 4, KEY TERMS.")
@@ -149,6 +152,7 @@ UNITS.push({
   { n:17, heading:"Light and Pigments", prompt:"Predict how a plant would grow under only green light.",
     guide:"Which color of light is least useful to a plant, and why?", where:"Slide: Photosynthesis 8 to 10 | Book: Pigments, p. 230",
     model:"The plant would grow poorly. Green light is the least useful color because chlorophyll reflects green light instead of absorbing it, so the plant gets little energy.",
+    watch:[ W(/grow\w* (better|faster|well|good|great)/, "Check that. Is green light useful to a plant?", "Prediction") ],
     ideas:[
       I("Prediction", [/poor|bad|slow|not (grow )?(well|good)|won.?t grow|wouldn.?t grow|die|struggle|weak|little|less|barely|not much/], "Would the plant grow well or poorly?", "Read the Also know line on Slide Photosynthesis 8."),
       I("Why", [/reflect|not absorb|doesn.?t absorb|can.?t absorb|bounc/], "Why is green light the least useful?", "Use your note 16. What does chlorophyll do with green light?")
@@ -166,6 +170,7 @@ UNITS.push({
   { n:19, heading:"The Chloroplast and the Two Parts", prompt:"Identify the two parts of photosynthesis.",
     guide:"What is each part called, and where does each one happen?", where:"Slide: Photosynthesis 15 | Book: An Overview of Photosynthesis, p. 233",
     model:"Part 1 is the light-dependent reactions, in the thylakoid membranes. Part 2 is the light-independent reactions (the Calvin cycle), in the stroma.",
+    watch:[ W(/calvin.{0,25}thyla/, "Check that. Where does the Calvin cycle happen?") ],
     ideas:[
       I("Part 1", [/light ?dependent|light reactions?/], "What is the first part called?", "Slide Photosynthesis 15, KEY TERMS."),
       I("Where part 1 happens", [/thyla|thila/], "Where do the light-dependent reactions happen?", "Slide Photosynthesis 16, the Where row."),
@@ -191,6 +196,7 @@ UNITS.push({
   { n:22, heading:"Cellular Respiration Basics", prompt:"Define cellular respiration.",
     guide:"What does it release, and which gas does it need?", where:"Slide: Respiration 5 | Book: Overview of Cellular Respiration, p. 251",
     model:"Cellular respiration is the process that releases energy from food (glucose) in the presence of oxygen.",
+    watch:[ W(/(needs?|requires?|uses?) carbon dioxide/, "Check that. Which gas does cellular respiration need?", "The gas it needs") ],
     ideas:[
       I("What it releases", [/releas\w*.{0,30}energy|energy.{0,30}(from|out of) (food|glucose|sugar)|make\w* atp|break\w* down (food|glucose|sugar)/], "What does cellular respiration release?", "Slide Respiration 5, the line under the title."),
       I("The gas it needs", [O2], "Which gas does it need?", "Why do you breathe harder when you run? Slide Respiration 3.")
@@ -208,6 +214,7 @@ UNITS.push({
   { n:24, heading:"The Three Stages", prompt:"Sequence the three stages of cellular respiration.",
     guide:"Which comes first, second, and third? Which happen in the cytoplasm, and which in the mitochondria?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
     model:"1. Glycolysis, in the cytoplasm. 2. The Krebs cycle, in the mitochondria. 3. The electron transport chain, in the mitochondria.",
+    watch:[ W(/krebs.{0,60}glycolysis/, "Check the order. Which stage comes first?", "The order") ],
     ideas:[
       I("The order", [near(T.glycolysis, near(T.krebs, T.etc, 120), 120)], "Which stage comes first, second, and third?", "Slide Respiration 9 shows the map in order."),
       I("Cytoplasm stage", [either(T.glycolysis, T.cytoplasm, 60)], "Which stage happens in the cytoplasm?", "Read the Also know line on Slide Respiration 9."),
@@ -216,6 +223,7 @@ UNITS.push({
   { n:25, heading:"The Three Stages", prompt:"Distinguish aerobic from anaerobic.",
     guide:"Which stage is anaerobic? Which stages need oxygen? What happens when oxygen runs out?", where:"Slide: Respiration 10 | Book: Oxygen and Energy, p. 252",
     model:"Aerobic means it requires oxygen. Anaerobic means it does not require oxygen. Glycolysis is anaerobic. The Krebs cycle and electron transport chain are aerobic. When oxygen runs out, the aerobic stages stop and glycolysis keeps going, followed by fermentation.",
+    watch:[ W(/glycolysis (is )?(aerobic|needs oxygen)/, "Check that. Does glycolysis need oxygen?") ],
     ideas:[
       I("Aerobic", [near(/\baerobic/, /oxygen|air/, 50)], "What does aerobic mean?", "Slide Respiration 10, the Meaning row."),
       I("Anaerobic", [near(/anaerobic|an aerobic/, new RegExp(NEG + ".{0,25}(oxygen|air)|without (oxygen|air)"), 60)], "What does anaerobic mean?", "Slide Respiration 10, the Meaning row."),
