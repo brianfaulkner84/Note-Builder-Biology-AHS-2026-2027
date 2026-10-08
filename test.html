@@ -22,7 +22,7 @@ pre{white-space:pre-wrap;background:rgba(127,127,127,.1);padding:10px;border-rad
 <body>
 <main>
 <h1>Notes Builder Self-Test</h1>
-<p>Teacher page. Every model note should show PASS. If one fails, fix that question's patterns in its units file. Use the box at the bottom to try a student-style answer.</p>
+<p>Teacher page. Every model note should show PASS. Every quiz in content/catalog.js is loaded, including hidden ones. If one fails, fix that question's patterns in its content/&lt;id&gt;/unit.js file. Use the box at the bottom to try a student-style answer.</p>
 <p id="summary"></p>
 <div class="scroll"><table><thead><tr><th>Unit</th><th>#</th><th>Model note</th><th>Missing or flagged</th></tr></thead><tbody id="rows"></tbody></table></div>
 <h2>Try an answer</h2>
@@ -34,21 +34,32 @@ pre{white-space:pre-wrap;background:rgba(127,127,127,.1);padding:10px;border-rad
 <pre id="out"></pre>
 </main>
 <script src="patterns.js"></script>
-<!-- keep this list the same as index.html -->
-<script src="units/u2q2.js"></script>
+<script src="content/catalog.js"></script>
 <script src="checker.js"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let pass=0,total=0,rows="",opts="";
-UNITS.forEach((u,ui)=>u.questions.forEach((q,qi)=>{
-  total++; const r=checkNote(q,q.model); if(r.done) pass++;
-  const miss=r.ideas.filter(i=>!i.ok).map(i=>i.label).concat(r.warnings).join("; ");
-  rows+=`<tr><td>${esc(u.id)}</td><td>${q.n}</td><td class="${r.done?"ok":"bad"}">${r.done?"PASS":"FAIL"}</td><td>${esc(miss)}</td></tr>`;
-  opts+=`<option value="${ui}:${qi}">${esc(u.id)} #${q.n}: ${esc(q.prompt)}</option>`;
-}));
-document.getElementById("rows").innerHTML=rows;
-document.getElementById("q").innerHTML=opts;
-document.getElementById("summary").innerHTML=`<span class="${pass===total?"ok":"bad"}">${pass} of ${total} model notes pass.</span>`;
+function loadAll(){
+  return Promise.all(CATALOG.map(c=>new Promise(res=>{
+    const s=document.createElement("script"); s.src=`content/${c.id}/unit.js?v=${Date.now()}`;
+    s.onload=()=>res({c,ok:UNITS.some(u=>u.id===c.id)}); s.onerror=()=>res({c,ok:false});
+    document.head.appendChild(s);
+  })));
+}
+loadAll().then(results=>{
+  let pass=0,total=0,rows="",opts="";
+  results.filter(r=>!r.ok).forEach(r=>{rows+=`<tr><td>${esc(r.c.id)}</td><td></td><td class="bad">NOT LOADED</td><td>content/${esc(r.c.id)}/unit.js is missing, or its id does not match the folder name</td></tr>`;});
+  const order=CATALOG.map(c=>c.id);
+  UNITS.slice().sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id)).forEach(u=>{const ui=UNITS.indexOf(u); u.questions.forEach((q,qi)=>{
+    total++; const r=checkNote(q,q.model); if(r.done) pass++;
+    const miss=r.ideas.filter(i=>!i.ok).map(i=>i.label).concat(r.warnings).join("; ");
+    rows+=`<tr><td>${esc(u.id)}</td><td>${q.n}</td><td class="${r.done?"ok":"bad"}">${r.done?"PASS":"FAIL"}</td><td>${esc(miss)}</td></tr>`;
+    opts+=`<option value="${ui}:${qi}">${esc(u.id)} #${q.n}: ${esc(q.prompt)}</option>`;
+  });});
+  const bad=results.filter(r=>!r.ok).length;
+  document.getElementById("rows").innerHTML=rows;
+  document.getElementById("q").innerHTML=opts;
+  document.getElementById("summary").innerHTML=`<span class="${pass===total&&!bad?"ok":"bad"}">${pass} of ${total} model notes pass across ${results.length-bad} of ${results.length} quizzes on the menu list.</span>`;
+});
 document.getElementById("go").onclick=()=>{
   const [ui,qi]=document.getElementById("q").value.split(":").map(Number);
   const r=checkNote(UNITS[ui].questions[qi],document.getElementById("a").value);

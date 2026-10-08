@@ -65,11 +65,30 @@ function render(){
   renderQuestion();
 }
 
-function renderPicker(){
-  app.innerHTML = `<div class="hero"><p class="eyebrow">Biology</p><h1>Notes Builder</h1><p>Pick your quiz or test.</p></div>
-  <div class="units">${UNITS.map((u,i)=>`<button class="btn big" data-u="${i}">${esc(u.title)}<span class="small">&nbsp;${esc(u.subtitle)}</span></button>`).join("")}</div>`;
-  app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{ pickUnit(UNITS[+b.dataset.u]); });
+function renderPicker(msg){
+  const list = (window.CATALOG||[]).filter(c => c.show !== false);
+  const groups = [];
+  list.forEach(c => { let g = groups.find(x => x.name === c.unit); if (!g) groups.push(g = {name:c.unit, items:[]}); g.items.push(c); });
+  app.innerHTML = `<div class="hero"><p class="eyebrow">Biology</p><h1>Notes Builder</h1><p>Pick the quiz or test you are building notes for.</p></div>
+  ${msg ? `<div class="confirm" role="alert">${esc(msg)}</div>` : ""}
+  ${groups.map(g => `<section class="units"><h2 class="eyebrow">${esc(g.name)}</h2>
+    ${g.items.map(c => `<button class="btn big pick" data-id="${esc(c.id)}"><span>${esc(c.title)}</span><span class="small">${esc(c.type||"")}</span></button>`).join("")}
+  </section>`).join("") || `<p>No quizzes are posted yet.</p>`}`;
+  app.querySelectorAll("[data-id]").forEach(b => b.onclick = () => openUnit(b.dataset.id));
 }
+function openUnit(id){
+  const entry = (window.CATALOG||[]).find(c => c.id === id);
+  const have = UNITS.find(u => u.id === id);
+  if (have){ setHash(id); return pickUnit(have); }
+  if (!entry) return renderPicker("That quiz link is not on the menu. Pick one below.");
+  app.innerHTML = `<div class="hero"><p class="eyebrow">${esc(entry.unit)}</p><h1>${esc(entry.title)}</h1><p>Loading...</p></div>`;
+  const s = document.createElement("script");
+  s.src = `content/${encodeURIComponent(id)}/unit.js?v=${encodeURIComponent(entry.v||1)}`;
+  s.onload = () => { const u = UNITS.find(x => x.id === id); if (u){ setHash(id); pickUnit(u); } else renderPicker("That quiz did not load correctly. Tell your teacher."); };
+  s.onerror = () => renderPicker("That quiz did not load. Check your internet, then try again.");
+  document.head.appendChild(s);
+}
+function setHash(id){ try { history.replaceState(null, "", "#" + id); } catch(e){} }
 function pickUnit(u){ unit = u; S = load(); idx = Math.min(S.idx||0, unit.questions.length-1); view = "start"; render(); }
 
 function counts(){ const n = unit.questions.length; const done = unit.questions.filter(x=>S.status[x.n]==="done").length; return {n, done}; }
@@ -93,13 +112,13 @@ function renderStart(){
   <div class="row">
     <button class="btn primary big" id="go">${done ? `Keep going (${done} of ${n} done)` : "Start"}</button>
     ${done ? `<button class="btn" id="see">${ICON.print}<span>See my notes</span></button>` : ""}
-    ${UNITS.length > 1 ? `<button class="btn" id="other">Different quiz</button>` : ""}
+    <button class="btn" id="other">Different quiz or test</button>
   </div>
   <p class="small">${esc(unit.disclosure)}</p>`;
   $("#name").oninput = e => { S.name = e.target.value; save(); };
   $("#go").onclick = () => { view = "q"; render(); };
   if ($("#see")) $("#see").onclick = () => { view = "sheet"; render(); };
-  if ($("#other")) $("#other").onclick = () => { unit = null; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); };
+  $("#other").onclick = () => { unit = null; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); };
 }
 
 function promptHTML(p){ const i = p.indexOf(" "); return `<b>${esc(p.slice(0,i))}</b>${esc(p.slice(i))}`; }
@@ -251,8 +270,5 @@ function selectSheet(){ try { const r = document.createRange(); r.selectNodeCont
 /* ---------- boot ---------- */
 (function boot(){
   const h = (location.hash||"").slice(1);
-  const byHash = UNITS.find(u => u.id === h);
-  if (byHash) pickUnit(byHash);
-  else if (UNITS.length === 1) pickUnit(UNITS[0]);
-  else render();
+  if (h) openUnit(h); else render();
 })();

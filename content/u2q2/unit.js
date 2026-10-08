@@ -1,7 +1,8 @@
 /* ==================================================================
    UNIT FILE: Unit 2, Quiz 2 (Cell Membrane and Transport).
-   To add a quiz or test: copy this file to units/<new id>.js, change the
-   id, title, and questions, then add one <script> line in index.html.
+   To add a quiz or test: copy this folder to content/<new id>/, change
+   the id, title, and questions in unit.js, then add one line to
+   content/catalog.js. The id here must match the folder name.
 
    Each question:
      n        number shown to students (matches the notebook guide)
