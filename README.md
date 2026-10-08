@@ -8,9 +8,9 @@ A guided note-taking tool for students with an ISP printed-notes accommodation. 
 
 ## Links
 
-- Students (menu): `https://YOUR-SITE.netlify.app/`
-- Students, straight to one quiz: `https://YOUR-SITE.netlify.app/#u2q2`
-- Teacher self-test: `https://YOUR-SITE.netlify.app/test.html`
+- Students (menu): `https://speechtotextnotebuilder.netlify.app/`
+- Students, straight to one quiz: `https://speechtotextnotebuilder.netlify.app/#u2q2`
+- Teacher self-test: `https://speechtotextnotebuilder.netlify.app/test.html`
 
 ## How it is organized
 
