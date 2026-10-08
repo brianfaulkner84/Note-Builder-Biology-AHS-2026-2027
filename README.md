@@ -93,7 +93,7 @@ First-time setup:
 
 Each printed sheet carries:
 
-- **A name watermark** across every page: student name, quiz, and date. Print stays off until a name is entered.
+- **A name watermark** across every page: student name and date. Print stays off until a name is entered.
 - **An "Entered:" line under each note**: spoken, typed, or PASTED (in red), plus the number of tries and "sample shown" when the sample note appeared. "Close copy of sample" means the note matches the sample note almost word for word.
 - **Totals** at the top: notes pasted and sample notes shown.
 - **A sheet code** (like `THC-P3U`), a fingerprint of the name and every note. To spot-check a printout, have the student open Notes Builder on their Chromebook and go to the notes sheet. The code on screen must match the printout. If the notes were edited after printing, or the sheet came from another student, the codes will not match.

@@ -131,5 +131,5 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .sheet .how.flag{color:#b42318;font-weight:700}
 .wm{position:absolute;inset:-20%;pointer-events:none;z-index:0;display:flex;flex-wrap:wrap;align-content:space-around;justify-content:space-around;
   transform:rotate(-28deg);opacity:.08;color:#000;font:700 20pt/1 var(--f-body)}
-.wm span{white-space:nowrap;padding:40px 30px}
+.wm span{white-space:nowrap;padding:34px 28px}
 @media print{ .wm{position:fixed;inset:-25%;opacity:.07} }

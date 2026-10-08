@@ -385,8 +385,9 @@ function renderSheet(){
   const pasted = unit.questions.filter(Q => ((S.src||{})[Q.n]||{}).p).length;
   const samples = unit.questions.filter(Q => (S.revealed||{})[Q.n]).length;
   const code = sheetCode(), who = (S.name || "").trim();
-  const wmText = `${who || "NO NAME"} \u00b7 ${unit.title} \u00b7 ${date}`;
-  const wm = `<div class="wm" aria-hidden="true">${Array.from({length: 14}, () => `<span>${esc(wmText)}</span>`).join("")}</div>`;
+  const short = new Date().toLocaleDateString(undefined, {month:"numeric", day:"numeric", year:"numeric"});
+  const wmText = `${who || "NO NAME"} \u00b7 ${short}`;
+  const wm = `<div class="wm" aria-hidden="true">${Array.from({length: 40}, () => `<span>${esc(wmText)}</span>`).join("")}</div>`;
   const missing = unit.questions.filter(Q => S.status[Q.n] !== "done").map(Q => Q.n);
   app.innerHTML = `
   <div class="row spread noprint">
