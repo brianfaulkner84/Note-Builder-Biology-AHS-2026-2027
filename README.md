@@ -8,9 +8,9 @@ A guided note-taking tool for students with an ISP printed-notes accommodation. 
 
 ## Links
 
-- Students (menu): `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/`
-- Students, straight to one quiz: `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/#u2q2`
-- Teacher self-test: `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/test.html`
+- Students (menu): `https://YOUR-SITE.netlify.app/`
+- Students, straight to one quiz: `https://YOUR-SITE.netlify.app/#u2q2`
+- Teacher self-test: `https://YOUR-SITE.netlify.app/test.html`
 
 ## How it is organized
 
@@ -39,26 +39,31 @@ By hand:
 2. Copy `content/u2q2/unit.js` into it. Change `id` to match the folder name, then change `title`, `subtitle`, `disclosure`, and the `questions` list. The comment at the top of the file explains each field.
 3. Add one line to `content/catalog.js`:
    `{ id:"u2q3", unit:"Unit 2: Cells", title:"Energy and Life", type:"Quiz 3", show:true, v:1 },`
-4. Upload or commit, wait a minute, open `test.html`, and confirm every model note passes.
+4. Commit to `main`, wait a minute for Netlify to redeploy, open `test.html`, and confirm every model note passes.
 
 ### Menu controls in `content/catalog.js`
 
 - `unit` groups quizzes under a heading on the menu.
 - `show:false` hides a quiz from the menu. Its direct link still works, so you can post a quiz before it shows up for everyone, or retire an old one.
-- `v` is a version number. After you change a quiz's `unit.js`, add 1 so students' browsers load the new copy instead of an old saved one.
+- `v` is a version number. Netlify already tells browsers to check for new copies, but adding 1 after you change a quiz's `unit.js` guarantees students get the update.
 
-## First-time setup (already done for this repository)
+## Hosting (Netlify)
 
-1. Repository is public (free GitHub Pages requires it).
-2. Settings, then Pages: Source **Deploy from a branch**, Branch **main**, folder **/ (root)**.
+The site is hosted on Netlify, connected to this GitHub repository. Every push to `main` redeploys the site automatically in about a minute. `netlify.toml` holds the settings, so there is no build step.
+
+First-time setup:
+1. Sign in at app.netlify.com with GitHub.
+2. **Add new site**, then **Import an existing project**, then **GitHub**. Pick this repository.
+3. Leave the build command empty and the publish directory as `.` (the settings file fills these in). Click **Deploy**.
+4. Under **Site configuration**, then **Change site name**, pick a short name. The link becomes `https://<name>.netlify.app/`.
 
 ## Before giving it to students
 
-- **Check the school filter.** Open the student link on a student Chromebook. If `github.io` is blocked, ask IT to allow this address.
+- **Check the school filter.** Open the student link on a student Chromebook. If `netlify.app` is blocked, ask IT to allow this one address.
 - **Speech.** The Speak button uses Chrome's built-in speech recognition, which processes the audio through Google, the same service as Chromebook dictation. If the Speak button is blocked by school settings, the tool tells students to use Chromebook dictation (Search + D) instead. Typing always works.
 - **Printing.** The Print button opens the normal print dialog.
 - **Shared Chromebooks.** Notes stay on the device and browser profile where they were typed. Students signed in with their own school account keep their notes separate.
-- **Public repository.** Anyone with the link can read the files, including the model notes inside each `unit.js`. These are study-guide notes, not quiz answers, but keep anything private out of this repository. Teacher keys stay on the teacher's computer.
+- **What is visible.** Anyone with the site link can open the files, including the model notes inside each `unit.js`, even if the repository is private. These are study-guide notes, not quiz answers. Teacher keys stay on the teacher's computer.
 
 ## How the checker works
 

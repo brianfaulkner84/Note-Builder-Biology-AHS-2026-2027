@@ -1,0 +1,17 @@
+# Netlify settings. No build step: the site is plain files served as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Quiz content and code always revalidate, so edits show up right away.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+
+# Teacher self-test stays out of search engines.
+[[headers]]
+  for = "/test.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
