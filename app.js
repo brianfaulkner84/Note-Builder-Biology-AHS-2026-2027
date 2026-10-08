@@ -9,6 +9,8 @@ const ICON = {
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>',
   clue:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>',
   book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>',
+  save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>',
+  open:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9M7 14l5-5 5 5M5 3h14"/></svg>',
   print:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2"/><rect x="6" y="14" width="12" height="7"/></svg>'
 };
 
@@ -17,7 +19,81 @@ let unit = null, S = null, idx = 0, view = "start", lastResult = null, reveal = 
 const key = () => "bio-notes:" + unit.id;
 function blank(){ return {name:"", notes:{}, status:{}, misses:{}, idx:0}; }
 function load(){ try { const r = localStorage.getItem(key()); return r ? Object.assign(blank(), JSON.parse(r)) : blank(); } catch(e){ return blank(); } }
-let saveT; function save(){ clearTimeout(saveT); saveT = setTimeout(()=>{ try { localStorage.setItem(key(), JSON.stringify(S)); } catch(e){} }, 250); }
+/* Autosave: every change is written to this browser right away, so closing the
+   tab, shutting down, or walking away keeps the work. Backup files cover a
+   different Chromebook or a cleared browser. */
+let saveT, storageOK = true;
+function writeNow(){
+  clearTimeout(saveT);
+  if (!unit || !S) return;
+  S.savedAt = Date.now();
+  try { localStorage.setItem(key(), JSON.stringify(S)); storageOK = true; } catch(e){ storageOK = false; }
+  paintSaved();
+}
+function save(){ clearTimeout(saveT); saveT = setTimeout(writeNow, 300); }
+function timeText(t){ try { return new Date(t).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}); } catch(e){ return ""; } }
+function paintSaved(){
+  const el = $("#saved"); if (!el) return;
+  el.textContent = storageOK
+    ? (S.savedAt ? `Saved on this Chromebook at ${timeText(S.savedAt)}.` : "Your work saves on this Chromebook as you go.")
+    : "This browser is not saving. Use Save a backup file before you leave.";
+  el.classList.toggle("warn", !storageOK);
+}
+window.addEventListener("pagehide", writeNow);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") writeNow(); });
+
+function safeName(t){ return String(t||"").trim().replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40); }
+function downloadBackup(){
+  writeNow();
+  const data = {app:"notes-builder", version:1, unit:unit.id, title:unit.title, savedAt:Date.now(), state:S};
+  const blob = new Blob([JSON.stringify(data, null, 1)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `Notes-${unit.id}${S.name ? "-" + safeName(S.name) : ""}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  setMsg("Backup file saved to your Downloads. To keep it safe, move it to your Google Drive.");
+}
+function pickBackup(){ const f = $("#restore-file"); if (f) f.click(); }
+function readBackup(file){
+  if (!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    let d; try { d = JSON.parse(r.result); } catch(e){ return setMsg("That file is not a Notes Builder backup."); }
+    if (!d || d.app !== "notes-builder" || !d.state) return setMsg("That file is not a Notes Builder backup.");
+    if (d.unit !== unit.id) return setMsg(`That backup is for "${d.title || d.unit}". Go back to the menu and pick that one first.`);
+    const has = Object.values(S.notes||{}).some(v => String(v).trim());
+    const apply = () => { S = Object.assign(blank(), d.state); idx = Math.min(S.idx||0, unit.questions.length-1); writeNow(); lastResult = null; render(); setMsg(`Backup opened. ${counts().done} of ${counts().n} notes are complete.`); };
+    if (!has) return apply();
+    const box = $("#restore-confirm");
+    box.innerHTML = `<div class="confirm row"><span>Replace the notes on this Chromebook with the backup?</span>
+      <button class="btn" id="r-yes">Yes, use the backup</button><button class="btn" id="r-no">Keep what is here</button></div>`;
+    $("#r-yes").onclick = apply;
+    $("#r-no").onclick = () => { box.innerHTML = ""; };
+  };
+  r.readAsText(file);
+}
+function setMsg(t){ const el = $("#save-msg"); if (el) el.textContent = t; }
+function savePanel(){
+  return `<section class="savebox noprint" aria-labelledby="save-h">
+    <h2 class="eyebrow" id="save-h">Your work</h2>
+    <p id="saved" class="tip"></p>
+    <div class="row">
+      <button class="btn" id="backup">${ICON.save}<span>Save a backup file</span></button>
+      <button class="btn" id="restore">${ICON.open}<span>Open a backup file</span></button>
+      <input type="file" id="restore-file" accept=".json,application/json" hidden>
+    </div>
+    <p class="small">Use a backup file if you switch Chromebooks or your notes disappear.</p>
+    <p class="tip" id="save-msg" role="status"></p>
+    <div id="restore-confirm"></div>
+  </section>`;
+}
+function wireSavePanel(){
+  $("#backup").onclick = downloadBackup;
+  $("#restore").onclick = pickBackup;
+  $("#restore-file").onchange = e => { readBackup(e.target.files[0]); e.target.value = ""; };
+  paintSaved();
+}
 
 /* ---------- speech out ---------- */
 function speak(text){
@@ -114,11 +190,14 @@ function renderStart(){
     ${done ? `<button class="btn" id="see">${ICON.print}<span>See my notes</span></button>` : ""}
     <button class="btn" id="other">Different quiz or test</button>
   </div>
+  ${savePanel()}
   <p class="small">${esc(unit.disclosure)}</p>`;
+  wireSavePanel();
   $("#name").oninput = e => { S.name = e.target.value; save(); };
+  $("#name").onchange = writeNow;
   $("#go").onclick = () => { view = "q"; render(); };
   if ($("#see")) $("#see").onclick = () => { view = "sheet"; render(); };
-  $("#other").onclick = () => { unit = null; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); };
+  $("#other").onclick = () => { writeNow(); unit = null; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); };
 }
 
 function promptHTML(p){ const i = p.indexOf(" "); return `<b>${esc(p.slice(0,i))}</b>${esc(p.slice(i))}`; }
@@ -152,6 +231,7 @@ function renderQuestion(){
       <button class="btn" id="readnote">${ICON.speak}<span>Read my note</span></button>
     </div>
     <p class="tip" id="tip"></p>
+    <p class="small" id="saved" role="status"></p>
     ${Q.draw ? `<p class="tip">On paper: ${esc(Q.draw)} Your printed sheet has a box for it.</p>` : ""}
   </section>
   <div id="fb"></div>
@@ -170,8 +250,9 @@ function renderQuestion(){
   $("#readnote").onclick = () => { const v = $("#note").value.trim(); speak(v || "Your note is empty."); };
   $("#back").onclick = () => go(idx-1);
   $("#next").onclick = () => idx === unit.questions.length-1 ? (view="sheet", render()) : go(idx+1);
-  $("#home").onclick = () => { view = "start"; render(); };
+  $("#home").onclick = () => { keepNote(); writeNow(); view = "start"; render(); };
   if (lastResult && lastResult.n === Q.n) paintFeedback(lastResult.r, false);
+  paintSaved();
 }
 function keepNote(){ const b = $("#note"); if (b){ S.notes[q().n] = b.value; save(); } }
 function go(i){ keepNote(); idx = Math.max(0, Math.min(unit.questions.length-1, i)); lastResult = null; reveal = {clue:false, where:false}; render(); window.scrollTo(0,0); }
@@ -182,7 +263,7 @@ function doCheck(){
   const r = checkNote(Q, text);
   S.misses[Q.n] = S.misses[Q.n] || {};
   r.ideas.forEach(i => { if (!i.ok) S.misses[Q.n][i.label] = (S.misses[Q.n][i.label]||0) + 1; });
-  S.status[Q.n] = r.done ? "done" : "tried"; save();
+  S.status[Q.n] = r.done ? "done" : "tried"; writeNow();
   lastResult = {n:Q.n, r};
   app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n]} here`;
   paintFeedback(r, true);
@@ -242,6 +323,9 @@ function renderSheet(){
   <div class="noprint">
     <p class="tip" id="ptip">${done===n ? `All ${n} notes are complete.` : `${done} of ${n} notes are complete. Still to finish: ${missing.join(", ")}.`}</p>
     <p class="small">If Print does nothing, press Ctrl + P.</p>
+  </div>
+  ${savePanel()}
+  <div class="noprint">
     <div class="row"><button class="btn" id="reset">Start over</button></div>
     <div id="confirm"></div>
   </div>
@@ -251,6 +335,7 @@ function renderSheet(){
     ${body}
     <p class="disc">${esc(unit.disclosure)}</p>
   </article>`;
+  wireSavePanel();
   $("#back").onclick = () => { view = "q"; render(); };
   $("#print").onclick = () => { try { window.print(); } catch(e){} };
   $("#copy").onclick = () => {
@@ -261,7 +346,7 @@ function renderSheet(){
   $("#reset").onclick = () => {
     $("#confirm").innerHTML = `<div class="confirm row"><span>Erase every note on this device?</span>
       <button class="btn" id="yes">Yes, erase</button><button class="btn" id="no">Keep my notes</button></div>`;
-    $("#yes").onclick = () => { const nm = S.name; S = blank(); S.name = nm; save(); idx = 0; view = "start"; render(); };
+    $("#yes").onclick = () => { const nm = S.name; S = blank(); S.name = nm; writeNow(); idx = 0; view = "start"; render(); };
     $("#no").onclick = () => { $("#confirm").innerHTML = ""; };
   };
 }
@@ -272,3 +357,7 @@ function selectSheet(){ try { const r = document.createRange(); r.selectNodeCont
   const h = (location.hash||"").slice(1);
   if (h) openUnit(h); else render();
 })();
+window.addEventListener("hashchange", () => {
+  const h = (location.hash||"").slice(1);
+  if (h && (!unit || unit.id !== h)){ writeNow(); view = "start"; openUnit(h); }
+});

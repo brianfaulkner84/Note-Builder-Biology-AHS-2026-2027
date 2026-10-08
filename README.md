@@ -3,14 +3,37 @@
 A guided note-taking tool for students with an ISP printed-notes accommodation. Students pick their quiz or test from a menu, work through the notebook guide one prompt at a time, answer by voice or typing, and get told which key ideas are missing without being given the answer. When they finish, they print a clean notes sheet to use on the quiz or test.
 
 - No AI, no accounts, no logins. The checker is a set of rules that runs in the student's browser.
-- Notes save only in that student's browser on that Chromebook. Nothing is sent to the teacher or to any server.
+- Notes save automatically in that student's browser on that Chromebook, so closing the tab or shutting down does not lose work. Students can also save a backup file and open it on another Chromebook. Nothing is sent to the teacher or to any server.
 - One site holds every quiz and test. Each quiz loads only when a student picks it.
 
 ## Links
 
 - Students (menu): `https://speechtotextnotebuilder.netlify.app/`
-- Students, straight to one quiz: `https://speechtotextnotebuilder.netlify.app/#u2q2`
+- Students, straight to one quiz: add the quiz code after `#`, for example `https://speechtotextnotebuilder.netlify.app/#u2q2`
 - Teacher self-test: `https://speechtotextnotebuilder.netlify.app/test.html`
+
+## Quizzes and tests on the menu
+
+| Code | Unit | Quiz or test | Notes |
+|---|---|---|---|
+| `u1q1` | Unit 1 | Quiz 1: Characteristics of Life | 17 |
+| `u1q2` | Unit 1 | Quiz 2: Homeostasis and the Respiratory System | 18 |
+| `u1q3` | Unit 1 | Quiz 3: Circulatory System | 14 |
+| `u1n` | Unit 1 | Ch. 30.2 Quiz: Food and Nutrition | 18 |
+| `u1t` | Unit 1 | Unit 1 Test: Homeostasis and the Human Body | 23 |
+| `u2q1` | Unit 2 | Quiz 1: Cells and Organelles | 30 |
+| `u2q2` | Unit 2 | Quiz 2: Cell Membrane and Transport | 18 |
+| `u2q3` | Unit 2 | Quiz 3: Energy, Photosynthesis, and Respiration | 28 |
+| `u2q4` | Unit 2 | Quiz 4: Glycolysis, Krebs Cycle, ETC, and Fermentation | 23 |
+
+Unit 2 quizzes follow the notebook guides prompt for prompt. Unit 1 study guides were topic checklists, so each checklist item became a prompt with a guiding question, and items that repeated a vocabulary word were merged into that word's prompt.
+
+## Saving work
+
+- Every change saves to the Chromebook right away, and again when the tab closes or the screen locks. The note screen shows "Saved on this Chromebook at [time]."
+- **Save a backup file** (start screen and notes sheet) downloads a small file named like `Notes-u2q2-Student-Name.json`. Students can move it to Google Drive.
+- **Open a backup file** restores those notes on any Chromebook. It checks that the file matches the quiz and asks before replacing notes already there.
+- Notes are lost only if a student clears browser data or uses a guest or incognito window without a backup file.
 
 ## How it is organized
 
@@ -20,9 +43,10 @@ content/
   catalog.js          the quiz menu: one line per quiz or test
   u2q2/
     unit.js           Unit 2 Quiz 2 content: prompts, model notes, key ideas, hints
-  <next id>/
-    unit.js           next quiz or test
-patterns.js           shared word patterns any quiz can reuse
+  <id>/
+    unit.js           one folder per quiz or test (see the table above)
+patterns.js           shared word patterns, speech-friendly biology terms, and
+                      the authoring helpers I(), W(), near(), either(), lacks()
 checker.js            rules that check a note against its key ideas
 app.js                screens, buttons, speech, print sheet
 styles.css            look and print layout
@@ -36,7 +60,7 @@ The easy way: ask Claude in the Biology Class project to "build the Notes Builde
 By hand:
 
 1. Make a new folder under `content`, for example `content/u2q3`.
-2. Copy `content/u2q2/unit.js` into it. Change `id` to match the folder name, then change `title`, `subtitle`, `disclosure`, and the `questions` list. The comment at the top of the file explains each field.
+2. Copy a recent unit file into it (for example `content/u2q4/unit.js`, which uses the short `I(...)` helper style). Change `id` to match the folder name, then change `title`, `subtitle`, `disclosure`, and the `questions` list. `content/u2q2/unit.js` has the comment that explains each field.
 3. Add one line to `content/catalog.js`:
    `{ id:"u2q3", unit:"Unit 2: Cells", title:"Energy and Life", type:"Quiz 3", show:true, v:1 },`
 4. Commit to `main`, wait a minute for Netlify to redeploy, open `test.html`, and confirm every model note passes.

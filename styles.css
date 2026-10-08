@@ -110,3 +110,9 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .units{display:flex;flex-direction:column;gap:10px}
 .pick{justify-content:space-between;width:100%;text-align:left}
 .pick .small{font-family:var(--f-mono)}
+
+/* saving */
+.savebox{border:2px dashed var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+#saved.warn{color:var(--warn);font-weight:700}
+
+.tip:empty{display:none}
