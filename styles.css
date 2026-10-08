@@ -116,3 +116,9 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 #saved.warn{color:var(--warn);font-weight:700}
 
 .tip:empty{display:none}
+
+/* clue ladder */
+.fb .lead{margin:0;font-weight:700}
+.sample{background:var(--card);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+.sample p{margin:0}
+.sample-text{font-size:var(--t-l)}

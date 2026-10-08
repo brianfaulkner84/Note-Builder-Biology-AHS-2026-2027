@@ -89,6 +89,18 @@ First-time setup:
 - **Shared Chromebooks.** Notes stay on the device and browser profile where they were typed. Students signed in with their own school account keep their notes separate.
 - **What is visible.** Anyone with the site link can open the files, including the model notes inside each `unit.js`, even if the repository is private. These are study-guide notes, not quiz answers. Teacher keys stay on the teacher's computer.
 
+## How the clues work
+
+Each check that is not complete, with a changed note, counts as one try. Checking the same note twice does not count.
+
+| Try | What the student sees |
+|---|---|
+| 1 | "Good start." The key ideas found so far, plus a gentle clue for each missing idea. |
+| 2 | "Getting closer." A more direct clue for each missing idea, plus the slide and textbook page. |
+| 3 and after | "You have worked hard on this one." A sample note (the model note) to read, then say or type in their own words and check again. |
+
+Students also get "Nice, you added a key idea" when a try adds one, and "You stuck with it" when they finish after two or more tries. The try count lives in the student's saved work and backup file.
+
 ## How the checker works
 
 Each prompt has 2 to 4 key ideas. Each idea has:

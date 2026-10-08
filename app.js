@@ -17,7 +17,7 @@ const ICON = {
 /* ---------- state (browser only; wrapped so it never breaks the page) ---------- */
 let unit = null, S = null, idx = 0, view = "start", lastResult = null, reveal = {clue:false, where:false}, confirmReset = false;
 const key = () => "bio-notes:" + unit.id;
-function blank(){ return {name:"", notes:{}, status:{}, misses:{}, idx:0}; }
+function blank(){ return {name:"", notes:{}, status:{}, misses:{}, tries:{}, lastText:{}, best:{}, revealed:{}, idx:0}; }
 function load(){ try { const r = localStorage.getItem(key()); return r ? Object.assign(blank(), JSON.parse(r)) : blank(); } catch(e){ return blank(); } }
 /* Autosave: every change is written to this browser right away, so closing the
    tab, shutting down, or walking away keeps the work. Backup files cover a
@@ -257,44 +257,69 @@ function renderQuestion(){
 function keepNote(){ const b = $("#note"); if (b){ S.notes[q().n] = b.value; save(); } }
 function go(i){ keepNote(); idx = Math.max(0, Math.min(unit.questions.length-1, i)); lastResult = null; reveal = {clue:false, where:false}; render(); window.scrollTo(0,0); }
 
+/* Clue ladder. Each check that is not complete, with a changed note, is one try.
+   Try 1: gentle clue. Try 2: a more direct clue plus where to look.
+   Try 3 and after: a sample note to read, then say in their own words. */
+const SAMPLE_AT = 3;
 function doCheck(){
   if (listening){ try { rec.stop(); } catch(e){} }
   const Q = q(); const text = $("#note").value; S.notes[Q.n] = text;
   const r = checkNote(Q, text);
   S.misses[Q.n] = S.misses[Q.n] || {};
-  r.ideas.forEach(i => { if (!i.ok) S.misses[Q.n][i.label] = (S.misses[Q.n][i.label]||0) + 1; });
+  const changed = (S.lastText[Q.n] || "") !== text.trim();
+  const prevBest = S.best[Q.n] || 0, got = r.ideas.filter(i => i.ok).length;
+  r.progress = got > prevBest && (Q.n in S.lastText);
+  S.best[Q.n] = Math.max(prevBest, got);
+  if (!r.done && changed && r.words >= 3){
+    S.tries[Q.n] = (S.tries[Q.n] || 0) + 1;
+    r.ideas.forEach(i => { if (!i.ok) S.misses[Q.n][i.label] = (S.misses[Q.n][i.label]||0) + 1; });
+  }
+  r.same = !changed && !r.done;
+  S.lastText[Q.n] = text.trim();
+  if (!r.done && (S.tries[Q.n] || 0) >= SAMPLE_AT) S.revealed[Q.n] = true;
   S.status[Q.n] = r.done ? "done" : "tried"; writeNow();
   lastResult = {n:Q.n, r};
   app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n]} here`;
   paintFeedback(r, true);
 }
+function level(Q){ return Math.max(1, Math.min(S.tries[Q.n] || 1, SAMPLE_AT)); }
 function hintFor(Q, idea){
-  const k = (S.misses[Q.n]||{})[idea.label] || 1;
   const h = idea.hints || [];
-  if (k <= h.length) return h[k-1];
-  return `Look here: ${Q.where}.`;
+  if (level(Q) === 1 || h.length < 2) return h[0] || `Look here: ${Q.where}.`;
+  return `${h[h.length - 1]} (${Q.where})`;
 }
 function paintFeedback(r, talk){
   const Q = q(), fb = $("#fb");
+  S.misses[Q.n] = S.misses[Q.n] || {};
   if (r.words < 3){
     fb.innerHTML = `<div class="fb more"><h3>Say a little more.</h3><p>Use a full sentence in your own words.</p></div>`;
     if (talk) speak("Say a little more. Use a full sentence in your own words."); return;
   }
-  const got = r.ideas.filter(i=>i.ok), miss = r.ideas.filter(i=>!i.ok);
+  const got = r.ideas.filter(i=>i.ok), miss = r.ideas.filter(i=>!i.ok), tries = S.tries[Q.n] || 0;
+  const chips = got.length ? `<div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div>` : "";
   if (r.done){
-    fb.innerHTML = `<div class="fb ok"><h3>All ${r.ideas.length} key ideas are in your note.</h3>
-      <div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div></div>`;
-    if (talk) speak("Nice work. All the key ideas are in your note.");
+    const title = tries >= 2 ? "You stuck with it. All the key ideas are in your note." : `All ${r.ideas.length} key ideas are in your note.`;
+    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}</div>`;
+    if (talk) speak(tries >= 2 ? "You stuck with it, and it paid off. All the key ideas are in your note." : "Nice work. All the key ideas are in your note.");
     return;
   }
+  const L = level(Q), sample = S.revealed[Q.n];
+  const head = sample ? "You have worked hard on this one. Here is some help."
+    : L === 1 ? `Good start. ${got.length} of ${r.ideas.length} key ideas so far.`
+    : `Getting closer. ${got.length} of ${r.ideas.length} key ideas. Here are bigger clues.`;
+  const lead = r.same ? "Change your note, then check again." : r.progress ? "Nice, you added a key idea." : "";
   const lines = r.warnings.map(w=>`<li><span class="tag">Check</span><span>${esc(w)}</span></li>`)
     .concat(miss.map(i=>`<li><span class="tag">Add</span><span><b>${esc(i.label)}:</b> ${esc(hintFor(Q,i))}</span></li>`));
   fb.innerHTML = `<div class="fb more">
-    <h3>${got.length} of ${r.ideas.length} key ideas so far.</h3>
-    ${got.length ? `<div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div>` : ""}
-    <ul class="miss">${lines.join("")}</ul>
+    <h3>${esc(head)}</h3>
+    ${lead ? `<p class="lead">${esc(lead)}</p>` : ""}
+    ${chips}
+    ${sample ? `<div class="sample"><p class="eyebrow">One way to say it</p><p class="sample-text">${esc(Q.model)}</p>
+      <p>Read it, then say or type it in your own words and check again. You've got this.</p></div>` : `<ul class="miss">${lines.join("")}</ul>`}
     <div class="row"><button class="btn" id="readfb">${ICON.speak}<span>Read this to me</span></button></div></div>`;
-  const said = `You have ${got.length} of ${r.ideas.length} key ideas. ` + r.warnings.join(" ") + " " + miss.map(i=>hintFor(Q,i)).join(" ");
+  const said = sample
+    ? `You have worked hard on this one. Here is one way to say it. ${Q.model} Now say it in your own words and check again.`
+    : [head, lead].concat(r.warnings, miss.map(i=>hintFor(Q,i))).filter(Boolean).join(" ");
   $("#readfb").onclick = () => speak(said);
   if (talk) speak(said);
 }
