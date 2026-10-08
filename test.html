@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes Builder Self-Test</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#F7F8F4;--fg:#1B2540;--soft:#4B5675;--line:#D5DCE8;--ok:#17704A;--bad:#B42318}
+@media (prefers-color-scheme: dark){:root{--bg:#111726;--fg:#E9EDF7;--soft:#A8B2CA;--line:#2B3654;--ok:#72D6A3;--bad:#FF8E84;color-scheme:dark}}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 Verdana,"Segoe UI",sans-serif;margin:0;padding:16px}
+main{max-width:60rem;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+textarea,select{font:inherit;width:100%;padding:8px;border:2px solid var(--line);border-radius:8px;background:transparent;color:inherit}
+button{font:inherit;padding:8px 16px;border-radius:8px;border:2px solid var(--line);background:transparent;color:inherit;cursor:pointer}
+pre{white-space:pre-wrap;background:rgba(127,127,127,.1);padding:10px;border-radius:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Notes Builder Self-Test</h1>
+<p>Teacher page. Every model note should show PASS. If one fails, fix that question's patterns in its units file. Use the box at the bottom to try a student-style answer.</p>
+<p id="summary"></p>
+<div class="scroll"><table><thead><tr><th>Unit</th><th>#</th><th>Model note</th><th>Missing or flagged</th></tr></thead><tbody id="rows"></tbody></table></div>
+<h2>Try an answer</h2>
+<label for="q">Question</label>
+<select id="q"></select>
+<label for="a">Student answer</label>
+<textarea id="a" rows="4"></textarea>
+<div><button id="go">Check</button></div>
+<pre id="out"></pre>
+</main>
+<script src="patterns.js"></script>
+<!-- keep this list the same as index.html -->
+<script src="units/u2q2.js"></script>
+<script src="checker.js"></script>
+<script>
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let pass=0,total=0,rows="",opts="";
+UNITS.forEach((u,ui)=>u.questions.forEach((q,qi)=>{
+  total++; const r=checkNote(q,q.model); if(r.done) pass++;
+  const miss=r.ideas.filter(i=>!i.ok).map(i=>i.label).concat(r.warnings).join("; ");
+  rows+=`<tr><td>${esc(u.id)}</td><td>${q.n}</td><td class="${r.done?"ok":"bad"}">${r.done?"PASS":"FAIL"}</td><td>${esc(miss)}</td></tr>`;
+  opts+=`<option value="${ui}:${qi}">${esc(u.id)} #${q.n}: ${esc(q.prompt)}</option>`;
+}));
+document.getElementById("rows").innerHTML=rows;
+document.getElementById("q").innerHTML=opts;
+document.getElementById("summary").innerHTML=`<span class="${pass===total?"ok":"bad"}">${pass} of ${total} model notes pass.</span>`;
+document.getElementById("go").onclick=()=>{
+  const [ui,qi]=document.getElementById("q").value.split(":").map(Number);
+  const r=checkNote(UNITS[ui].questions[qi],document.getElementById("a").value);
+  document.getElementById("out").textContent=(r.done?"COMPLETE\n":"NOT YET\n")+
+    r.ideas.map(i=>(i.ok?"  found:   ":"  missing: ")+i.label).join("\n")+
+    (r.warnings.length?"\n  flagged: "+r.warnings.join("\n  flagged: "):"");
+};
+</script>
+</body>
+</html>
