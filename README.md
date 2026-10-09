@@ -142,3 +142,15 @@ Some prompts also have "watch" entries that catch common mistakes, like "the mol
 ---
 
 AI Disclosure: This tool was developed with the assistance of Claude (Anthropic), an AI assistant. Claude built the tool and wrote the key-idea checks and hints from the instructor's notebook guides, slideshows, and the course textbook. The instructor reviewed and finalized the material before classroom use.
+
+## How to Take Good Notes (guide cards)
+
+The menu has a **How to Take Good Notes** button above the quizzes. It opens 11 short cards: tips with a weak note and a strong note side by side, plus three practice cards (pick the better note, spot the fluff, reread for mistakes). Each card has Read to me. The page remembers the last card the student opened. Direct link: add `#guide` to the site address.
+
+Edit, add, or reorder cards in `content/guide.js`. Three card types:
+
+- `tip`: title, tip, optional `weak` and `strong` example notes
+- `choose`: title, prompt, `a`, `b`, `correct` ("a" or "b"), explain
+- `cut`: title, prompt, `sentences` as `{t, fluff}`, explain
+
+Netlify revalidates files on each visit, so edits show up after a refresh.

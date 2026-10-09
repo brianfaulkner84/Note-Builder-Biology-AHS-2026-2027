@@ -179,6 +179,7 @@ const q = () => unit.questions[idx];
 function render(){
   stopSpeak();
   if (listening){ try { rec.stop(); } catch(e){} }
+  if (guideOn) return renderGuide();
   if (!unit) return renderPicker();
   if (view === "start") return renderStart();
   if (view === "sheet") return renderSheet();
@@ -189,12 +190,87 @@ function renderPicker(msg){
   const list = (window.CATALOG||[]).filter(c => c.show !== false);
   const groups = [];
   list.forEach(c => { let g = groups.find(x => x.name === c.unit); if (!g) groups.push(g = {name:c.unit, items:[]}); g.items.push(c); });
+  const G = window.NOTE_GUIDE || [];
   app.innerHTML = `<div class="hero"><p class="eyebrow">Biology</p><h1>Notes Builder</h1><p>Pick the quiz or test you are building notes for.</p></div>
   ${msg ? `<div class="confirm" role="alert">${esc(msg)}</div>` : ""}
+  ${G.length ? `<section class="units"><h2 class="eyebrow">Start here</h2>
+    <button class="btn big pick guidepick" id="guide"><span>How to Take Good Notes</span><span class="small">${G.length} short cards</span></button>
+  </section>` : ""}
   ${groups.map(g => `<section class="units"><h2 class="eyebrow">${esc(g.name)}</h2>
     ${g.items.map(c => `<button class="btn big pick" data-id="${esc(c.id)}"><span>${esc(c.title)}</span><span class="small">${esc(c.type||"")}</span></button>`).join("")}
   </section>`).join("") || `<p>No quizzes are posted yet.</p>`}`;
   app.querySelectorAll("[data-id]").forEach(b => b.onclick = () => openUnit(b.dataset.id));
+  const gb = $("#guide"); if (gb) gb.onclick = () => openGuide();
+}
+
+/* ---------- note-taking guide (cards live in content/guide.js) ---------- */
+let guideOn = false, gIdx = 0, gPick = null, gCut = {}, gChecked = false;
+const GKEY = "bio-notes:guide";
+function openGuide(){
+  guideOn = true; unit = null;
+  try { gIdx = Math.max(0, Math.min((+localStorage.getItem(GKEY))||0, (window.NOTE_GUIDE||[]).length - 1)); } catch(e){ gIdx = 0; }
+  setHash("guide"); gReset(); render();
+}
+function closeGuide(){ guideOn = false; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); }
+function gReset(){ gPick = null; gCut = {}; gChecked = false; }
+function gGo(i){ gIdx = i; gReset(); try { localStorage.setItem(GKEY, String(i)); } catch(e){} renderGuide(); window.scrollTo(0,0); }
+function gNote(label, cls, text){ return `<div class="gnote ${cls}"><p class="eyebrow">${label}</p><p class="gnote-text">${esc(text)}</p></div>`; }
+function gSpeech(c){
+  let t = c.title + ". ";
+  if (c.type === "tip") t += c.tip + (c.weak ? " Weak note: " + c.weak : "") + (c.strong ? (c.weak ? " Strong note: " : " Example: ") + c.strong : "");
+  if (c.type === "choose") t += c.prompt + " Note A: " + c.a + " Note B: " + c.b;
+  if (c.type === "cut") t += c.prompt + " " + c.sentences.map(x => x.t).join(" ");
+  return t.replace(/\n/g, ". ");
+}
+function renderGuide(){
+  const G = window.NOTE_GUIDE || [], c = G[gIdx]; if (!c) return closeGuide();
+  const last = gIdx === G.length - 1;
+  let body = "";
+  if (c.type === "tip"){
+    body = `<p class="gtip">${esc(c.tip)}</p>
+      ${c.weak ? gNote("Weak note", "weak", c.weak) : ""}
+      ${c.strong ? gNote(c.weak ? "Strong note" : "Example", "strong", c.strong) : ""}`;
+  } else if (c.type === "choose"){
+    body = `<p class="gtip">${esc(c.prompt)}</p>
+      <div class="gchoices">${["a","b"].map(k => {
+        const st = gPick ? (k === c.correct ? "right" : (k === gPick ? "wrongpick" : "")) : "";
+        return `<button class="gchoice ${st}" data-k="${k}" aria-pressed="${gPick===k}"><span class="eyebrow">Note ${k.toUpperCase()}</span><span>${esc(c[k])}</span></button>`; }).join("")}</div>
+      ${gPick ? `<div class="fb ${gPick===c.correct?"ok":"more"}" role="status"><p class="lead">${gPick===c.correct ? "Yes. Note " + c.correct.toUpperCase() + " is better." : "Not this one. Look at Note " + c.correct.toUpperCase() + "."}</p><p>${esc(c.explain)}</p></div>` : ""}`;
+  } else if (c.type === "cut"){
+    const fl = c.sentences.map((x,i)=>i).filter(i => c.sentences[i].fluff);
+    const ok = gChecked && fl.every(i => gCut[i]) && c.sentences.every((x,i) => x.fluff || !gCut[i]);
+    const keptCut = gChecked && c.sentences.some((x,i) => !x.fluff && gCut[i]);
+    body = `<p class="gtip">${esc(c.prompt)}</p>
+      <div class="gcut">${c.sentences.map((x,i) => {
+        const mark = gChecked && ok ? (x.fluff ? "cut" : "keep") : (gCut[i] ? "cut" : "");
+        return `<button class="gsent ${mark}" data-i="${i}" aria-pressed="${!!gCut[i]}">${esc(x.t)}</button>`; }).join("")}</div>
+      <div class="row"><button class="btn primary" id="gcheck">${ICON.check}<span>Check</span></button></div>
+      ${gChecked ? `<div class="fb ${ok?"ok":"more"}" role="status"><p class="lead">${ok ? "Nice cutting." : keptCut ? "You cut a sentence that answers the question. Tap it to bring it back." : "Some fluff is still there. Find the sentence that does not answer the prompt."}</p>${ok ? `<p>${esc(c.explain)}</p>` : ""}</div>` : ""}`;
+  }
+  app.innerHTML = `
+  <div class="top noprint">
+    <div class="row spread"><span class="eyebrow">How to Take Good Notes</span><span class="eyebrow">Card ${gIdx+1} of ${G.length}</span></div>
+    <nav class="dots" aria-label="Jump to a card">${G.map((x,i)=>`<button class="dot ${i<gIdx?"done":""} ${i===gIdx?"here":""}" data-g="${i}" aria-label="Card ${i+1}: ${esc(x.title)}">${i+1}</button>`).join("")}</nav>
+  </div>
+  <section class="card gcard">
+    ${c.type !== "tip" ? `<p class="eyebrow gpractice">Practice</p>` : ""}
+    <h2 class="gtitle">${esc(c.title.replace(/^Practice: (.)/, (m,a) => a.toUpperCase()))}</h2>
+    ${body}
+    <div class="row"><button class="btn" id="gread">${ICON.speak}<span>Read to me</span></button></div>
+  </section>
+  <div class="row spread noprint">
+    <button class="btn big" id="gback" ${gIdx===0?"disabled":""}>Back</button>
+    <button class="btn big" id="gmenu">Menu</button>
+    <button class="btn primary big" id="gnext">${last ? "Pick my quiz" : "Next card"}</button>
+  </div>`;
+  app.querySelectorAll("[data-g]").forEach(b => b.onclick = () => gGo(+b.dataset.g));
+  app.querySelectorAll(".gchoice").forEach(b => b.onclick = () => { gPick = b.dataset.k; renderGuide(); speak((gPick===c.correct ? "Yes. " : "Not this one. ") + c.explain); });
+  app.querySelectorAll(".gsent").forEach(b => b.onclick = () => { const i = +b.dataset.i; gCut[i] = !gCut[i]; gChecked = false; renderGuide(); });
+  const gc = $("#gcheck"); if (gc) gc.onclick = () => { gChecked = true; renderGuide(); };
+  $("#gread").onclick = () => speak(gSpeech(c));
+  $("#gback").onclick = () => gGo(gIdx - 1);
+  $("#gmenu").onclick = () => closeGuide();
+  $("#gnext").onclick = () => last ? (gGo(0), closeGuide()) : gGo(gIdx + 1);
 }
 function openUnit(id){
   const entry = (window.CATALOG||[]).find(c => c.id === id);
@@ -511,9 +587,10 @@ function renderSheet(){
 /* ---------- boot ---------- */
 (function boot(){
   const h = (location.hash||"").slice(1);
-  if (h) openUnit(h); else render();
+  if (h === "guide") openGuide(); else if (h) openUnit(h); else render();
 })();
 window.addEventListener("hashchange", () => {
   const h = (location.hash||"").slice(1);
-  if (h && (!unit || unit.id !== h)){ writeNow(); view = "start"; openUnit(h); }
+  if (h === "guide"){ if (!guideOn){ writeNow(); openGuide(); } return; }
+  if (h && (!unit || unit.id !== h)){ writeNow(); guideOn = false; view = "start"; openUnit(h); }
 });

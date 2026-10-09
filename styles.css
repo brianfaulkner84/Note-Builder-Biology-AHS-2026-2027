@@ -144,3 +144,24 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .mk.key{text-decoration:underline solid var(--ok);text-decoration-thickness:3px;text-underline-offset:4px}
 .fb .lean{margin:0;border-left:4px solid var(--accent);padding-left:10px}
 .lead-tip{font-weight:700;color:var(--ink)}
+
+/* note-taking guide cards */
+.guidepick{border-color:var(--accent);background:var(--accent-soft)}
+.gcard{gap:16px}
+.gtitle{font-size:var(--t-xl)}
+.gpractice{color:var(--accent);margin:0 0 -8px}
+.gtip{margin:0;font-size:var(--t-l);line-height:1.45}
+.gnote{border-radius:0 10px 10px 0;padding:10px 14px;border-left:5px solid}
+.gnote p{margin:0}
+.gnote-text{font-size:var(--t-m);white-space:pre-line}
+.gnote.weak{border-color:var(--rec);background:var(--rec-bg)}
+.gnote.weak .eyebrow{color:var(--rec)}
+.gnote.strong{border-color:var(--ok);background:var(--ok-bg)}
+.gnote.strong .eyebrow{color:var(--ok)}
+.gchoices,.gcut{display:flex;flex-direction:column;gap:10px}
+.gchoice,.gsent{display:flex;flex-direction:column;gap:4px;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-size:var(--t-m);min-height:48px}
+.gchoice:hover,.gsent:hover{border-color:var(--accent)}
+.gchoice.right{border-color:var(--ok);background:var(--ok-bg)}
+.gchoice.wrongpick{border-color:var(--rec);background:var(--rec-bg)}
+.gsent.cut{color:var(--rec);background:var(--rec-bg);border-color:var(--rec);text-decoration:line-through;text-decoration-thickness:2px}
+.gsent.keep{border-color:var(--ok);text-decoration:underline solid var(--ok);text-decoration-thickness:3px;text-underline-offset:4px}
