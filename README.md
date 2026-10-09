@@ -119,7 +119,9 @@ Students also get "Nice, you added a key idea" when a try adds one, and "You stu
 After a check, the feedback shows the student's note with problem sentences marked:
 
 - **Red, crossed out:** the sentence contains a common mistake for that prompt (a "watch" in the unit file), like "the molecules stop at equilibrium" or "an atrium is a lower chamber." A **Cross out the red part** button removes those sentences from the note.
-- **Dotted underline:** the sentence matches none of the prompt's key ideas. It may be extra correct information or something off topic, so the student decides whether to keep it.
+- **Solid green underline:** the sentence earns at least one key idea. Hovering shows which one.
+- **Gray with a dotted underline:** extra. The sentence earns no key idea. A **Cut the extra** button removes those sentences, one at a time, and keeps any cut that would lose a key idea. The goal is to teach that less is more.
+- **Less is more tip:** when a note runs well over the length of the model note (about 1.6 times), the feedback shows the student's word count and a target.
 
 Red marking only works where a prompt has a mistake check. 120 of the 189 prompts have at least one. Add more with `W(pattern, message, unlessLabel)` in that prompt's `watch` list.
 

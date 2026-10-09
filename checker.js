@@ -63,14 +63,21 @@ function checkNote(q, text){
     hit.forEach(x => { if (!out.marks.some(k => k.start === x.start)) out.marks.push({start:x.start, end:x.end, kind:"wrong", say:w.say}); });
   }
   out.done = words >= 3 && out.ideas.every(i=>i.ok) && out.warnings.length === 0;
-  if (!out.done && !q.sort && q.ideas && sents.length >= 2){
-    const pats = [].concat.apply([], q.ideas.map(i => i.match));
+  /* "key" = the sentence earns at least one key idea (labels listed).
+     "extra" = it earns none; with 2+ sentences it is likely fluff to cut. */
+  if (!q.sort && q.ideas){
     sents.forEach(x => {
+      if (out.marks.some(k => k.start === x.start)) return;
       const nt = norm(x.text);
-      if (nt.trim().split(" ").length < 3 || out.marks.some(k => k.start === x.start)) return;
-      if (!pats.some(r => r.test(nt))) out.marks.push({start:x.start, end:x.end, kind:"extra"});
+      const labels = q.ideas.filter(i => i.match.some(r => r.test(nt))).map(i => i.label);
+      if (labels.length) out.marks.push({start:x.start, end:x.end, kind:"key", labels});
+      else if (sents.length >= 2 && nt.trim().split(" ").length >= 2) out.marks.push({start:x.start, end:x.end, kind:"extra"});
     });
   }
+  /* Less is more: compare the note's length to the model note. */
+  const target = q.model ? norm(q.model).trim().split(" ").length : 0;
+  out.target = target;
+  out.wordy = target > 0 && words > Math.max(target * 1.6, target + 12);
   out.marks.sort((a,b) => a.start - b.start);
   return out;
 }

@@ -139,5 +139,8 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .marked p{margin:0}
 .marked-text{font-size:var(--t-m);line-height:1.7}
 .mk.wrong{color:var(--rec);background:var(--rec-bg);text-decoration:line-through;text-decoration-thickness:2px;border-radius:4px;padding:0 2px}
-.mk.extra{text-decoration:underline dotted var(--warn);text-decoration-thickness:3px;text-underline-offset:4px}
+.mk.extra{color:var(--ink-soft);text-decoration:underline dotted var(--warn);text-decoration-thickness:3px;text-underline-offset:4px}
 .legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:var(--t-s)}
+.mk.key{text-decoration:underline solid var(--ok);text-decoration-thickness:3px;text-underline-offset:4px}
+.fb .lean{margin:0;border-left:4px solid var(--accent);padding-left:10px}
+.lead-tip{font-weight:700;color:var(--ink)}

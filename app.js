@@ -351,25 +351,54 @@ function hintFor(Q, idea){
 }
 /* Shows the note with problem sentences marked: red and crossed out for a common
    mistake, dotted amber for a sentence that matches none of the key ideas. */
-function markedNoteHTML(text, marks){
+function markedNoteHTML(text, marks, r){
   if (!marks || !marks.length) return "";
+  const wrong = marks.some(m => m.kind === "wrong"), extra = marks.some(m => m.kind === "extra"), key = marks.some(m => m.kind === "key");
+  if (!wrong && !extra && !(r && r.wordy)) return "";
   let html = "", at = 0;
   marks.forEach(m => {
     html += esc(text.slice(at, m.start));
-    html += `<span class="mk ${m.kind}">${esc(text.slice(m.start, m.end))}</span>`;
+    const tip = m.kind === "key" ? ` title="${esc(m.labels.join(", "))}"` : "";
+    html += `<span class="mk ${m.kind}"${tip}>${esc(text.slice(m.start, m.end))}</span>`;
     at = m.end;
   });
   html += esc(text.slice(at));
-  const wrong = marks.some(m => m.kind === "wrong"), extra = marks.some(m => m.kind === "extra");
+  const words = (r && r.words) || 0, target = (r && r.target) || 0;
   return `<div class="marked">
     <p class="eyebrow">Your note, checked</p>
     <p class="marked-text">${html}</p>
     <ul class="legend">
+      ${key ? `<li><span class="mk key">Underlined</span> = this part earns a key idea. Keep it.</li>` : ""}
+      ${extra ? `<li><span class="mk extra">Dotted</span> = extra. It does not earn a key idea, so you can cut it.</li>` : ""}
       ${wrong ? `<li><span class="mk wrong">Red</span> = this part is not correct. Fix it or cross it out.</li>` : ""}
-      ${extra ? `<li><span class="mk extra">Dotted</span> = this part does not match a key idea for this note. Keep it only if it is correct and belongs here.</li>` : ""}
     </ul>
-    ${wrong ? `<div class="row"><button class="btn" id="crossout">Cross out the red part</button></div>` : ""}
+    ${r && r.wordy ? `<p class="lean"><b>Less is more.</b> Your note has ${words} words. A strong note for this one is about ${target}. Keep the key ideas and cut the rest.</p>` : ""}
+    <div class="row">
+      ${extra ? `<button class="btn" id="cutextra">Cut the extra</button>` : ""}
+      ${wrong ? `<button class="btn" id="crossout">Cross out the red part</button>` : ""}
+    </div>
   </div>`;
+}
+/* Cut sentences marked extra, one at a time, keeping any cut that would lose a key idea. */
+function cutExtra(){
+  const Q = q(), box = $("#note");
+  const found = t => checkNote(Q, t).ideas.filter(i => i.ok).length;
+  let text = box.value, cut = 0;
+  const base = found(text);
+  const extras = checkNote(Q, text).marks.filter(m => m.kind === "extra").sort((a,b) => b.start - a.start);
+  extras.forEach(m => {
+    const trial = (text.slice(0, m.start) + text.slice(m.end)).replace(/\s+([.,!?])/g, "$1").replace(/[ \t]{2,}/g, " ").trim();
+    if (found(trial) >= base){ text = trial; cut++; }
+  });
+  box.value = text; S.notes[Q.n] = text; S.lastText[Q.n] = text.trim(); writeNow();
+  const r = checkNote(Q, text);
+  if (r.done) S.status[Q.n] = "done";
+  lastResult = {n:Q.n, r};
+  app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n] || ""} here`;
+  paintFeedback(r, false);
+  const msg = cut ? `Cut ${cut === 1 ? "1 extra sentence" : cut + " extra sentences"}. Less is more: your note is now ${r.words} words.` : "Nothing was cut. Those sentences hold part of a key idea.";
+  $("#fb").insertAdjacentHTML("afterbegin", `<p class="tip lead-tip">${esc(msg)}</p>`);
+  speak(msg);
 }
 function crossOut(marks){
   const box = $("#note"); let text = box.value;
@@ -391,7 +420,8 @@ function paintFeedback(r, talk){
   const chips = got.length ? `<div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div>` : "";
   if (r.done){
     const title = tries >= 2 ? "You stuck with it. All the key ideas are in your note." : `All ${r.ideas.length} key ideas are in your note.`;
-    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}</div>`;
+    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}</div>`;
+    if ($("#cutextra")) $("#cutextra").onclick = cutExtra;
     if (talk) speak(tries >= 2 ? "You stuck with it, and it paid off. All the key ideas are in your note." : "Nice work. All the key ideas are in your note.");
     return;
   }
@@ -406,7 +436,7 @@ function paintFeedback(r, talk){
     <h3>${esc(head)}</h3>
     ${lead ? `<p class="lead">${esc(lead)}</p>` : ""}
     ${chips}
-    ${markedNoteHTML(S.notes[Q.n] || "", r.marks)}
+    ${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}
     ${sample ? `<div class="sample"><p class="eyebrow">One way to say it</p><p class="sample-text">${esc(Q.model)}</p>
       <p>Read it, then say or type it in your own words and check again. You've got this.</p></div>` : `<ul class="miss">${lines.join("")}</ul>`}
     <div class="row"><button class="btn" id="readfb">${ICON.speak}<span>Read this to me</span></button></div></div>`;
@@ -415,6 +445,7 @@ function paintFeedback(r, talk){
     : [head, lead].concat(r.warnings, miss.map(i=>hintFor(Q,i))).filter(Boolean).join(" ");
   $("#readfb").onclick = () => speak(said);
   if ($("#crossout")) $("#crossout").onclick = () => crossOut(r.marks);
+  if ($("#cutextra")) $("#cutextra").onclick = cutExtra;
   if (talk) speak(said);
 }
 
