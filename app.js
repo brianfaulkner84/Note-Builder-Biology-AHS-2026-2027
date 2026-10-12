@@ -14,6 +14,34 @@ const ICON = {
   print:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2"/><rect x="6" y="14" width="12" height="7"/></svg>'
 };
 
+/* ---------- anonymous usage counts ----------
+   Off until SETTINGS.stats holds a GoatCounter code (content/catalog.js).
+   Sends only a page or event name, like "u2q2" or "u2q2-printed".
+   Never names, notes, or anything a student types. GoatCounter sets no
+   cookies and does not keep IP addresses. If the school filter blocks it,
+   nothing breaks; the visit just is not counted. */
+const statQ = []; let statState = 0; /* 0 not loaded, 1 loading, 2 ready, 3 off */
+function track(path, isEvent){
+  const code = ((window.SETTINGS||{}).stats||"").trim();
+  if (!code || statState === 3) return;
+  statQ.push({path, title: path, event: !!isEvent});
+  if (statState === 2) return flushStats();
+  if (statState === 1) return;
+  statState = 1;
+  try {
+    window.goatcounter = {no_onload: true};
+    const sc = document.createElement("script");
+    sc.async = true; sc.src = "https://gc.zgo.at/count.js";
+    sc.dataset.goatcounter = `https://${code}.goatcounter.com/count`;
+    sc.onload = () => { statState = 2; flushStats(); };
+    sc.onerror = () => { statState = 3; statQ.length = 0; };
+    document.head.appendChild(sc);
+  } catch(e){ statState = 3; }
+}
+function flushStats(){
+  while (statQ.length){ const x = statQ.shift(); try { window.goatcounter.count(x); } catch(e){} }
+}
+
 /* ---------- state (browser only; wrapped so it never breaks the page) ---------- */
 let unit = null, S = null, idx = 0, view = "start", lastResult = null, reveal = {clue:false, where:false}, confirmReset = false;
 const key = () => "bio-notes:" + unit.id;
@@ -186,11 +214,13 @@ function render(){
   renderQuestion();
 }
 
+let menuSent = false;
 function renderPicker(msg){
   const list = (window.CATALOG||[]).filter(c => c.show !== false);
   const groups = [];
   list.forEach(c => { let g = groups.find(x => x.name === c.unit); if (!g) groups.push(g = {name:c.unit, items:[]}); g.items.push(c); });
   const G = window.NOTE_GUIDE || [];
+  if (!menuSent){ menuSent = true; track("menu"); }
   app.innerHTML = `<div class="hero"><p class="eyebrow">Biology</p><h1>Notes Builder</h1><p>Pick the quiz or test you are building notes for.</p></div>
   ${msg ? `<div class="confirm" role="alert">${esc(msg)}</div>` : ""}
   ${G.length ? `<section class="units"><h2 class="eyebrow">Start here</h2>
@@ -204,12 +234,12 @@ function renderPicker(msg){
 }
 
 /* ---------- note-taking guide (cards live in content/guide.js) ---------- */
-let guideOn = false, gIdx = 0, gPick = null, gCut = {}, gChecked = false;
+let guideDoneSent = false, guideOn = false, gIdx = 0, gPick = null, gCut = {}, gChecked = false;
 const GKEY = "bio-notes:guide";
 function openGuide(){
   guideOn = true; unit = null;
   try { gIdx = Math.max(0, Math.min((+localStorage.getItem(GKEY))||0, (window.NOTE_GUIDE||[]).length - 1)); } catch(e){ gIdx = 0; }
-  setHash("guide"); gReset(); render();
+  setHash("guide"); gReset(); track("guide"); render();
 }
 function closeGuide(){ guideOn = false; try{history.replaceState(null,"",location.pathname);}catch(e){} render(); }
 function gReset(){ gPick = null; gCut = {}; gChecked = false; }
@@ -225,6 +255,7 @@ function gSpeech(c){
 function renderGuide(){
   const G = window.NOTE_GUIDE || [], c = G[gIdx]; if (!c) return closeGuide();
   const last = gIdx === G.length - 1;
+  if (last && !guideDoneSent){ guideDoneSent = true; track("guide-finished", true); }
   let body = "";
   if (c.type === "tip"){
     body = `<p class="gtip">${esc(c.tip)}</p>
@@ -293,7 +324,7 @@ function addFreeNote(u){
     guide: "Anything that helps you: a memory trick, an example, a drawing idea, or a fact you want to remember.",
     where: "Your class notes, homework, and slides", model: "" });
 }
-function pickUnit(u){ addFreeNote(u); unit = u; S = load(); idx = Math.min(S.idx||0, unit.questions.length-1); view = "start"; render(); }
+function pickUnit(u){ addFreeNote(u); unit = u; S = load(); track(u.id); idx = Math.min(S.idx||0, unit.questions.length-1); view = "start"; render(); }
 
 function counts(){ const qs = unit.questions.filter(x => !x.free); const n = qs.length; const done = qs.filter(x=>S.status[x.n]==="done").length; return {n, done}; }
 
@@ -414,7 +445,10 @@ function doCheck(){
   r.same = !changed && !r.done;
   S.lastText[Q.n] = text.trim();
   if (!r.done && (S.tries[Q.n] || 0) >= SAMPLE_AT) S.revealed[Q.n] = true;
-  S.status[Q.n] = r.done ? "done" : "tried"; writeNow();
+  S.status[Q.n] = r.done ? "done" : "tried";
+  if (!S.statStarted){ S.statStarted = true; track(unit.id + "-started", true); }
+  { const c = counts(); if (c.done === c.n && !S.statFinished){ S.statFinished = true; track(unit.id + "-finished", true); } }
+  writeNow();
   lastResult = {n:Q.n, r};
   app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n]} here`;
   paintFeedback(r, true);
@@ -583,6 +617,8 @@ function renderSheet(){
     $("#no").onclick = () => { $("#confirm").innerHTML = ""; };
   };
 }
+
+window.addEventListener("beforeprint", () => { if (unit && view === "sheet") track(unit.id + "-printed", true); });
 
 /* ---------- boot ---------- */
 (function boot(){

@@ -154,3 +154,26 @@ Edit, add, or reorder cards in `content/guide.js`. Three card types:
 - `cut`: title, prompt, `sentences` as `{t, fluff}`, explain
 
 Netlify revalidates files on each visit, so edits show up after a refresh.
+
+## Usage counts (anonymous)
+
+The site can count how much it is used, with no names and no note text. It uses GoatCounter (free for non-commercial use, no cookies, no IP addresses kept).
+
+To turn it on:
+
+1. Sign up at https://www.goatcounter.com and pick a code, for example `aquinasbio`. Your dashboard is then `https://aquinasbio.goatcounter.com`.
+2. In `content/catalog.js`, set `stats: "aquinasbio"` in `window.SETTINGS`. Commit. Netlify redeploys.
+
+What you will see on the dashboard:
+
+| Name | Counted when |
+|---|---|
+| `menu` | The front menu opens |
+| `u2q2` (any quiz id) | A student opens that quiz |
+| `guide` | A student opens How to Take Good Notes |
+| `guide-finished` (event) | A student reaches the last guide card |
+| `u2q2-started` (event) | First Check on that quiz on that Chromebook |
+| `u2q2-finished` (event) | Every note on that quiz is complete |
+| `u2q2-printed` (event) | The notes sheet is printed (button or Ctrl + P) |
+
+Started and finished count once per Chromebook per quiz (Start over resets them). GoatCounter also shows unique visitors and days. If the school filter blocks gc.zgo.at, nothing breaks; visits simply are not counted. Leave `stats: ""` to turn counting off.
