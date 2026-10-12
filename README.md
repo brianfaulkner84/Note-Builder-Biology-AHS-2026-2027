@@ -177,3 +177,7 @@ What you will see on the dashboard:
 | `u2q2-printed` (event) | The notes sheet is printed (button or Ctrl + P) |
 
 Started and finished count once per Chromebook per quiz (Start over resets them). GoatCounter also shows unique visitors and days. If the school filter blocks gc.zgo.at, nothing breaks; visits simply are not counted. Leave `stats: ""` to turn counting off.
+
+## Save and Print on every note
+
+Each note page has **Save** and **Print** buttons at the top. Both open a pop-up that shows how many notes are complete and which are not finished, then asks the student to confirm. Print asks for a name if one is missing, prints the notes sheet, and returns the student to the note they were on. The Save a backup file and Print my notes buttons on the start page and notes sheet use the same pop-up.

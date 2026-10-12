@@ -101,6 +101,83 @@ function readBackup(file){
   };
   r.readAsText(file);
 }
+/* ---------- Save / Print confirm pop-up (every page) ----------
+   Shows how many notes are complete before saving or printing. Print needs a
+   name; the pop-up asks for it if it is missing. */
+let printReturn = null;
+function statusLines(){
+  const {n, done} = counts();
+  const missing = unit.questions.filter(Q => !Q.free && S.status[Q.n] !== "done").map(Q => Q.n);
+  const pct = n ? Math.round(100 * done / n) : 0;
+  return {n, done, missing, pct};
+}
+function closeDialog(){ const d = $("#dlg"); if (d) d.remove(); document.removeEventListener("keydown", dlgKey); stopSpeak(); }
+function dlgKey(e){ if (e.key === "Escape") closeDialog(); }
+function openDialog(kind){
+  keepNote(); writeNow(); closeDialog();
+  const st = statusLines(), isPrint = kind === "print", who = (S.name||"").trim();
+  const statusText = st.done === st.n
+    ? `All ${st.n} notes are complete.`
+    : `${st.done} of ${st.n} notes are complete.`;
+  const missText = st.missing.length
+    ? (isPrint ? `Not finished yet: ${st.missing.join(", ")}. Those print as "no note yet" or as you left them.`
+               : `Not finished yet: ${st.missing.join(", ")}. The backup saves them as they are, so you can finish later.`)
+    : (isPrint ? "Your sheet is ready." : "Everything is done. Save a backup before the quiz.");
+  const say = `${isPrint ? "Print your notes?" : "Save a backup file?"} ${statusText} ${missText}`;
+  const d = document.createElement("div");
+  d.id = "dlg"; d.className = "dlg-wrap noprint";
+  d.innerHTML = `<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-h">
+    <h2 id="dlg-h">${isPrint ? "Print your notes?" : "Save a backup file?"}</h2>
+    <div class="meter" aria-hidden="true"><span style="width:${st.pct}%"></span></div>
+    <p class="dlg-status ${st.done===st.n ? "ok" : ""}">${esc(statusText)}</p>
+    <p>${esc(missText)}</p>
+    ${isPrint && !who ? `<label class="field" for="dlg-name">Type your name first. It prints on every page.
+      <input id="dlg-name" autocomplete="name"></label>` : ""}
+    ${isPrint ? `<p class="small">If nothing opens, press Ctrl + P.</p>` : `<p class="small">The file goes to your Downloads. Move it to your Google Drive to keep it safe.</p>`}
+    <p class="tip" id="dlg-msg" role="status"></p>
+    <div class="row">
+      <button class="btn primary big" id="dlg-yes" ${isPrint && !who ? "disabled" : ""}>${isPrint ? ICON.print + "<span>Yes, print</span>" : ICON.save + "<span>Yes, save</span>"}</button>
+      <button class="btn big" id="dlg-no">Keep working</button>
+      <button class="btn" id="dlg-read">${ICON.speak}<span>Read to me</span></button>
+    </div>
+  </div>`;
+  document.body.appendChild(d);
+  document.addEventListener("keydown", dlgKey);
+  d.addEventListener("click", e => { if (e.target === d) closeDialog(); });
+  $("#dlg-no").onclick = closeDialog;
+  $("#dlg-read").onclick = () => speak(say);
+  const nm = $("#dlg-name");
+  if (nm){ nm.oninput = () => { $("#dlg-yes").disabled = !nm.value.trim(); }; nm.focus(); }
+  else $("#dlg-yes").focus();
+  $("#dlg-yes").onclick = () => {
+    if (nm){ S.name = nm.value.trim(); if (!S.name) return; writeNow(); }
+    if (!isPrint){
+      downloadBackup();
+      $("#dlg-msg").textContent = "Saved to your Downloads.";
+      $("#dlg-yes").remove(); $("#dlg-no").textContent = "Done"; $("#dlg-no").focus();
+      return;
+    }
+    closeDialog();
+    if (view !== "sheet"){ printReturn = {view, idx}; view = "sheet"; render(); }
+    else renderSheet();
+    setTimeout(() => { try { window.print(); } catch(e){} }, 250);
+  };
+}
+window.addEventListener("afterprint", () => {
+  if (printReturn && unit){ const r = printReturn; printReturn = null; view = r.view; idx = r.idx; render(); }
+});
+function toolButtons(){
+  return `<div class="row qtools noprint">
+    <button class="btn" id="t-save">${ICON.save}<span>Save</span></button>
+    <button class="btn" id="t-print">${ICON.print}<span>Print</span></button>
+  </div>`;
+}
+function wireTools(){
+  const a = $("#t-save"), b = $("#t-print");
+  if (a) a.onclick = () => openDialog("save");
+  if (b) b.onclick = () => openDialog("print");
+}
+
 function setMsg(t){ const el = $("#save-msg"); if (el) el.textContent = t; }
 function savePanel(){
   return `<section class="savebox noprint" aria-labelledby="save-h">
@@ -117,7 +194,7 @@ function savePanel(){
   </section>`;
 }
 function wireSavePanel(){
-  $("#backup").onclick = downloadBackup;
+  $("#backup").onclick = () => openDialog("save");
   $("#restore").onclick = pickBackup;
   $("#restore-file").onchange = e => { readBackup(e.target.files[0]); e.target.value = ""; };
   paintSaved();
@@ -368,6 +445,7 @@ function renderQuestion(){
   app.innerHTML = `
   <div class="top noprint">
     <div class="row spread"><span class="eyebrow">${esc(unit.title)}</span><span class="eyebrow">${q().free ? "Optional: my own notes" : "Note " + (idx+1) + " of " + n}</span></div>
+    ${toolButtons()}
     <nav class="dots" aria-label="Jump to a note">${unit.questions.map((x,i)=>`<button class="dot ${S.status[x.n]||""} ${i===idx?"here":""}" data-i="${i}" aria-label="${x.free ? "My own notes" : "Note " + x.n}${S.status[x.n]==="done"?", done":""}">${x.free ? "+" : x.n}</button>`).join("")}</nav>
   </div>
   <section class="card">
@@ -412,6 +490,7 @@ function renderQuestion(){
   $("#next").onclick = () => idx === unit.questions.length-1 ? (view="sheet", render()) : go(idx+1);
   $("#home").onclick = () => { keepNote(); writeNow(); view = "start"; render(); };
   if (lastResult && lastResult.n === Q.n) paintFeedback(lastResult.r, false);
+  wireTools();
   paintSaved();
 }
 function keepNote(){ const b = $("#note"); if (b){ S.notes[q().n] = b.value; save(); } }
@@ -584,7 +663,7 @@ function renderSheet(){
   <div class="row spread noprint">
     <button class="btn big" id="back">Back to notes</button>
     <div class="row">
-      <button class="btn primary big" id="print" ${who ? "" : "disabled"}>${ICON.print}<span>Print my notes</span></button>
+      <button class="btn primary big" id="print">${ICON.print}<span>Print my notes</span></button>
     </div>
   </div>
   <div class="noprint">
@@ -609,7 +688,7 @@ function renderSheet(){
   if ($("#sheet-name")) $("#sheet-name").onchange = e => { S.name = e.target.value.trim(); writeNow(); renderSheet(); };
   wireSavePanel();
   $("#back").onclick = () => { view = "q"; render(); };
-  $("#print").onclick = () => { try { window.print(); } catch(e){} };
+  $("#print").onclick = () => openDialog("print");
   $("#reset").onclick = () => {
     $("#confirm").innerHTML = `<div class="confirm row"><span>Erase every note on this device?</span>
       <button class="btn" id="yes">Yes, erase</button><button class="btn" id="no">Keep my notes</button></div>`;

@@ -165,3 +165,14 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .gchoice.wrongpick{border-color:var(--rec);background:var(--rec-bg)}
 .gsent.cut{color:var(--rec);background:var(--rec-bg);border-color:var(--rec);text-decoration:line-through;text-decoration-thickness:2px}
 .gsent.keep{border-color:var(--ok);text-decoration:underline solid var(--ok);text-decoration-thickness:3px;text-underline-offset:4px}
+
+/* Save / Print confirm pop-up and per-page tool buttons */
+.qtools{justify-content:flex-end}
+.dlg-wrap{position:fixed;inset:0;background:rgba(10,15,30,.55);display:grid;place-items:center;padding:16px;z-index:50}
+.dlg{background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:16px;padding:22px;max-width:34rem;width:100%;display:flex;flex-direction:column;gap:12px;max-height:calc(100vh - 32px);overflow:auto}
+.dlg h2{font-size:var(--t-l)}
+.dlg p{margin:0}
+.dlg-status{font-size:var(--t-l);font-weight:700;color:var(--warn)}
+.dlg-status.ok{color:var(--ok)}
+.meter{height:14px;border-radius:999px;background:var(--accent-soft);overflow:hidden}
+.meter span{display:block;height:100%;background:var(--ok);border-radius:999px}
