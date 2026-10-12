@@ -19,7 +19,7 @@
    add paste:true to that quiz's line below. */
 /* stats: your GoatCounter code (the "mycode" in mycode.goatcounter.com) turns on
    anonymous visit counts. Leave it "" to turn counting off. */
-window.SETTINGS = { allowPaste: false, stats: "" };
+window.SETTINGS = { allowPaste: false, stats: "brianfaulkneraquinasschools" };
 
 window.CATALOG = [
   { id:"u1q1", unit:"Unit 1: Homeostasis and the Human Body", title:"Characteristics of Life",              type:"Quiz 1",   show:true, v:6 },

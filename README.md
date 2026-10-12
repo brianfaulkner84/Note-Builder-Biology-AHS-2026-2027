@@ -161,8 +161,8 @@ The site can count how much it is used, with no names and no note text. It uses 
 
 To turn it on:
 
-1. Sign up at https://www.goatcounter.com and pick a code, for example `aquinasbio`. Your dashboard is then `https://aquinasbio.goatcounter.com`.
-2. In `content/catalog.js`, set `stats: "aquinasbio"` in `window.SETTINGS`. Commit. Netlify redeploys.
+1. Sign up at https://www.goatcounter.com and pick a code, for example `brianfaulkneraquinasschools`. Your dashboard is then `https://brianfaulkneraquinasschools.goatcounter.com`.
+2. In `content/catalog.js`, set `stats: "brianfaulkneraquinasschools"` in `window.SETTINGS`. Commit. Netlify redeploys.
 
 What you will see on the dashboard:
 
