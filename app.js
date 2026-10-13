@@ -212,6 +212,7 @@ function wireNoteBox(box, n){
   box.addEventListener("paste", block);
   box.addEventListener("drop", block);
   box.addEventListener("input", e => {
+    if (listening){ stopMic(true); S.notes[n] = box.value; save(); setTip("The mic stopped so your typing is kept. Tap Speak to add more."); }
     const t = e.inputType || "";
     if (t === "insertFromPaste" || t === "insertFromDrop") srcOf(n).p += (e.data || "x").length;
     else if (t.indexOf("insert") === 0) srcOf(n).t += (e.data || " ").length;
@@ -245,35 +246,73 @@ function sheetCode(){
 
 /* ---------- speech out ---------- */
 function speak(text){
+  if (listening) stopMic(false);
   try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate = 0.9; u.lang = "en-US"; speechSynthesis.speak(u); } catch(e){}
 }
 function stopSpeak(){ try { speechSynthesis.cancel(); } catch(e){} }
 
-/* ---------- speech in ---------- */
-let rec = null, listening = false, micBlocked = false;
+/* ---------- speech in ----------
+   Each Speak session belongs to one note (n). Results only ever write to that
+   note, never to whatever note is on screen later. Finished phrases are kept by
+   this code, not rebuilt from the browser's result list, because some Chromebook
+   builds clear that list after each pause (which used to erase earlier
+   sentences). Typing, Cut the extra, Cross out, or Read aloud while the mic is
+   on stops the mic first so a late result cannot overwrite the edit. */
+let rec = null, listening = false, micBlocked = false, micSession = 0;
+function stopMic(discard){
+  if (!rec) return;
+  const r = rec;
+  if (discard) micSession++;            /* ignore anything this session says later */
+  try { discard ? r.abort() : r.stop(); } catch(e){}
+}
 function toggleMic(){
-  const box = $("#note");
-  if (listening){ try { rec.stop(); } catch(e){} return; }
+  if (listening){ stopMic(false); return; }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR || micBlocked){ showMicTip(); return; }
   stopSpeak();
-  rec = new SR(); rec.lang = "en-US"; rec.continuous = true; rec.interimResults = true;
-  const base = box.value.trim() ? box.value.trim() + " " : "";
-  let heard = 0;
-  rec.onresult = e => {
-    let txt = "";
-    for (let i = 0; i < e.results.length; i++) txt += e.results[i][0].transcript;
-    txt = txt.trim();
-    if (!base && txt) txt = txt[0].toUpperCase() + txt.slice(1);
-    box.value = base + txt; S.notes[q().n] = box.value; heard = txt.length; save();
+  const n = q().n, my = ++micSession;
+  const box0 = $("#note");
+  const base = (box0 ? box0.value : (S.notes[n] || "")).replace(/\s+$/, "");
+  let finals = "", lastFinal = "", interim = "", heard = 0;
+  const r = new SR(); rec = r;
+  r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+  const liveBox = () => (my === micSession && unit && unit.questions[idx] && unit.questions[idx].n === n) ? $("#note") : null;
+  const paint = () => {
+    let t = (finals + " " + interim).replace(/\s+/g, " ").trim();
+    if (!base && t) t = t[0].toUpperCase() + t.slice(1);
+    const v = base + (t ? (base ? " " : "") + t : "");
+    S.notes[n] = v; heard = t.length;
+    const b = liveBox(); if (b && b.value !== v) b.value = v;
+    save();
   };
-  rec.onerror = e => {
+  r.onresult = e => {
+    if (my !== micSession) return;
+    interim = "";
+    for (let i = e.resultIndex || 0; i < e.results.length; i++){
+      const t = String(e.results[i][0].transcript || "").trim(); if (!t) continue;
+      if (e.results[i].isFinal){
+        const a = norm(t), last = norm(lastFinal);
+        if (last && a === last) continue;                               /* same phrase sent twice */
+        if (last && last.split(" ").length >= 3 && a.indexOf(last) === 0)  /* phrase re-sent with more words */
+          finals = finals.slice(0, finals.length - lastFinal.length) + t;
+        else finals = finals ? finals + " " + t : t;
+        lastFinal = t;
+      } else interim += (interim ? " " : "") + t;
+    }
+    paint();
+  };
+  r.onerror = e => {
     if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture"){ micBlocked = true; showMicTip(); }
     else if (e.error === "no-speech") setTip("I did not hear anything. Tap Speak and try again.");
     else if (e.error === "network") setTip("Speech needs the internet. Check Wi-Fi, or type your note.");
   };
-  rec.onend = () => { listening = false; paintMic(); if (heard) { srcOf(q().n).s += heard; writeNow(); } };
-  try { rec.start(); listening = true; paintMic(); setTip("Listening. Tap Stop when you finish."); } catch(e){ showMicTip(); }
+  r.onend = () => {
+    if (my === micSession && interim){ finals = finals ? finals + " " + interim : interim; interim = ""; paint(); }
+    if (rec === r){ rec = null; listening = false; paintMic(); }
+    if (heard) srcOf(n).s += heard;
+    writeNow();
+  };
+  try { r.start(); listening = true; paintMic(); setTip("Listening. Tap Stop when you finish."); } catch(e){ rec = null; showMicTip(); }
 }
 function paintMic(){ const b = $("#mic"); if (!b) return; b.classList.toggle("on", listening); b.querySelector("span").textContent = listening ? "Stop" : "Speak"; b.setAttribute("aria-pressed", listening); }
 function setTip(t){ const el = $("#tip"); if (el) el.textContent = t; }
@@ -283,7 +322,7 @@ function showMicTip(){ setTip("The Speak button is blocked here. Use Chromebook 
 const q = () => unit.questions[idx];
 function render(){
   stopSpeak();
-  if (listening){ try { rec.stop(); } catch(e){} }
+  if (listening) stopMic(false);
   if (guideOn) return renderGuide();
   if (!unit) return renderPicker();
   if (view === "start") return renderStart();
@@ -491,6 +530,7 @@ function renderQuestion(){
   $("#home").onclick = () => { keepNote(); writeNow(); view = "start"; render(); };
   if (lastResult && lastResult.n === Q.n) paintFeedback(lastResult.r, false);
   wireTools();
+  paintMic();
   paintSaved();
 }
 function keepNote(){ const b = $("#note"); if (b){ S.notes[q().n] = b.value; save(); } }
@@ -501,7 +541,7 @@ function go(i){ keepNote(); idx = Math.max(0, Math.min(unit.questions.length-1, 
    Try 3 and after: a sample note to read, then say in their own words. */
 const SAMPLE_AT = 3;
 function doCheck(){
-  if (listening){ try { rec.stop(); } catch(e){} }
+  if (listening){ const b = $("#note"); stopMic(true); if (b) S.notes[q().n] = b.value; }
   const Q = q(); const text = $("#note").value; S.notes[Q.n] = text;
   if (Q.free){
     S.status[Q.n] = text.trim() ? "done" : ""; writeNow();
@@ -570,6 +610,7 @@ function markedNoteHTML(text, marks, r){
 }
 /* Cut sentences marked extra, one at a time, keeping any cut that would lose a key idea. */
 function cutExtra(){
+  if (listening) stopMic(true);
   const Q = q(), box = $("#note");
   const found = t => checkNote(Q, t).ideas.filter(i => i.ok).length;
   let text = box.value, cut = 0;
@@ -590,6 +631,7 @@ function cutExtra(){
   speak(msg);
 }
 function crossOut(marks){
+  if (listening) stopMic(true);
   const box = $("#note"); let text = box.value;
   marks.filter(m => m.kind === "wrong").sort((a,b) => b.start - a.start).forEach(m => { text = text.slice(0, m.start) + text.slice(m.end); });
   text = text.replace(/\s+([.,!?])/g, "$1").replace(/[ \t]{2,}/g, " ").trim();
