@@ -1,0 +1,64 @@
+{
+ "2": [
+  {
+   "re": "\\bcarb(s|ohydrates?)? (is|are) (a |an )?(type of |kind of |form of )?(fats?|lipids?|proteins?|amino acids?)\\b",
+   "say": "Check that. A carbohydrate is its own kind of molecule. What is it made of?",
+   "hit": ["a carbohydrate is a type of fat that gives energy", "carbs are proteins made of carbon hydrogen and oxygen"],
+   "miss": ["A carbohydrate is a molecule made of carbon, hydrogen, and oxygen. It is the body's quick source of energy.", "carbohydrates are not fats they are made of carbon hydrogen and oxygen", "carbs are a quick source of energy made of c h o"]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\bamino acids? (are |is )?(made|built|composed|formed) (up )?(of|from|by) (\\w+ )?proteins?\\b",
+   "say": "Check that. Which is the small unit and which is the big molecule?",
+   "hit": ["amino acids are made of proteins", "a protein is a nutrient and amino acids are built from smaller proteins"],
+   "miss": ["A protein is a nutrient built from smaller units called amino acids", "proteins are made of amino acids", "amino acids join together to build proteins", "amino acids are not made of proteins proteins are made of amino acids"]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )\\b(contains?|has|have|made of|made from) (?!no |not |any )(\\w+ )?carbon\\b",
+   "say": "Check that. Organic molecules contain carbon. Is a mineral organic?",
+   "hit": ["a mineral is an inorganic nutrient that contains carbon", "minerals are made of carbon and needed in small amounts"],
+   "miss": ["A mineral is an inorganic nutrient the body needs in small amounts. Vitamins are organic; minerals are inorganic.", "minerals do not contain carbon and are inorganic", "a mineral is inorganic it has no carbon", "minerals dont have carbon like vitamins do"]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bfats? (?:(?!(not|dont|doesnt|never|no|isn't|isnt|aren't|arent)\\b)[\\w']+ ){0,3}(quick|quickest|fast|fastest|main) (source of )?energy\\b",
+   "say": "Check that. Fats store energy. Which nutrient is the quick energy source?",
+   "hit": ["fats give quick energy and insulate the body", "fats are the main source of energy and are part of cell membranes"],
+   "miss": ["Fats insulate the body, are part of cell membranes, and help absorb fat-soluble vitamins. Fats are NOT hormones and enzymes; those are jobs of proteins.", "fats are not a quick energy source but they insulate and help absorb vitamins", "carbohydrates are the quick energy source while fats insulate the body", "fats dont give fast energy they store it and form membranes"]
+  }
+ ],
+ "14": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\bslow(s|ing)? (down )?(the )?(chemical )?reactions?\\b",
+   "say": "Check that. Do enzymes speed up reactions or slow them down?",
+   "hit": ["some proteins are enzymes that slow down reactions", "proteins act as enzymes and slow reactions"],
+   "miss": ["Proteins supply raw materials for growth and repair. Some act as enzymes that speed up reactions. Some have regulatory or transport jobs.", "proteins help growth and repair and some are enzymes that speed up reactions", "enzymes do not slow down reactions they speed them up", "proteins build and repair tissue and act as enzymes"]
+  },
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!fats )(?<!fat )(?<!lipids )(?<!carbs )(?<!carbohydrates )\\b(stores?|storing) (\\w+ )?energy\\b|(?<!not )(?<!not for )\\blong term energy\\b",
+   "say": "Check that. Storing energy is a job of a different nutrient. What else do proteins do?",
+   "hit": ["proteins store energy for later and help build muscle", "proteins are used for long term energy and repair"],
+   "miss": ["Proteins supply raw materials for growth and repair. Some act as enzymes that speed up reactions. Some have regulatory or transport jobs.", "proteins dont store energy they build and repair the body", "proteins act as enzymes and transport things", "fats store energy but proteins build and repair tissue"]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\b(a|d|e|k) (are|is) (both |also |all )?water soluble\\b|\\b(b|c) (are|is) (both |also |all )?fat soluble\\b",
+   "say": "Check that. Which letters are fat-soluble and which are water-soluble?",
+   "hit": ["vitamins a d e and k are water soluble", "vitamins b and c are fat soluble and stored in fat"],
+   "miss": ["Fat-soluble vitamins are A, D, E, and K. They are stored in fat tissue. Water-soluble vitamins are the B vitamins and C. They are not stored, so they must be replaced more often.", "a d e and k are fat soluble and b and c are water soluble", "vitamin c is water soluble and vitamin k is fat soluble", "b and c are not fat soluble they are water soluble"]
+  }
+ ],
+ "18": [
+  {
+   "re": "(?<!not )\\bonly (carb\\w*|sugars?|fats?|proteins?)\\b(?! (and|fats?|proteins?|carb\\w*)\\b)",
+   "say": "Check that. Is that the only nutrient that gives energy? There are three.",
+   "hit": ["only carbohydrates provide energy", "only sugar gives the body energy vitamins and minerals do not"],
+   "miss": ["Carbohydrates, fats, and proteins provide energy. Vitamins, minerals, and water do not.", "only carbohydrates fats and proteins provide energy", "carbs fats and proteins give energy but vitamins minerals and water do not", "not only carbohydrates but also fats and proteins provide energy"]
+  }
+ ]
+}

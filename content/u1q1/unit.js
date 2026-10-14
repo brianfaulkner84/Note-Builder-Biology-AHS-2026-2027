@@ -26,6 +26,7 @@ UNITS.push({
     guide:"What does DNA hold, and how is it passed on?", where:BOOK + ", Characteristics of Living Things",
     model:"• DNA is the molecule that holds an organism's genetic code\n• It is passed from parents to offspring",
     watch:[
+      W(/\b(dna|d n a) (is|means) (an? |the )?(type of |kind of )?(cells?|organs?|tissues?|organisms?)\b/, "Check that. DNA is found inside cells. Is DNA a cell, or a molecule that holds the code?"),
       W(/\b(?<!(not|never) )(passed|goes|go|comes?|travels?|inherited) from (the )?(offspring|children|kids|babies|child|baby) to (the )?parents?\b/, "Check that. Which way is DNA passed, parent to offspring or offspring to parent?"),
       W(/(?<!\bnot )\bonly (in )?(humans|people|animals|mammals)\b/, "Check that. Do only some living things have DNA?"), W(/dna is (a )?(protein|sugar|lipid|fat)\b/, "Check that. DNA holds the genetic code. Is it really a protein or a sugar?") ],
     ideas:[
@@ -92,6 +93,7 @@ UNITS.push({
     guide:"What are all living things made of?", where:"Slide: " + DECK + " 4 | " + BOOK,
     model:"• Living things are made of one or more cells\n• Example: humans have trillions of cells; an amoeba is one cell",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\bvirus(es)? (is|are) (an? )?(single|one|1) ?cell(ed)?\b|\b(single|one) ?cell(ed)? (organisms? |things? )?(like|such as) (an? )?virus/, "Check that. Viruses have no cells at all. Name a living thing that is one cell."),
       W(/(?<!\bnot )\b(all|every) (living things?|organisms?)\b.{0,25}\b(many|multiple|lots of|trillions of|millions of) cells/, "Check that. Do all living things have many cells, or can some be just one?"),
       W(/\b(amoeba|amoebas|bacteria|bacterium)s? (is|are|has|have) (made (up )?of )?(many|multiple|lots of|trillions of|millions of)/, "Check that. How many cells does a tiny organism like that have?"), W(/\b(atoms?|molecules?) (are|is) the (basic|smallest)/, "Check that. What is the smallest unit that is alive?") ],
     ideas:[ I("Made of cells", [/cells?/], "What are all living things made of?", "Slide 4: one or more ___.") ]},
@@ -120,6 +122,7 @@ UNITS.push({
     guide:"What pattern do organisms follow from start to maturity?", where:"Slide: " + DECK + " 6 | " + BOOK,
     model:"• Organisms grow and develop from their beginning to maturity, following instructions in their genes\n• Example: a seed grows into a tree",
     watch:[
+      W(/\bseeds? ((is|are) (not|never)|isn't|isnt|aren't|arent) (alive|living)\b|\bseeds? (is|are) (dead|non ?living|nonliving)\b|\bseeds? (becomes?|comes?|turns?) (alive|to life)\b/, "Check that. A seed has cells and DNA. Is it alive before it grows?"),
       W(/\b(growth|growing|grow) and (development|developing|develop) (are|is|mean|means) (the )?(same|exactly the same)\b|\bdevelop\w* (is|means) the same (thing )?as grow/, "Check that. Growing means getting bigger. Is developing the same thing?"),
       W(/\bdevelop\w* (is|means) (just |only )?(getting|get|to get) (bigger|larger|taller)/, "Check that. Growing means getting bigger. What does developing add?"),
       W(/\b(tree|adult|frog|butterfly|chicken|dog|cat|grown up)s? (grows?|develops?|turns?|changes?) into (an? )?(seed|baby|egg|tadpole|caterpillar|child|kid|puppy|kitten|chick)\b/, "Check that. Which comes first, the beginning stage or the mature stage?") ],
@@ -131,6 +134,7 @@ UNITS.push({
     guide:"What do living things produce? What are the two ways?", where:"Slide: " + DECK + " 7 | " + BOOK,
     model:"• Living things produce offspring, either sexually (two parents) or asexually (one parent)",
     watch:[
+      W(/(?<!\bnot )\bonly (animals|humans|people|mammals) (can )?reproduce\b|\bplants? (can't|cant|cannot|don't|dont|do not|does not|doesn't|doesnt|never) reproduce\b(?! (only|just|with|by|the same))/, "Check that. Do plants make offspring too?"),
       W(/(?<!\b(not|never)\b.{0,6})\b(every|each) (single |individual )?(organism|living thing|animal|plant|creature|individual) (must|has to|needs to|need to) reproduce\b|\breproduce or (it|they) (will |would )?(die|dies)\b/, "Check that. Does every single organism have to reproduce? Think of a mule."),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})\breproduc\w* (in order )?to (stay alive|live|keep living)\b/, "Check that. Does one organism need to reproduce to stay alive, or is it about making offspring?"),
       W(/(?<!\ba )\bsexual\w* (is |means |has |uses |needs |with )?(one|1|a single) parent|\b(asexual\w*|a sexual\w*) (is |means |has |uses |needs |with )?(two|2|both) parents/, "Check that. Which way uses two parents and which uses one?") ],
@@ -142,6 +146,7 @@ UNITS.push({
     guide:"What do organisms react to? Give an example.", where:"Slide: " + DECK + " 8 | " + BOOK,
     model:"• Living things react to signals (stimuli) from their surroundings\n• Example: a plant bends toward light",
     watch:[
+      W(/\b(stimulus|stimuli) (is|are|means) (the |a |your )?(response|reaction|how (you|it|they|an organism|the organism|a plant|the plant) (reacts?|responds?))\b/, "Check that. The stimulus is the signal. The reaction to it is the response."),
       W(/\b(plants?|flowers?|sunflowers?)\b(?:(?!\b(not|never|don't|dont|doesn't|doesnt|roots?)\b).){0,20}\b(bends?|bent|bending|grows?|growing|leans?|leaning|turns?|turning|moves?|moving) away from (the )?(light|sun|sunlight|window)\b/, "Check that. Does a plant bend toward the light or away from it?"),
       W(/\bplants? (can't|cant|cannot|can not|do not|don't|dont|does not|doesn't|doesnt|never) (respond|react|sense)/, "Check that. Look at the slide example. Can plants respond?"),
       W(/(?<!\bnot )\bonly (animals|humans|people) (can )?(respond|react)/, "Check that. Is it only animals, or all living things?") ],
@@ -153,6 +158,7 @@ UNITS.push({
     guide:"What do organisms keep stable? Give an example.", where:"Slide: " + DECK + " 9 | " + BOOK,
     model:"• Organisms keep a stable internal environment even when conditions around them change\n• Example: sweating to cool down on a hot day",
     watch:[
+      W(/(?<!\bnot )(?<!\bnot always )\b(exactly|perfectly) the same\b|\b(never|doesn't|doesnt|does not|don't|dont|do not) (ever )?changes? at all\b/, "Check that. Internal conditions stay relatively stable. Do they stay exactly the same?"),
       W(/\bshiver\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(hot|warm)\b|\bsweat\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(cold|cool)\b/, "Check that. Do you shiver when you are hot, or when you are cold?"),
       W(/\bsweat\w* (to|and|so you|helps you|will) (warm|heat)|\bshiver\w* (to|and|so you|helps you|will) (cool|get cool)/, "Check that. Which response cools you down and which warms you up?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})(\b(stable|constant|steady|balanced?) (external|outside)\b|\bkeep\w* the (outside|external) (environment|world|temperature|conditions)\b)/, "Check that. Do organisms keep the inside or the outside stable?") ],
@@ -164,6 +170,7 @@ UNITS.push({
     guide:"Who changes, one organism or a group? Over how long?", where:"Slide: " + DECK + " 11 | " + BOOK,
     model:"• As a group, populations of organisms change and adapt over many generations\n• One organism does not evolve in its lifetime",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\bevol\w* (means?|is) (getting|becoming|to get|to become|making (it|them|things)) (better|stronger|smarter|bigger|faster|more advanced|perfect)\b/, "Check that. Evolution is a population changing over generations. Does it always mean getting better?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})\b(in (one|a|its|their|his|her|a single) (lifetime|life ?time|life)|overnight|in a few (days|weeks|years))\b/, "Check that. How long does evolution take?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})(\b(because|since) (they|it|he|she) (want\w*|need\w*|tries|tried|try) to\b|\b(choose|chooses|decide|decides) to (evolve|change|adapt)\b)/, "Check that. Do organisms choose to evolve?"), W(/(one|an individual|a single) (organism|animal|person|plant|creature)\w* (evolv|changes? over)/, "Check that. Does one organism evolve, or a group?", "A group") ],
     ideas:[
@@ -174,6 +181,7 @@ UNITS.push({
     guide:"How many of the characteristics must it show? Give one tricky example.", where:"Slide: " + DECK + " 13 to 21 | " + BOOK + ", Figure 1-12, Is It Alive?",
     model:"• Something is alive only if it shows all eight characteristics of life\n• Example: fire grows and uses energy, but it has no cells or DNA, so it is not alive",
     watch:[
+      W(/\b(fire|campfire|flames?|crystals?|clouds?|cars?|robots?|toys?)s? (grows?|moves?|uses? energy|eats?|breathes?|spreads?|needs? oxygen|reproduces?|consumes?)\b(?:(?!\b(not|no|isn't|isnt|aren't|arent|never|but)\b).){0,30}\b(so|therefore|which means|that means|meaning) (it|they|it's|its|they're|theyre)( is| are)? (alive|living)\b/, "Check that. Showing one or two characteristics is not enough. Does it have cells and DNA?"),
       W(/(?<!\b(not|think|thinks|thought|believe|believes|seem|seems|might|may)\b.{0,15})\bvirus(es)? (is|are|counts? as|count as|is considered|are considered) (an? )?(alive|living( things?| organisms?)?|organisms?)\b(?!.{0,30}\b(not|no|isn't|isnt|aren't|arent)\b)/, "Check that. Viruses have no cells and cannot reproduce on their own. Are they alive?"),
       W(/(?<!\b(not|no)\b.{0,10})\bvirus(es)? (is |are )?(made (up )?of|has|have|contains?) (one or more |a |many |lots of |living )?cells?\b/, "Check that. Do viruses have cells? Look at the virus example on the slides."),
       W(/\b(mule|seed)s?\b(?:(?!alive|living|\bfire|virus|crystal|cloud|robot|\btoy|\bcar\b).){0,50}\b(so|therefore|which means|that means|meaning|means) (it|they|it's|its|they're|theyre)( is| are)? (not|never) (alive|living)\b/, "Check that. Mules and seeds have cells and DNA. Are they really not alive?"),

@@ -19,6 +19,7 @@ UNITS.push({
     guide:"What three things are true about all living things and cells?", where:"Slide: Intro 6 | Book: The Cell Theory, p. 191",
     model:"1. All living things are made up of cells\n2. Cells are the basic units of structure and function in living things\n3. New cells are produced from existing cells",
     watch:[
+      W(/\bcells? (are )?(made|built|composed) (up )?of (living things|organisms|tissues?|organs?)\b/, "Check that. Which is made of which, cells or living things?"),
       W(/\bvirus\w* (are|is) (also )?(made|composed|built) (up )?of cells\b|\bvirus\w* (are|is) (a |an )?(cells?|living things?|alive)\b/, "Check that. Viruses are not made of cells, and they are not alive."),
       W(/(?<!\bnot )(?<!\bjust )\b(most|some|many) (living things|organisms|things that are alive)\b (are )?(made|built|composed)/, "Check that. Are only some living things made of cells?"),
       W(/\bcells? (can |are |were |could )?(come|comes|form|forms|formed|produced|made|arise|arises|appear|appears|grow|grows) (from|out of) (nonliving|non living|nothing|dirt|air|nowhere|mud)\b/, "Check that. Can a new cell come from something that is not a cell?") ],
@@ -42,6 +43,7 @@ UNITS.push({
       I("Alive or dead", [/dead|empty|not alive|nonliving|non living|no longer alive/], "Were the cells he saw alive or dead?", "Cork comes from tree bark. Is it still growing?")
     ],
     watch:[
+      W(/(?<!(\bnot|n't|\bdidnt|\bwithout)\b[\w' ]{0,12})\belectron/, "Check that. Electron microscopes came much later. What kind did Hooke use?"),
       W(/\b(pond|mouth|teeth|saliva|spit|plaque|blood|onions?|bacteria)\b/, "Check that. That sounds like a different scientist. What did Hooke look at?", "What he looked at"),
       W(/(?<!\bnot )(?<!n't )(?<!\bnever )(?<!\bdidnt )invent\w* (the |a )?(first )?microscopes?/, "Check that. Is this note about what Hooke invented, or what he looked at?"), W(/\b(alive|living)\b/, "Check that. Were Hooke's cork cells alive?", "Alive or dead") ]},
   { n:4, heading:"Cell Theory and Microscopes", prompt:"Recall who was the first person to see living cells.",
@@ -69,6 +71,7 @@ UNITS.push({
     guide:"Where does each type keep its DNA? What living things belong to each group?", where:"Slide: Intro 10 to 11, Organelles 5 to 6 | Book: Prokaryotes, Eukaryotes, p. 194",
     model:"• A prokaryote has no nucleus; its DNA floats in the cytoplasm\n• Example: bacteria\n• A eukaryote has a nucleus that holds its DNA\n• Example: plants, animals, and my own cells",
     watch:[
+      W(/(?<!(\bnot|n't|\bno)\b[\w' ]{0,10})\bvirus/, "Check that. Viruses are not cells. Which living things are prokaryotes?"),
       W(/(pro ?kary|pro ?carr|pro ?cary|procar)\w*( cells?)? (has|have|contains?|contain) (a |its )?(nucle|new ?clear)/, "Check that. Does a prokaryote have a nucleus?"),
       W(/(eu|you|u) ?kary\w*( cells?)? ((do not|don't|dont|does not|doesn't|doesnt|never) have|lacks?|has no|have no) (a )?nucle/, "Check that. Where does a eukaryote keep its DNA?"),
       W(/(eu|you|u) ?kary\w*( cells?)?( are| is)?( an?)? (examples?|like|such as|for example|e g)( is| are)?( an?)? bacteri|bacteri\w* (is|are) (an? )?(eu|you|u) ?kary|(pro ?kary|procar)\w*( cells?)?( are| is)?( an?)? (examples?|like|such as|for example|e g)( is| are)?( an?)? (plants?|animals?|humans?)|(plants?|animals?|humans?) (is|are) (an? )?(pro ?kary|procar)/, "Check that. Is your example in the right group? Which one has a nucleus?") ],
@@ -83,6 +86,7 @@ UNITS.push({
     model:"• Prokaryotic cells do not have a nucleus\n• They also have no membrane-bound organelles",
     ideas:[ I("The missing structure", [/nucle/], "What is the one big thing missing from a bacterium?", "Look at the word: pro-KARYON. What does karyon mean? Slide Intro 10.") ],
     watch:[
+      W(/\bno organelles\b(?! (with|that|wrapped|surrounded|in)\b)|\b(do not|don't|dont|does not|doesn't|doesnt) have (any )?organelles\b(?! (with|that|wrapped|surrounded)\b)/, "Check that. Prokaryotes still have ribosomes. Which kind of organelle do they lack?"),
       W(/\b(no |(do not|don't|dont|does not|doesn't|doesnt) have (a |any )?|lacks? (a |any )?)(cell )?walls?\b/, "Check that. Most bacteria do have a cell wall. What structure is missing?"),
       W(/\b(do not|don't|dont|does not|doesn't|doesnt|lacks?|lack) (have )?(a |any )?(dna|cell membrane|plasma membrane|membrane(?! ?bound)(?! enclosed)|ribosomes?|cytoplasm)\b/, "Check that. Prokaryotes still have DNA, a membrane, cytoplasm, and ribosomes. What is missing?"), W(/\bno (dna|cell membrane|ribosomes?|cytoplasm)\b/, "Check that. Prokaryotes still have DNA, a membrane, cytoplasm, and ribosomes. What is missing?") ]},
   { n:8, heading:"Two Kinds of Cells", prompt:"Classify human cells as prokaryotic or eukaryotic.",
@@ -112,6 +116,7 @@ UNITS.push({
     guide:"Which of the two is wrapped in a membrane? Which kind of cell has membrane-bound organelles?", where:"Slide: Organelles 13 and 19 | Book: Prokaryotes, p. 194",
     model:"• Ribosomes have no membrane around them\n• Mitochondria are wrapped in membranes\n• Prokaryotes like bacteria have no membrane-bound organelles, so they can have ribosomes but not mitochondria",
     watch:[
+      W(/(mitochond|mito ?cond)\w* (are |is )?(too|way too) (big|large)\b|\btoo (big|large) (to fit|for (the )?bacteri)/, "Check that. Is size the real reason, or is it about membranes?", "The rule for bacteria"),
       W(/(ribo ?som|rybo ?som|ribozome)\w* (has|have|are|is) (a |an outer |wrapped in (a )?|surrounded by (a )?|covered (by|in|with) (a )?)?(membranes?|membrane ?bound|wrapped|surrounded)\b/, "Check that. Is a ribosome wrapped in a membrane?"),
       W(/(mitochond|mito ?cond)\w* ((has|have|are|is) (no|not) (a )?(membranes?|wrapped|membrane ?bound)|(don't|dont|do not|does not|doesn't|doesnt) have (a |any )?membranes?)/, "Check that. Is a mitochondrion wrapped in a membrane?"),
       W(/\btoo (small|tiny|little)\b|\bnot (big|large) enough\b/, "Check that. Is size the real reason, or is it about membranes?", "The rule for bacteria") ],
@@ -224,6 +229,7 @@ UNITS.push({
       I("The process", [/\bexo/], "What is this process called?", "It starts with \"exo,\" like exit. Slide Organelles 16.")
     ],
     watch:[
+      W(/(?<!(\bnot|n't|\bdont|\bdoesnt|\bnever)\b[\w' ]{0,12})\b(burst|bursts|bursting|pops?|popping|explod\w*)\b/, "Check that. The vesicle does not burst. What does it join with?"),
       W(/\b(to|into|toward|towards) the (nucleus|nuclei)\b/, "Check that. Where does the vesicle take the waste so it can leave the cell?"),
       W(/(releas|dump|empt)\w* (the |its )?(waste |stuff )?(in|into|inside) the (cytoplasm|cell)\b/, "Check that. Does the waste end up inside or outside the cell?"), W(/\bendo/, "Check that. Is the waste going in or out? Which word means out?", "The process") ]},
   { n:21, heading:"Energy, Storage, and Support", prompt:"Explain the job of the mitochondrion.",
@@ -234,6 +240,7 @@ UNITS.push({
       I("Plant cells", [near(/plant/, /\btoo\b|also|have them|have mito|do have|\byes\b|both/, 50), near(/both|also|too/, /plant/, 30)], "Do plant cells have mitochondria too?", "Slide Organelles 19, FOUND IN.")
     ],
     watch:[
+      W(/\b(turns?|converts?|changes?|makes?) (\w+ ){0,2}energy (in)?to (food|sugar|glucose)\b|\bstores? (\w+ )?energy (as|in) (food|sugar|glucose)\b/, "Check that. Does the mitochondrion make food, or get energy out of food?"),
       W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(make|makes|making|produce|produces|create|creates) (food|sugar|glucose)\b/, "Check that. Which organelle makes food? What does the mitochondrion do with food?"),
       W(/(?<!\bnot use )(?<!n't use )(?<!\bdont use )(?<!\bno )(?<!\bwithout )\b(sun ?light|sun|light energy|photo ?synth\w*)\b/, "Check that. Which organelle captures sunlight? What does the mitochondrion use?"), W(/plants? (cells )?(do not|don.?t|doesn.?t|never) have|only animal/, "Check that. Do plant cells have mitochondria?") ]},
   { n:22, heading:"Energy, Storage, and Support", prompt:"Explain the job of the chloroplast.",
@@ -310,6 +317,7 @@ UNITS.push({
     guide:"Which structures do only plant cells have? Which one do only animal cells have?", where:"Slide: Intro 23, Organelles 27 | Book: Figure 7-14 table, pp. 206 to 207",
     model:"• Only plant cells have a cell wall, chloroplasts, and a large central vacuole\n• Only animal cells have centrioles",
     watch:[
+      W(/plants? (cells? )?(do not|don't|dont|doesn't|doesnt|never) have (a )?(cell )?membranes?|\bonly animal cells? (have|has) (a )?(cell )?membranes?/, "Check that. Plant cells have a cell membrane too. What do they have outside it?"),
       W(/(?<!\bnot )(?<!n't )\b(only )?animal cells? (also )?(have|has|contain|contains) (a |the )?(cell walls?|walls?|chloro ?plasts?|large (central )?vacuoles?|central vacuoles?|big vacuoles?)/, "Check that. Which cells have that structure?"),
       W(/(?<!\bnot )(?<!n't )\b(only )?plant cells? (also )?(have|has|contain|contains) (a |the )?(centri ?ol|centrial|sentri ?ol)|\bonly plant cells? (have|has) (a |the )?(mitochond|nucle|ribo)/, "Check that. Which cells have that structure?"),
       W(/plants? (cells? )?(do not|don't|dont|doesn't|doesnt|never) have (any )?(mitochond|mito ?cond)|\bonly animal cells? (have|has) (the )?(mitochond|mito ?cond)/, "Check that. Do plant cells have mitochondria too?") ],

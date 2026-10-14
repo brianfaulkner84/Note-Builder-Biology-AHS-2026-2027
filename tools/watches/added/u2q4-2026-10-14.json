@@ -392,21 +392,7 @@
    ]
   }
  ],
- "15": [
-  {
-   "re": "\\b(?:38|thirty eight)\\b|\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b) (?:makes |gives |produces )?(?:about )?(?:34|thirty four|36|thirty six)\\b",
-   "say": "Check that. Add up glycolysis, the Krebs cycle, and the electron transport chain from your notes. What total do you get?",
-   "hit": [
-    "glycolysis 2 krebs 2 etc 34 total 38 atp",
-    "about thirty eight atp per glucose"
-   ],
-   "miss": [
-    "glycolysis 2 + krebs cycle 2 + electron transport chain 32 = about 36 atp per glucose the electron transport chain makes the most",
-    "total 36 atp",
-    "etc makes 32"
-   ]
-  }
- ],
+ "15": [],
  "16": [
   {
    "re": "\\bglycolysis (?:\\w+ )?stops first",

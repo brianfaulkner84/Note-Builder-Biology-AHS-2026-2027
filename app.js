@@ -211,6 +211,18 @@ function wireNoteBox(box, n){
   /* Bullets: the first letter typed in an empty box starts a bullet, and Enter starts the next one. */
   let busy = false;
   const ins = txt => { busy = true; try { if (!document.execCommand("insertText", false, txt)) throw 0; } catch(e){ box.setRangeText(txt, box.selectionStart, box.selectionEnd, "end"); S.notes[n] = box.value; save(); } busy = false; };
+  /* Tap the bullet dot (or number) at the start of a line to select the whole line. */
+  box.addEventListener("click", () => {
+    const v = box.value, pos = box.selectionStart;
+    if (pos !== box.selectionEnd) return;
+    const ls = v.lastIndexOf("\n", pos - 1) + 1, nl = v.indexOf("\n", pos), le = nl < 0 ? v.length : nl;
+    const m = v.slice(ls, le).match(/^[ \t]*(?:•|\d+\.)[ \t]?/);
+    if (!m || pos - ls > m[0].length) return;
+    let a = ls, b = le;
+    if (nl >= 0) b = le + 1; else if (ls > 0) a = ls - 1;
+    box.setSelectionRange(a, b);
+    setTip("Line selected. Press Delete or Backspace to remove it, or tap somewhere else to keep it.");
+  });
   box.addEventListener("beforeinput", e => {
     if (busy) return;
     if (e.inputType === "insertText" && e.data && !box.value.trim() && !/^[•\d]/.test(e.data)){ e.preventDefault(); ins("• " + e.data); }
@@ -542,6 +554,11 @@ function renderQuestion(){
       <button class="btn primary big" id="check">${ICON.check}<span>${Q.free ? "Save my note" : "Check my note"}</span></button>
       <button class="btn" id="readnote">${ICON.speak}<span>Read my note</span></button>
     </div>
+    <div class="row">
+      <button class="btn" id="delbullet">Delete this bullet</button>
+      <button class="btn" id="clearnote">Clear my note</button>
+    </div>
+    <p class="small">Tip: tap a bullet dot to select that whole bullet, then press Delete or tap Delete this bullet.</p>
     <p class="tip" id="tip"></p>
     <p class="small" id="saved" role="status"></p>
     ${Q.draw ? `<p class="tip">On paper: ${esc(Q.draw)} Your printed sheet has a box for it.</p>` : ""}
@@ -561,6 +578,7 @@ function renderQuestion(){
   $("#mic").onclick = toggleMic;
   $("#check").onclick = doCheck;
   $("#readnote").onclick = () => { const v = $("#note").value.trim(); speak(v || "Your note is empty."); };
+  wireBulletTools(Q);
   $("#back").onclick = () => go(idx-1);
   $("#next").onclick = () => idx === unit.questions.length-1 ? (view="sheet", render()) : go(idx+1);
   $("#home").onclick = () => { keepNote(); writeNow(); view = "start"; render(); };
@@ -571,6 +589,47 @@ function renderQuestion(){
 }
 function keepNote(){ const b = $("#note"); if (b){ S.notes[q().n] = b.value; save(); } }
 function go(i){ keepNote(); idx = Math.max(0, Math.min(unit.questions.length-1, i)); lastResult = null; reveal = {clue:false, where:false}; render(); window.scrollTo(0,0); }
+
+/* ---------- bullet tools: tap a bullet to select it, delete one bullet, clear the note ---------- */
+let undoText = null, lastSel = {s:0, e:0};
+function lineAt(text, pos){
+  const s = text.lastIndexOf("\n", pos - 1) + 1; let e = text.indexOf("\n", pos); if (e < 0) e = text.length;
+  return {s, e};
+}
+function setNote(Q, text, msg){
+  const box = $("#note"); if (!box) return;
+  if (listening) stopMic(true);
+  undoText = box.value;
+  box.value = text; S.notes[Q.n] = text;
+  if (S.cleaned) delete S.cleaned[Q.n];
+  if (S.status[Q.n] === "done" && !text.trim()) S.status[Q.n] = "tried";
+  const d = app.querySelector(`.dot[data-i="${idx}"]`); if (d) d.className = `dot ${S.status[Q.n] || ""} here`;
+  writeNow();
+  const tip = $("#tip");
+  if (tip){ tip.innerHTML = `${esc(msg)} <button class="btn" id="undonote">Undo</button>`; $("#undonote").onclick = () => { const u = undoText; undoText = null; if (u != null){ box.value = u; S.notes[Q.n] = u; writeNow(); } tip.textContent = "Brought it back."; }; }
+}
+function wireBulletTools(Q){
+  const box = $("#note"); if (!box) return;
+  const keep = () => { lastSel = {s: box.selectionStart, e: box.selectionEnd}; };
+  ["keyup", "select", "input", "blur"].forEach(ev => box.addEventListener(ev, keep));
+  /* Tapping the bullet mark (start of a line) selects that whole bullet. */
+  box.addEventListener("click", keep);  /* the line select itself is in wireNoteBox */
+  $("#delbullet").onclick = () => {
+    const v = box.value; if (!v.trim()) return setTip("There is nothing to delete yet.");
+    const at = lastSel.e > lastSel.s ? lastSel.e - 1 : lastSel.s;   /* a selected bullet may start with the newline before it */
+    const L = lineAt(v, Math.min(at, v.length));
+    let a = L.s, b = L.e; if (v[b] === "\n") b++; else if (a > 0) a--;
+    setNote(Q, v.slice(0, a) + v.slice(b), "Bullet deleted.");
+    box.focus(); box.setSelectionRange(Math.min(a, box.value.length), Math.min(a, box.value.length));
+  };
+  $("#clearnote").onclick = () => {
+    if (!box.value.trim()) return setTip("Your note is already empty.");
+    const tip = $("#tip");
+    tip.innerHTML = `Clear this note? Your tries and clues stay the same. <button class="btn" id="clearyes">Yes, clear it</button> <button class="btn" id="clearno">Keep it</button>`;
+    $("#clearyes").onclick = () => { lastResult = null; $("#fb").innerHTML = ""; setNote(Q, "", "Note cleared. Tap Speak or type to start again."); box.focus(); };
+    $("#clearno").onclick = () => { tip.textContent = ""; };
+  };
+}
 
 /* Clue ladder. Each check that is not complete, with a changed note, is one try.
    Try 1: gentle clue. Try 2: a more direct clue plus where to look.
@@ -703,7 +762,7 @@ function paintFeedback(r, talk){
   const chips = got.length ? `<div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div>` : "";
   if (r.done){
     const title = tries >= 2 ? "You stuck with it. All the key ideas are in your note." : `All ${r.ideas.length} key ideas are in your note.`;
-    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}${cleanupHTML(Q)}</div>`;
+    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}${(r.tips || []).map(t => `<p class="reveal">${esc(t)}</p>`).join("")}${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}${cleanupHTML(Q)}</div>`;
     if ($("#cutextra")) $("#cutextra").onclick = cutExtra;
     wireCleanup(Q);
     if (talk) speak(tries >= 2 ? "You stuck with it, and it paid off. All the key ideas are in your note." : "Nice work. All the key ideas are in your note.");
@@ -720,6 +779,7 @@ function paintFeedback(r, talk){
     <h3>${esc(head)}</h3>
     ${lead ? `<p class="lead">${esc(lead)}</p>` : ""}
     ${chips}
+    ${(r.tips || []).map(t => `<p class="reveal">${esc(t)}</p>`).join("")}
     ${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}
     ${sample ? `<div class="sample"><p class="eyebrow">One way to say it</p><p class="sample-text">${esc(Q.model)}</p>
       <p>Read it, then say or type it in your own words and check again. You've got this.</p></div>` : `<ul class="miss">${lines.join("")}</ul>`}

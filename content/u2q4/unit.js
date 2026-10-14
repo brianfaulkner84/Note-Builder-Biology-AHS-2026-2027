@@ -8,6 +8,11 @@
 var PYR = T.pyruvate, H = /\bh\b|\bh plus|hydrogen|protons?/;  /* "H+" arrives as "h" after punctuation is removed */
 var SYNTHASE = /synthase|synthes[ae]s?|synth ?ace/;
 
+/* Not a mistake: any total from 29 to 38 is accepted, but the book's answer is about 36. */
+var ATP_N = "(?:29|3[0-57-8]|twenty ?nine|thirty(?: ?(?:one|two|three|four|five|seven|eight))?)";
+var ATP_TIP = { match: new RegExp("(?:total|altogether|overall|in all|per glucose|one glucose|with oxygen)\\D{0,25}\\b" + ATP_N + "\\b|\\b" + ATP_N + "\\b(?: atp)?(?: \\w+){0,2} (?:total|altogether|overall|in all|per glucose)"),
+  unless: /\b36\b|thirty ?six/,
+  say: "Your total is in the accepted range. The book's answer is about 36 ATP per glucose, so 36 is the number to remember for the test." };
 UNITS.push({
   id: "u2q4",
   title: "Glycolysis, Krebs Cycle, ETC, and Fermentation",
@@ -19,6 +24,7 @@ UNITS.push({
     guide:"What does the word mean? What is glucose split into, and how many carbons does each piece have?", where:"Slide: Glycolysis 5 | Book: Glycolysis, p. 254",
     model:"• Glycolysis means splitting sugar\n• One glucose (6 carbons) is split into 2 molecules of pyruvic acid, with 3 carbons each",
     watch:[
+      W(/\b(?:split|splits|broken|breaks?|cut|cuts)\w* (?:\w+ ){0,3}into (?:3|three|4|four|6|six) (?:molecules of |pieces of )?(?:pyruv|pyro ?vic|pie ?ru ?vic)/, "Check that. Glucose is split in half. How many pyruvic acid molecules does one glucose make?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:make|makes|making|build|builds|building|produce|produces) (?:\w+ )?(?:glucose|sugar)\b/, "Check that. Does glycolysis build sugar or split it?"),
       W(/\bsplit\w* (?:\w+ ){0,3}into (?:\w+ ){0,2}(?:glucose|lactic|alcohol|carbon dioxide|co ?2)\b/, "Check that. What is glucose split into during glycolysis?"), W(/\b(2|two|4|four) carbons? each/, "Check that. Glucose has 6 carbons and is split in half. How many does each piece have?", "Carbons") ],
     ideas:[
@@ -128,7 +134,7 @@ UNITS.push({
     ],
     watch:[
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:releases?|gives? off|makes?|produces?) (?:\w+ )?(?<!\bno )oxygen\b/, "Check that. Which gas does the Krebs cycle release?"),
-      W(/\b(?:32|thirty two|34|thirty four|36|thirty six) atp\b|\bmakes (?:the )?most (?:of the )?atp\b|\bmakes (?:a lot|lots) of atp\b/, "Check that. Does the Krebs cycle make a lot of ATP or just a little?"), W(/main product (is )?(atp|oxygen|glucose)/, "Check that. Most of the energy is captured in something else. What is the MAIN product?", "Main product") ]},
+      W(/(?<!\b(?:total|totals|total of|altogether|overall|with oxygen|with oxygen the cell makes|makes about|about) )\b(?:32|thirty two|34|thirty four|36|thirty six) atp\b(?!(?: \w+){0,2} (?:total|per glucose|altogether|overall|in all|from one glucose)\b)|\bmakes (?:the )?most (?:of the )?atp\b|\bmakes (?:a lot|lots) of atp\b/, "Check that. Does the Krebs cycle make a lot of ATP or just a little?"), W(/main product (is )?(atp|oxygen|glucose)/, "Check that. Most of the energy is captured in something else. What is the MAIN product?", "Main product") ]},
   { n:11, heading:"The Electron Transport Chain", prompt:"Sequence what happens in the electron transport chain.",
     guide:"Where is it? Who drops off electrons? What gets pumped, and to where?", where:"Slide: Krebs-ETC 11 | Book: Electron Transport, p. 258",
     model:"• The chain is a line of proteins in the inner membrane\n• NADH and FADH2 drop off their high-energy electrons\n• As the electrons move down the chain, their energy pumps H+ ions into the intermembrane space\n• Oxygen is the final electron acceptor and forms water",
@@ -170,6 +176,8 @@ UNITS.push({
     guide:"Which one loads the carriers? Which one cashes them in? Where does each happen?", where:"Slide: Krebs-ETC 14 to 15 | Book: pp. 256 to 259",
     model:"• The Krebs cycle loads the electron carriers (makes NADH and FADH2)\n• It happens in the matrix\n• The electron transport chain cashes them in for ATP\n• It happens in the inner membrane",
     watch:[
+      W(/\b(?:krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:uses|drops? off|spends|empties) (?:the |its )?(?:nad ?h|fadh ?2?|electron carriers|carriers)\b/, "Check that. Which one loads the carriers, and which one uses them up?"),
+      W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b) (?:happens |occurs |takes place |is |are |is done )?(?:in|inside) (?:the )?inter ?membrane/, "Check that. The H+ ions pile up in the intermembrane space. Where is the chain itself?"),
       W(/\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:inner|outer|inter|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))|\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:matrix|outer|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))/, "Check that. Which one is in the matrix, and which one is in the inner membrane?"),
       W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:loads?|makes?|produces?) (?:the )?(?:nad ?h|electron carriers|carriers)\b|\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:cashes|cash|unloads?|makes (?:the )?most)/, "Check that. Which one loads the carriers, and which one cashes them in?") ],
     ideas:[
@@ -179,14 +187,19 @@ UNITS.push({
       I("ETC location", [either(T.etc, /inner/, 80)], "Where does the electron transport chain happen?", "Use your note 8.")
     ]},
   { n:15, heading:"The Electron Transport Chain", prompt:"Calculate the ATP made from one glucose with oxygen.",
-    guide:"How many ATP from each stage? What is the total? Which stage makes the most?", where:"Slide: Krebs-ETC 16 to 18 | Book: The Totals, p. 260",
-    model:"• Glycolysis 2 + Krebs cycle 2 + electron transport chain 32 = about 36 ATP per glucose\n• The electron transport chain makes the most",
+    guide:"How many ATP does glycolysis make? How many does the Krebs cycle make? How many does the electron transport chain make? What is the total, and which stage makes the most? The book's total is about 36. Totals from 29 to 38 are accepted.",
+    tips:[ATP_TIP], where:"Slide: Krebs-ETC 16 to 18 | Book: The Totals, p. 260",
+    model:"• Glycolysis: 2 ATP\n• Krebs cycle: 2 ATP\n• Electron transport chain: about 32 ATP, the most of any stage\n• Total: about 36 ATP per glucose (the book's answer; other sources give 29 to 38)",
     watch:[
-      W(/\bglycolysis (?:makes |gives |produces |is |nets )?(?:about )?(?:4|four)\b(?!(?: atp)? (?:minus|but|and spends|and uses|total|in total|gross))|\b(?:krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is )?(?:about )?(?:32|thirty two|34|thirty four)\b/, "Check that. Use the net ATP for each stage from your notes. Which stage makes 32?"),
-      W(/\b(?:38|thirty eight)\b|\b(?:electron transport(?: chain)?|\betc\b|\be t c\b) (?:makes |gives |produces )?(?:about )?(?:34|thirty four|36|thirty six)\b/, "Check that. Add up glycolysis, the Krebs cycle, and the electron transport chain from your notes. What total do you get?"), W(/(glycolysis|krebs\w*( cycle)?) makes (the )?most/, "Check that. Which stage makes the most ATP?", "Makes the most") ],
+      W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b) (?:makes |gives |produces |is |nets )?(?:about |only )?(?:2|two|4|four|6|six)\b/, "Check that. Which stage makes the most ATP, and about how many?"),
+      W(/\b(?:glycolysis|krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is |nets )?(?:about |around )?(?:36|thirty six|38|thirty eight)\b(?! (?:total|in total|altogether|overall))/, "Check that. About 36 is the total for all three stages. How many does that one stage make?"),
+      W(/(?<!\bnot )\b(?:total|altogether|in all|adds? up to|overall)\b (?:is |of |equals |comes to )?(?:about |around |roughly |only )?(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred)\b(?! ?(?:\d|to\b))|(?<!\b(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety) )\b(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred) (?:atp )?(?:total|in total|altogether|in all)\b/, "Check that. Add the stages again: about 2 + 2 + 32. What is the total?"),
+      W(/\bglycolysis (?:makes |gives |produces |is |nets )?(?:about )?(?:4|four)\b(?!(?: atp)? (?:minus|but|and spends|and uses|total|in total|gross))|\b(?:krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is )?(?:about )?(?:32|thirty two|34|thirty four)\b/, "Check that. Use the net ATP for each stage from your notes. Which stage makes 32?"), W(/(glycolysis|krebs\w*( cycle)?) makes (the )?most/, "Check that. Which stage makes the most ATP?", "Makes the most") ],
     ideas:[
-      I("Each stage", [/\b32\b|thirty ?two/], "How many ATP does each stage make?", "Slide Krebs-ETC 18, answer 1."),
-      I("Total", [/\b36\b|thirty ?six/], "What is the total from one glucose with oxygen?", "Slide Krebs-ETC 16, KEY TERMS."),
+      I("Glycolysis", [either(/glycoly/, /\b(2|two)\b/, 30)], "How many ATP does glycolysis make (net)?", "Slide Krebs-ETC 18, answer 1. Glycolysis nets 2."),
+      I("Krebs cycle", [either(/krebs|kreb|crebs|citric/, /\b(2|two)\b/, 30)], "How many ATP does the Krebs cycle make from one glucose?", "Slide Krebs-ETC 18, answer 1. Two turns of the cycle, 1 ATP each."),
+      I("Electron transport chain", [either(T.etc, /\b(2[6-9]|3[0-4]|twenty ?(six|seven|eight|nine)|thirty ?(one|two|three|four)?)\b/, 40)], "How many ATP does the electron transport chain make?", "Slide Krebs-ETC 18, answer 1. The book uses about 32."),
+      I("Total", [/\b36\b|thirty ?six/, either(/total|altogether|all together|in all|overall|per glucose|one glucose|adds? up|equals?/, /\b(?:29|3[0-8]|twenty ?nine|thirty(?: ?(?:one|two|three|four|five|six|seven|eight))?)\b/, 40)], "What is the total from one glucose with oxygen? The book says about 36.", "Slide Krebs-ETC 16, KEY TERMS. Book p. 260: about 36 ATP per glucose."),
       I("Makes the most", [either(T.etc, /most/, 60)], "Which stage makes the most ATP?", "Slide Krebs-ETC 18, answer 2.")
     ]},
   { n:16, heading:"Why Fermentation Happens", prompt:"Explain what goes wrong when oxygen runs out.",
@@ -228,6 +241,8 @@ UNITS.push({
     guide:"Count the carbons. Where does the missing carbon go?", where:"Slide: Fermentation 8 | Book: Alcoholic Fermentation, Figure 9-8, p. 263",
     model:"• Pyruvic acid has 3 carbons, but ethyl alcohol has only 2\n• One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid",
     watch:[
+      W(/\b(?:pyruv|pyro ?vic|pie ?ru ?vic)\w*(?: acid)? (?:has |have |with |contains )?(?:only )?(?:6|six|4|four) carbons?\b/, "Check that. Glucose (6 carbons) splits in half. How many carbons does pyruvic acid have?"),
+      W(/\bcan (?:easily |just |still |quickly )?(?:rebuild|remake|turn (?:it |them )?back|change (?:it |them )?back|go back|become pyruv|be (?:turned|changed|made|rebuilt) back)\b/, "Check that. Where did the missing carbon go, and can the cell get it back?"),
       W(/\balcohol (?:has |have )?(?:only )?(?:3|three|4|four)\b|\b(?:pyruv|pyro ?vic)\w*(?: acid)? (?:has |have )?(?:only )?(?:2|two)\b/, "Check that. Count again. Which one has 3 carbons, and which has 2?"),
       W(/\b(?:carbon|it) (?:leaves|escapes|goes|floats away|is lost) (?:as |in |into )(?:an? )?(?:oxygen|o ?2|water|alcohol|lactic|glucose)\b/, "Check that. What gas does the missing carbon leave as?") ],
     ideas:[
@@ -274,7 +289,8 @@ UNITS.push({
       I("Oxygen debt", [/breath|breathing|pant|repay|pay back|pay off/], "What is oxygen debt?", "Read the second box on Slide Fermentation 15.")
     ]},
   { n:23, heading:"Energy and Exercise", prompt:"Compare energy with oxygen and without oxygen.",
-    guide:"What happens after glycolysis in each case? How many ATP per glucose in each?", where:"Slide: Fermentation 18 | Book: The Totals, p. 260; Fermentation, p. 262",
+    guide:"What happens after glycolysis in each case? With oxygen, how many ATP does each stage make: glycolysis, the Krebs cycle, and the electron transport chain? What is the total? How many ATP without oxygen?",
+    tips:[ATP_TIP], where:"Slide: Fermentation 18 | Book: The Totals, p. 260; Fermentation, p. 262",
     model:"• With oxygen, glycolysis is followed by the Krebs cycle and the electron transport chain, making about 36 ATP per glucose\n• Without oxygen, glycolysis is followed by fermentation, making only 2 ATP per glucose",
     watch:[
       W(/\bwithout oxygen (?:\w+ ){0,2}glycolysis (?:\w+ )?(?:stops|can't|cant|cannot|can not|does not happen|doesn't happen|doesnt happen)\b/, "Check that. Without oxygen, glycolysis keeps going. What follows it?"),
@@ -282,7 +298,7 @@ UNITS.push({
       W(/\bwith oxygen (?:\w+ ){0,4}(?<!\b(?:no|not) )ferment/, "Check that. Which steps follow glycolysis when oxygen is present?") ],
     ideas:[
       I("With oxygen: next steps", [/krebs|electron transport|\betc\b|citric/], "With oxygen, what happens after glycolysis?", "Slide Fermentation 18, the With oxygen column."),
-      I("With oxygen: ATP", [/\b36\b|thirty ?six/], "How many ATP per glucose with oxygen?", "Slide Fermentation 18, ATP per glucose row."),
+      I("With oxygen: ATP", [/\b36\b|thirty ?six/, /\b(?:29|3[0-8]|twenty ?nine|thirty(?: ?(?:one|two|three|four|five|six|seven|eight))?) atp\b/], "How many ATP per glucose with oxygen?", "Slide Fermentation 18, ATP per glucose row."),
       I("Without oxygen: next step", [/ferment/], "Without oxygen, what happens after glycolysis?", "Slide Fermentation 18, the Without oxygen column."),
       I("Without oxygen: ATP", [/\b(2|two)\b/], "How many ATP per glucose without oxygen?", "Slide Fermentation 18, ATP per glucose row.")
     ]}

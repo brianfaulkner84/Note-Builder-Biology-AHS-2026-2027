@@ -201,7 +201,7 @@ Marking works on phrases, not sentences, because spoken notes often have no peri
 
 ## Common mistakes (watches)
 
-Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 622 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
+Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 693 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
 
 To add more, put a new batch in `tools/watches/<quiz id>.json` with examples that must be flagged (`hit`) and correct notes that must not be (`miss`), then run the two commands below and move the file into `tools/watches/added/` so it is not inserted twice:
 
@@ -213,3 +213,9 @@ node tools/watches/insert.js u2q2     # copies them into content/u2q2/unit.js (r
 ## Bullet notes
 
 Notes are written as bullet points, one idea per bullet. The first letter typed in an empty box starts a bullet ("• "), Enter starts the next bullet, and each Speak session adds a new bullet. Sample notes (and Use the clean version) are bullets too. Remove the extra and Cross out tidy each bullet and drop any that end up empty. Read aloud skips the bullet symbols.
+
+## Editing bullets, clearing a note, and tips
+
+- Tap a bullet dot to select that whole bullet, then press Delete, or tap **Delete this bullet** (removes the bullet the cursor is in). An **Undo** link appears after a delete.
+- **Clear my note** empties the note after a Yes/No check. Tries, clues, and samples already shown stay the same.
+- A question can have `tips` (`{match, unless, say}`): blue notes that never block a complete note. The ATP questions (Unit 2 Quiz 4, questions 15 and 23) accept any total from 29 to 38 and use a tip to point students to the book's answer of about 36.

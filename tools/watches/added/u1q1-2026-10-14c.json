@@ -1,0 +1,138 @@
+{
+ "2": [
+  {
+   "re": "\\b(dna|d n a) (is|means) (an? |the )?(type of |kind of )?(cells?|organs?|tissues?|organisms?)\\b",
+   "say": "Check that. DNA is found inside cells. Is DNA a cell, or a molecule that holds the code?",
+   "hit": [
+    "dna is a type of cell that is passed from parents",
+    "DNA is the cell that holds the genetic code",
+    "d n a is a tissue in your body"
+   ],
+   "miss": [
+    "DNA is the molecule that holds an organism's genetic code and is passed from parents to offspring",
+    "DNA is found in cells and holds the genetic code",
+    "dna is not a cell it is a molecule passed from parents to kids",
+    "DNA is inside the cells of every organism"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\bvirus(es)? (is|are) (an? )?(single|one|1) ?cell(ed)?\\b|\\b(single|one) ?cell(ed)? (organisms? |things? )?(like|such as) (an? )?virus",
+   "say": "Check that. Viruses have no cells at all. Name a living thing that is one cell.",
+   "hit": [
+    "living things are made of one or more cells, a virus is one cell",
+    "Some things are single celled like a virus",
+    "viruses are single celled organisms"
+   ],
+   "miss": [
+    "Living things are made of one or more cells, like humans with trillions and an amoeba with one",
+    "a virus is not a single cell, it has no cells",
+    "an amoeba is one cell and humans have trillions",
+    "bacteria are single celled"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bseeds? ((is|are) (not|never)|isn't|isnt|aren't|arent) (alive|living)\\b|\\bseeds? (is|are) (dead|non ?living|nonliving)\\b|\\bseeds? (becomes?|comes?|turns?) (alive|to life)\\b",
+   "say": "Check that. A seed has cells and DNA. Is it alive before it grows?",
+   "hit": [
+    "a seed is not alive until it grows into a tree",
+    "the seed comes alive when you plant it and it grows",
+    "seeds are dead but they grow into plants"
+   ],
+   "miss": [
+    "Organisms grow and develop from their beginning to maturity following their genes, like a seed growing into a tree",
+    "a seed is alive and grows into a tree",
+    "a seed is living even before it sprouts",
+    "a tadpole develops into a frog"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!\\bnot )\\bonly (animals|humans|people|mammals) (can )?reproduce\\b|\\bplants? (can't|cant|cannot|don't|dont|do not|does not|doesn't|doesnt|never) reproduce\\b(?! (only|just|with|by|the same))",
+   "say": "Check that. Do plants make offspring too?",
+   "hit": [
+    "only animals reproduce, sexually or asexually",
+    "plants don't reproduce but animals have babies",
+    "only mammals can reproduce with two parents"
+   ],
+   "miss": [
+    "Living things produce offspring either sexually with two parents or asexually with one parent",
+    "not only animals reproduce, plants make seeds too",
+    "plants and animals both reproduce",
+    "bacteria reproduce asexually by splitting"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\b(stimulus|stimuli) (is|are|means) (the |a |your )?(response|reaction|how (you|it|they|an organism|the organism|a plant|the plant) (reacts?|responds?))\\b",
+   "say": "Check that. The stimulus is the signal. The reaction to it is the response.",
+   "hit": [
+    "a stimulus is the response to the environment like a plant bending",
+    "stimuli are how you react to your surroundings",
+    "the stimulus is the reaction of a plant to light"
+   ],
+   "miss": [
+    "Living things react to signals called stimuli from their surroundings, like a plant bending toward light",
+    "a stimulus is a signal and the response is how you react",
+    "the response is the reaction to a stimulus",
+    "a dog barks when it hears a knock, the knock is the stimulus"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot always )\\b(exactly|perfectly) the same\\b|\\b(never|doesn't|doesnt|does not|don't|dont|do not) (ever )?changes? at all\\b",
+   "say": "Check that. Internal conditions stay relatively stable. Do they stay exactly the same?",
+   "hit": [
+    "organisms keep their inside exactly the same all the time, like sweating",
+    "your body temperature does not change at all when it is hot outside",
+    "the inside stays perfectly the same"
+   ],
+   "miss": [
+    "Organisms keep a stable internal environment even when conditions around them change, like sweating to cool down on a hot day",
+    "the inside stays about the same even when it is hot outside",
+    "body temperature stays steady but not exactly the same",
+    "we sweat to cool down so our temperature stays stable"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\bevol\\w* (means?|is) (getting|becoming|to get|to become|making (it|them|things)) (better|stronger|smarter|bigger|faster|more advanced|perfect)\\b",
+   "say": "Check that. Evolution is a population changing over generations. Does it always mean getting better?",
+   "hit": [
+    "evolution means getting better and stronger over time",
+    "evolution is becoming more advanced as a group",
+    "evolution is to get smarter over many generations"
+   ],
+   "miss": [
+    "As a group, populations of organisms change and adapt over many generations, one organism does not evolve",
+    "evolution is not getting better, it is a population changing over generations",
+    "evolution means a population changes over time",
+    "populations adapt to their environment over many generations"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\b(fire|campfire|flames?|crystals?|clouds?|cars?|robots?|toys?)s? (grows?|moves?|uses? energy|eats?|breathes?|spreads?|needs? oxygen|reproduces?|consumes?)\\b(?:(?!\\b(not|no|isn't|isnt|aren't|arent|never|but)\\b).){0,30}\\b(so|therefore|which means|that means|meaning) (it|they|it's|its|they're|theyre)( is| are)? (alive|living)\\b",
+   "say": "Check that. Showing one or two characteristics is not enough. Does it have cells and DNA?",
+   "hit": [
+    "fire grows and uses energy so it is alive",
+    "a car moves and uses energy which means it is living",
+    "fire spreads and needs oxygen therefore it's alive"
+   ],
+   "miss": [
+    "Something is alive only if it shows all eight characteristics, fire grows and uses energy but it has no cells or DNA so it is not alive",
+    "fire grows but it has no cells so it is not alive",
+    "a car moves but it does not have dna so it is not living",
+    "a mule cannot reproduce but it has cells and dna so it is alive"
+   ]
+  }
+ ]
+}

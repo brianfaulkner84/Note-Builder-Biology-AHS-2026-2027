@@ -54,6 +54,8 @@ function checkNote(q, text){
     if (w.match.test(t)) out.warnings.push(w.say);
   }
   out.done = words >= 3 && out.ideas.every(i=>i.ok) && out.warnings.length === 0;
+  /* tips: helpful notes that never block a complete note */
+  out.tips = (q.tips || []).filter(tp => tp.match.test(t) && !(tp.unless && tp.unless.test(t))).map(tp => tp.say);
   out.marks = q.sort ? [] : markPhrases(q, text);
   /* Less is more: compare the note's length to the model note. */
   const target = q.model ? norm(q.model).trim().split(" ").length : 0;

@@ -21,6 +21,7 @@ UNITS.push({
     model:"• Cell, tissue, organ, organ system\n• A tissue is a group of cells doing one job\n• An organ is different tissues working together\n• An organ system is organs that work together",
     ideas:[ I("The order", [/cells?\b.{0,60}\btissues?\b.{0,60}\borgans?\b.{0,60}\borgan systems?/], "Which is smallest: cell, tissue, organ, or organ system?", "Slide 3 builds it like LEGO bricks, smallest first.") ],
     watch:[
+      W(/\b(tissues?|organs?|organ systems?) (is|are) the (smallest|simplest|first|most basic)\b|\bcells? (is|are) the (biggest|largest|last|highest)\b/, "Check that. Which level is the smallest, and which is the biggest?"),
       W(/\bcells? (then |to |and |next )?organs? (then |to |and |next )?tissues?\b/, "Check that. Which level comes right after cell?"),
       W(/\btissues? (is|are) (a )?(group of|groups of|made of|made up of) (different |many )?organs?\b|\bcells? (is|are) (a )?(group of|made of|made up of) (\w+ )?(tissues?|organs?)\b/, "Check that. Which level is built from which? Smaller pieces make up bigger ones."), W(/organ systems?.{0,40}\borgans?\b.{0,40}tissues?.{0,40}\bcells?\b/, "Check the order. Start with the smallest.") ]},
   { n:2, heading:"Body Organization and Tissues", prompt:"Define epithelial tissue.",
@@ -37,6 +38,7 @@ UNITS.push({
     guide:"What does it do? Name examples.", where:H + "6 | " + B30,
     model:"• Connective tissue supports the body and connects its parts\n• Examples: bone, blood, and fat",
     watch:[
+      W(/\bblood (is not|isn't|isnt|is never) (a |an )?(connective |kind of |type of )?(tissue|connective)\b/, "Check that. Blood is one of the examples of connective tissue on the slide."),
       W(/\b(examples?( are| is| include)?|like|such as|including) (the )?(skin|nerves?|neurons?|brain|muscles?)\b/, "Check that. Is that example connective tissue, or a different tissue type?"),
       W(/connective\w*.{0,40}(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})\b(messages?|signals?|impulses?)\b/, "Check that. Carrying signals is the job of nervous tissue."), W(/(lines?|lining|covers?) (the )?(surfaces?|skin|stomach)/, "Check that. Lining surfaces is the job of a different tissue type.") ],
     ideas:[
@@ -73,6 +75,7 @@ UNITS.push({
     guide:"What does the response do to the original change?", where:H + "10 | " + B30,
     model:"• Feedback inhibition (negative feedback) is when a change causes a response that pushes conditions back toward normal\n• Example: a thermostat turns the furnace on when the room gets cold",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\bpositive feedback ((?!(not|never|doesn't|doesnt|don't|dont|does not|do not)\b)\w+ ){0,4}?(brings? (it |things |conditions |the body )?back|back (to|toward) normal|oppos\w*|revers\w*)/, "Check that. Pushing conditions back to normal is negative feedback. What does positive feedback do?"),
       W(/(?<!positive.{0,40})\b(childbirth|child birth|giving birth|labor|labour|contractions|blood clot\w*|clotting)\b(?!.{0,40}positive)/, "Check that. That is an example of positive feedback. Negative feedback brings conditions back to normal."),
       W(/\bnegative feedback (is|means) (a |something |when something )?(bad|harmful|wrong)\b/, "Check that. Here negative means opposing the change. Is it bad for the body?"),
       W(/\b(furnace|heater|heat)( turns| goes| comes| kicks)? on when (the )?(room|house|it|temperature)( gets| is| becomes)? (too )?(hot|warm)\b|\b(furnace|heater|heat)( turns| goes| shuts)? off when (the )?(room|house|it|temperature)( gets| is| becomes)? (too )?(cold|cool)\b/, "Check that. When would a thermostat turn the furnace on?"), W(/(further|farther|more) away from normal|makes? (it|the change) (bigger|worse|stronger)|amplif/, "Check that. Negative feedback pushes conditions back toward normal.") ],
@@ -92,6 +95,7 @@ UNITS.push({
     guide:"Where is it, and what passes through it?", where:R + "4 | " + B33,
     model:"• The pharynx is the throat, behind the nose and mouth\n• It is a passageway for both air and food",
     watch:[
+      W(/\b(pharynx|farinx|farynx|pharnyx|it) (is )?(in|inside|part of) (the |your )?(lungs?|chest|stomach)\b/, "Check that. The pharynx is the throat, behind the nose and mouth. Is it in the chest?"),
       W(/(?<!\bnot )\b(only|just) (for )?(air|food|breathing|swallowing)\b/, "Check that. Is the pharynx a passage for just one thing?"),
       W(/\b(pharynx|farinx|farynx|pharnyx) (is|means) (the |your )?(esophagus|food ?pipe|food tube)\b/, "Check that. The food pipe is the esophagus. What is the pharynx?"), W(/voice ?box|wind ?pipe/, "Check that. The voice box and windpipe are other structures. The pharynx is the throat.") ],
     ideas:[ I("Air and food", [either(/air/, /food/, 40)], "What two things pass through the pharynx?", "Slide 4: passageway for ___ and ___.") ]},
@@ -106,6 +110,7 @@ UNITS.push({
     guide:"What is its nickname, and where does it carry air?", where:R + "4 | " + B33,
     model:"• The trachea is the windpipe\n• It carries air down to the bronchi",
     watch:[
+      W(/\b(trachea|tracheas|tray ?kia|it) (is|means) (the |your )?(throat|pharynx|farinx|larynx|larinx)\b/, "Check that. The throat is the pharynx. What is the trachea's nickname?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})(\b(carr\w*|takes?|brings?|moves?) (food|water)\b|\b(to|into) the stomach\b|\btrachea (is|means) (the )?(esophagus|food ?pipe)\b)/, "Check that. Food goes down the esophagus. What does the trachea carry?"),
       W(/\b(air|it)\b.{0,20}\b(to|into) the heart\b/, "Check that. Where does the trachea carry air?"), W(/voice ?box/, "Check that. The voice box is the larynx. What is the trachea?", "Nickname") ],
     ideas:[
@@ -116,6 +121,7 @@ UNITS.push({
     guide:"Where does it branch from, and where does each one lead?", where:R + "5 | " + B33,
     model:"• A bronchus is a tube that branches off the trachea\n• There are two bronchi, and each one leads to a lung",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\b(leads?|goes|go|connects?|branches?) (in)?to (the |a |your )?(heart|stomach|esophagus)\b/, "Check that. Where does each bronchus lead?"),
       W(/\b(three|four|3|4) bronchi\b|\b(one|1|a single) bronch\w* .{0,20}\bboth lungs\b/, "Check that. How many bronchi are there, and how many lungs does each one lead to?"),
       W(/\bbranch\w* (off|from|out of) (of )?(the )?(esophagus|larynx|larinx|pharynx|voice ?box|lungs?|alveol\w*)\b/, "Check that. Which tube does a bronchus branch off of?"), W(/air sacs?|gas exchange/, "Check that. The air sacs are alveoli. A bronchus is a tube.") ],
     ideas:[
@@ -126,6 +132,7 @@ UNITS.push({
     guide:"What is it, and what happens there?", where:R + "5 | " + B33,
     model:"• An alveolus is a tiny air sac in the lungs where gas exchange happens",
     watch:[
+      W(/\b(one|1|a single|only one) (alveolus|alveoli|alveolar|air sac) (in|per|for) (each |every |the |a )?lungs?\b|\beach lung (has|have|contains?) (only )?(one|1|a single) (alveolus|alveoli|air sac)\b/, "Check that. Each lung has millions of tiny alveoli. Is there just one?"),
       W(/\balveol\w* (is|are) (a |an |the )?(muscles?|bones?|blood vessels?|capillar(y|ies)|arter(y|ies)|veins?)\b/, "Check that. An alveolus is a tiny air sac. The blood vessels around it are capillaries."),
       W(/\b(in|inside) (the )?(heart|stomach|throat|trachea|brain)\b/, "Check that. Where in the body are the alveoli found?"),
       W(/\b(digest\w*|nutrients?|absorb\w* food)\b/, "Check that. That sounds like the digestive system. What is exchanged in the alveoli?"), W(/\btubes?\b/, "Check that. An alveolus is a tiny sac, not a tube.", "What it is") ],
@@ -184,6 +191,7 @@ UNITS.push({
     guide:"What does it sense in the blood, and what does it tell the lungs to do?", where:R + "9 to 10 | " + B33,
     model:"• When carbon dioxide in the blood rises, sensors in the blood vessels signal the medulla oblongata\n• The medulla tells the lungs to breathe faster, which lowers the carbon dioxide back to normal",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\b(get rid of|lower|lowers|remove|removes|blow off|blows off|reduce|reduces|breathe out) (the |more |extra |some )?(extra )?(oxygen|o2|o 2)\b/, "Check that. Breathing faster gets rid of extra carbon dioxide. Which gas is it?"),
       W(/\b(senses?|detects?|notices?|responds? to|measures?|checks?) (the )?(low |less |dropping |falling |rising |high )?(levels? of )?oxygen\b/, "Check that. The medulla responds to rising carbon dioxide. Which gas does it sense?", "What it senses"),
       W(/\b(tells?|signals?|makes?) (the )?(lungs?|you|body|diaphragm) (to )?(breathe )?(slower|slow down|less|stop)\b/, "Check that. When carbon dioxide rises, does breathing speed up or slow down?"),
       W(/\bmedulla (oblongata )?(is )?(in|part of) the (lungs?|heart|chest|blood)\b/, "Check that. Where is the medulla oblongata?"), W(/oxygen (rises|goes up|increases|gets high)/, "Check that. The medulla responds to rising carbon dioxide.", "What it senses") ],

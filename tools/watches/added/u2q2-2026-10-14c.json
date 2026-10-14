@@ -1,0 +1,122 @@
+{
+  "2": [
+    {
+      "re": "(?<!\\bnot )\\b(?:2|two) (?:hydrophilic |water loving |polar |phosphate )?heads\\b",
+      "say": "Check that. How many heads does one phospholipid have?",
+      "hit": [
+        "A phospholipid has two heads that love water and two tails that hate water",
+        "2 hydrophilic heads and 2 hydrophobic tails"
+      ],
+      "miss": [
+        "A phospholipid has a hydrophilic (water-loving, polar) head and two hydrophobic (water-fearing, non-polar) fatty acid tails",
+        "one hydrophilic head and two hydrophobic tails",
+        "it has a single head, not two heads, and two tails"
+      ]
+    },
+    {
+      "re": "\\bphosphate (?:group )?tails?\\b|\\btails? (?:are|is) (?:made of )?(?:a |the )?phosphates?\\b",
+      "say": "Check that. Which part has the phosphate, and what are the tails made of?",
+      "hit": [
+        "the phosphate tails are hydrophobic and the head loves water",
+        "the head is hydrophilic and the tails are phosphate"
+      ],
+      "miss": [
+        "A phospholipid has a hydrophilic head and two hydrophobic fatty acid tails",
+        "a phosphate head that loves water and two fatty acid tails that fear water",
+        "the phosphate is in the head and the tails are fatty acids"
+      ]
+    }
+  ],
+  "3": [
+    {
+      "re": "(?<!\\bnot a )(?<!\\bnot )\\b(?:single|three|3) layers?\\b|\\bonly (?:one|1) layer\\b|\\bmono ?layer\\b|\\bone layer (?:thick|only)\\b",
+      "say": "Check that. How many layers of phospholipids make the membrane?",
+      "hit": [
+        "phospholipids form a single layer with the tails inside",
+        "they make three layers heads then tails then heads"
+      ],
+      "miss": [
+        "There is water outside the cell and water inside the cell. The water-loving heads face the water on both sides. The water-fearing tails hide in the middle, away from the water.",
+        "they form two layers so the heads face water on both sides and the tails hide in the middle",
+        "one layer of heads faces the outside water and the other layer faces the cytoplasm",
+        "it is a double layer, not a single layer"
+      ]
+    }
+  ],
+  "6": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(?:lets?|allows?) (?:the )?(?:pasta|noodles|spaghetti|macaroni) (?:go |pass |fall |get )?(?:through|out)\\b|(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\bkeeps? (?:the )?water in\\b",
+      "say": "Check that. In a colander, which part goes through and which part stays?",
+      "hit": [
+        "a colander lets the pasta through but keeps the water in",
+        "a strainer keeps water in and lets noodles go through"
+      ],
+      "miss": [
+        "Selectively permeable means the membrane lets some things pass through but blocks others. Example: a colander lets water through but keeps the pasta in",
+        "the colander doesn't let the pasta through but lets the water out",
+        "a colander lets water pass and keeps the noodles in"
+      ]
+    }
+  ],
+  "8": [
+    {
+      "re": "\\bpassive\\b(?:(?!\\bactive\\b|\\bnot\\b|n't|\\bnever\\b|\\bno\\b).){0,40}\\bagainst\\b|\\bactive\\b(?:(?!passive|\\bnot\\b|n't|\\bnever\\b|\\bno\\b).){0,40}\\b(?:with|down) the (?:flow|gradient|concentration gradient)\\b",
+      "say": "Check that. Which one goes with the flow (high to low), and which goes against it?",
+      "hit": [
+        "passive transport goes against the concentration gradient",
+        "active transport goes with the flow and uses atp"
+      ],
+      "miss": [
+        "The deciding question is energy. Passive transport uses no energy and moves high to low. Active transport uses energy (ATP) and moves low to high",
+        "passive goes with the gradient and active goes against it",
+        "active goes against the gradient, passive goes with the flow",
+        "passive does not go against the flow"
+      ]
+    }
+  ],
+  "9": [
+    {
+      "re": "(?<!\\bnot )\\b(?:size|temperature|heat|energy|atp|the cell|the membrane|gravity|pressure|proteins?) (?:decides|determines|controls|sets|chooses) (?:the |which )?(?:direction|way)\\b",
+      "say": "Check that. What decides which way particles diffuse?",
+      "hit": [
+        "the cell decides the direction of diffusion",
+        "the membrane chooses which way the particles go"
+      ],
+      "miss": [
+        "Diffusion is when particles move from high concentration to low concentration. Concentration decides the direction. It needs no energy. Oxygen gets into cells by diffusion",
+        "the concentration determines which way it goes, not the cell",
+        "concentration not energy decides the direction"
+      ]
+    }
+  ],
+  "11": [
+    {
+      "re": "\\b(?:oxygen|o2|carbon dioxide|co2)\\b(?:(?!\\bnot\\b|n't|\\bdont\\b|\\bno\\b|\\bwithout\\b|\\bbut\\b).){0,30}\\b(?:channels?|carriers?|proteins?)\\b",
+      "say": "Check that. Small molecules like oxygen slip right through. Which molecules need a channel or carrier?",
+      "hit": [
+        "small molecules like oxygen go through channel proteins",
+        "carbon dioxide uses a carrier protein to cross"
+      ],
+      "miss": [
+        "Molecules that cannot get through on their own (charged or large ones like glucose) cross through channel or carrier proteins. It still goes high to low, so it uses no energy. It is passive",
+        "oxygen doesn't need a channel protein but glucose does",
+        "oxygen can go right through, but glucose needs a carrier protein"
+      ]
+    }
+  ],
+  "14": [
+    {
+      "re": "\\banimal cells? (?:also |both )?(?:has|have|with) (?:a |its |their )?(?:own )?(?:cell )?walls?\\b|\\b(?:both|the) (?:plant and animal|animal and plant) cells? (?:have|has) (?:a )?(?:cell )?walls?\\b|\\banimal cell'?s? walls?\\b",
+      "say": "Check that. Which cell has a cell wall, the plant cell or the animal cell?",
+      "hit": [
+        "the animal cell has a cell wall so it doesn't burst",
+        "both plant and animal cells have walls so they swell"
+      ],
+      "miss": [
+        "In pure water (hypotonic), water rushes in. The animal cell swells and can burst. The plant cell swells, but its cell wall keeps it from bursting. In salty water (hypertonic), water moves out and both cells shrink",
+        "animal cells do not have a cell wall so they burst",
+        "the animal cell has no wall, so it bursts, but the plant cell has a wall"
+      ]
+    }
+  ]
+}

@@ -20,6 +20,7 @@ UNITS.push({
     guide:"What does the body keep stable, even when the outside changes?", where:"Slide: Ch30.1 slideshow 9 | " + B301,
     model:"• Homeostasis is keeping a stable internal environment, even when conditions outside change",
     watch:[
+      W(/\bhomeostasis (is|means) (?:(?!not\b)\w+ ){0,2}(chemical reactions|metabol)/, "Check that. That describes metabolism. What does homeostasis keep stable?"),
       W(/\b(stable|steady|constant|same) (external|outside) (environment|conditions?)\b/, "Check that. Is homeostasis about the inside of the body or the outside?"),
       W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(match\w*|same as) (the )?(outside|external|environment|surroundings)\b/, "Check that. Does the body copy the outside, or stay steady when the outside changes?") ],
     ideas:[
@@ -42,6 +43,7 @@ UNITS.push({
     guide:"What do all living things share?", where:"Slide: Characteristics of Life slideshow 3 | Book: Chapter 1, Lesson 1.3",
     model:"• Made of cells, has a universal genetic code (DNA), grows and develops, reproduces, responds to the environment, maintains homeostasis, uses energy (metabolism), and evolves as a group",
     watch:[
+      W(/(?<!(\bnot|n't|\bdont|\bdoesnt|\bnever)\b[\w' ]{0,25})\b(have|has|need|needs) (a )?(brain|brains|heart|hearts|heartbeat|heart beat|blood|bones)\b/, "Check that. Do plants and bacteria have that? Is it one of the 8?"),
       W(/\bvirus\w* (is|are) (also )?(alive|living|a living thing|living things)\b/, "Check that. Viruses are not alive. Which of the 8 can a virus not do on its own?"),
       W(/\b(mules?|seeds?) (are |is )?(not|n't|aren't|arent|isn't|isnt) (alive|living)\b|\b(mules?|seeds?) (are |is )?(dead|nonliving|non living)\b/, "Check that. Mules and seeds are alive. Reproduction is a trait of the species, not every single one."),
       W(/\b(they|all living things|living things|it|must|can|need to) (move|moves|breathe|breathes|need oxygen|needs oxygen|breathe air)\b/, "Check that. Not every living thing moves or breathes air. Is that one of the 8?"),
@@ -60,6 +62,7 @@ UNITS.push({
     guide:"Pick two systems. What does each one do for the other?", where:"Slide: Ch30.1 slideshow 7 to 8 | " + B301,
     model:"• The respiratory system brings in oxygen, and the circulatory system carries it to the cells\n• The digestive system breaks food into nutrients, and the circulatory system delivers them\n• The nervous system senses changes and signals muscles or glands to respond",
     watch:[
+      W(/(?<!(\bnot|n't|\bno|\bdont|\bdoesnt|\bnever|\bcant|\bcannot)\b[\w' ]{0,15})\b(work|works|working|act|acts) (alone|separately|by (themselves|itself)|on (their|its) own|independently)\b/, "Check that. Body systems work together. How does one system help another?"),
       W(/\blungs? (pump|pumps|pumping|carry|carries|deliver|delivers)\b(?:(?!heart).){0,20}\b(blood|oxygen)\b(?:(?!lungs?).){0,20}\b(to )?(the )?(cells|body|organs|tissues)\b|\bheart (brings|breathes|takes) in (the )?(oxygen|air)\b/, "Check that. Which organ brings oxygen in, and which pumps blood to the cells?"),
       W(/\brespirat\w* system.{0,15}\b(carries|delivers|transports|pumps|takes)\b.{0,25}\b(oxygen|o2|o 2)\b.{0,15}\bto (the |all )?(cells|body|organs|tissues)\b/, "Check that. Which system actually carries the oxygen to the cells?"),
       W(/\bdigest\w* system.{0,15}\b(carries|delivers|transports|pumps|sends)\b.{0,25}\bto (the |all )?(cells|body|organs|tissues)\b/, "Check that. The digestive system breaks food down. Which system delivers the nutrients?") ],
@@ -94,6 +97,7 @@ UNITS.push({
     guide:"What do proteins do? What is the building block? Name foods.", where:"Slide: Nutrition slideshow 8, Enzymes slideshow 5 | " + B302,
     model:"• Proteins build and repair the body, act as enzymes that control the rates of reactions, and transport substances\n• Their monomer is the amino acid\n• Examples: meat, eggs, beans",
     watch:[
+      W(/\b(examples?|like|such as)\b(?:(?!not).){0,25}\b(bread|pasta|rice|candy|sugar|potato\w*|cereal|(?<!peanut )butter|oil)\b/, "Check that. Is that food rich in protein, or in a different nutrient?"),
       W(/\bproteins? (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\b/, "Check that. Which macromolecule is the body's main energy source?"),
       W(/\benzymes? (are|get|is|gets) (all )?(used up|consumed)\b/, "Check that. Is an enzyme used up in a reaction, or can it be used again?"), W(/fatty acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
@@ -105,6 +109,7 @@ UNITS.push({
     guide:"What happens to food in each organ?", where:"Slide: Digestive slideshow 4, 6, 7 | " + B302,
     model:"• Mouth: teeth chew food (mechanical) and amylase in saliva starts digesting starch\n• Stomach: churns food and pepsin starts digesting protein, making chyme\n• Small intestine: finishes chemical digestion and absorbs most nutrients into the blood",
     watch:[
+      W(/\blarge intestine\b(?:(?!small).){0,20}\babsorb\w* (most |all )?(of )?(the )?(nutrients|food)\b|\bnutrients (are )?(absorbed )?in the large intestine\b/, "Check that. Which organ absorbs most of the nutrients?"),
       W(/(?<!protein )(?<!proteins )\b(digestion|digesting|digest) (starts|begins|start|begin|first happens) in the stomach\b/, "Check that. Where does digestion begin, before food reaches the stomach?"),
       W(/\bstomach (absorbs|absorbing)\b|\babsorb\w* (most |all )?(of )?(the )?(nutrients |food )?(in|into|by) the stomach\b/, "Check that. Which organ absorbs most of the nutrients?"),
       W(/\bstomach\b(?:(?!mouth|saliva|intestin).){0,20}\b(starch|carbs?|carbohydrates?|amylase)\b|\b(saliva|mouth)\b(?:(?!stomach|intestin).){0,20}\b(protein|proteins|pepsin)\b/, "Check that. Which enzyme works in the mouth, and which works in the stomach?") ],
@@ -187,6 +192,7 @@ UNITS.push({
     guide:"Why thick walls? Why valves? Why one cell thick?", where:"Slide: Circulatory slideshow 6 | " + B331,
     model:"• Arteries carry blood away from the heart at high pressure, so they have thick, elastic walls\n• Veins carry low-pressure blood back to the heart, so they have valves to keep it from flowing backward\n• Capillaries have walls one cell thick so oxygen and nutrients can pass into the cells",
     watch:[
+      W(/\barter\w*(?:(?!vein|capillar).){0,25}(?<!(not|nt|never) )\bthin\b|\barter\w*(?:(?!vein|capillar|\bnot\b).){0,25}\blow pressure\b/, "Check that. Arteries carry high-pressure blood. What are their walls like?"),
       W(/\bveins?\b(?:(?!arter|capillar).){0,25}(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\bthick\b|\barter\w*(?:(?!vein|capillar).){0,25}\bvalves?\b/, "Check that. Which vessel has thick walls, and which has valves?"),
       W(/\bcapillar\w*(?:(?!arter|vein).){0,25}\b(thick walls?|many cells|several cells|lots of cells|two cells)\b/, "Check that. How thick are capillary walls?"), W(/arter\w*.{0,30}(back to|toward) the heart|veins?.{0,30}away from the heart/, "Check that. Arteries carry blood away from the heart; veins bring it back.") ],
     ideas:[
@@ -207,6 +213,7 @@ UNITS.push({
     draw:"Sketch the respiratory system. Label the trachea and the alveoli.",
     model:"• Nose, pharynx, larynx, trachea, bronchi, bronchioles, alveoli",
     watch:[
+      W(/\balveol\w*\b.{0,30}\b(bronch\w*|trachea|larynx|pharynx)\b/, "Check that. The alveoli are the last stop. What comes before them?"),
       W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )(?<!not the )(?<!not into the )(?<!not to the )\b(esophag\w*|stomach)\b/, "Check that. Air goes down the trachea. Which tube carries food instead?"),
       W(/\bbronchioles?\b.{0,25}\bbronchi\b/, "Check that. Which comes first, the bronchi or the bronchioles?"),
       W(/\blarynx\b.{0,25}\bpharynx\b/, "Check that. Which comes first after the nose, the pharynx or the larynx?") ],
@@ -242,6 +249,7 @@ UNITS.push({
     guide:"What does each system do with oxygen and carbon dioxide?", where:"Slide: Respiratory slideshow 9 to 10 | " + B333,
     model:"• The respiratory system brings oxygen into the lungs, and the circulatory system carries it to the cells\n• The blood carries carbon dioxide back to the lungs to be breathed out\n• When carbon dioxide rises, the medulla oblongata makes you breathe faster",
     watch:[
+      W(/cerebell|cerebrum|spinal cord/, "Check that. Which part of the brain controls breathing rate?"),
       W(/\b(exhal\w*|breathe? out|breathing out) (the )?oxygen\b|\b(inhal\w*|breathe? in|breathing in) (the )?(carbon dioxide|co ?2)\b/, "Check that. Which gas do you breathe in, and which do you breathe out?"),
       W(/\b(blood|heart|circulatory system)\b.{0,10}\b(makes|produces|creates) (the )?oxygen\b/, "Check that. Does the blood make oxygen, or carry oxygen it got from the lungs?"),
       W(/\b(carbon dioxide|co ?2)\b.{0,30}\b(rises|goes up|increases|is high|gets high|builds up)\b(?:(?!faster|speed|quicker).){0,40}\b(slower|slows)\b/, "Check that. When carbon dioxide rises, do you breathe faster or slower?") ],

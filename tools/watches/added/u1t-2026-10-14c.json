@@ -1,0 +1,126 @@
+{
+ "1": [
+  {
+   "re": "\\bhomeostasis (is|means) (?:(?!not\\b)\\w+ ){0,2}(chemical reactions|metabol)",
+   "say": "Check that. That describes metabolism. What does homeostasis keep stable?",
+   "hit": [
+    "homeostasis is all the chemical reactions in the body",
+    "homeostasis means metabolism using energy"
+   ],
+   "miss": [
+    "Homeostasis is keeping a stable internal environment, even when conditions outside change",
+    "homeostasis is keeping the inside steady even if the outside changes",
+    "homeostasis is not metabolism it is keeping a stable internal environment"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bdont|\\bdoesnt|\\bnever)\\b[\\w' ]{0,25})\\b(have|has|need|needs) (a )?(brain|brains|heart|hearts|heartbeat|heart beat|blood|bones)\\b",
+   "say": "Check that. Do plants and bacteria have that? Is it one of the 8?",
+   "hit": [
+    "all living things have a brain and are made of cells",
+    "living things need blood and use energy"
+   ],
+   "miss": [
+    "Made of cells, has a universal genetic code (DNA), grows and develops, reproduces, responds to the environment, maintains homeostasis, uses energy (metabolism), and evolves as a group",
+    "living things are made of cells use energy grow and reproduce",
+    "not all living things have a brain but all are made of cells",
+    "living things dont need a heart but they respond to the environment"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bno|\\bdont|\\bdoesnt|\\bnever|\\bcant|\\bcannot)\\b[\\w' ]{0,15})\\b(work|works|working|act|acts) (alone|separately|by (themselves|itself)|on (their|its) own|independently)\\b",
+   "say": "Check that. Body systems work together. How does one system help another?",
+   "hit": [
+    "each body system works alone to keep homeostasis",
+    "the systems work separately the lungs get oxygen and the heart pumps"
+   ],
+   "miss": [
+    "The respiratory system brings in oxygen, and the circulatory system carries it to the cells. The digestive system breaks food into nutrients, and the circulatory system delivers them. The nervous system senses changes and signals muscles or glands to respond.",
+    "body systems do not work alone they work together",
+    "no system works by itself the respiratory and circulatory systems work together"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\b(examples?|like|such as)\\b(?:(?!not).){0,25}\\b(bread|pasta|rice|candy|sugar|potato\\w*|cereal|(?<!peanut )butter|oil)\\b",
+   "say": "Check that. Is that food rich in protein, or in a different nutrient?",
+   "hit": [
+    "examples of proteins are bread and pasta",
+    "proteins build muscle like butter and oil"
+   ],
+   "miss": [
+    "Proteins build and repair the body, act as enzymes that control the rates of reactions, and transport substances. Their monomer is the amino acid. Examples: meat, eggs, beans",
+    "examples meat eggs beans and fish",
+    "foods like peanut butter and chicken have protein",
+    "proteins build and repair muscles examples are steak and nuts"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\blarge intestine\\b(?:(?!small).){0,20}\\babsorb\\w* (most |all )?(of )?(the )?(nutrients|food)\\b|\\bnutrients (are )?(absorbed )?in the large intestine\\b",
+   "say": "Check that. Which organ absorbs most of the nutrients?",
+   "hit": [
+    "the large intestine absorbs most nutrients into the blood",
+    "after the stomach nutrients are absorbed in the large intestine"
+   ],
+   "miss": [
+    "Mouth: teeth chew food (mechanical) and amylase in saliva starts digesting starch. Stomach: churns food and pepsin starts digesting protein, making chyme. Small intestine: finishes chemical digestion and absorbs most nutrients into the blood",
+    "small intestine finishes digestion and absorbs nutrients into the blood",
+    "the small intestine absorbs nutrients and the large intestine absorbs water",
+    "the large intestine absorbs water not most nutrients"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\barter\\w*(?:(?!vein|capillar).){0,25}(?<!(not|nt|never) )\\bthin\\b|\\barter\\w*(?:(?!vein|capillar|\\bnot\\b).){0,25}\\blow pressure\\b",
+   "say": "Check that. Arteries carry high-pressure blood. What are their walls like?",
+   "hit": [
+    "arteries have thin walls so blood flows easily",
+    "arteries carry low pressure blood away from the heart"
+   ],
+   "miss": [
+    "Arteries carry blood away from the heart at high pressure, so they have thick, elastic walls. Veins carry low-pressure blood back to the heart, so they have valves to keep it from flowing backward. Capillaries have walls one cell thick so oxygen and nutrients can pass into the cells.",
+    "arteries have thick elastic walls because of high pressure",
+    "arteries are not thin they are thick and stretchy",
+    "capillaries are thin and arteries are thick"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\balveol\\w*\\b.{0,30}\\b(bronch\\w*|trachea|larynx|pharynx)\\b",
+   "say": "Check that. The alveoli are the last stop. What comes before them?",
+   "hit": [
+    "nose pharynx larynx trachea alveoli bronchi",
+    "nose trachea alveoli then bronchioles"
+   ],
+   "miss": [
+    "Nose, pharynx, larynx, trachea, bronchi, bronchioles, alveoli",
+    "air goes nose pharynx larynx trachea bronchi bronchioles and ends at the alveoli",
+    "nose to throat to trachea to bronchi to bronchioles to alveoli"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "cerebell|cerebrum|spinal cord",
+   "say": "Check that. Which part of the brain controls breathing rate?",
+   "hit": [
+    "when co2 rises the cerebellum makes you breathe faster",
+    "the cerebrum tells you to breathe faster when carbon dioxide goes up"
+   ],
+   "miss": [
+    "The respiratory system brings oxygen into the lungs, and the circulatory system carries it to the cells. The blood carries carbon dioxide back to the lungs to be breathed out. When carbon dioxide rises, the medulla oblongata makes you breathe faster",
+    "the medulla oblongata senses carbon dioxide and makes you breathe faster",
+    "the brain stem makes you breathe faster when co2 goes up"
+   ]
+  }
+ ]
+}

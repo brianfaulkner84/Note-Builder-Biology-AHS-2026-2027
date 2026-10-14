@@ -1,0 +1,120 @@
+{
+  "1": [
+    {
+      "re": "\\b(?:split|splits|broken|breaks?|cut|cuts)\\w* (?:\\w+ ){0,3}into (?:3|three|4|four|6|six) (?:molecules of |pieces of )?(?:pyruv|pyro ?vic|pie ?ru ?vic)",
+      "say": "Check that. Glucose is split in half. How many pyruvic acid molecules does one glucose make?",
+      "hit": [
+        "glucose is split into 3 pyruvic acids",
+        "glycolysis breaks glucose into four pyruvic acid"
+      ],
+      "miss": [
+        "Glycolysis means splitting sugar. One glucose (6 carbons) is split into 2 molecules of pyruvic acid, with 3 carbons each",
+        "glucose with 6 carbons is split into 2 pyruvic acids that have 3 carbons each",
+        "one glucose splits into two pyruvic acid"
+      ]
+    }
+  ],
+  "14": [
+    {
+      "re": "\\b(?:krebs|kreb|crebs|citric acid)\\w*(?: cycle)? (?:uses|drops? off|spends|empties) (?:the |its )?(?:nad ?h|fadh ?2?|electron carriers|carriers)\\b",
+      "say": "Check that. Which one loads the carriers, and which one uses them up?",
+      "hit": [
+        "the krebs cycle uses the nadh to make atp",
+        "the citric acid cycle spends the carriers"
+      ],
+      "miss": [
+        "The Krebs cycle loads the electron carriers (makes NADH and FADH2). It happens in the matrix. The electron transport chain cashes them in for ATP. It happens in the inner membrane",
+        "the krebs cycle makes nadh and fadh2 and the etc uses them",
+        "krebs cycle loads the carriers and the electron transport chain drops off their electrons"
+      ]
+    },
+    {
+      "re": "\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b) (?:happens |occurs |takes place |is |are |is done )?(?:in|inside) (?:the )?inter ?membrane",
+      "say": "Check that. The H+ ions pile up in the intermembrane space. Where is the chain itself?",
+      "hit": [
+        "the etc happens in the intermembrane space",
+        "electron transport chain is in the inter membrane space"
+      ],
+      "miss": [
+        "The Krebs cycle loads the electron carriers. It happens in the matrix. The electron transport chain cashes them in for ATP. It happens in the inner membrane",
+        "the etc is in the inner membrane and pumps h plus into the intermembrane space",
+        "electron transport chain happens in the inner membrane"
+      ]
+    }
+  ],
+  "15": [
+    {
+      "re": "\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b) (?:makes |gives |produces |is |nets )?(?:about |only )?(?:2|two|4|four|6|six)\\b",
+      "say": "Check that. Which stage makes the most ATP, and about how many?",
+      "hit": [
+        "glycolysis 2 krebs 2 electron transport chain 2",
+        "the etc makes about 4 atp"
+      ],
+      "miss": [
+        "Glycolysis: 2 ATP. Krebs cycle: 2 ATP. Electron transport chain: about 32 ATP, the most of any stage. Total: about 36 ATP per glucose",
+        "etc about 32 the most",
+        "electron transport chain makes 34 atp",
+        "glycolysis 2, krebs 2, ETC thirty two, total about 36"
+      ]
+    },
+    {
+      "re": "\\b(?:glycolysis|krebs|kreb|crebs|citric acid)\\w*(?: cycle)? (?:makes |gives |produces |is |nets )?(?:about |around )?(?:36|thirty six|38|thirty eight)\\b(?! (?:total|in total|altogether|overall))",
+      "say": "Check that. About 36 is the total for all three stages. How many does that one stage make?",
+      "hit": [
+        "glycolysis makes 36 atp",
+        "the krebs cycle gives about 36"
+      ],
+      "miss": [
+        "Glycolysis: 2 ATP. Krebs cycle: 2 ATP. Electron transport chain: about 32 ATP. Total: about 36 ATP per glucose",
+        "glycolysis 2 krebs 2 etc 32 total 36",
+        "glycolysis and krebs make 2 each, and the total is 36"
+      ]
+    },
+    {
+      "re": "(?<!\\bnot )\\b(?:total|altogether|in all|adds? up to|overall)\\b (?:is |of |equals |comes to )?(?:about |around |roughly |only )?(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred)\\b(?! ?(?:\\d|to\\b))|(?<!\\b(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety) )\\b(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred) (?:atp )?(?:total|in total|altogether|in all)\\b",
+      "say": "Check that. Add the stages again: about 2 + 2 + 32. What is the total?",
+      "hit": [
+        "glycolysis 2 krebs 2 etc 32 the total is about 40 atp per glucose",
+        "it all adds up to 6 atp"
+      ],
+      "miss": [
+        "Glycolysis: 2 ATP. Krebs cycle: 2 ATP. Electron transport chain: about 32 ATP. Total: about 36 ATP per glucose",
+        "total of 32 atp",
+        "about 38 atp total",
+        "the total is 30 to 38 atp",
+        "altogether about 36",
+        "about thirty six atp total",
+        "thirty eight atp in total"
+      ]
+    }
+  ],
+  "19": [
+    {
+      "re": "\\b(?:pyruv|pyro ?vic|pie ?ru ?vic)\\w*(?: acid)? (?:has |have |with |contains )?(?:only )?(?:6|six|4|four) carbons?\\b",
+      "say": "Check that. Glucose (6 carbons) splits in half. How many carbons does pyruvic acid have?",
+      "hit": [
+        "pyruvic acid has 6 carbons and alcohol has 2",
+        "pyro vic acid four carbons and alcohol 2"
+      ],
+      "miss": [
+        "Pyruvic acid has 3 carbons, but ethyl alcohol has only 2. One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid",
+        "pyruvic acid has 3 carbons and alcohol has 2",
+        "glucose has 6 carbons, pyruvic acid has 3"
+      ]
+    },
+    {
+      "re": "\\bcan (?:easily |just |still |quickly )?(?:rebuild|remake|turn (?:it |them )?back|change (?:it |them )?back|go back|become pyruv|be (?:turned|changed|made|rebuilt) back)\\b",
+      "say": "Check that. Where did the missing carbon go, and can the cell get it back?",
+      "hit": [
+        "the cell can easily turn it back into pyruvic acid",
+        "alcohol can just change back to pyruvic acid"
+      ],
+      "miss": [
+        "Pyruvic acid has 3 carbons, but ethyl alcohol has only 2. One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid",
+        "it cannot be rebuilt because the carbon floated away",
+        "the cell can't turn it back into pyruvic acid",
+        "it can not go back since the CO2 left"
+      ]
+    }
+  ]
+}

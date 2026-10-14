@@ -1,0 +1,138 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\b(removes?|takes? away|carr\\w* away|gets? rid of) (the )?(nutrients|food|sugar|glucose)\\b",
+   "say": "Check that. Nutrients are delivered to the cells. What does the circulatory system carry away?",
+   "hit": [
+    "the circulatory system brings oxygen and removes nutrients from the body",
+    "it carries oxygen to cells and takes away the food",
+    "blood gets rid of nutrients and sugar"
+   ],
+   "miss": [
+    "The circulatory system transports oxygen, nutrients, and other substances throughout the body and removes wastes from the tissues",
+    "it delivers nutrients and takes away wastes",
+    "the blood brings food and oxygen and carries away carbon dioxide",
+    "it does not remove nutrients, it delivers them"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\bblood (leaves|exits|goes out of|is pumped out of|gets pumped out of|flows out of) the heart (through|from|out of|by|in|at) (the )?atri|\\batri\\w* (is|are) where (the )?blood (leaves|exits|goes out|is pumped out)",
+   "say": "Check that. Blood enters the heart through the atria. Which chambers does it leave from?",
+   "hit": [
+    "an atrium is an upper chamber where blood leaves the heart through the atria",
+    "blood exits the heart from the atrium",
+    "the atrium is where blood leaves the heart"
+   ],
+   "miss": [
+    "An atrium is an upper chamber of the heart that receives blood entering the heart, and the heart has two atria",
+    "blood enters the heart through the atria and leaves through the ventricles",
+    "blood does not leave through the atria",
+    "the two atria are upper chambers that receive blood"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\bventric\\w* (pumps?|push(es)?|sends?|squeezes?) (the )?(blood )?(up )?(in)?to (the )?atri",
+   "say": "Check that. The ventricles pump blood out of the heart. Which way does blood go between atrium and ventricle?",
+   "hit": [
+    "the ventricle pumps blood up to the atrium",
+    "ventricles push the blood into the atria",
+    "the ventricle sends blood to the atrium then out of the heart"
+   ],
+   "miss": [
+    "A ventricle is a lower chamber of the heart that pumps blood out of the heart, and there are two ventricles",
+    "blood goes from the atrium into the ventricle, then the ventricle pumps it out",
+    "the ventricles do not pump blood into the atria",
+    "the ventricles pump blood to the lungs and body"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "(?<!\\b(not|never|isn't|isnt|aren't|arent)\\b.{0,10})(?<!\\bin)\\bvoluntary\\b|\\byou (can )?(control|choose) (it|when it beats|the myocardium)\\b",
+   "say": "Check that. Cardiac muscle works without you choosing. Is it voluntary?",
+   "hit": [
+    "the myocardium is thick voluntary muscle in the heart wall",
+    "the myocardium is cardiac muscle and you can control it",
+    "it is a voluntary muscle that makes up the heart wall"
+   ],
+   "miss": [
+    "The myocardium is the thick layer of cardiac muscle that makes up most of the heart wall",
+    "the myocardium is involuntary cardiac muscle",
+    "the heart muscle is not voluntary, it beats on its own",
+    "myocardium is the thick muscle layer of the heart"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|won't|wont|cannot|can't|cant)\\b.{0,15})\\b(lets?|allows?|helps?|makes?) (the )?blood (to )?(flow |go |move |run )?back ?wards?\\b",
+   "say": "Check that. A valve stops blood from flowing backward. Does it let blood go backward?",
+   "hit": [
+    "a valve is a flap that lets blood flow backward",
+    "valves allow the blood to go backwards",
+    "the valve helps blood move backward to the heart"
+   ],
+   "miss": [
+    "A valve is a flap that keeps blood flowing in only one direction so it cannot flow backward",
+    "a valve does not let blood flow backward",
+    "valves stop the blood from going backwards",
+    "a valve is a one way door that won't let blood flow backward"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\baorta (carr\\w* |takes? |brings? |sends? |goes |leads |pumps? )?(the )?(\\w+ )?(\\w+ )?(blood )?(to|into|toward) the lungs\\b",
+   "say": "Check that. The aorta carries blood out to the body. Which vessels go to the lungs?",
+   "hit": [
+    "the left ventricle pumps blood through the aorta which goes to the lungs",
+    "the aorta carries blood to the lungs to get oxygen",
+    "aorta takes blood into the lungs"
+   ],
+   "miss": [
+    "The left ventricle pumps oxygen rich blood through the aorta to the body, and oxygen poor blood comes back through veins into the right atrium",
+    "the aorta carries blood to the body, not to the lungs",
+    "the pulmonary arteries go to the lungs and the aorta goes to the body",
+    "the aorta is the biggest artery leaving the left ventricle"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bseptum (\\w+ )?(divides?|separates?|splits?|is between) (the )?(top|upper|atri\\w*) (and|from) (the )?(bottom|lower|ventric\\w*)\\b",
+   "say": "Check that. The septum divides the left side from the right side. Is it between top and bottom?",
+   "hit": [
+    "the septum divides the top and bottom chambers",
+    "the septum separates the atria from the ventricles",
+    "septum is between the upper and lower chambers"
+   ],
+   "miss": [
+    "Top: right atrium and left atrium. Bottom: right ventricle and left ventricle. The septum divides the left and right sides. The aorta leaves the left ventricle",
+    "the septum divides the left and right sides of the heart",
+    "the atria are on top and the ventricles are on the bottom, the septum is in the middle",
+    "the septum separates the right side from the left side"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\barter\\w* (are|is) (the )?(smallest|tiniest|thinnest)\\b",
+   "say": "Check that. The smallest blood vessels are capillaries. What are arteries like?",
+   "hit": [
+    "arteries are the smallest blood vessels and carry blood away from the heart",
+    "an artery is the tiniest vessel",
+    "arteries are the thinnest vessels"
+   ],
+   "miss": [
+    "Arteries carry blood away from the heart, and their walls are thick and elastic to withstand high pressure",
+    "arteries are not the smallest, capillaries are",
+    "the aorta is the biggest artery",
+    "arteries are thick and strong"
+   ]
+  }
+ ]
+}

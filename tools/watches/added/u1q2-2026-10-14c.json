@@ -1,0 +1,138 @@
+{
+ "1": [
+  {
+   "re": "\\b(tissues?|organs?|organ systems?) (is|are) the (smallest|simplest|first|most basic)\\b|\\bcells? (is|are) the (biggest|largest|last|highest)\\b",
+   "say": "Check that. Which level is the smallest, and which is the biggest?",
+   "hit": [
+    "an organ system is the smallest and a cell is the biggest",
+    "tissue is the smallest, then cell, organ, organ system",
+    "cells are the biggest level"
+   ],
+   "miss": [
+    "Cell, tissue, organ, organ system. A tissue is a group of cells doing one job, an organ is tissues working together",
+    "the cell is the smallest level and the organ system is the biggest",
+    "cells then tissues then organs then organ systems",
+    "an organ system is the largest level"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\bblood (is not|isn't|isnt|is never) (a |an )?(connective |kind of |type of )?(tissue|connective)\\b",
+   "say": "Check that. Blood is one of the examples of connective tissue on the slide.",
+   "hit": [
+    "connective tissue supports the body like bone and fat, blood is not a tissue",
+    "blood isn't connective tissue",
+    "examples are bone and fat but blood is not a connective tissue"
+   ],
+   "miss": [
+    "Connective tissue supports the body and connects its parts, examples are bone, blood, and fat",
+    "blood is a connective tissue even though it is a liquid",
+    "bone blood and fat are connective tissue",
+    "connective tissue holds the body together like bone"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\bpositive feedback ((?!(not|never|doesn't|doesnt|don't|dont|does not|do not)\\b)\\w+ ){0,4}?(brings? (it |things |conditions |the body )?back|back (to|toward) normal|oppos\\w*|revers\\w*)",
+   "say": "Check that. Pushing conditions back to normal is negative feedback. What does positive feedback do?",
+   "hit": [
+    "positive feedback brings things back to normal like a thermostat",
+    "feedback inhibition is also called positive feedback and it goes back toward normal",
+    "positive feedback opposes the change"
+   ],
+   "miss": [
+    "Feedback inhibition (negative feedback) is when a change causes a response that pushes conditions back toward normal, like a thermostat turning on the furnace when it gets cold",
+    "negative feedback brings conditions back to normal",
+    "positive feedback does not bring things back to normal, negative feedback does",
+    "a thermostat turns the furnace on when the room is cold, then off when it is warm again"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(pharynx|farinx|farynx|pharnyx|it) (is )?(in|inside|part of) (the |your )?(lungs?|chest|stomach)\\b",
+   "say": "Check that. The pharynx is the throat, behind the nose and mouth. Is it in the chest?",
+   "hit": [
+    "the pharynx is part of the lungs and carries air",
+    "pharynx is in the chest and food and air go through it",
+    "the farinx is inside the lungs"
+   ],
+   "miss": [
+    "The pharynx is the throat behind the nose and mouth, a passageway for both air and food",
+    "the pharynx is the throat and it is not in the lungs",
+    "air and food both pass through the pharynx in your throat",
+    "the pharynx is behind the mouth"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\b(trachea|tracheas|tray ?kia|it) (is|means) (the |your )?(throat|pharynx|farinx|larynx|larinx)\\b",
+   "say": "Check that. The throat is the pharynx. What is the trachea's nickname?",
+   "hit": [
+    "the trachea is the throat and carries air down",
+    "trachea means the larynx",
+    "the trachea is your pharynx"
+   ],
+   "miss": [
+    "The trachea is the windpipe and it carries air down to the bronchi",
+    "the trachea is the windpipe below the throat",
+    "the trachea is below the larynx and carries air to the bronchi",
+    "air goes from the throat into the trachea"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\b(leads?|goes|go|connects?|branches?) (in)?to (the |a |your )?(heart|stomach|esophagus)\\b",
+   "say": "Check that. Where does each bronchus lead?",
+   "hit": [
+    "a bronchus branches off the trachea and leads to the heart",
+    "there are two bronchi and they go to the stomach",
+    "each bronchus connects to the heart"
+   ],
+   "miss": [
+    "A bronchus is a tube that branches off the trachea, there are two and each leads to a lung",
+    "each bronchus leads to one lung",
+    "the bronchi do not go to the heart, they go to the lungs",
+    "two bronchi branch from the windpipe into the lungs"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\b(one|1|a single|only one) (alveolus|alveoli|alveolar|air sac) (in|per|for) (each |every |the |a )?lungs?\\b|\\beach lung (has|have|contains?) (only )?(one|1|a single) (alveolus|alveoli|air sac)\\b",
+   "say": "Check that. Each lung has millions of tiny alveoli. Is there just one?",
+   "hit": [
+    "there is one alveolus in each lung where gas exchange happens",
+    "each lung has one air sac for gas exchange",
+    "a single alveolus per lung"
+   ],
+   "miss": [
+    "An alveolus is a tiny air sac in the lungs where gas exchange happens",
+    "each lung has millions of alveoli",
+    "one alveolus is a tiny air sac in the lung",
+    "there are many air sacs in each lung"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,15})\\b(get rid of|lower|lowers|remove|removes|blow off|blows off|reduce|reduces|breathe out) (the |more |extra |some )?(extra )?(oxygen|o2|o 2)\\b",
+   "say": "Check that. Breathing faster gets rid of extra carbon dioxide. Which gas is it?",
+   "hit": [
+    "the medulla tells the lungs to breathe faster to get rid of oxygen",
+    "when carbon dioxide rises you breathe faster to lower the oxygen",
+    "breathing faster removes the extra oxygen"
+   ],
+   "miss": [
+    "When carbon dioxide in the blood rises, sensors signal the medulla oblongata, which tells the lungs to breathe faster to lower the carbon dioxide back to normal",
+    "breathing faster gets rid of extra carbon dioxide",
+    "you breathe faster to remove carbon dioxide and bring in oxygen",
+    "faster breathing does not get rid of oxygen, it gets rid of carbon dioxide"
+   ]
+  }
+ ]
+}

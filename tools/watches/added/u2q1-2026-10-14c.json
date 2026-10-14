@@ -1,0 +1,67 @@
+{
+ "1": [
+  {
+   "re": "\\bcells? (are )?(made|built|composed) (up )?of (living things|organisms|tissues?|organs?)\\b",
+   "say": "Check that. Which is made of which, cells or living things?",
+   "hit": ["cells are made of living things", "all cells are made up of organisms and come from other cells"],
+   "miss": ["1. All living things are made up of cells 2. Cells are the basic units of structure and function in living things 3. New cells are produced from existing cells", "all living things are made of cells", "living things are made up of one or more cells", "organisms are made of cells and cells are the basic unit"]
+  }
+ ],
+ "3": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bdidnt|\\bwithout)\\b[\\w' ]{0,12})\\belectron",
+   "say": "Check that. Electron microscopes came much later. What kind did Hooke use?",
+   "hit": ["robert hooke used an electron microscope to look at cork", "hooke saw cork cells with an electron microscope and they were dead"],
+   "miss": ["Robert Hooke looked at thin slices of cork. The cells he saw were dead, empty chambers.", "hooke looked at thin slices of cork with a simple light microscope", "hooke did not use an electron microscope he looked at dead cork"]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bno)\\b[\\w' ]{0,10})\\bvirus",
+   "say": "Check that. Viruses are not cells. Which living things are prokaryotes?",
+   "hit": ["a prokaryote has no nucleus example a virus", "an example of a prokaryote is the flu virus"],
+   "miss": ["A prokaryote has no nucleus; its DNA floats in the cytoplasm. Example: bacteria. A eukaryote has a nucleus that holds its DNA. Example: plants, animals, and my own cells.", "prokaryotes like bacteria have no nucleus and eukaryotes like plants have one", "bacteria are prokaryotes not viruses"]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bno organelles\\b(?! (with|that|wrapped|surrounded|in)\\b)|\\b(do not|don't|dont|does not|doesn't|doesnt) have (any )?organelles\\b(?! (with|that|wrapped|surrounded)\\b)",
+   "say": "Check that. Prokaryotes still have ribosomes. Which kind of organelle do they lack?",
+   "hit": ["prokaryotic cells have no nucleus and no organelles", "they don't have any organelles at all"],
+   "miss": ["Prokaryotic cells do not have a nucleus. They also have no membrane-bound organelles.", "prokaryotes do not have a nucleus or membrane bound organelles", "they have no nucleus and no organelles with membranes"]
+  }
+ ],
+ "10": [
+  {
+   "re": "(mitochond|mito ?cond)\\w* (are |is )?(too|way too) (big|large)\\b|\\btoo (big|large) (to fit|for (the )?bacteri)",
+   "say": "Check that. Is size the real reason, or is it about membranes?",
+   "unless": "The rule for bacteria",
+   "hit": ["bacteria cant have mitochondria because mitochondria are too big", "mitochondria are too large to fit in bacteria"],
+   "miss": ["Ribosomes have no membrane around them. Mitochondria are wrapped in membranes. Prokaryotes like bacteria have no membrane-bound organelles, so they can have ribosomes but not mitochondria.", "mitochondria have membranes and bacteria have no membrane bound organelles", "ribosomes have no membrane but mitochondria do so bacteria only have ribosomes"]
+  }
+ ],
+ "20": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bdont|\\bdoesnt|\\bnever)\\b[\\w' ]{0,12})\\b(burst|bursts|bursting|pops?|popping|explod\\w*)\\b",
+   "say": "Check that. The vesicle does not burst. What does it join with?",
+   "hit": ["the vesicle carries waste to the membrane and pops", "the vesicle bursts and the waste goes out"],
+   "miss": ["A vesicle carries the waste to the cell membrane, joins with it, and releases the waste outside the cell. This process is called exocytosis.", "vesicle takes waste to the membrane fuses with it and dumps it outside this is exocytosis", "the vesicle doesn't pop it joins the membrane and releases waste by exocytosis"]
+  }
+ ],
+ "21": [
+  {
+   "re": "\\b(turns?|converts?|changes?|makes?) (\\w+ ){0,2}energy (in)?to (food|sugar|glucose)\\b|\\bstores? (\\w+ )?energy (as|in) (food|sugar|glucose)\\b",
+   "say": "Check that. Does the mitochondrion make food, or get energy out of food?",
+   "hit": ["the mitochondria turns energy into food for the cell", "mitochondria changes the energy into glucose it is the powerhouse"],
+   "miss": ["The mitochondrion converts the chemical energy in food into a form the cell can use. It is the powerhouse of the cell. Plant cells have mitochondria too.", "mitochondria turn the energy in food into atp the cell can use", "it converts food into energy and plants have them too"]
+  }
+ ],
+ "28": [
+  {
+   "re": "plants? (cells? )?(do not|don't|dont|doesn't|doesnt|never) have (a )?(cell )?membranes?|\\bonly animal cells? (have|has) (a )?(cell )?membranes?",
+   "say": "Check that. Plant cells have a cell membrane too. What do they have outside it?",
+   "hit": ["plant cells don't have a cell membrane they have a wall", "only animal cells have a cell membrane and centrioles"],
+   "miss": ["Only plant cells have a cell wall, chloroplasts, and a large central vacuole. Only animal cells have centrioles.", "both plant and animal cells have a cell membrane but only plants have a wall", "plant cells do not have centrioles but animal cells do"]
+  }
+ ]
+}

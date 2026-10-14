@@ -180,3 +180,4 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 /* Clean up the wording (after all key ideas are found) */
 .cleanup{background:var(--card);border-left:4px solid var(--ok);border-radius:0 10px 10px 0;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
 .cleanup p{margin:0}
+.tip .btn{min-height:40px;padding:.3em .8em;margin-left:6px;vertical-align:middle}

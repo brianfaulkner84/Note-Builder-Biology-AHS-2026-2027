@@ -41,6 +41,7 @@ UNITS.push({
     guide:"What does a small calorie heat, and by how much? How many calories are in one food-label Calorie?", where:"Slide: Energy 6 | Book: Chemical Energy and Food, p. 250",
     model:"• A calorie (small c) is the energy needed to raise 1 gram of water 1 degree Celsius\n• A food-label Calorie (capital C) is a kilocalorie: 1 Calorie equals 1,000 calories",
     watch:[
+      W(/(?<!\bnot )\b(?:10|ten|10 000|ten thousand|a million|one million) (?:small )?calories\b/, "Check that. Kilo means 1,000. How many small calories are in one food label Calorie?"),
       W(/\b(?:100|one hundred|a hundred|hundred)(?: small)? calories\b/, "Check that. How many small calories are in one food label Calorie?"),
       W(/\bfahrenheit|\bfarenheit|\bfarenhite|\bfahrenheight/, "Check that. Which temperature scale does science use for the small calorie?") ],
     ideas:[
@@ -64,6 +65,7 @@ UNITS.push({
     guide:"What does ATP stand for? What three parts make it up?", where:"Slide: Energy 10 | Book: Chemical Energy and ATP, p. 226",
     model:"• ATP stands for adenosine triphosphate\n• It is made of adenine, ribose (a 5-carbon sugar), and three phosphate groups\n• It is the main energy source of the cell",
     watch:[
+      W(/\b(?:6|six|3|three|4|four) ?carbon sugar\b|\bribose (?:is |a |an |which is )*(?:6|six|3|three) ?carbon\b/, "Check that. How many carbons does ribose have?"),
       W(/\bdeoxy ?ribose|\b(?:sugar|ribose) (?:is |called |named |which is )?glucose\b/, "Check that. Which 5 carbon sugar is in ATP?"),
       W(/\badenine tri ?phosphate/, "Check that. Adenine is one of the parts. What is the full name of ATP?", "What ATP stands for"), W(/\b(2|two|di) ?phosphates?/, "Check that. How many phosphates does ATP have?", "Part 3") ],
     ideas:[
@@ -76,6 +78,8 @@ UNITS.push({
     guide:"What happens when a phosphate is added to ADP? Which bond breaks to release energy?", where:"Slide: Energy 11 | Book: Storing Energy, Releasing Energy, p. 227",
     model:"• To store energy, the cell adds a phosphate to ADP, which makes ATP\n• To release energy, the cell breaks the bond to the third phosphate, and ATP becomes ADP again",
     watch:[
+      W(/(?<!\bnot (?:the )?)\b(?:first|second|1st|2nd|middle) phosphate\b/, "Check that. Which phosphate's bond breaks to release energy?"),
+      W(/\b(?:add|adds|adding|added|attach\w*|put|puts) (?:a |one |another |the )?(?:third )?phosphate (?:on )?(?:to|onto) (?:an? |the )?atp\b|\batp (?:\w+ ){0,3}(?:gains?|gets|picks up) (?:a |another )?phosphate\b/, "Check that. Which molecule gets the phosphate added to it to store energy?"),
       W(/\b(?:add|adds|adding|added|attach\w*) (?:a |one |the )?phosphate (?:to (?:adp|atp) )?releases?\b|\breleas\w* energy by (?:add|attach)\w*/, "Check that. Does adding a phosphate store energy or release it?"),
       W(/\b(?:break\w*|remov\w*|los\w*) (?:\w+ ){0,3}(?:stores?|storing) (?:the )?energy\b|\badp (?:has|have|with|contains) (?:\w+ )?(?:3|three|tri)\b/, "Check that. Which one has three phosphates, and which change stores energy?") ],
     ideas:[
@@ -108,6 +112,7 @@ UNITS.push({
     guide:"What does it pick up, and what does it do with it?", where:"Slide: Energy 15 | Book: High-Energy Electrons, p. 232",
     model:"• An electron carrier picks up high-energy electrons, carries them, and drops them off where the energy is needed, like a taxi",
     watch:[
+      W(/(?<!\bnot )(?<!\bno )\blow(?:er)? energy electrons?\b/, "Check that. Are the electrons a carrier picks up high energy or low energy?"),
       W(/\b(?:picks? up|picking up|carr(?:y|ies)|carrying) (?:the )?(?:oxygen|atp|glucose|sugar)\b/, "Check that. What does an electron carrier actually pick up and carry?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:makes?|creates?|produces?) (?:high energy )?electrons\b/, "Check that. Does the carrier make electrons, or move them?") ],
     ideas:[
@@ -245,6 +250,8 @@ UNITS.push({
     guide:"What would happen if a cell burned glucose all at once?", where:"Slide: Respiration 4 | Book: Chemical Energy and Food, p. 250",
     model:"• If a cell burned glucose all at once, it would release all the energy as heat and light and destroy the cell\n• So cells break glucose down in small steps and capture a little energy at a time as ATP",
     watch:[
+      W(/(?<!\bnot )\btoo (?:much|many) atp\b/, "Check that. If glucose burned all at once, would the energy end up as ATP or as heat and light?"),
+      W(/(?<!\bif (?:a |the )?)\bcells? (?:\w+ ){0,3}(?:in|with) (?:one|1|a single) (?:big |giant )?(?:step|reaction)\b/, "Check that. Do cells break glucose down in one step or in many small steps?"),
       W(/(?<!\b(?:if|when|suppose|supposing) (?:a |the )?)\bcells? (?:burns?|releases?|uses?) (?:\w+ ){0,3}all at once\b/, "Check that. Do cells release the energy all at once, or a little at a time?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:captur\w*|stor\w*|saves?|saving|keeps?) (?:the |its |that |some |a little )?(?:energy )?(?:as|in) heat\b/, "Check that. What form does the cell capture the energy in, a little at a time?") ],
     ideas:[
@@ -274,7 +281,7 @@ UNITS.push({
       W(/\brespiration (?:makes?|produces?|releases?|gives? off) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b|\bproducts? (?:are|is) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b/, "Check that. Which molecules go in, and which come out of respiration?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:needs?|uses?|requires?) (?:sun ?light|light)\b|\b(?:plus|and) (?:sun ?light|light) (?:makes|yields|gives|produces)/, "Check that. Does cellular respiration need light?"), W(near(/(carbon dioxide|co2).{0,25}(and|plus)? ?water|water.{0,25}(and|plus)? ?(carbon dioxide|co2)/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(glucose|sugar)/, 40), "Check that. That is the photosynthesis equation. Which way does respiration go?") ]},
   { n:24, heading:"The Three Stages", prompt:"Sequence the three stages of cellular respiration.",
-    guide:"Which comes first, second, and third? Which happen in the cytoplasm, and which in the mitochondria?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
+    guide:"Which comes first, second, and third? Which happen in the cytoplasm, and which in the mitochondria? How many ATP does each stage make?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
     model:"1. Glycolysis, in the cytoplasm\n2. The Krebs cycle, in the mitochondria\n3. The electron transport chain, in the mitochondria",
     watch:[
       W(/\b(?:krebs|kreb|crebs|citric acid|electron transport|etc|e t c)\w*(?: cycle| chain)? (?:is |comes |happens |goes )?first\b|\bfirst (?:is |comes |stage is |step is )?(?:the )?(?:krebs|kreb|crebs|citric|electron transport)/, "Check that. Which stage comes first, in the cytoplasm?"),
@@ -323,6 +330,7 @@ UNITS.push({
     guide:"How do the products of one match the reactants of the other?", where:"Slide: Respiration 15 to 18 | Book: Comparing Photosynthesis and Cellular Respiration, p. 253",
     model:"• They are opposites because the products of one are the reactants of the other\n• Photosynthesis makes glucose and oxygen, which respiration uses\n• Respiration makes carbon dioxide and water, which photosynthesis uses",
     watch:[
+      W(/(?<!\bnot )\bonly (?:at|during the|in the) night\b|\brespiration (?:(?!even |also |too )\w+ ){0,2}(?:at|during the|in the) night\b(?! too| also| as well)/, "Check that. Do cells do respiration only at night, or all the time? What makes them opposites?"),
       W(/\bproducts? of photo ?synthesis (?:are|is) (?:\w+ )?(?:carbon dioxide|co ?2|water)\b|\bproducts? of (?:cellular )?respiration (?:are|is) (?:\w+ )?(?:glucose|sugar|oxygen)\b|\bphoto ?synthesis (?:makes?|produces?|gives? off|releases?) (?:\w+ )?(?:carbon dioxide|co ?2)\b|\brespiration (?:makes?|produces?|gives? off|releases?) (?:\w+ )?(?:glucose|sugar|oxygen)\b/, "Check that. Which process makes glucose and oxygen, and which makes carbon dioxide and water?"),
       W(/\b(?:respiration|it) (?:only )?(?:happens|is) (?:only )?in animals\b|\bonly animals (?:do|carry out) (?:cellular )?respiration|\bplants? (?:do|does) photo ?synthesis (?:and|while|but) animals (?:do|does) (?:cellular )?respiration/, "Check that. Is that why they are opposites? Do plants do cellular respiration too?") ],
     ideas:[

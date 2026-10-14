@@ -1,0 +1,120 @@
+{
+  "3": [
+    {
+      "re": "(?<!\\bnot )\\b(?:10|ten|10 000|ten thousand|a million|one million) (?:small )?calories\\b",
+      "say": "Check that. Kilo means 1,000. How many small calories are in one food label Calorie?",
+      "hit": [
+        "1 Calorie equals 10 calories",
+        "a food Calorie is 10,000 calories"
+      ],
+      "miss": [
+        "A calorie (small c) is the energy needed to raise 1 gram of water 1 degree Celsius. A food-label Calorie (capital C) is a kilocalorie: 1 Calorie equals 1,000 calories",
+        "1 Calorie is 1000 calories",
+        "a kilocalorie is one thousand small calories",
+        "not 10 calories, it is 1,000 calories"
+      ]
+    }
+  ],
+  "5": [
+    {
+      "re": "\\b(?:6|six|3|three|4|four) ?carbon sugar\\b|\\bribose (?:is |a |an |which is )*(?:6|six|3|three) ?carbon\\b",
+      "say": "Check that. How many carbons does ribose have?",
+      "hit": [
+        "ribose which is a six carbon sugar",
+        "adenine, a 6 carbon sugar and three phosphates"
+      ],
+      "miss": [
+        "ATP stands for adenosine triphosphate. It is made of adenine, ribose (a 5-carbon sugar), and three phosphate groups. It is the main energy source of the cell",
+        "ribose, a five carbon sugar, and 3 phosphate groups",
+        "adenine ribose and three phosphates"
+      ]
+    }
+  ],
+  "6": [
+    {
+      "re": "(?<!\\bnot (?:the )?)\\b(?:first|second|1st|2nd|middle) phosphate\\b",
+      "say": "Check that. Which phosphate's bond breaks to release energy?",
+      "hit": [
+        "to release energy it breaks the bond to the first phosphate",
+        "it breaks off the second phosphate and becomes adp"
+      ],
+      "miss": [
+        "To store energy, the cell adds a phosphate to ADP, which makes ATP. To release energy, the cell breaks the bond to the third phosphate, and ATP becomes ADP again",
+        "breaks the bond to the last phosphate",
+        "it removes the third phosphate, not the first phosphate"
+      ]
+    },
+    {
+      "re": "\\b(?:add|adds|adding|added|attach\\w*|put|puts) (?:a |one |another |the )?(?:third )?phosphate (?:on )?(?:to|onto) (?:an? |the )?atp\\b|\\batp (?:\\w+ ){0,3}(?:gains?|gets|picks up) (?:a |another )?phosphate\\b",
+      "say": "Check that. Which molecule gets the phosphate added to it to store energy?",
+      "hit": [
+        "to store energy the cell adds a phosphate to ATP",
+        "atp gains a phosphate and becomes adp"
+      ],
+      "miss": [
+        "To store energy, the cell adds a phosphate to ADP, which makes ATP. To release energy, the cell breaks the bond to the third phosphate",
+        "the cell attaches a third phosphate to ADP",
+        "ADP gains a phosphate and becomes ATP"
+      ]
+    }
+  ],
+  "9": [
+    {
+      "re": "(?<!\\bnot )(?<!\\bno )\\blow(?:er)? energy electrons?\\b",
+      "say": "Check that. Are the electrons a carrier picks up high energy or low energy?",
+      "hit": [
+        "an electron carrier picks up low energy electrons and carries them",
+        "it carries lower energy electrons like a taxi"
+      ],
+      "miss": [
+        "An electron carrier picks up high-energy electrons, carries them, and drops them off where the energy is needed, like a taxi",
+        "picks up high energy electrons and drops them off",
+        "it carries electrons with lots of energy, not low energy electrons"
+      ]
+    }
+  ],
+  "21": [
+    {
+      "re": "(?<!\\bnot )\\btoo (?:much|many) atp\\b",
+      "say": "Check that. If glucose burned all at once, would the energy end up as ATP or as heat and light?",
+      "hit": [
+        "if it burned glucose all at once it would make too much atp",
+        "the cell would get too many ATP and explode"
+      ],
+      "miss": [
+        "If a cell burned glucose all at once, it would release all the energy as heat and light and destroy the cell. So cells break glucose down in small steps and capture a little energy at a time as ATP",
+        "it would release too much heat at once and kill the cell",
+        "cells capture a bit at a time as atp"
+      ]
+    },
+    {
+      "re": "(?<!\\bif (?:a |the )?)\\bcells? (?:\\w+ ){0,3}(?:in|with) (?:one|1|a single) (?:big |giant )?(?:step|reaction)\\b",
+      "say": "Check that. Do cells break glucose down in one step or in many small steps?",
+      "hit": [
+        "cells break down glucose in one step to make atp",
+        "the cell releases energy in a single reaction"
+      ],
+      "miss": [
+        "If a cell burned glucose all at once, it would release all the energy as heat and light and destroy the cell. So cells break glucose down in small steps",
+        "if a cell burned glucose in one step it would be destroyed",
+        "cells break it down step by step and capture a little at a time"
+      ]
+    }
+  ],
+  "28": [
+    {
+      "re": "(?<!\\bnot )\\bonly (?:at|during the|in the) night\\b|\\brespiration (?:(?!even |also |too )\\w+ ){0,2}(?:at|during the|in the) night\\b(?! too| also| as well)",
+      "say": "Check that. Do cells do respiration only at night, or all the time? What makes them opposites?",
+      "hit": [
+        "they are opposites because photosynthesis happens in the day and respiration happens at night",
+        "plants do respiration only at night"
+      ],
+      "miss": [
+        "They are opposites because the products of one are the reactants of the other. Photosynthesis makes glucose and oxygen, which respiration uses. Respiration makes carbon dioxide and water, which photosynthesis uses",
+        "plants do respiration day and night",
+        "respiration happens at night too, and all day",
+        "respiration happens even at night"
+      ]
+    }
+  ]
+}

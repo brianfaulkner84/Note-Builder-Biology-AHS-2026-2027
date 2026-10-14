@@ -49,6 +49,8 @@ UNITS.push({
     draw:"Draw a phospholipid here. Label the head and the tails.",
     model:"• A phospholipid has a hydrophilic (water-loving, polar) head and two hydrophobic (water-fearing, non-polar) fatty acid tails",
     watch:[
+      W(/(?<!\bnot )\b(?:2|two) (?:hydrophilic |water loving |polar |phosphate )?heads\b/, "Check that. How many heads does one phospholipid have?"),
+      W(/\bphosphate (?:group )?tails?\b|\btails? (?:are|is) (?:made of )?(?:a |the )?phosphates?\b/, "Check that. Which part has the phosphate, and what are the tails made of?"),
       W(/\bheads? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)o ?b\w*|water ?(fear|hat|scar)\w*|non ?polar|afraid of (the )?water|hates? (the )?water)|(?<!\btails? (are |is )?)(hydro ?(ph|f)o ?b\w*|water ?(fear|hat|scar)\w*|non ?polar|afraid of (the )?water|hates? (the )?water) (phosphate )?heads?\b/, "Check that. Which part of the phospholipid loves water?"),
       W(/\btails? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar)|(?<!\bheads? (is |are )?)(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar) (fatty acid )?tails?\b/, "Check that. How do the tails feel about water?"),
       W(/\b(one|1|a single|only one) (fatty acid |hydrophobic |long )?tail\b/, "Check that. How many tails does a phospholipid have?") ],
@@ -62,6 +64,7 @@ UNITS.push({
     guide:"Where is the water? Where do the tails want to be?", where:"Slide 7 | Book: Cell Membranes, p. 204",
     model:"• There is water outside the cell and water inside the cell (cytoplasm)\n• The water-loving heads face the water on both sides\n• The water-fearing tails hide in the middle, away from the water",
     watch:[
+      W(/(?<!\bnot a )(?<!\bnot )\b(?:single|three|3) layers?\b|\bonly (?:one|1) layer\b|\bmono ?layer\b|\bone layer (?:thick|only)\b/, "Check that. How many layers of phospholipids make the membrane?"),
       W(/\bheads? (?:\w+ )?(?:hide|hides|hiding|stay away|stays away|avoid|avoids|are scared of|run away) (?:\w+ ){0,2}water\b/, "Check that. The heads love water. Which part hides from the water?"),
       W(/\btails? (all )?(face|faces|facing|point|points|pointing|touch|touches|go|goes|are|stick|sticks) (out )?(toward |towards |into |to |on |at |in )?(the )?(water|outside|outer)\b/, "Check that. Do the water-fearing tails want to touch the water?"),
       W(/\bheads? (all )?(are |go |hide |stay |point |face |sit )(in |toward |towards |to )?(the )?(middle|center|centre|each other)\b/, "Check that. Which part hides in the middle, away from the water?"),
@@ -104,6 +107,7 @@ UNITS.push({
     guide:"What gets through and what does not? What object at home works the same way?", where:"Slide 10 | Book: Cell Membranes, p. 205",
     model:"• Selectively permeable means the membrane lets some things pass through but blocks others\n• Example: a colander lets water through but keeps the pasta in",
     watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(?:lets?|allows?) (?:the )?(?:pasta|noodles|spaghetti|macaroni) (?:go |pass |fall |get )?(?:through|out)\b|(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\bkeeps? (?:the )?water in\b/, "Check that. In a colander, which part goes through and which part stays?"),
       W(/(?<!\bnot )\bnothing (?:can |could |will )?(?:get|gets|pass|passes|go|goes|come|comes|enter|enters) (?:in|through|across|out)\b/, "Check that. Does nothing get through, or only some things?"),
       W(/(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(lets?|allows?) (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go)|(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(blocks?|stops?) (everything|anything|all (things|molecules|substances|stuff))\b|water ?proof/, "Check that. Does everything get through, nothing, or only some things?"),
       W(/\b(brick wall|glass|plastic bag|plastic wrap|rock|metal|balloon)\b/, "Check that. Does your example let some things through but not others?", "Everyday example") ],
@@ -141,6 +145,7 @@ UNITS.push({
         hints:["Does active transport cost the cell energy?","Active is like pedaling uphill. What does that take?"]}
     ],
     watch:[
+      W(/\bpassive\b(?:(?!\bactive\b|\bnot\b|n't|\bnever\b|\bno\b).){0,40}\bagainst\b|\bactive\b(?:(?!passive|\bnot\b|n't|\bnever\b|\bno\b).){0,40}\b(?:with|down) the (?:flow|gradient|concentration gradient)\b/, "Check that. Which one goes with the flow (high to low), and which goes against it?"),
       W(/\bpassive\b(?:(?!\bactive\b).){0,40}\b(low|less|lower)\w*( concentration)? to (high|more|higher|greater)/, "Check that. Which way does passive transport move things?"),
       W(/\bactive\b(?:(?!passive).){0,40}\b(high|more|higher|greater)\w*( concentration)? to (low|less|lower)/, "Check that. Which way does active transport move things?"),
       {match:/\bactive\b (transport )?(doesn.?t|does not|don.?t) (use|need|require)/, say:"Check active transport. Is it the free one, or the one that costs energy?"},
@@ -155,6 +160,7 @@ UNITS.push({
       {label:"Oxygen example", match:[/oxygen|\bo ?(2|two)\b/], hints:["Add how oxygen gets into a cell.","Think about your lungs passing a gas into your blood."]}
     ],
     watch:[
+      W(/(?<!\bnot )\b(?:size|temperature|heat|energy|atp|the cell|the membrane|gravity|pressure|proteins?) (?:decides|determines|controls|sets|chooses) (?:the |which )?(?:direction|way)\b/, "Check that. What decides which way particles diffuse?"),
       W(/\boxygen (?:\w+ ){0,4}(?<!\bnot )(?<!\bno )(?:active transport|pumps?|endocytosis|osmosis)\b/, "Check that. Oxygen gets in the same way you just defined. Which process is it?"),
       W(/(?<!\bno )(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of |lots of )?(energy|atp)/, "Check that. Is diffusion active or passive? Does it cost energy?"),
       W(/diffusion (is|means) (the )?(movement|diffusion|moving|flow) of water\b/, "Check that. Does diffusion only move water? That sounds like osmosis."),{match:LH, unless:"Which way", say:"Check your direction. Air freshener spreads from where to where?"}]},
@@ -181,6 +187,7 @@ UNITS.push({
         hints:["Does facilitated diffusion cost the cell energy?","It is still a kind of diffusion. Is diffusion active or passive?"]}
     ],
     watch:[
+      W(/\b(?:oxygen|o2|carbon dioxide|co2)\b(?:(?!\bnot\b|n't|\bdont\b|\bno\b|\bwithout\b|\bbut\b).){0,30}\b(?:channels?|carriers?|proteins?)\b/, "Check that. Small molecules like oxygen slip right through. Which molecules need a channel or carrier?"),
       W(/\b(?:uses?|using|through|by|with|in) (?:a |the )?(?:protein )?pumps?\b/, "Check that. Pumps are active transport. What kind of proteins does facilitated diffusion use?"),
       W(/(?<!\b(not|n't|never|dont|doesnt|no)\b[\w ]{0,12})\b(low|less|lower)\w*( concentration)? to (high|more|higher|greater)\b/, "Check that. Facilitated diffusion is still diffusion. Which way does it go?"),
       W(/(?<!\bnot )(?<!n't )\b(is|are|it'?s) (an? )?(type of |kind of |form of )?active\b/, "Check that. Does facilitated diffusion cost energy? So is it active or passive?"),{match:/(uses?|needs?|requires?|takes?) (energy|atp)/, unless:"Energy", say:"Check the energy part. Is facilitated diffusion active or passive?"}]},
@@ -231,6 +238,7 @@ UNITS.push({
         hints:["What happens to the cells in salty water?","Salty water has MORE solute outside. Which way does water move?"]}
     ],
     watch:[
+      W(/\banimal cells? (?:also |both )?(?:has|have|with) (?:a |its |their )?(?:own )?(?:cell )?walls?\b|\b(?:both|the) (?:plant and animal|animal and plant) cells? (?:have|has) (?:a )?(?:cell )?walls?\b|\banimal cell'?s? walls?\b/, "Check that. Which cell has a cell wall, the plant cell or the animal cell?"),
       W(/(pure|fresh|distilled|plain|tap) water(?:(?!salt).){0,50}\b(shrinks?|shrivel\w*|smaller|shrank)\b/, "Check that. In pure water, does water move into the cells or out of them?"),
       W(/salt\w*(?:(?!pure|fresh|distilled|plain).){0,50}\b(swell\w*|swole|bursts?|bigger|pops?|explod\w*)/, "Check that. In salty water, is there more solute inside or outside the cells?"),
       W(/\bwalls? (keeps?|stops?|blocks?) (the )?water (from )?(going |coming |getting )?(in|out|entering|into)\b/, "Check that. Water still gets into the plant cell. What does the wall stop?"),{match:/plant cells? (will |would |can )?(bursts?|pops?|explodes?)\b/, say:"Check the plant cell. What does it have that stops it from bursting?"}]},

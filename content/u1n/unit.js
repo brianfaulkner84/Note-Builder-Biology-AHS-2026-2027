@@ -25,6 +25,7 @@ UNITS.push({
     guide:"What elements is it made of? What does the body use it for?", where:S + "5 | Book: p. 869",
     model:"• A carbohydrate is a molecule made of carbon, hydrogen, and oxygen\n• It is the body's quick source of energy",
     watch:[
+      W(/\bcarb(s|ohydrates?)? (is|are) (a |an )?(type of |kind of |form of )?(fats?|lipids?|proteins?|amino acids?)\b/, "Check that. A carbohydrate is its own kind of molecule. What is it made of?"),
       W(/\bamino/, "Check that. Amino acids build a different nutrient. What elements make up a carbohydrate?"),
       W(/(?<!not )(?<!n't )(?<!dont )\b(builds?|building|repairs?) (\w+ )?(muscles?|tissues?)/, "Check that. Building and repairing tissue is mainly a job of a different nutrient."), W(/nitrogen/, "Check that. Carbohydrates are made of carbon, hydrogen, and oxygen only.") ],
     ideas:[
@@ -47,6 +48,7 @@ UNITS.push({
     model:"• A protein is a nutrient built from smaller units called amino acids",
     ideas:[ I("Built from", [/amino/], "What are proteins built from?", "Slide 8, the line under the title.") ],
     watch:[
+      W(/\bamino acids? (are |is )?(made|built|composed|formed) (up )?(of|from|by) (\w+ )?proteins?\b/, "Check that. Which is the small unit and which is the big molecule?"),
       W(/(?<!not )(?<!not the )(?<!not a )\b(main|quick|quickest|fast|fastest|first) (source of )?energy/, "Check that. Is protein the body's main energy source, or a building material?", "Built from"),
       W(/\b(made|built|composed) (up )?(of|from) (\w+ )?(sugars?|carbs?|carbohydrates?|fats?|lipids?|starch\w*)\b/, "Check that. What smaller units are proteins built from?", "Built from"), W(/fatty acid|simple sugar|glucose/, "Check that. That is the building block of a different nutrient.", "Built from") ]},
   { n:5, heading:"Vocabulary", prompt:"Define vitamin.",
@@ -64,6 +66,7 @@ UNITS.push({
     guide:"Organic or inorganic? How is it different from a vitamin?", where:S + "11 | Book: p. 872",
     model:"• A mineral is an inorganic nutrient the body needs in small amounts\n• Vitamins are organic; minerals are inorganic",
     watch:[
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )\b(contains?|has|have|made of|made from) (?!no |not |any )(\w+ )?carbon\b/, "Check that. Organic molecules contain carbon. Is a mineral organic?"),
       W(/(?<!not )(?<!not in )(?<!n't need )(?<!not need )(?<!not needed in )(?<!n't needed in )\b(large|big|huge|great) amounts?\b|\b(a lot|lots) of minerals?\b/, "Check that. Does the body need a lot of minerals or only a little?"),
       W(/\bminerals? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\w+ )?(source of )?energy\b|\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\b/, "Check that. Do minerals supply energy (Calories)?"), W(/(?<!in)(?<!in )(?<!not )\borganic/, "Check that. Is a mineral organic or inorganic?", "Inorganic") ],
     ideas:[ I("Inorganic", [/inorganic|in organic|not organic/], "Is a mineral organic or inorganic?", "Slide 11, the line under the title.") ]},
@@ -141,6 +144,7 @@ UNITS.push({
     guide:"Name three jobs. What job belongs to proteins instead?", where:S + "7 | Book: p. 870",
     model:"• Fats insulate the body, are part of cell membranes, and help absorb fat-soluble vitamins\n• Fats are NOT hormones and enzymes; those are jobs of proteins",
     watch:[
+      W(/\bfats? (?:(?!(not|dont|doesnt|never|no|isn't|isnt|aren't|arent)\b)[\w']+ ){0,3}(quick|quickest|fast|fastest|main) (source of )?energy\b/, "Check that. Fats store energy. Which nutrient is the quick energy source?"),
       W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\b(builds?|building|repairs?|repairing) (\w+ )?(muscles?|tissues?|bones?)\b/, "Check that. Building and repairing tissue is mainly a job of proteins."),
       W(/\bfats? (also )?(act as|work as|are|make|makes|serve as|can be) (?!not |no )(\w+ )?(enzymes?|hormones?)\b/, "Check that. Are enzymes and hormones a job of fats or of a different nutrient?"),
       W(/(?<!not )\bwater soluble/, "Check that. Which kind of vitamins do fats help the body absorb?") ],
@@ -154,6 +158,8 @@ UNITS.push({
     guide:"Name at least two jobs proteins do.", where:S + "8 | Book: p. 870",
     model:"• Proteins supply raw materials for growth and repair\n• Some act as enzymes that speed up reactions\n• Some have regulatory or transport jobs",
     watch:[
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\bslow(s|ing)? (down )?(the )?(chemical )?reactions?\b/, "Check that. Do enzymes speed up reactions or slow them down?"),
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!fats )(?<!fat )(?<!lipids )(?<!carbs )(?<!carbohydrates )\b(stores?|storing) (\w+ )?energy\b|(?<!not )(?<!not for )\blong term energy\b/, "Check that. Storing energy is a job of a different nutrient. What else do proteins do?"),
       W(/\bproteins? .{0,20}\binsulat/, "Check that. Insulating the body is a job of a different nutrient."),
       W(/(?<!not )(?<!not the )(?<!not a )\b(main|quick|quickest|fast|fastest|first) (source of )?energy/, "Check that. Is protein the body's main or quick energy source?") ],
     ideas:[
@@ -168,6 +174,7 @@ UNITS.push({
       I("Water-soluble", [either(/water/, /\bb\b|\bc\b/, 40)], "Which vitamins are water-soluble?", "Slide 9, the Water-Soluble box.")
     ],
     watch:[
+      W(/\b(a|d|e|k) (are|is) (both |also |all )?water soluble\b|\b(b|c) (are|is) (both |also |all )?fat soluble\b/, "Check that. Which letters are fat-soluble and which are water-soluble?"),
       W(/\bwater soluble (vitamins? )?(are |is |get |gets )?stored\b|\bfat soluble (vitamins? )?(are |is )?(not|never) stored/, "Check that. Which group of vitamins is stored in the body?"),
       W(/\bvitamins? (a|d|e|k) (is|are) water|\b(vitamins? b|b vitamins?) (is |are )fat/, "Check that. Which letters are fat-soluble and which are water-soluble?"), W(/vitamin c (is )?fat/, "Check that. Is vitamin C fat-soluble or water-soluble?") ]},
   { n:16, heading:"Vitamins and Minerals", prompt:"Recall Vitamin C's other name and what it does for the body.",
@@ -197,6 +204,7 @@ UNITS.push({
     model:"• Carbohydrates, fats, and proteins provide energy\n• Vitamins, minerals, and water do not",
     ideas:[ I("The three", [near(/carb|fat|protein/, near(/carb|fat|protein/, /carb|fat|protein/, 40), 40)], "Which three nutrients provide energy?", "Read the last line on Slide 12.") ],
     watch:[
+      W(/(?<!not )\bonly (carb\w*|sugars?|fats?|proteins?)\b(?! (and|fats?|proteins?|carb\w*)\b)/, "Check that. Is that the only nutrient that gives energy? There are three."),
       W(/\bwater (gives?|provides?|supplies?|has) (?!no |zero )(you |the body )?(\w+ )?(energy|calories)\b/, "Check that. Does water supply energy (Calories)?"),
       W(/\b(carb\w*|fats?|proteins?) (do not|don't|dont|does not|doesn't|doesnt|never) (provide|give|supply|have)\b/, "Check that. Which three nutrients do have Calories?"), W(/vitamins? (give|provide|supply)|minerals? (give|provide|supply)/, "Check that. Do vitamins and minerals supply energy?") ]}
   ]

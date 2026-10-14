@@ -20,6 +20,7 @@ UNITS.push({
     guide:"What does it carry to the body, and what does it carry away?", where:S + "3 | Book: Chapter 33.1, p. 948",
     model:"• The circulatory system transports oxygen, nutrients, and other substances throughout the body, and it removes wastes from the tissues",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\b(removes?|takes? away|carr\w* away|gets? rid of) (the )?(nutrients|food|sugar|glucose)\b/, "Check that. Nutrients are delivered to the cells. What does the circulatory system carry away?"),
       W(/(?<!\b(not|never|doesn't|doesnt|don't|dont)\b.{0,10})\b(heart|circulatory system|blood vessels?) (makes?|produces?|creates?) (the |new )?(blood|oxygen)\b/, "Check that. The heart pumps blood. Does it make blood or oxygen?"),
       W(/(?<!never )(?<!not )(?<!n't )(?<!dont )(?<!doesnt )\b(removes?|take?s? away|carr\w* away|gets? rid of) (the )?oxygen\b/, "Check that. Does the circulatory system deliver oxygen or take it away?"),
       W(/\b(deliver\w*|brings?|carr\w*|transports?) (carbon dioxide|co ?2|co two|wastes?) to (the )?(body|cells|tissues|organs)/, "Check that. Is waste delivered to the cells or carried away from them?"), W(/digest|hormone|filter\w* (the )?air/, "Check that. That is a different body system\'s job.") ],
@@ -31,6 +32,7 @@ UNITS.push({
     guide:"Upper or lower chamber? Does blood enter or leave here? How many are there?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"• An atrium is an upper chamber of the heart that receives blood entering the heart\n• The heart has two atria",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\bblood (leaves|exits|goes out of|is pumped out of|gets pumped out of|flows out of) the heart (through|from|out of|by|in|at) (the )?atri|\batri\w* (is|are) where (the )?blood (leaves|exits|goes out|is pumped out)/, "Check that. Blood enters the heart through the atria. Which chambers does it leave from?"),
       W(/\b(has|have|there (is|are)) (only )?(one|1|three|3|four|4) atri/, "Check that. How many atria does the heart have?"),
       W(/\batri(um|a)s? (is|are) (an? |the )?(blood vessels?|veins?|arter(y|ies)|valves?)\b/, "Check that. Is an atrium a chamber or a vessel?"), W(/\b(lower|bottom)\b|pumps? (the )?blood out/, "Check that. The atria are the upper chambers that receive blood.") ],
     ideas:[
@@ -41,6 +43,7 @@ UNITS.push({
     guide:"Upper or lower chamber? Does blood enter or leave here? How many are there?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"• A ventricle is a lower chamber of the heart that pumps blood out of the heart\n• The heart has two ventricles",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\bventric\w* (pumps?|push(es)?|sends?|squeezes?) (the )?(blood )?(up )?(in)?to (the )?atri/, "Check that. The ventricles pump blood out of the heart. Which way does blood go between atrium and ventricle?"),
       W(/\b(has|have|there (is|are)) (only )?(one|1|three|3|four|4) ventric/, "Check that. How many ventricles does the heart have?"),
       W(/\bpumps? (the )?blood (into|in to|in|to) the heart\b/, "Check that. Do the ventricles pump blood into the heart or out of it?"), W(/\b(upper|top)\b|receiv/, "Check that. The ventricles are the lower chambers that pump blood out.") ],
     ideas:[
@@ -61,6 +64,7 @@ UNITS.push({
     guide:"What is the heart wall mostly made of?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"• The myocardium is the thick layer of cardiac muscle that makes up most of the heart wall",
     watch:[
+      W(/(?<!\b(not|never|isn't|isnt|aren't|arent)\b.{0,10})(?<!\bin)\bvoluntary\b|\byou (can )?(control|choose) (it|when it beats|the myocardium)\b/, "Check that. Cardiac muscle works without you choosing. Is it voluntary?"),
       W(/\b(covers?|surrounds?|wraps? around) the (outside of the )?heart\b|\bmyocardium (is|means) (an? |the )?(blood vessel|artery|vein|chamber|lining)\b/, "Check that. The myocardium is the heart wall's thick muscle layer. Is it a covering or a chamber?"),
       W(/(?<!not )(?<!not a )\bthin\b/, "Check that. Is the myocardium a thin layer or a thick layer?"),
       W(/(?<!not )(?<!not a )(?<!not the )\b(skeletal|smooth) muscle/, "Check that. Which type of muscle is found only in the heart?"), W(/\bbone\b|valve|divides? the/, "Check that. The myocardium is the heart muscle.", "What it is") ],
@@ -69,6 +73,7 @@ UNITS.push({
     guide:"Which way does a valve let blood flow?", where:"Book: Chapter 33.1, p. 949",
     model:"• A valve is a flap that keeps blood flowing in only one direction, so it cannot flow backward",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|won't|wont|cannot|can't|cant)\b.{0,15})\b(lets?|allows?|helps?|makes?) (the )?blood (to )?(flow |go |move |run )?back ?wards?\b/, "Check that. A valve stops blood from flowing backward. Does it let blood go backward?"),
       W(/(?<!(septum|not|n't).{0,30})\b(keeps?|stops?|prevents?|blocks?)\b.{0,40}\bmix(es|ing)?\b/, "Check that. Keeping the blood from mixing is the septum's job. What does a valve do?"),
       W(/\b(both (ways|directions)|two (ways|directions)|2 (ways|directions)|back and forth|any direction)\b/, "Check that. How many directions does a valve let blood flow?", "Its job"),
       W(/\bvalves? (is|are) (an? |the )?(muscles?|chambers?|blood vessels?|vessels?)\b|\bvalves? pumps?\b/, "Check that. Is a valve a pump, or a flap that blood moves through?"), W(/divid|separat/, "Check that. Dividing the two sides is the septum\'s job.", "Its job") ],
@@ -105,6 +110,7 @@ UNITS.push({
     guide:"Which chamber pumps blood to the body? Through which large artery? Where does the blood come back in?", where:"Book: Chapter 33.1, p. 950",
     model:"• The left ventricle pumps oxygen-rich blood through the aorta to the body\n• Oxygen-poor blood comes back through veins into the right atrium",
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\baorta (carr\w* |takes? |brings? |sends? |goes |leads |pumps? )?(the )?(\w+ )?(\w+ )?(blood )?(to|into|toward) the lungs\b/, "Check that. The aorta carries blood out to the body. Which vessels go to the lungs?"),
       W(/\baorta (carr\w* |takes? |brings? |sends? |has |holds )?(the )?oxygen (poor|less|low|depleted)\b/, "Check that. The aorta leaves the left ventricle. Is that blood oxygen rich or oxygen poor?"),
       W(/\b(back|returns?|comes?|goes?|enters?)\w* .{0,30}\b(into|to|in) the left atri/, "Check that. Which chamber does blood from the body return to?", "Comes back to"),
       W(/\baorta (is )?(an? |the )?(\w+ )?vein\b|\bvein (called|named) the aorta|\baorta (brings?|carr\w*|returns?) (the )?(\w+ )?(blood )?back|\bpulmonary (arter\w*|veins?) (to|into|out to) the body/, "Check that. Which vessel carries blood out of the left ventricle to the body?"), W(/right ventricle (pumps? )?(the )?(blood )?(to|into|through) the (body|aorta)/, "Check that. Which side of the heart pumps blood to the body?") ],
@@ -118,6 +124,7 @@ UNITS.push({
     draw:"Sketch the heart. Label right atrium, right ventricle, left atrium, left ventricle, septum, and aorta.",
     model:"• Top: right atrium and left atrium\n• Bottom: right ventricle and left ventricle\n• The septum divides the left and right sides\n• The aorta leaves the left ventricle\n• On a diagram, the heart's right side is on the viewer's left",
     watch:[
+      W(/\bseptum (\w+ )?(divides?|separates?|splits?|is between) (the )?(top|upper|atri\w*) (and|from) (the )?(bottom|lower|ventric\w*)\b/, "Check that. The septum divides the left side from the right side. Is it between top and bottom?"),
       W(/\bventric\w* (are|is|go|goes|sits?) (on )?(the )?(top|upper)\b|\bventric\w* on (the )?(top|upper)\b|\batri(um|a)s? (are|is|go|goes|sits?) (on )?(the )?(bottom|lower)\b|\batri(um|a)s? on (the )?(bottom|lower)\b|\b(top|upper) (chambers? )?(are|is) (the )?(two )?(left and right |right and left )?ventric|\b(bottom|lower) (chambers? )?(are|is) (the )?(two )?(left and right |right and left )?atri/, "Check that. Which chambers are on top and which are on the bottom?"),
       W(/\baorta (leaves|comes? (out )?of|exits|starts at|attached to|connects to) (the )?right\b|\bright ventricle .{0,15}(into|to|through) the aorta/, "Check that. Which ventricle does the aorta leave from?"),
       W(/\bright side (of the heart )?(is )?on (the |your |my |our )?(viewer'?s? )?right\b/, "Check that. When you face a heart diagram, which side is the heart's right side on?") ],
@@ -135,6 +142,7 @@ UNITS.push({
       I("Why thick walls", [/pressure|force|strong|push|withstand/], "Why are artery walls thick and elastic?", "Slide 6: thick elastic walls to withstand ___.")
     ],
     watch:[
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,15})\barter\w* (are|is) (the )?(smallest|tiniest|thinnest)\b/, "Check that. The smallest blood vessels are capillaries. What are arteries like?"),
       W(/(?<!\b(not|never|no|unlike)\b.{0,15})\barter\w* (have|has|use|uses|contain|contains) (one way |many |lots of )?valves?\b/, "Check that. Which vessels have valves, arteries or veins?"),
       W(/(?<!not )(?<!not too )(?<!n't )\bthin (walls?|elastic)|\bwalls? (are |is )?(very )?thin\b|(?<!not )(?<!n't )(?<!not a )\blow (blood )?pressure/, "Check that. Are artery walls thin or thick, and is the pressure inside high or low?"),
       W(/\b(arter\w* (always|only) carr\w* oxygen|all arter\w* carr\w* oxygen (rich|full))/, "Check that. Do all arteries carry oxygen rich blood? Think about the pulmonary arteries."), W(/(to|toward|back to) the heart/, "Check that. Arteries carry blood away from the heart. Which vessels bring it back?", "Which way") ]},
