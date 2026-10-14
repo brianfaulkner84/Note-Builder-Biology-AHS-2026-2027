@@ -603,9 +603,9 @@ function hintFor(Q, idea){
 /* Shows the note with problem sentences marked: red and crossed out for a common
    mistake, dotted amber for a sentence that matches none of the key ideas. */
 function markedNoteHTML(text, marks, r){
-  if (!marks || !marks.length) return "";
+  marks = marks || [];
+  if (!text.trim() || (r && r.words < 3)) return "";
   const wrong = marks.some(m => m.kind === "wrong"), extra = marks.some(m => m.kind === "extra"), key = marks.some(m => m.kind === "key");
-  if (!wrong && !extra && !(r && r.wordy)) return "";
   let html = "", at = 0;
   marks.forEach(m => {
     html += esc(text.slice(at, m.start));
@@ -620,43 +620,50 @@ function markedNoteHTML(text, marks, r){
     <p class="marked-text">${html}</p>
     <ul class="legend">
       ${key ? `<li><span class="mk key">Underlined</span> = this part earns a key idea. Keep it.</li>` : ""}
-      ${extra ? `<li><span class="mk extra">Dotted</span> = extra. It does not earn a key idea, so you can cut it.</li>` : ""}
-      ${wrong ? `<li><span class="mk wrong">Red</span> = this part is not correct. Fix it or cross it out.</li>` : ""}
+      ${extra ? `<li><span class="mk extra">Dotted</span> = extra information. Does it help you remember the idea? If not, remove it. Less is more.</li>` : ""}
+      ${wrong ? `<li><span class="mk wrong">Red</span> = this part goes against the key idea. Fix it or cross it out.</li>` : ""}
+      ${!key && !extra && !wrong ? `<li>No key idea found in your words yet. Use the clues below.</li>` : ""}
     </ul>
     ${r && r.wordy ? `<p class="lean"><b>Less is more.</b> Your note has ${words} words. A strong note for this one is about ${target}. Keep the key ideas and cut the rest.</p>` : ""}
     <div class="row">
-      ${extra ? `<button class="btn" id="cutextra">Cut the extra</button>` : ""}
+      ${extra ? `<button class="btn" id="cutextra">Remove the extra</button>` : ""}
       ${wrong ? `<button class="btn" id="crossout">Cross out the red part</button>` : ""}
     </div>
   </div>`;
+}
+/* Clean up after removing words: spaces, stray punctuation, dangling "and"/"so". */
+function tidy(t){
+  t = t.replace(/\s+([.,!?;:])/g, "$1").replace(/[ \t]{2,}/g, " ").replace(/([.,!?;:])\1+/g, "$1").trim();
+  t = t.replace(/^(?:(?:and|but|so|because|also|then|plus)\b[ ,]*)+/i, "").replace(/(?:[ ,]+\b(?:and|but|so|because|also|then|plus))+([.!?]?)$/i, "$1");
+  t = t.replace(/\b(and|but|so|because)\s+(?:and|but|so|because)\b/gi, "$1").replace(/^[,.;:\s]+/, "").trim();
+  return t ? t[0].toUpperCase() + t.slice(1) : t;
 }
 /* Cut sentences marked extra, one at a time, keeping any cut that would lose a key idea. */
 function cutExtra(){
   if (listening) stopMic(true);
   const Q = q(), box = $("#note");
   const found = t => checkNote(Q, t).ideas.filter(i => i.ok).length;
-  let text = box.value, cut = 0;
-  const base = found(text);
-  const extras = checkNote(Q, text).marks.filter(m => m.kind === "extra").sort((a,b) => b.start - a.start);
-  extras.forEach(m => {
-    const trial = (text.slice(0, m.start) + text.slice(m.end)).replace(/\s+([.,!?])/g, "$1").replace(/[ \t]{2,}/g, " ").trim();
-    if (found(trial) >= base){ text = trial; cut++; }
-  });
+  const orig = box.value, base = found(orig);
+  const extras = checkNote(Q, orig).marks.filter(m => m.kind === "extra").sort((a,b) => b.start - a.start);
+  const removed = [];
+  const build = list => { let t = orig; list.slice().sort((a,b) => b.start - a.start).forEach(m => { t = t.slice(0, m.start) + " " + t.slice(m.end); }); return t; };
+  extras.forEach(m => { if (found(tidy(build(removed.concat([m])))) >= base) removed.push(m); });
+  let text = tidy(build(removed)), cut = removed.length;
   box.value = text; S.notes[Q.n] = text; S.lastText[Q.n] = text.trim(); writeNow();
   const r = checkNote(Q, text);
   if (r.done) S.status[Q.n] = "done";
   lastResult = {n:Q.n, r};
   app.querySelector(`.dot[data-i="${idx}"]`).className = `dot ${S.status[Q.n] || ""} here`;
   paintFeedback(r, false);
-  const msg = cut ? `Cut ${cut === 1 ? "1 extra sentence" : cut + " extra sentences"}. Less is more: your note is now ${r.words} words.` : "Nothing was cut. Those sentences hold part of a key idea.";
+  const msg = cut ? `Removed ${cut === 1 ? "1 extra part" : cut + " extra parts"}. Less is more: your note is now ${r.words} words.` : "Nothing was removed. Those words hold part of a key idea.";
   $("#fb").insertAdjacentHTML("afterbegin", `<p class="tip lead-tip">${esc(msg)}</p>`);
   speak(msg);
 }
 function crossOut(marks){
   if (listening) stopMic(true);
   const box = $("#note"); let text = box.value;
-  marks.filter(m => m.kind === "wrong").sort((a,b) => b.start - a.start).forEach(m => { text = text.slice(0, m.start) + text.slice(m.end); });
-  text = text.replace(/\s+([.,!?])/g, "$1").replace(/[ \t]{2,}/g, " ").trim();
+  marks.filter(m => m.kind === "wrong").sort((a,b) => b.start - a.start).forEach(m => { text = text.slice(0, m.start) + " " + text.slice(m.end); });
+  text = tidy(text);
   box.value = text; S.notes[q().n] = text; writeNow();
   $("#fb").innerHTML = `<div class="fb more"><h3>Crossed out.</h3><p>Now add the correct idea, then check your note again.</p></div>`;
   speak("Crossed out. Now add the correct idea, then check your note again.");

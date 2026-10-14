@@ -190,3 +190,11 @@ Once the checker finds every key idea in a student's own note, a **Clean up the 
 ## Speech on Android phones
 
 Android Chrome resends earlier words while you talk, which caused repeated phrases. On Android the mic now listens one phrase at a time and restarts on its own until Stop is tapped. Chromebooks and computers are unchanged.
+
+## How notes are marked after each Check
+
+Marking works on phrases, not sentences, because spoken notes often have no periods. After every check the student sees their note with:
+
+- **Solid green underline:** words that earn a key idea.
+- **Gray dotted underline:** extra information that earns no key idea and is mostly off-topic (words not in the prompt, clue, or sample note) or filler ("so basically", "I think", "in class today"). **Remove the extra** cuts it, keeping anything a key idea needs.
+- **Red, crossed out:** a phrase that matches a known mistake for that prompt (a watch in the unit file). **Cross out the red part** removes it. Red only catches mistakes listed in the unit file; add watches to catch more.
