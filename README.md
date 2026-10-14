@@ -8,9 +8,10 @@ A guided note-taking tool for students with an ISP printed-notes accommodation. 
 
 ## Links
 
-- Students (menu): `https://speechtotextnotebuilder.netlify.app/`
-- Students, straight to one quiz: add the quiz code after `#`, for example `https://speechtotextnotebuilder.netlify.app/#u2q2`
-- Teacher self-test: `https://speechtotextnotebuilder.netlify.app/test.html`
+- Students (menu): `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/` (the link given to students)
+- Students, straight to one quiz: add the quiz code after `#`, for example `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/#u2q2`
+- Teacher self-test: `https://brianfaulkner84.github.io/Note-Builder-Biology-AHS-2026-2027/test.html`
+- Backup copy on Netlify (same code, updates on every push): `https://speechtotextnotebuilder.netlify.app/`
 
 ## Quizzes and tests on the menu
 
