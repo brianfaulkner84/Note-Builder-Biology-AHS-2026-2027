@@ -1,0 +1,181 @@
+{
+ "2": [
+  {
+   "re": "\\bliver (releases|gives|puts|sends|dumps|adds|makes) (out )?(stored |more |extra )?(sugar|glucose)\\b(?:(?!drop|low|fall|down).){0,25}\\b(too high|high|goes up|rises|increases|is up)\\b",
+   "say": "Check that. When does the liver release stored sugar, when blood sugar is high or low?",
+   "hit": [
+    "the liver releases sugar when blood sugar is too high",
+    "liver releases stored glucose when your blood sugar goes up"
+   ],
+   "miss": [
+    "Sweating cools the body when it is too hot. Shivering warms the body when it is too cold. The liver releases stored sugar when blood glucose drops.",
+    "when blood sugar is low the liver releases stored sugar",
+    "the liver releases glucose when blood sugar drops and insulin lowers it when it is high"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\bvirus\\w* (is|are) (also )?(alive|living|a living thing|living things)\\b",
+   "say": "Check that. Viruses are not alive. Which of the 8 can a virus not do on its own?",
+   "hit": [
+    "made of cells grow reproduce viruses are living things",
+    "viruses are alive because they reproduce"
+   ],
+   "miss": [
+    "Made of cells, has a universal genetic code (DNA), grows and develops, reproduces, responds to the environment, maintains homeostasis, uses energy, and evolves as a group.",
+    "viruses are not alive because they are not made of cells",
+    "cells dna grow reproduce respond homeostasis energy evolve so a virus is not living"
+   ]
+  },
+  {
+   "re": "\\b(mules?|seeds?) (are |is )?(not|n't|aren't|arent|isn't|isnt) (alive|living)\\b|\\b(mules?|seeds?) (are |is )?(dead|nonliving|non living)\\b",
+   "say": "Check that. Mules and seeds are alive. Reproduction is a trait of the species, not every single one.",
+   "hit": [
+    "a mule is not alive because it cannot reproduce",
+    "seeds are nonliving until they grow"
+   ],
+   "miss": [
+    "Made of cells, has DNA, grows and develops, reproduces, responds, maintains homeostasis, uses energy, and evolves.",
+    "a mule is alive even though it can't reproduce",
+    "seeds are alive they are just dormant"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\blungs? (pump|pumps|pumping|carry|carries|deliver|delivers)\\b(?:(?!heart).){0,20}\\b(blood|oxygen)\\b(?:(?!lungs?).){0,20}\\b(to )?(the )?(cells|body|organs|tissues)\\b|\\bheart (brings|breathes|takes) in (the )?(oxygen|air)\\b",
+   "say": "Check that. Which organ brings oxygen in, and which pumps blood to the cells?",
+   "hit": [
+    "the lungs pump blood to the body",
+    "the heart breathes in oxygen and the blood carries it"
+   ],
+   "miss": [
+    "The respiratory system brings in oxygen, and the circulatory system carries it to the cells.",
+    "the lungs bring in oxygen and the heart pumps blood to the cells",
+    "the nervous system senses changes and signals muscles to respond"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(examples?|like|such as)\\b(?:(?!not).){0,15}\\b(meat|eggs?|chicken|steak|beef|fish|butter|oil)\\b",
+   "say": "Check that. Is that food rich in carbohydrates, or in a different nutrient?",
+   "hit": [
+    "carbohydrates give energy monomer is glucose examples are meat and eggs",
+    "carbs are energy examples like butter and oil"
+   ],
+   "miss": [
+    "Carbohydrates are the main source of energy. Their monomer is a simple sugar (monosaccharide), like glucose. Examples: bread, pasta, potatoes, fruit.",
+    "main energy source monomer glucose examples bread rice pasta",
+    "carbs are energy their monomer is a monosaccharide like glucose foods like potatoes and fruit"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "(?<!protein )(?<!proteins )\\b(digestion|digesting|digest) (starts|begins|start|begin|first happens) in the stomach\\b",
+   "say": "Check that. Where does digestion begin, before food reaches the stomach?",
+   "hit": [
+    "digestion starts in the stomach where pepsin breaks down protein",
+    "mouth chews food then digestion begins in the stomach"
+   ],
+   "miss": [
+    "Mouth: teeth chew food and amylase in saliva starts digesting starch. Stomach: churns food and pepsin starts digesting protein. Small intestine: absorbs most nutrients into the blood.",
+    "digestion starts in the mouth the stomach churns food and the small intestine absorbs nutrients",
+    "protein digestion starts in the stomach with pepsin",
+    "digestion does not start in the stomach it starts in the mouth"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\bbile (is )?(made|produced|created) (by|in) the gall|\\bgall ?bladder (makes|produces|creates) (the )?bile\\b",
+   "say": "Check that. The gallbladder stores bile. Which organ makes it?",
+   "hit": [
+    "the gallbladder makes bile that breaks up fat",
+    "bile is made in the gall bladder"
+   ],
+   "miss": [
+    "The liver makes bile, which breaks fat into small droplets. The pancreas makes digestive enzymes and a base that neutralizes stomach acid.",
+    "liver makes bile and the gallbladder stores it",
+    "the pancreas makes enzymes and the liver produces bile"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bvill\\w*(?:(?!\\bnot\\b).){0,30}\\b(push|pushes|pushing|move|moves|moving|squeeze|squeezes) (the )?(food|waste)\\b",
+   "say": "Check that. Is the main job of villi to move food, or to absorb nutrients?",
+   "hit": [
+    "villi are tiny fingers that push the food through the intestine",
+    "the villi move food along"
+   ],
+   "miss": [
+    "Villi are tiny, finger-like projections lining the small intestine. They greatly increase the surface area, so more nutrients are absorbed into the blood.",
+    "villi are finger like bumps that increase surface area to absorb nutrients",
+    "villi do not move food they absorb nutrients"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bright atri\\w*\\b(?:(?!left).){0,40}\\b(from the lungs|oxygen rich|oxygenated)\\b",
+   "say": "Check that. Which atrium receives oxygen-rich blood from the lungs?",
+   "hit": [
+    "the right atrium gets oxygen rich blood from the lungs",
+    "the heart has four chambers and the right atrium receives oxygenated blood"
+   ],
+   "miss": [
+    "The heart has four chambers: two atria on top that receive blood and two ventricles on the bottom that pump blood out. The left atrium receives oxygen-rich blood from the lungs.",
+    "right atrium gets oxygen poor blood from the body and the left atrium gets oxygen rich blood from the lungs",
+    "four chambers the left atrium receives blood from the lungs"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )(?<!not the )(?<!not into the )(?<!not to the )\\b(esophag\\w*|stomach)\\b",
+   "say": "Check that. Air goes down the trachea. Which tube carries food instead?",
+   "hit": [
+    "nose pharynx esophagus bronchi alveoli",
+    "air goes from the mouth to the stomach then the lungs"
+   ],
+   "miss": [
+    "Nose, pharynx, larynx, trachea, bronchi, bronchioles, alveoli.",
+    "air goes in the nose through the pharynx and larynx down the trachea to the bronchi bronchioles and alveoli",
+    "nose pharynx larynx trachea not the esophagus bronchi bronchioles alveoli"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\bexhal\\w*(?:(?!inhal).){0,30}\\b(rib\\w*( cage)? (rises|moves up|goes up|expands|moves out)|chest (gets |becomes )?(bigger|larger|expands))\\b",
+   "say": "Check that. When you exhale, does the chest get bigger or smaller?",
+   "hit": [
+    "when you exhale the rib cage rises and air goes out",
+    "when you exhale your chest gets bigger"
+   ],
+   "miss": [
+    "When you inhale, the diaphragm contracts and moves down and the rib cage rises, making the chest bigger. When you exhale, the diaphragm and rib cage relax, making the chest smaller.",
+    "exhale the ribs relax and the chest gets smaller",
+    "inhaling the rib cage rises and the chest gets bigger"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "\\b(x|ex) ?axis (is|shows|has|gets|holds) (the )?dependent\\b|\\b(y|why) ?axis (is|shows|has|gets|holds) (the )?independent\\b",
+   "say": "Check that. The independent variable goes on the x-axis and the dependent on the y-axis.",
+   "hit": [
+    "read the title then the x axis is the dependent variable",
+    "the y axis shows the independent variable"
+   ],
+   "miss": [
+    "Read the title and the axis labels and units first. The independent variable goes on the x-axis and the dependent variable goes on the y-axis. Then look for the trend.",
+    "the independent variable goes on the x axis and the dependent goes on the y axis",
+    "the y axis shows the dependent variable then look for the trend"
+   ]
+  }
+ ]
+}

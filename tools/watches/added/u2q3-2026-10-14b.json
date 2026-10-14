@@ -1,0 +1,177 @@
+{
+  "1": [
+    {
+      "re": "\\bstor\\w* (?:\\w+ ){0,2}(?:energy )?in (?:the |their |its |our )?(?:nucleus|new ?clear|dna|blood|cell membrane|cell wall)\\b",
+      "say": "Check that. Living things store energy in the bonds of molecules. Which molecules?",
+      "hit": [
+        "Energy is the ability to do work. Living things store energy in the nucleus.",
+        "energy is the ability to do work and cells store it in their DNA"
+      ],
+      "miss": [
+        "Energy is the ability to do work. Living things store energy in the chemical bonds of molecules, like the sugar in food.",
+        "the ability to do work, stored in chemical bonds of food like glucose",
+        "energy is stored in molecules like sugar not in the nucleus"
+      ]
+    }
+  ],
+  "2": [
+    {
+      "re": "\\bglucose is (?:a |an )?(?:polysaccharide|disaccharide|complex (?:carb\\w*|sugar)|starch|polymer)\\b",
+      "say": "Check that. Is glucose one sugar or many sugars joined together?",
+      "hit": [
+        "The monomer is a simple sugar. Glucose is a polysaccharide.",
+        "monosaccharide example glucose is a complex carbohydrate"
+      ],
+      "miss": [
+        "The monomer of carbohydrates is a simple sugar (monosaccharide). Example: glucose.",
+        "the building block is a monosaccharide like glucose; starch is a polysaccharide",
+        "a simple sugar such as glucose, and starch is a glucose polymer"
+      ]
+    }
+  ],
+  "4": [
+    {
+      "re": "\\bdivid\\w*",
+      "say": "Check that. To find the Calories, do you multiply or divide?",
+      "hit": [
+        "Carbs and proteins give 4 Calories per gram and fats give 9. Divide the grams by the Calories per gram.",
+        "fat is 9 per gram so you divide 90 by 10"
+      ],
+      "miss": [
+        "Carbohydrates and proteins give about 4 Calories per gram. Fats give about 9 Calories per gram. Multiply grams by Calories per gram. 10 grams of fat x 9 = 90 Calories.",
+        "carbs 4 protein 4 fat 9, multiply grams times calories per gram, 10 times 9 is 90",
+        "times the grams by the number per gram so fat 10 g times 9 equals 90 calories"
+      ]
+    },
+    {
+      "re": "\\b(?:19|nineteen)\\b",
+      "say": "Check that. Do you add or multiply the grams and the Calories per gram?",
+      "unless": "The practice problem",
+      "hit": [
+        "carbs and protein 4 per gram fat 9 per gram so 10 grams of fat plus 9 equals 19 calories",
+        "Fat is 9 calories per gram so 10 grams is nineteen calories"
+      ],
+      "miss": [
+        "Carbohydrates and proteins give about 4 Calories per gram. Fats give about 9 Calories per gram. Multiply grams by Calories per gram. 10 grams of fat x 9 = 90 Calories.",
+        "carbs and protein are 4, fat is 9, 10 x 9 = 90",
+        "ninety calories in ten grams of fat because fat is nine per gram"
+      ]
+    }
+  ],
+  "7": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )(?<!\\bisnt )\\b(?:makes?|making|creates?|creating|produces?|producing) (?:more |new )?energy\\b",
+      "say": "Check that. ATP does not make energy. Which cell jobs does ATP power?",
+      "hit": [
+        "ATP makes energy for the cell and powers active transport and muscles.",
+        "atp creates energy so cells can move and build proteins"
+      ],
+      "miss": [
+        "ATP powers active transport (protein pumps), movement (muscles, cilia, and flagella), building proteins and other molecules, and making light, like a firefly's glow.",
+        "atp powers pumps, muscle movement, cilia and flagella, and building proteins",
+        "it powers active transport and movement; it doesn't make energy, it carries it"
+      ]
+    }
+  ],
+  "8": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )(?<!\\bisnt )\\b(?:toxic|poison\\w*|dangerous|harmful)\\b",
+      "say": "Check that. ATP is not harmful. Which one stores more energy, glucose or ATP?",
+      "hit": [
+        "Cells keep only a little ATP because too much ATP is toxic.",
+        "too much atp would be dangerous for the cell so they only keep a little"
+      ],
+      "miss": [
+        "Glucose stores much more energy than ATP, more than 90 times as much. ATP is better for moving energy quickly. So cells store energy in glucose and remake ATP from ADP when they need it.",
+        "glucose holds more energy, ATP is good for spending energy fast, so cells remake ATP from ADP",
+        "ATP isn't harmful, it's just bad for saving energy, glucose stores 90 times more"
+      ]
+    },
+    {
+      "re": "\\bgone forever\\b|\\b(?:can't|cant|cannot|can not) be (?:remade|reused|recycled|made again|rebuilt)\\b|\\b(?:can't|cant|cannot|can not) (?:remake|reuse|recycle|rebuild) (?:it|atp|the atp)\\b",
+      "say": "Check that. What happens to ADP after ATP is used? Can the cell remake ATP?",
+      "hit": [
+        "Glucose stores more energy. Once ATP is used it is gone forever.",
+        "atp is good for moving energy quickly but it can't be reused so cells keep a little"
+      ],
+      "miss": [
+        "Glucose stores much more energy than ATP. ATP is better for moving energy quickly. So cells store energy in glucose and remake ATP from ADP when they need it.",
+        "cells recycle ADP back into ATP when they need it, and glucose stores 90 times more energy",
+        "glucose is the savings account and atp is spending money that gets remade from adp"
+      ]
+    }
+  ],
+  "10": [
+    {
+      "re": "\\bnad\\b(?! ?h\\b)(?: plus)? (?:\\w+ ){0,4}becomes? (?:an? )?nadp ?h\\b|\\bnadp\\b(?! ?h\\b)(?: plus)? (?:\\w+ ){0,4}becomes? (?:an? )?nad ?h\\b",
+      "say": "Check that. Match each carrier to its loaded form. NAD+ becomes what, and NADP+ becomes what?",
+      "hit": [
+        "NAD+ picks up electrons and becomes NADPH.",
+        "nadp plus becomes nadh when it is loaded"
+      ],
+      "miss": [
+        "NAD+ picks up electrons and becomes NADH. It is used in cellular respiration. NADP+ picks up electrons and becomes NADPH. It is used in photosynthesis.",
+        "nad becomes nadh for respiration and nadp becomes nadph for photosynthesis",
+        "NADP+ becomes NADPH in photosynthesis; NAD+ becomes NADH in cellular respiration"
+      ]
+    },
+    {
+      "re": "\\b(?:are|is) (?:exactly |basically |just )?the same (?:thing|molecule|carrier)\\b(?! (?:but|except))",
+      "say": "Check that. They both carry electrons, but they are not the same. Which process uses each one?",
+      "hit": [
+        "NAD+ and NADP+ are the same thing, they both carry electrons.",
+        "they are basically the same molecule"
+      ],
+      "miss": [
+        "NAD+ picks up electrons and becomes NADH. It is used in cellular respiration. NADP+ picks up electrons and becomes NADPH. It is used in photosynthesis.",
+        "they do the same job carrying electrons but nad is for respiration and nadp is for photosynthesis",
+        "they are not the same thing, nadh is respiration and nadph is photosynthesis"
+      ]
+    }
+  ],
+  "16": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )\\babsorbs? (?:all|every|each) (?:of )?(?:the )?(?:colou?rs?|light)\\b",
+      "say": "Check that. If chlorophyll absorbed every color, what color would leaves look?",
+      "hit": [
+        "Chlorophyll absorbs all colors so leaves look green.",
+        "chlorophyll absorbs all the light and reflects green"
+      ],
+      "miss": [
+        "Chlorophyll absorbs blue-violet and red light well. It does not absorb green; it reflects green light back to our eyes, so leaves look green.",
+        "it absorbs red and blue but reflects green so we see green",
+        "chlorophyll doesn't absorb all colors, it bounces green back"
+      ]
+    }
+  ],
+  "18": [
+    {
+      "re": "\\bstroma (?:is|are) (?:the |a |an )?(?:\\w+ )?membranes?\\b|\\bstroma (?:is|are) (?:where )?(?:the )?chloro ?phyl",
+      "say": "Check that. The stroma is the fluid. Where is the chlorophyll?",
+      "hit": [
+        "Thylakoids are sacs, a stack is a granum, and the stroma is the outer membrane.",
+        "the stroma is where the chlorophyll is and grana are stacks"
+      ],
+      "miss": [
+        "Thylakoids are flattened sacs of membrane. A stack of thylakoids is a granum (plural: grana). The stroma is the fluid outside the thylakoids. Chlorophyll is in the thylakoid membranes.",
+        "stroma is the liquid around the grana and chlorophyll is in the thylakoid membrane",
+        "the stroma is the fluid, not a membrane; chlorophyll is in the thylakoids"
+      ]
+    }
+  ],
+  "24": [
+    {
+      "re": "\\b(?:krebs|kreb|crebs|citric acid|electron transport|etc|e t c)\\w*(?: cycle| chain)? (?:is |comes |happens |goes )?first\\b|\\bfirst (?:is |comes |stage is |step is )?(?:the )?(?:krebs|kreb|crebs|citric|electron transport)",
+      "say": "Check that. Which stage comes first, in the cytoplasm?",
+      "hit": [
+        "first is the electron transport chain in the mitochondria then the krebs cycle",
+        "The ETC comes first in the mitochondria."
+      ],
+      "miss": [
+        "1. Glycolysis, in the cytoplasm. 2. The Krebs cycle, in the mitochondria. 3. The electron transport chain, in the mitochondria.",
+        "glycolysis is first in the cytoplasm, then krebs, then the electron transport chain in the mitochondria",
+        "the first stage is glycolysis, the krebs cycle is second and the etc is last"
+      ]
+    }
+  ]
+}

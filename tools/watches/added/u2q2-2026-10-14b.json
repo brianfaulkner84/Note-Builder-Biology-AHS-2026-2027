@@ -1,0 +1,177 @@
+{
+  "1": [
+    {
+      "re": "\\b(?:is|called|like|acts as) (?:the |a )?cell wall\\b",
+      "say": "Check that. The cell membrane and the cell wall are different parts. What does the membrane control?",
+      "hit": [
+        "The cell membrane is the cell wall and it controls what goes in and out.",
+        "the membrane is called the cell wall it lets things in and out"
+      ],
+      "miss": [
+        "The cell membrane regulates what enters and leaves the cell.",
+        "the membrane controls what goes in and out of the cell",
+        "it is not the cell wall, it controls what comes in and leaves"
+      ]
+    },
+    {
+      "re": "\\bcontrol (?:center|centre)\\b|\\bbrain of the cell\\b|\\bcontrols? (?:all |everything |the whole )?(?:of )?(?:the )?cell'?s? (?:activities|actions|functions|jobs)\\b|\\bcontrols? everything (?:the cell does|in the cell)\\b",
+      "say": "Check that. The nucleus runs the cell. What does the membrane control at the border?",
+      "hit": [
+        "The cell membrane is the control center of the cell.",
+        "the membrane controls all the cell's activities",
+        "it is the brain of the cell"
+      ],
+      "miss": [
+        "The cell membrane controls what enters and leaves the cell.",
+        "it decides what comes in and what goes out like a gatekeeper",
+        "the membrane regulates what gets into and out of the cell"
+      ]
+    }
+  ],
+  "3": [
+    {
+      "re": "\\bheads? (?:\\w+ )?(?:hide|hides|hiding|stay away|stays away|avoid|avoids|are scared of|run away) (?:\\w+ ){0,2}water\\b",
+      "say": "Check that. The heads love water. Which part hides from the water?",
+      "hit": [
+        "the heads hide from the water so they go in the middle",
+        "The heads avoid the water and the tails face out."
+      ],
+      "miss": [
+        "There is water inside and outside the cell. The heads face the water and the tails hide in the middle away from the water.",
+        "water on both sides so the heads point to the water and the tails hide from the water",
+        "the tails avoid water so they stay in the middle and the heads touch the water"
+      ]
+    }
+  ],
+  "6": [
+    {
+      "re": "(?<!\\bnot )\\bnothing (?:can |could |will )?(?:get|gets|pass|passes|go|goes|come|comes|enter|enters) (?:in|through|across|out)\\b",
+      "say": "Check that. Does nothing get through, or only some things?",
+      "hit": [
+        "Selectively permeable means nothing can get through, like a brick.",
+        "it means nothing goes in or out example a jar"
+      ],
+      "miss": [
+        "Selectively permeable means the membrane lets some things pass through but blocks others. Example: a colander lets water through but keeps the pasta in.",
+        "some things can get through but not others like a screen door",
+        "not everything gets through, like a strainer"
+      ]
+    }
+  ],
+  "7": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )(?<!\\bno )\\b(?:need|needs|use|uses|require|requires) (?:\\w+ )?(?:energy|atp) to (?:get|go|move|cross|pass)\\b",
+      "say": "Check that. What they need is a way through, not energy. What helps them cross?",
+      "hit": [
+        "They need energy to get across because the tails are oily.",
+        "charged particles need ATP to cross the middle"
+      ],
+      "miss": [
+        "The middle of the bilayer is made of hydrophobic tails. It pushes charged and polar molecules away, so they need a transport protein to get across.",
+        "they need a protein channel to cross, not energy",
+        "they don't need energy to cross, just a carrier protein because the oily middle blocks them"
+      ]
+    },
+    {
+      "re": "\\bheads? (?:\\w+ )?(?:block|blocks|push|pushes|repel|repels|stop|stops|keep|keeps)\\b",
+      "say": "Check that. The heads love water. Which part in the middle blocks charged particles?",
+      "hit": [
+        "the heads block the charged particles so they need a protein",
+        "The phosphate heads push them away so they need help."
+      ],
+      "miss": [
+        "The middle is the hydrophobic tails. It pushes charged and polar molecules away so they need a transport protein.",
+        "the heads are polar but the oily tails in the middle block them so they need a channel",
+        "the nonpolar tails repel them and a carrier protein helps them through"
+      ]
+    }
+  ],
+  "9": [
+    {
+      "re": "\\boxygen (?:\\w+ ){0,4}(?<!\\bnot )(?<!\\bno )(?:active transport|pumps?|endocytosis|osmosis)\\b",
+      "say": "Check that. Oxygen gets in the same way you just defined. Which process is it?",
+      "hit": [
+        "Diffusion is high to low concentration. Oxygen gets in by active transport.",
+        "particles move from high concentration to low concentration and oxygen gets into cells by osmosis"
+      ],
+      "miss": [
+        "Diffusion is when particles move from high concentration to low concentration. Concentration decides the direction. It needs no energy. Oxygen gets into cells by diffusion.",
+        "oxygen diffuses into the cell from high to low concentration",
+        "oxygen diffuses not osmosis, it goes high to low concentration"
+      ]
+    }
+  ],
+  "10": [
+    {
+      "re": "(?<!\\bnot )(?<!\\bno )(?<!n't )\\b(?:more|higher|greater) (?:concentration |molecules |particles )?on one side\\b|\\bone side (?:has|is) (?:more|higher)\\b",
+      "say": "Check that. At equilibrium, is one side more crowded than the other?",
+      "hit": [
+        "At equilibrium there are more molecules on one side but they keep moving back and forth.",
+        "one side has more concentration and the molecules keep moving"
+      ],
+      "miss": [
+        "At equilibrium the concentration is the same on both sides. The molecules do not stop. They keep moving back and forth across the membrane, the same number each way.",
+        "the concentration is equal so no side has more and they still move both ways",
+        "it is not more on one side, it is balanced and they keep moving back and forth"
+      ]
+    }
+  ],
+  "11": [
+    {
+      "re": "\\b(?:uses?|using|through|by|with|in) (?:a |the )?(?:protein )?pumps?\\b",
+      "say": "Check that. Pumps are active transport. What kind of proteins does facilitated diffusion use?",
+      "hit": [
+        "Facilitated diffusion uses protein pumps to move glucose from high to low with no energy.",
+        "molecules go through a pump from high to low so it is passive"
+      ],
+      "miss": [
+        "Molecules that cannot get through on their own cross through channel or carrier proteins. It still goes high to low, so it uses no energy. It is passive.",
+        "it uses channel proteins and carrier proteins, not pumps, and it is passive",
+        "big molecules like glucose go through a carrier protein high to low with no ATP"
+      ]
+    }
+  ],
+  "12": [
+    {
+      "re": "\\bfrom (?:the )?(?:side |area |place )?(?:with |that has |where there is )?(?:more|higher|high|most|lots of|a lot of) (?:solute|salt|sugar|stuff)\\b",
+      "say": "Check that. Water moves toward more solute. Which side does it leave?",
+      "hit": [
+        "Osmosis is the diffusion of water across a membrane. Water moves from high solute concentration to low.",
+        "water moves from the side with more salt to the other side through aquaporins"
+      ],
+      "miss": [
+        "Osmosis is the diffusion of water across a selectively permeable membrane. Water moves from where the water-to-solute ratio is high to where it is low, so it moves toward the side with more solute. Aquaporins are water channel proteins that let water in.",
+        "water diffuses across the membrane toward more solute through aquaporins",
+        "water goes from less solute to more solute through water channels"
+      ]
+    },
+    {
+      "re": "\\baqua ?por\\w* (?:\\w+ )?pump",
+      "say": "Check that. Aquaporins are channels. Does osmosis need a pump?",
+      "hit": [
+        "Osmosis is water moving across the membrane toward more solute. Aquaporins are pumps that push water in.",
+        "water diffuses across the membrane and aquaporin pumps water into the cell"
+      ],
+      "miss": [
+        "Aquaporins are water channel proteins that let water in.",
+        "aquaporins are channels, not pumps, and water moves toward more solute",
+        "aquaporins are not pumps, they are tunnels for water"
+      ]
+    }
+  ],
+  "15": [
+    {
+      "re": "\\b(?:pumps?|it) (?:is|are) (?:a |an )?(?:type of |kind of |form of )?(?:passive|diffusion)\\b",
+      "say": "Check that. A pump costs energy. Is that active or passive?",
+      "hit": [
+        "A protein pump is passive and moves molecules from low to high using ATP.",
+        "pumps are a type of diffusion that moves low to high with energy"
+      ],
+      "miss": [
+        "A protein pump moves molecules from low concentration to high concentration, against the flow. It needs energy (ATP) to do that.",
+        "a pump is active, it goes low to high and needs ATP",
+        "a pump is not passive because it moves against the gradient using energy"
+      ]
+    }
+  ]
+}

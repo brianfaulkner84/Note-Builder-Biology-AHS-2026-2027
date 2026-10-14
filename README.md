@@ -201,7 +201,7 @@ Marking works on phrases, not sentences, because spoken notes often have no peri
 
 ## Common mistakes (watches)
 
-Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 517 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
+Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 622 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
 
 To add more, put a new batch in `tools/watches/<quiz id>.json` with examples that must be flagged (`hit`) and correct notes that must not be (`miss`), then run the two commands below and move the file into `tools/watches/added/` so it is not inserted twice:
 
@@ -209,3 +209,7 @@ To add more, put a new batch in `tools/watches/<quiz id>.json` with examples tha
 node tools/watches/validate.js u2q2   # checks the examples and that the sample note is never flagged
 node tools/watches/insert.js u2q2     # copies them into content/u2q2/unit.js (run once per new batch)
 ```
+
+## Bullet notes
+
+Notes are written as bullet points, one idea per bullet. The first letter typed in an empty box starts a bullet ("• "), Enter starts the next bullet, and each Speak session adds a new bullet. Sample notes (and Use the clean version) are bullets too. Remove the extra and Cross out tidy each bullet and drop any that end up empty. Read aloud skips the bullet symbols.

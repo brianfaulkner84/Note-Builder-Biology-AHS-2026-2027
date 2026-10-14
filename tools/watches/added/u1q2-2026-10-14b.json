@@ -1,0 +1,156 @@
+{
+ "4": [
+  {
+   "re": "(?<!\\b(not|doesn't|doesnt|don't|dont|never)\\b.{0,6})\\b(makes?|making) (you|people|someone|us|me) (feel )?(nervous|anxious|scared|worried|afraid)\\b",
+   "say": "Check that. Nervous tissue is not about feeling nervous. What does it carry?",
+   "hit": [
+    "Nervous tissue makes you nervous when you are scared.",
+    "nervous tissue is what makes people feel anxious"
+   ],
+   "miss": [
+    "Nervous tissue transmits nerve impulses (messages) throughout the body.",
+    "Nervous tissue sends messages through the body, like from your brain to your hand.",
+    "It does not make you nervous; it carries nerve impulses."
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(heart|heartbeat|heart beat|heart muscle|stomach|intestines?)s? (is|are) (a )?voluntary\\b|(?<!\\b(not|can't|cant|cannot|don't|dont|doesn't|doesnt|never|unable)\\b.{0,15})\\b(control|choose|decide) (when )?(your |the |our )?(heart ?beats?|heart)\\b",
+   "say": "Check that. Can you choose when your heart beats? Heart muscle is involuntary.",
+   "hit": [
+    "Muscle tissue makes movement. Your heart is voluntary.",
+    "You control your heartbeat with muscle tissue.",
+    "you choose when your heart beats"
+   ],
+   "miss": [
+    "Muscle tissue makes movement possible, both voluntary and involuntary.",
+    "Some is voluntary like arm muscles and some is involuntary like the heart.",
+    "You cannot control your heartbeat, it is involuntary.",
+    "The heart muscle is involuntary and the leg muscles are voluntary."
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!\\b(not|never|doesn't|doesnt|don't|dont|without)\\b.{0,15})\\b(match\\w*|the same as|changes? with) (the )?(outside|external|environment|surroundings|weather)\\b",
+   "say": "Check that. Do internal conditions match the outside, or stay constant when the outside changes?",
+   "hit": [
+    "Homeostasis is when your body temperature matches the outside.",
+    "the body changes with the environment"
+   ],
+   "miss": [
+    "Homeostasis is the relatively constant internal conditions that organisms maintain, even when things change around them.",
+    "The inside stays constant and does not match the outside.",
+    "Homeostasis keeps the inside steady even when the environment changes.",
+    "even when the weather changes the inside stays about the same"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!positive.{0,40})\\b(childbirth|child birth|giving birth|labor|labour|contractions|blood clot\\w*|clotting)\\b(?!.{0,40}positive)",
+   "say": "Check that. That is an example of positive feedback. Negative feedback brings conditions back to normal.",
+   "hit": [
+    "Negative feedback example: childbirth contractions get stronger.",
+    "an example of negative feedback is blood clotting"
+   ],
+   "miss": [
+    "Feedback inhibition is when a change causes a response that pushes conditions back toward normal. Example: a thermostat turns the furnace on when the room gets cold.",
+    "Childbirth is an example of positive feedback, not negative feedback.",
+    "Negative feedback is like a thermostat; positive feedback is like childbirth.",
+    "It pushes things back to normal, like shivering when you are cold."
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\balveol\\w* (is|are) (a |an |the )?(muscles?|bones?|blood vessels?|capillar(y|ies)|arter(y|ies)|veins?)\\b",
+   "say": "Check that. An alveolus is a tiny air sac. The blood vessels around it are capillaries.",
+   "hit": [
+    "An alveolus is a blood vessel in the lungs where gas exchange happens.",
+    "alveoli are capillaries in the lungs"
+   ],
+   "miss": [
+    "An alveolus is a tiny air sac in the lungs where gas exchange happens.",
+    "Alveoli are tiny air sacs surrounded by capillaries.",
+    "The alveoli are where oxygen moves into the capillaries.",
+    "Alveoli are not blood vessels, they are air sacs."
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bair (goes |moves |travels |passes |flows )?(down |through |into |to )(the )?(esophagus|food ?pipe)\\b|\\b(larynx|larinx|voice ?box|trachea|wind ?pipe) (then |to |into |and then )(the )?(esophagus|food ?pipe)\\b",
+   "say": "Check that. The esophagus carries food. Which tube does air go down?",
+   "hit": [
+    "Air goes through the nose, pharynx, larynx then esophagus.",
+    "the air goes down the esophagus to the lungs"
+   ],
+   "miss": [
+    "Air goes through the nose (nasal cavity), pharynx, larynx, trachea, bronchi, bronchioles, and into the alveoli in the lungs.",
+    "The pharynx leads to both the trachea and the esophagus, but air goes to the trachea.",
+    "Air goes through the nose, pharynx, larynx, trachea, bronchi, and alveoli. Food goes down the esophagus."
+   ]
+  },
+  {
+   "re": "\\bdiaphragm\\w* (is |sits |lies )?(above|on top of|over) (the )?lungs?\\b",
+   "say": "Check that. Is the diaphragm above or below the lungs?",
+   "hit": [
+    "The diaphragm is above the lungs.",
+    "the diaphragm sits on top of the lungs"
+   ],
+   "miss": [
+    "The diaphragm is the muscle under the lungs.",
+    "The diaphragm is a muscle below the lungs.",
+    "The lungs are above the diaphragm."
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "(?<!\\b(not|never|don't|dont|doesn't|doesnt|no)\\b.{0,10})\\b(exhal\\w*|breathe out|breathes out|breathed out|breathing out) (the )?(oxygen|o2|o 2)\\b|(?<!\\b(not|never|don't|dont|doesn't|doesnt|no)\\b.{0,10})\\b(inhal\\w*|breathe in|breathes in|breathing in) (the )?(carbon dioxide|co2|co 2)\\b",
+   "say": "Check that. Which gas do you breathe in, and which do you breathe out?",
+   "hit": [
+    "We breathe out oxygen and breathe in carbon dioxide.",
+    "carbon dioxide goes into the alveoli and you exhale oxygen"
+   ],
+   "miss": [
+    "Gas exchange happens between the alveoli and the capillaries. Oxygen moves from the alveoli into the blood. Carbon dioxide moves from the blood into the alveoli to be breathed out.",
+    "We inhale oxygen and exhale carbon dioxide.",
+    "You do not breathe out oxygen, you breathe out carbon dioxide."
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\binhal\\w* (the |your )?(chest|lungs?|chest cavity|rib cage) (gets?|becomes?|goes) smaller\\b|\\bexhal\\w* (the |your )?(chest|lungs?|chest cavity|rib cage) (gets?|becomes?) bigger\\b",
+   "say": "Check that. When you inhale, does your chest get bigger or smaller?",
+   "hit": [
+    "when you inhale your chest gets smaller",
+    "when you exhale the lungs get bigger"
+   ],
+   "miss": [
+    "When you inhale, the diaphragm contracts and moves down, making the chest bigger and pulling air in. When you exhale, it relaxes and moves up, pushing air out.",
+    "When you inhale the chest gets bigger. When you exhale it gets smaller.",
+    "Inhale: diaphragm contracts and moves down. Exhale: diaphragm relaxes and moves up."
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\b(senses?|detects?|notices?|responds? to|measures?|checks?) (the )?(low |less |dropping |falling |rising |high )?(levels? of )?oxygen\\b",
+   "say": "Check that. The medulla responds to rising carbon dioxide. Which gas does it sense?",
+   "unless": "What it senses",
+   "hit": [
+    "The medulla senses low oxygen and tells the lungs to breathe faster.",
+    "the medulla detects oxygen in the blood"
+   ],
+   "miss": [
+    "When carbon dioxide in the blood rises, sensors in the blood vessels signal the medulla oblongata. The medulla tells the lungs to breathe faster.",
+    "When carbon dioxide goes up, the medulla senses it and makes you breathe faster.",
+    "The medulla senses carbon dioxide, not oxygen, and speeds up breathing."
+   ]
+  }
+ ]
+}

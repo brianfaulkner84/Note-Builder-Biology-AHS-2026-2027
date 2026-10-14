@@ -1,0 +1,164 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\b(not|never|doesn't|doesnt|don't|dont)\\b.{0,10})\\b(heart|circulatory system|blood vessels?) (makes?|produces?|creates?) (the |new )?(blood|oxygen)\\b",
+   "say": "Check that. The heart pumps blood. Does it make blood or oxygen?",
+   "hit": [
+    "The heart makes blood and pumps it around the body to bring oxygen.",
+    "the circulatory system creates oxygen for the cells"
+   ],
+   "miss": [
+    "The circulatory system transports oxygen, nutrients, and other substances throughout the body, and it removes wastes from the tissues.",
+    "The heart pumps blood that carries oxygen and nutrients to the cells and takes away wastes.",
+    "The heart does not make blood, it pumps it."
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(covers?|surrounds?|wraps? around) the (outside of the )?heart\\b|\\bmyocardium (is|means) (an? |the )?(blood vessel|artery|vein|chamber|lining)\\b",
+   "say": "Check that. The myocardium is the heart wall's thick muscle layer. Is it a covering or a chamber?",
+   "hit": [
+    "The myocardium is a layer that covers the heart.",
+    "The myocardium is a chamber of the heart."
+   ],
+   "miss": [
+    "The myocardium is the thick layer of cardiac muscle that makes up most of the heart wall.",
+    "The myocardium is thick cardiac muscle in the heart wall.",
+    "Myocardium is the heart muscle that pumps blood."
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!(septum|not|n't).{0,30})\\b(keeps?|stops?|prevents?|blocks?)\\b.{0,40}\\bmix(es|ing)?\\b",
+   "say": "Check that. Keeping the blood from mixing is the septum's job. What does a valve do?",
+   "hit": [
+    "A valve keeps oxygen rich and oxygen poor blood from mixing.",
+    "valves stop the blood from mixing"
+   ],
+   "miss": [
+    "A valve is a flap that keeps blood flowing in only one direction, so it cannot flow backward.",
+    "A valve is a flap so blood only goes one way. The septum keeps blood from mixing.",
+    "Valves keep blood from flowing backward."
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\b(picks?|picking|gets?|getting) up (the )?oxygen (in|from|at|inside) the heart\\b|\\b(gets?|getting|receives?) (its |the )?oxygen (in|from|at|inside) the heart\\b",
+   "say": "Check that. Where does blood pick up oxygen, in the heart or in the lungs?",
+   "hit": [
+    "Blood picks up oxygen in the heart.",
+    "the blood gets oxygen from the heart and goes to the lungs"
+   ],
+   "miss": [
+    "Pulmonary circulation carries blood between the heart and the lungs. The right side of the heart pumps oxygen-poor blood to the lungs to pick up oxygen.",
+    "Blood goes from the heart to the lungs to pick up oxygen and then back to the heart.",
+    "The right side of the heart pumps blood to the lungs where it gets oxygen."
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\b(picks?|picking|gets?|getting) (up )?(more )?oxygen (in|from|at) (the )?(body|cells|tissues|organs|rest of the body)\\b",
+   "say": "Check that. In the body, does blood pick up oxygen or drop it off?",
+   "hit": [
+    "In systemic circulation the blood picks up oxygen from the body.",
+    "blood gets oxygen in the tissues and goes back to the heart"
+   ],
+   "miss": [
+    "Systemic circulation carries blood between the heart and the rest of the body. The left side of the heart pumps oxygen-rich blood to the body.",
+    "The left side pumps oxygen rich blood to the body, where the cells get oxygen from the blood.",
+    "Blood drops off oxygen at the body and picks up carbon dioxide."
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\bpulmonary arter\\w* (carr\\w* |take\\w* |bring\\w* |send\\w* )?(the )?oxygen (rich|full|filled)\\b",
+   "say": "Check that. Is the blood in the pulmonary arteries oxygen rich or oxygen poor?",
+   "hit": [
+    "The pulmonary arteries carry oxygen rich blood to the lungs.",
+    "the pulmonary artery takes oxygen rich blood"
+   ],
+   "miss": [
+    "The right ventricle pumps oxygen-poor blood through the pulmonary arteries to the lungs. Oxygen-rich blood comes back through the pulmonary veins into the left atrium.",
+    "Pulmonary arteries carry oxygen poor blood to the lungs, and pulmonary veins bring oxygen rich blood back."
+   ]
+  },
+  {
+   "re": "\\bright atri\\w* (pumps?|sends?|pushes?) (the )?(blood )?(out )?(to|into) the lungs\\b",
+   "say": "Check that. Which chamber pumps blood to the lungs, an atrium or a ventricle?",
+   "hit": [
+    "The right atrium pumps blood to the lungs.",
+    "the right atrium sends blood into the lungs"
+   ],
+   "miss": [
+    "The right ventricle pumps blood to the lungs.",
+    "Blood enters the right atrium, then the right ventricle pumps it to the lungs.",
+    "Blood from the lungs comes back to the left atrium."
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\baorta (carr\\w* |takes? |brings? |sends? |has |holds )?(the )?oxygen (poor|less|low|depleted)\\b",
+   "say": "Check that. The aorta leaves the left ventricle. Is that blood oxygen rich or oxygen poor?",
+   "hit": [
+    "The aorta carries oxygen poor blood to the body.",
+    "the aorta has oxygen poor blood"
+   ],
+   "miss": [
+    "The left ventricle pumps oxygen-rich blood through the aorta to the body. Oxygen-poor blood comes back through veins into the right atrium.",
+    "The aorta carries oxygen rich blood to the body.",
+    "Oxygen poor blood returns to the right atrium, not the aorta."
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(?<!\\b(not|never|no|unlike)\\b.{0,15})\\barter\\w* (have|has|use|uses|contain|contains) (one way |many |lots of )?valves?\\b",
+   "say": "Check that. Which vessels have valves, arteries or veins?",
+   "hit": [
+    "Arteries have valves to keep blood moving away from the heart.",
+    "arteries use one way valves"
+   ],
+   "miss": [
+    "Arteries carry blood away from the heart. Their walls are thick and elastic so they can withstand the high pressure of blood pumped by the heart.",
+    "Arteries do not have valves like veins do.",
+    "Arteries have thick elastic walls for high pressure, and veins have valves."
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\boxygen (\\w+ )?(moves? |goes? |passes? |diffuses? )?(from|out of) (the )?(body )?(cells|tissues) (in)?to (the )?blood\\b|\\b(carbon dioxide|co2|wastes?) (\\w+ )?(moves? |goes? |passes? )?(from|out of) (the )?blood (in)?to (the )?(body )?(cells|tissues)\\b",
+   "say": "Check that. Which way do oxygen and wastes move between the blood and the cells?",
+   "hit": [
+    "Oxygen moves from the cells into the blood through the thin walls.",
+    "wastes go from the blood into the cells"
+   ],
+   "miss": [
+    "Capillaries are the smallest blood vessels. Their walls are one cell thick so oxygen, nutrients, and wastes can pass easily between the blood and the body's cells.",
+    "Oxygen and nutrients move from the blood into the cells, and wastes move from the cells into the blood.",
+    "Capillaries are tiny so oxygen can pass from the blood to the cells."
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bveins? (have no|has no|don't have|dont have|do not have|does not have|doesn't have|doesnt have|lack|lacks) valves?\\b",
+   "say": "Check that. What inside veins keeps blood from flowing backward?",
+   "hit": [
+    "Veins have no valves, so muscles push the blood back to the heart.",
+    "veins do not have valves"
+   ],
+   "miss": [
+    "Veins carry blood back toward the heart. Valves keep the blood from flowing backward, and skeletal muscles squeeze the veins to push blood along.",
+    "Veins have valves that stop blood from flowing backward.",
+    "Arteries have no valves but veins do."
+   ]
+  }
+ ]
+}

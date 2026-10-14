@@ -1,0 +1,181 @@
+{
+ "1": [
+  {
+   "re": "\\bvirus\\w* (are|is) (also )?(made|composed|built) (up )?of cells\\b|\\bvirus\\w* (are|is) (a |an )?(cells?|living things?|alive)\\b",
+   "say": "Check that. Viruses are not made of cells, and they are not alive.",
+   "hit": [
+    "all living things are made of cells like viruses are made of cells",
+    "viruses are living things made of cells"
+   ],
+   "miss": [
+    "All living things are made up of cells. Cells are the basic units of structure and function. New cells are produced from existing cells.",
+    "all living things are made of cells viruses are not made of cells",
+    "viruses are not alive cells are the basic unit of life"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\bdead cells?\\b",
+   "say": "Check that. Can a dead cell divide? What kind of cell makes new cells?",
+   "hit": [
+    "new cells come from dead cells",
+    "new cells are produced from old dead cells"
+   ],
+   "miss": [
+    "New cells are produced from existing cells. A cell divides to make new cells.",
+    "new cells come from cells that already exist by dividing",
+    "new cells come from existing living cells not dead cells"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\btissues? (are|is) (bigger|larger) than (an? )?organs?\\b|\\borgans? (are|is) (smaller) than (an? )?tissues?\\b|\\bcells? (are |is )?(made|built|composed) (up )?of tissues?\\b",
+   "say": "Check that. Which level is built from the one before it?",
+   "hit": [
+    "tissues are bigger than organs",
+    "cells are made of tissues and tissues make organs"
+   ],
+   "miss": [
+    "Cell, tissue, organ, organ system. Each level is built from the one before it.",
+    "cells make tissues tissues make organs organs make organ systems",
+    "organs are made of tissues which are made of cells",
+    "tissues are smaller than organs"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\borganelles? (are|is) (an? )?(organs?|body parts?)\\b(?! (inside|in|of) (a |the )?cell)",
+   "say": "Check that. An organelle is like a little organ, but where is it found?",
+   "hit": [
+    "an organelle is an organ like the heart",
+    "organelles are body parts with a job"
+   ],
+   "miss": [
+    "An organelle is a structure inside a cell that has a specific job. The word means little organ, named after the organs in your body.",
+    "an organelle is a little organ inside a cell with a job",
+    "organelles are tiny structures in cells that do a job like organs do in your body"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!not )\\b(all|every) (living )?cells? (have|has|contain|contains) (a |an )?(nucle|new ?clear)",
+   "say": "Check that. Do bacteria have a nucleus?",
+   "hit": [
+    "the nucleus holds dna and all cells have a nucleus",
+    "every cell has a nucleus that controls it"
+   ],
+   "miss": [
+    "The nucleus holds the cell's DNA. It is called the control center because the DNA has the instructions that control most of the cell's activities.",
+    "the nucleus has the dna and controls the cell",
+    "not all cells have a nucleus but in eukaryotes it holds the dna"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\boutside (of )?(the )?(cell )?(membrane|wall)\\b|\\bouter (layer|covering|shell|wall)\\b",
+   "say": "Check that. Is the cytoplasm inside or outside the cell membrane?",
+   "hit": [
+    "the cytoplasm is the outer layer of the cell",
+    "cytoplasm is the fluid outside the cell membrane"
+   ],
+   "miss": [
+    "The cytoplasm is the fluid inside the cell membrane but outside the nucleus. The organelles sit in it. Glycolysis happens in the cytoplasm.",
+    "cytoplasm is the jelly inside the cell where glycolysis happens",
+    "it is the fluid between the membrane and the nucleus and glycolysis happens there"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\b(to|into|toward|towards) the (nucleus|nuclei)\\b",
+   "say": "Check that. Where does the Golgi ship finished proteins?",
+   "hit": [
+    "the golgi packages proteins and sends them to the nucleus",
+    "golgi sorts proteins and ships them into the nucleus"
+   ],
+   "miss": [
+    "The Golgi apparatus modifies, sorts, and packages proteins for storage or to ship out of the cell.",
+    "the golgi packages and ships proteins out of the cell in vesicles",
+    "golgi modifies and sorts proteins from the er"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\b(makes?|produces?|creates?|making|producing) (the )?(sun ?light|light)\\b",
+   "say": "Check that. Does a chloroplast make light, or capture it?",
+   "hit": [
+    "the chloroplast makes sunlight to make food",
+    "chloroplasts produce light energy for the plant"
+   ],
+   "miss": [
+    "The chloroplast captures energy from sunlight and uses it to make food (sugar). This process is photosynthesis.",
+    "chloroplasts capture light energy and make sugar by photosynthesis",
+    "it uses sunlight to make glucose in photosynthesis"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\b(breaks?|breaking|digests?|digesting|recycles?|recycling) (down )?(the )?(waste|old|worn|food)\\b",
+   "say": "Check that. Breaking down waste is the lysosome's job. What does a vacuole do?",
+   "hit": [
+    "the vacuole breaks down waste and old parts",
+    "a vacuole digests food for the cell"
+   ],
+   "miss": [
+    "A vacuole stores materials like water, salts, proteins, and carbohydrates. A plant's large central vacuole fills with water and pushes outward, which keeps the plant firm.",
+    "the vacuole stores water and food and keeps the plant from wilting",
+    "the vacuole does not break down waste it stores water"
+   ]
+  }
+ ],
+ "24": [
+  {
+   "re": "(couldn't|could not|can't|cannot|wouldn't|would not|won't|not) (be able to )?(divide|split|reproduce|make new cells)\\b",
+   "say": "Check that. Cell division is not the lysosome's job. What would pile up?",
+   "hit": [
+    "the cell would not be able to divide",
+    "if lysosomes stopped working the cell couldn't reproduce"
+   ],
+   "miss": [
+    "Lysosomes are filled with enzymes that break down and recycle worn-out parts and waste. If they stopped working, waste and worn-out parts would pile up inside the cell.",
+    "waste would build up because lysosomes break down old parts",
+    "the cell would fill up with junk and old organelles"
+   ]
+  },
+  {
+   "re": "\\bnothing (would|will|really) (happen|change)\\b|\\b(it|the cell|cell) would (be|stay) (fine|ok|okay|normal)\\b",
+   "say": "Check that. Lysosomes do an important job. What would pile up without them?",
+   "hit": [
+    "nothing would happen to the cell",
+    "if lysosomes stopped the cell would be fine"
+   ],
+   "miss": [
+    "If lysosomes stopped working, waste and worn-out parts would pile up inside the cell.",
+    "nothing would break down the waste so it would pile up",
+    "waste would build up and the cell would get clogged"
+   ]
+  }
+ ],
+ "30": [
+  {
+   "re": "\\b(has|have|with|having|see) (a |an )?(nucle\\w*|new ?clear)\\b(?:(?!\\bno\\b|\\bnot\\b|n't|without|lack).){0,30}\\b(it'?s|it is|then|means)( it'?s| it is)?( an?)? (bacteri|prokary)",
+   "say": "Check that. Does a bacterium have a nucleus?",
+   "hit": [
+    "if it has a nucleus it is a bacterium",
+    "with a nucleus then it's a prokaryote"
+   ],
+   "miss": [
+    "If it has a cell wall, chloroplasts, and a large central vacuole, it is a plant cell. If it has centrioles and no cell wall, it is an animal cell. If it has no nucleus and no membrane-bound organelles, it is a bacterium.",
+    "if it has no nucleus it is a bacterium",
+    "if it has a nucleus it is a plant or animal cell, if it doesn't it is a bacterium"
+   ]
+  }
+ ]
+}

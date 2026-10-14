@@ -1,0 +1,202 @@
+{
+ "4": [
+  {
+   "re": "(?<!(asexual|a sexual).{0,40})(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|cannot|can't|cant)\\b.{0,20})\\b(split\\w* (in|into) (two|2|half)|budding|binary fission|clones? (it|them)sel\\w*|cop(y|ies) (it|them)sel\\w*)\\b",
+   "say": "Check that. Splitting in two or copying itself is asexual reproduction. What joins in sexual reproduction?",
+   "hit": [
+    "Sexual reproduction is when a cell splits in two to make offspring.",
+    "it is like bacteria splitting into two",
+    "sexual reproduction is when the organism copies itself"
+   ],
+   "miss": [
+    "Sexual reproduction is when cells from two parents join to make offspring.",
+    "Asexual is splitting in two but sexual needs two parents.",
+    "Two parents each give a cell, and they join to make a new offspring.",
+    "It does not copy itself. A sperm and egg join."
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\bsweat\\w* (to|and|so you|helps you|will) (warm|heat)|\\bshiver\\w* (to|and|so you|helps you|will) (cool|get cool)|\\bshiver\\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(hot|warm)\\b|\\bsweat\\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(cold|cool)\\b",
+   "say": "Check that. Which response cools you down and which warms you up?",
+   "hit": [
+    "Example: sweating to warm up.",
+    "you shiver when you are hot",
+    "we sweat when it is cold"
+   ],
+   "miss": [
+    "Homeostasis is keeping a stable internal environment even when the outside changes. Example: sweating to cool down.",
+    "you sweat when you are hot and shiver when you are cold",
+    "Shivering warms you up and sweating cools you down.",
+    "sweating to cool down when it's hot"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|doesn't|doesnt|don't|dont|without)\\b.{0,15})\\b(match\\w*|the same as|changes? with) (the )?(outside|external|environment|surroundings|weather)\\b",
+   "say": "Check that. Does the inside match the outside, or stay stable when the outside changes?",
+   "hit": [
+    "Homeostasis is when your body temperature matches the outside.",
+    "your body changes with the weather to stay the same as the environment"
+   ],
+   "miss": [
+    "Homeostasis is keeping a stable internal environment, even when conditions outside change.",
+    "Your inside stays stable and does not match the outside.",
+    "Homeostasis keeps the inside stable even when the environment changes.",
+    "even when the weather changes the inside stays the same"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bmetabolism (is|means) (how fast|how quickly|the speed|the rate|how much)\\b.{0,30}\\b(burn|digest|calorie|food|eat)",
+   "say": "Check that. Metabolism is more than a speed. What reactions does it include?",
+   "unless": "Chemical reactions",
+   "hit": [
+    "Metabolism is how fast you burn calories.",
+    "metabolism means how quickly your body digests food"
+   ],
+   "miss": [
+    "Metabolism is all the chemical reactions an organism uses to build up and break down materials to get and use energy.",
+    "Metabolism is how fast your chemical reactions break down food for energy.",
+    "Metabolism is not just how fast you burn calories. It is all the chemical reactions in the body.",
+    "metabolism is every chemical reaction that gets and uses energy"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bplants? (get|gets|take|takes|absorb\\w*|eat|eats|make|makes) (their |its )?(energy|food) (from|out of) (the )?(soil|dirt|ground)\\b|\\bplants? eats? (the )?(soil|dirt)\\b",
+   "say": "Check that. Where do plants get their energy, the soil or sunlight?",
+   "hit": [
+    "Plants get their energy from the soil.",
+    "plants take food from the dirt",
+    "plants eat dirt to grow"
+   ],
+   "miss": [
+    "All organisms take in materials and energy to grow, develop, and reproduce. Example: digesting food.",
+    "Plants get energy from sunlight and take in water and minerals from the soil.",
+    "Plants don't eat dirt; they make their own food using the sun.",
+    "Animals get energy from food and plants get energy from the sun."
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\b(growth|growing|grow) and (development|developing|develop) (are|is|mean|means) (the )?(same|exactly the same)\\b|\\bdevelop\\w* (is|means) the same (thing )?as grow",
+   "say": "Check that. Growing means getting bigger. Is developing the same thing?",
+   "hit": [
+    "Growth and development are the same thing, getting bigger.",
+    "grow and develop mean the same",
+    "developing means the same as growing"
+   ],
+   "miss": [
+    "Organisms grow and develop from their beginning to maturity, following instructions in their genes. Example: a seed grows into a tree.",
+    "Growth and development are not the same. Growing is getting bigger and developing is changing to maturity.",
+    "Organisms grow bigger and develop into adults, like a tadpole turning into a frog."
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!\\b(not|never)\\b.{0,6})\\b(every|each) (single |individual )?(organism|living thing|animal|plant|creature|individual) (must|has to|needs to|need to) reproduce\\b|\\breproduce or (it|they) (will |would )?(die|dies)\\b",
+   "say": "Check that. Does every single organism have to reproduce? Think of a mule.",
+   "hit": [
+    "Every organism has to reproduce.",
+    "living things reproduce or they die",
+    "each living thing must reproduce to make offspring"
+   ],
+   "miss": [
+    "Living things produce offspring, either sexually (two parents) or asexually (one parent).",
+    "Not every organism has to reproduce, like a mule, but living things as a group produce offspring.",
+    "All living things reproduce, sexually or asexually.",
+    "Living things make offspring sexually with two parents or asexually with one."
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\b(plants?|flowers?|sunflowers?)\\b(?:(?!\\b(not|never|don't|dont|doesn't|doesnt|roots?)\\b).){0,20}\\b(bends?|bent|bending|grows?|growing|leans?|leaning|turns?|turning|moves?|moving) away from (the )?(light|sun|sunlight|window)\\b",
+   "say": "Check that. Does a plant bend toward the light or away from it?",
+   "hit": [
+    "Example: a plant bends away from the light.",
+    "plants grow away from the sun",
+    "a sunflower turns away from the sun"
+   ],
+   "miss": [
+    "Living things react to signals (stimuli) from their surroundings. Example: a plant bends toward light.",
+    "A plant bends toward light, not away from it.",
+    "plants do not grow away from the light, they bend toward it",
+    "plant roots grow away from light and the stem bends toward it"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bshiver\\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(hot|warm)\\b|\\bsweat\\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(cold|cool)\\b",
+   "say": "Check that. Do you shiver when you are hot, or when you are cold?",
+   "hit": [
+    "you shiver when you are too hot",
+    "Example: you sweat when it's cold",
+    "your body shivers when it is warm"
+   ],
+   "miss": [
+    "Organisms keep a stable internal environment even when conditions around them change. Example: sweating to cool down on a hot day.",
+    "you sweat when you are hot and shiver when you are cold",
+    "when it is cold you shiver to warm up",
+    "sweating when it's hot cools you down"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "(?<!\\b(not|think|thinks|thought|believe|believes|seem|seems|might|may)\\b.{0,15})\\bvirus(es)? (is|are|counts? as|count as|is considered|are considered) (an? )?(alive|living( things?| organisms?)?|organisms?)\\b(?!.{0,30}\\b(not|no|isn't|isnt|aren't|arent)\\b)",
+   "say": "Check that. Viruses have no cells and cannot reproduce on their own. Are they alive?",
+   "hit": [
+    "A virus is alive because it has DNA and reproduces.",
+    "viruses are living things because they can make more viruses",
+    "a virus counts as a living thing",
+    "viruses are organisms that make you sick"
+   ],
+   "miss": [
+    "Something is alive only if it shows all eight characteristics of life. Example: fire grows and uses energy, but it has no cells or DNA, so it is not alive.",
+    "Viruses are not alive because they have no cells.",
+    "a virus is not a living thing it needs a host cell",
+    "viruses aren't alive",
+    "Some people think viruses are alive, but they are not because they have no cells.",
+    "Something is alive only if it has all eight characteristics. A virus has DNA but no cells, so it is not alive.",
+    "viruses are living no they are not"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|no)\\b.{0,10})\\bvirus(es)? (is |are )?(made (up )?of|has|have|contains?) (one or more |a |many |lots of |living )?cells?\\b",
+   "say": "Check that. Do viruses have cells? Look at the virus example on the slides.",
+   "hit": [
+    "A virus has cells and DNA so it is alive.",
+    "a virus is made of cells",
+    "viruses have one or more cells"
+   ],
+   "miss": [
+    "Viruses have no cells so they are not alive.",
+    "A virus has DNA but no cells.",
+    "A virus needs a host cell to reproduce.",
+    "viruses do not have cells"
+   ]
+  },
+  {
+   "re": "\\b(mule|seed)s?\\b(?:(?!alive|living|\\bfire|virus|crystal|cloud|robot|\\btoy|\\bcar\\b).){0,50}\\b(so|therefore|which means|that means|meaning|means) (it|they|it's|its|they're|theyre)( is| are)? (not|never) (alive|living)\\b",
+   "say": "Check that. Mules and seeds have cells and DNA. Are they really not alive?",
+   "hit": [
+    "A mule cannot reproduce so it is not alive.",
+    "seeds don't grow or eat so they are not alive",
+    "a mule is sterile which means it's not alive"
+   ],
+   "miss": [
+    "A mule cannot reproduce but it is still alive because it has cells and DNA.",
+    "A seed is alive even though it looks dead.",
+    "A seed is alive. Fire has no cells so it is not alive.",
+    "Fire grows but has no cells so it is not alive. A mule is alive."
+   ]
+  }
+ ]
+}

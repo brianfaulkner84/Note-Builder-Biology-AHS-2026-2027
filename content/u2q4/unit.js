@@ -17,7 +17,7 @@ UNITS.push({
   questions: [
   { n:1, heading:"Glycolysis", prompt:"Define glycolysis.",
     guide:"What does the word mean? What is glucose split into, and how many carbons does each piece have?", where:"Slide: Glycolysis 5 | Book: Glycolysis, p. 254",
-    model:"Glycolysis means splitting sugar. One glucose (6 carbons) is split into 2 molecules of pyruvic acid, with 3 carbons each.",
+    model:"• Glycolysis means splitting sugar\n• One glucose (6 carbons) is split into 2 molecules of pyruvic acid, with 3 carbons each",
     watch:[
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:make|makes|making|build|builds|building|produce|produces) (?:\w+ )?(?:glucose|sugar)\b/, "Check that. Does glycolysis build sugar or split it?"),
       W(/\bsplit\w* (?:\w+ ){0,3}into (?:\w+ ){0,2}(?:glucose|lactic|alcohol|carbon dioxide|co ?2)\b/, "Check that. What is glucose split into during glycolysis?"), W(/\b(2|two|4|four) carbons? each/, "Check that. Glucose has 6 carbons and is split in half. How many does each piece have?", "Carbons") ],
@@ -28,16 +28,17 @@ UNITS.push({
     ]},
   { n:2, heading:"Glycolysis", prompt:"Identify where glycolysis happens and whether it needs oxygen.",
     guide:"Cytoplasm or mitochondria? Aerobic or anaerobic?", where:"Slide: Glycolysis 4 to 5 | Book: Glycolysis, p. 254; Oxygen and Energy, p. 252",
-    model:"Glycolysis happens in the cytoplasm. It does not need oxygen, so it is anaerobic.",
+    model:"• Glycolysis happens in the cytoplasm\n• It does not need oxygen, so it is anaerobic",
     ideas:[
       I("Where", [T.cytoplasm], "Where does glycolysis happen?", "Slide Glycolysis 5, the WHERE box."),
       I("Oxygen", [/anaerobic|an aerobic|lacks? oxygen|no oxygen|without oxygen/, lacks(/oxygen|o2/)], "Does glycolysis need oxygen?", "Slide Glycolysis 5, the OXYGEN? box.")
     ],
     watch:[
+      W(/\bglycolysis (?:\w+ ){0,3}(?:in|inside) (?:the )?(?:nucleus|new ?clear|chloro ?plast|ribosomes?|golgi)\b/, "Check that. Where in the cell does glycolysis happen?"),
       W(/\bglycolysis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)|matrix)/, "Check that. Where does glycolysis happen, inside or outside the mitochondria?"), W(/glycolysis (is )?aerobic|needs? oxygen/, "Check that. Does glycolysis need oxygen?", "Oxygen") ]},
   { n:3, heading:"Glycolysis", prompt:"Calculate the ATP account for glycolysis.",
     guide:"How many ATP are spent to start? How many are made in total? What is the net gain? Show the math.", where:"Slide: Glycolysis 6 to 8 | Book: ATP Production, p. 254",
-    model:"The cell spends 2 ATP to start. Glycolysis makes 4 ATP in total. Net gain: 4 - 2 = 2 ATP per glucose.",
+    model:"• The cell spends 2 ATP to start\n• Glycolysis makes 4 ATP in total\n• Net gain: 4 - 2 = 2 ATP per glucose",
     watch:[
       W(/\b(?:spend|spends|spent|spending|invest\w*|uses?|used|use up) (?:\w+ )?(?:4|four) atp\b/, "Check that. How many ATP are spent to start, and how many are made?"),
       W(/\bnet (?:gain )?(?:is |of |was |equals )?(?:about )?(?:6|six|36|thirty six|0|zero)\b/, "Check that. Net means the ATP made minus the ATP spent."), W(/net (gain )?(is |of |was )?(4|four)\b(?! (minus )?(2|two))/, "Check that. Net means what is left after paying back the 2 ATP spent.") ],
@@ -48,8 +49,9 @@ UNITS.push({
     ]},
   { n:4, heading:"Glycolysis", prompt:"Explain why ATP is needed to begin glycolysis.",
     guide:"How is it like spending money to make money?", where:"Slide: Glycolysis 2 to 3, 6 | Book: ATP Production, p. 254",
-    model:"The cell has to invest 2 ATP to get glycolysis started, like buying lemons and cups before selling lemonade. It spends 2 ATP and gets 4 back.",
+    model:"• The cell has to invest 2 ATP to get glycolysis started, like buying lemons and cups before selling lemonade\n• It spends 2 ATP and gets 4 back",
     watch:[
+      W(/\b(?:spend|spends|spent|spending|invest\w*|uses?|used|use up) (?:\w+ )?(?:1|one|3|three|6|six) atp\b/, "Check that. How many ATP does the cell invest to start glycolysis?"),
       W(/\b(?:get|gets|getting|got) (?:\w+ )?(?:2|two) (?:atp )?back\b/, "Check that. How many ATP does glycolysis make in total for the 2 it spends?"),
       W(/\b(?:spend|spends|spent|invest\w*|uses?|used) (?:\w+ )?(?:4|four) atp\b|\buses? (?:up )?more (?:atp )?than (?:it )?(?:makes|gets)\b/, "Check that. Does glycolysis get back more ATP than it spends?") ],
     ideas:[
@@ -58,8 +60,9 @@ UNITS.push({
     ]},
   { n:5, heading:"NAD+ and NADH", prompt:"Describe how glycolysis makes NADH.",
     guide:"What does NAD+ pick up? How many NADH are made per glucose?", where:"Slide: Glycolysis 10 | Book: NADH Production, p. 255",
-    model:"NAD+ picks up high-energy electrons (2 electrons and a hydrogen ion) and becomes NADH. Glycolysis makes 2 NADH per glucose.",
+    model:"• NAD+ picks up high-energy electrons (2 electrons and a hydrogen ion) and becomes NADH\n• Glycolysis makes 2 NADH per glucose",
     watch:[
+      W(/\bnad\b(?! ?h\b)(?: plus)? (?:\w+ ){0,2}(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )(?:picks? up|picked up|carries|grabs?) (?:\w+ )?(?:atp|oxygen|glucose|carbon dioxide|co2|phosphates?)\b/, "Check that. What does NAD+ pick up to become NADH?"),
       W(/\b(?:4|four|36|thirty six) (?:nad ?h|n a d h)\b/, "Check that. How many NADH does glycolysis make per glucose?"),
       W(/\b(?:picks?|picked|picking) up (?:\w+ ){0,6}becomes? (?:an? )?nad\b(?! ?h\b)/, "Check that. What does NAD+ become after it picks up electrons?") ],
     ideas:[
@@ -68,8 +71,9 @@ UNITS.push({
     ]},
   { n:6, heading:"NAD+ and NADH", prompt:"Explain why NAD+ is the limiting reagent in glycolysis.",
     guide:"What runs out first? What happens to glycolysis and ATP production when it does?", where:"Slide: Glycolysis 11 | Book: NADH Production, p. 255; Fermentation, p. 262",
-    model:"The cell has only a small supply of NAD+, so it runs out first. When NAD+ runs out, glycolysis stops and ATP production stops.",
+    model:"• The cell has only a small supply of NAD+, so it runs out first\n• When NAD+ runs out, glycolysis stops and ATP production stops",
     watch:[
+      W(/\b(?:nad ?h|n a d h|oxygen|glucose|atp) (?:is )?(?:the )?limiting\b/, "Check that. Which carrier does the cell have only a small supply of?"),
       W(/\b(?:glucose|sugar|atp) (?:\w+ )?(?:runs|run|running) out (?:first)?/, "Check that. Which molecule is in short supply and runs out first?"),
       W(/\b(?:lots|a lot|plenty|tons|large (?:amount|supply)|big supply|unlimited (?:supply|amount)?) of nad\b(?! ?h\b)|\bunlimited nad\b/, "Check that. Does the cell have a big supply of NAD+ or a small one?") ],
     ideas:[
@@ -78,8 +82,9 @@ UNITS.push({
     ]},
   { n:7, heading:"NAD+ and NADH", prompt:"List the advantages of glycolysis.",
     guide:"How fast is it? Does it need oxygen? How much energy is still left in pyruvic acid?", where:"Slide: Glycolysis 12 | Book: The Advantages of Glycolysis, p. 255",
-    model:"Glycolysis is very fast; it can make thousands of ATP in a few milliseconds. It does not need oxygen. About 90 percent of glucose's energy is still left in pyruvic acid afterward.",
+    model:"• Glycolysis is very fast; it can make thousands of ATP in a few milliseconds\n• It does not need oxygen\n• About 90 percent of glucose's energy is still left in pyruvic acid afterward",
     watch:[
+      W(/(?<!\bnot )\b(?:glycolysis|it) (?:is )?(?:very |really |super |kind of )?slow\b/, "Check that. Is glycolysis fast or slow?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:needs?|requires?) oxygen\b|\bis aerobic\b/, "Check that. Does glycolysis need oxygen?", "Oxygen"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:releases?|uses?|gets?|captures?|takes?|extracts?|uses up) (?:\w+ )?(?:most|all|90|ninety)(?: percent)? (?:of )?(?:the )?(?:glucose's |glucoses |glucose )?energy\b/, "Check that. After glycolysis, how much of glucose's energy is still left in pyruvic acid?") ],
     ideas:[
@@ -90,7 +95,7 @@ UNITS.push({
   { n:8, heading:"The Mitochondrion and the Krebs Cycle", prompt:"Label a sketch of a mitochondrion.",
     guide:"Where are the two membranes, matrix, and intermembrane space? Which stage happens where?", where:"Slide: Krebs-ETC 4 | Book: The Krebs Cycle, p. 256; Electron Transport, p. 258",
     draw:"Sketch a mitochondrion. Label the outer membrane, inner membrane, matrix, and intermembrane space.",
-    model:"A mitochondrion has an outer membrane and a folded inner membrane. The matrix is the innermost space, where the Krebs cycle happens. The intermembrane space is between the two membranes, where H+ ions pile up. The electron transport chain is in the inner membrane.",
+    model:"• A mitochondrion has an outer membrane and a folded inner membrane\n• The matrix is the innermost space, where the Krebs cycle happens\n• The intermembrane space is between the two membranes, where H+ ions pile up\n• The electron transport chain is in the inner membrane",
     watch:[
       W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:outer membrane|matrix|inter ?membrane)/, "Check that. Which membrane holds the electron transport chain?"),
       W(/\b(?:h|hydrogen|protons?)(?: ions?)? (?:pile|piles|build|builds|collect|collects|accumulate|accumulates) up in (?:the )?matrix/, "Check that. Where do the H+ ions pile up?"), W(/krebs.{0,40}inter ?membrane/, "Check that. Where does the Krebs cycle happen?", "Matrix") ],
@@ -102,8 +107,10 @@ UNITS.push({
     ]},
   { n:9, heading:"The Mitochondrion and the Krebs Cycle", prompt:"Describe the start of the Krebs cycle.",
     guide:"Where does pyruvic acid go? What is it turned into? Why is it also called the citric acid cycle?", where:"Slide: Krebs-ETC 6 | Book: Citric Acid Production, p. 256",
-    model:"Pyruvic acid from glycolysis passes into the matrix of the mitochondrion. One carbon leaves as CO2 and the rest becomes acetyl-CoA. Acetyl-CoA joins a 4-carbon molecule to make citric acid, so it is also called the citric acid cycle.",
+    model:"• Pyruvic acid from glycolysis passes into the matrix of the mitochondrion\n• One carbon leaves as CO2 and the rest becomes acetyl-CoA\n• Acetyl-CoA joins a 4-carbon molecule to make citric acid, so it is also called the citric acid cycle",
     watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(?:turn|turns|turned|becomes?|changed?|converted?) (?:\w+ ){0,2}(?:into )?(?:lactic|alcohol|ethanol|glucose)\b/, "Check that. That is fermentation. What does pyruvic acid become in the matrix?"),
+      W(/\b(?:2|two|3|three|all) (?:of the )?carbons? (?:leave|leaves|left|are released|is released|are lost|come off|comes off|escape|escapes)\b/, "Check that. How many carbons leave as CO2 when pyruvic acid becomes acetyl CoA?"),
       W(/\b(?:pyruv|pyro ?vic|pie ?ru ?vic)\w*(?: acid)? (?:\w+ ){0,3}(?:into|to) (?:the )?(?:(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)|nucleus|chloro ?plast|inter ?membrane)/, "Check that. Where does pyruvic acid go to start the Krebs cycle?"),
       W(/\bjoins? (?:\w+ ){0,2}(?:2|two|3|three|5|five|6|six) ?carbon/, "Check that. How many carbons does the molecule that acetyl CoA joins have?") ],
     ideas:[
@@ -113,7 +120,7 @@ UNITS.push({
     ]},
   { n:10, heading:"The Mitochondrion and the Krebs Cycle", prompt:"List what the Krebs cycle makes.",
     guide:"Which gas is released? What is the MAIN product? How many ATP per glucose?", where:"Slide: Krebs-ETC 7 to 9 | Book: Energy Extraction, p. 257",
-    model:"The Krebs cycle releases carbon dioxide. Its main product is NADH (loaded electron carriers), plus some FADH2. It makes 2 ATP per glucose.",
+    model:"• The Krebs cycle releases carbon dioxide\n• Its main product is NADH (loaded electron carriers), plus some FADH2\n• It makes 2 ATP per glucose",
     ideas:[
       I("The gas", [T.co2], "Which gas does the Krebs cycle release?", "Slide Krebs-ETC 7, first box."),
       I("Main product", [T.nadh, /electron carrier|loaded carrier/], "What is the MAIN product?", "Slide Krebs-ETC 7, the second box says main product."),
@@ -124,7 +131,7 @@ UNITS.push({
       W(/\b(?:32|thirty two|34|thirty four|36|thirty six) atp\b|\bmakes (?:the )?most (?:of the )?atp\b|\bmakes (?:a lot|lots) of atp\b/, "Check that. Does the Krebs cycle make a lot of ATP or just a little?"), W(/main product (is )?(atp|oxygen|glucose)/, "Check that. Most of the energy is captured in something else. What is the MAIN product?", "Main product") ]},
   { n:11, heading:"The Electron Transport Chain", prompt:"Sequence what happens in the electron transport chain.",
     guide:"Where is it? Who drops off electrons? What gets pumped, and to where?", where:"Slide: Krebs-ETC 11 | Book: Electron Transport, p. 258",
-    model:"The chain is a line of proteins in the inner membrane. NADH and FADH2 drop off their high-energy electrons. As the electrons move down the chain, their energy pumps H+ ions into the intermembrane space. Oxygen is the final electron acceptor and forms water.",
+    model:"• The chain is a line of proteins in the inner membrane\n• NADH and FADH2 drop off their high-energy electrons\n• As the electrons move down the chain, their energy pumps H+ ions into the intermembrane space\n• Oxygen is the final electron acceptor and forms water",
     watch:[
       W(/\bpump\w* (?:\w+ )?electrons\b/, "Check that. The electrons move down the chain. What gets pumped?"),
       W(/\bpump\w* (?:\w+ ){0,3}(?:into|to|in) (?:the )?matrix\b/, "Check that. Where are the H+ ions pumped to?"),
@@ -137,8 +144,10 @@ UNITS.push({
     ]},
   { n:12, heading:"The Electron Transport Chain", prompt:"Explain how ATP synthase makes ATP.",
     guide:"Which way does H+ flow? What does ATP synthase do as H+ passes through?", where:"Slide: Krebs-ETC 12 | Book: ATP Production, p. 259",
-    model:"H+ ions pile up in the intermembrane space, then flow back into the matrix through ATP synthase. The H+ flow makes ATP synthase spin, and each turn attaches a phosphate to ADP, making ATP.",
+    model:"• H+ ions pile up in the intermembrane space, then flow back into the matrix through ATP synthase\n• The H+ flow makes ATP synthase spin, and each turn attaches a phosphate to ADP, making ATP",
     watch:[
+      W(/(?<!\bnot )\b(?:atp )?synth\w* (?:\w+ )?pumps?\b/, "Check that. The electron transport chain pumps the H+. What does ATP synthase do as they flow back?"),
+      W(/\belectrons? (?:\w+ ){0,3}(?:flow|flows|rush|rushes|go|goes|pass|passes|move|moves) (?:\w+ ){0,4}through (?:the )?(?:atp )?synth/, "Check that. Which particles flow through ATP synthase, electrons or H+ ions?"),
       W(/\bthrough (?:atp )?synth\w* (?:\w+ ){0,2}(?:into|to) (?:the )?inter ?membrane|\b(?:flow|flows|rush|rushes) (?:back )?(?:into|to) (?:the )?inter ?membrane/, "Check that. Which way do the H+ ions flow through ATP synthase?"),
       W(/\b(?:remov\w*|break\w*|takes? off|taking off) (?:\w+ ){0,2}phosphate|\b(?:add|adds|adding|attach\w*) (?:a |one )?phosphate (?:on )?to (?:an? )?atp\b/, "Check that. To make ATP, does ATP synthase add a phosphate to ADP or take one off?") ],
     ideas:[
@@ -148,7 +157,7 @@ UNITS.push({
     ]},
   { n:13, heading:"The Electron Transport Chain", prompt:"Explain why the cell needs oxygen.",
     guide:"What is oxygen's job at the end of the chain? What does it form? What happens if oxygen runs out?", where:"Slide: Krebs-ETC 13 | Book: Electron Transport, p. 258",
-    model:"Oxygen is the final electron acceptor at the end of the chain. It picks up the used electrons and H+ and forms water. If oxygen runs out, the chain backs up, NADH cannot unload, and the Krebs cycle and ETC stop.",
+    model:"• Oxygen is the final electron acceptor at the end of the chain\n• It picks up the used electrons and H+ and forms water\n• If oxygen runs out, the chain backs up, NADH cannot unload, and the Krebs cycle and ETC stop",
     watch:[
       W(/\boxygen (?:is )?(?:the )?(?:first|starting) (?:electron )?(?:acceptor|carrier|one)|\boxygen (?:gives?|donates?|drops? off) (?:\w+ )?electrons/, "Check that. Where in the chain does oxygen work, and does it give or take electrons?"),
       W(/(?<!\b(?:without|no) )\boxygen (?:(?:\w+ ){0,4}and |\w+ )?(?:makes?|forms?|creates?|turns into|becomes) (?:\w+ )?(?:atp|glucose|sugar)\b/, "Check that. What does oxygen form when it picks up electrons and H+?"), W(/oxygen.{0,30}(makes?|forms?) (carbon dioxide|co2)/, "Check that. What does oxygen form at the end of the chain?", "What it forms") ],
@@ -159,7 +168,7 @@ UNITS.push({
     ]},
   { n:14, heading:"The Electron Transport Chain", prompt:"Compare the Krebs cycle and the electron transport chain.",
     guide:"Which one loads the carriers? Which one cashes them in? Where does each happen?", where:"Slide: Krebs-ETC 14 to 15 | Book: pp. 256 to 259",
-    model:"The Krebs cycle loads the electron carriers (makes NADH and FADH2). It happens in the matrix. The electron transport chain cashes them in for ATP. It happens in the inner membrane.",
+    model:"• The Krebs cycle loads the electron carriers (makes NADH and FADH2)\n• It happens in the matrix\n• The electron transport chain cashes them in for ATP\n• It happens in the inner membrane",
     watch:[
       W(/\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:inner|outer|inter|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))|\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:matrix|outer|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))/, "Check that. Which one is in the matrix, and which one is in the inner membrane?"),
       W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:loads?|makes?|produces?) (?:the )?(?:nad ?h|electron carriers|carriers)\b|\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:cashes|cash|unloads?|makes (?:the )?most)/, "Check that. Which one loads the carriers, and which one cashes them in?") ],
@@ -171,8 +180,9 @@ UNITS.push({
     ]},
   { n:15, heading:"The Electron Transport Chain", prompt:"Calculate the ATP made from one glucose with oxygen.",
     guide:"How many ATP from each stage? What is the total? Which stage makes the most?", where:"Slide: Krebs-ETC 16 to 18 | Book: The Totals, p. 260",
-    model:"Glycolysis 2 + Krebs cycle 2 + electron transport chain 32 = about 36 ATP per glucose. The electron transport chain makes the most.",
+    model:"• Glycolysis 2 + Krebs cycle 2 + electron transport chain 32 = about 36 ATP per glucose\n• The electron transport chain makes the most",
     watch:[
+      W(/\bglycolysis (?:makes |gives |produces |is |nets )?(?:about )?(?:4|four)\b(?!(?: atp)? (?:minus|but|and spends|and uses|total|in total|gross))|\b(?:krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is )?(?:about )?(?:32|thirty two|34|thirty four)\b/, "Check that. Use the net ATP for each stage from your notes. Which stage makes 32?"),
       W(/\b(?:38|thirty eight)\b|\b(?:electron transport(?: chain)?|\betc\b|\be t c\b) (?:makes |gives |produces )?(?:about )?(?:34|thirty four|36|thirty six)\b/, "Check that. Add up glycolysis, the Krebs cycle, and the electron transport chain from your notes. What total do you get?"), W(/(glycolysis|krebs\w*( cycle)?) makes (the )?most/, "Check that. Which stage makes the most ATP?", "Makes the most") ],
     ideas:[
       I("Each stage", [/\b32\b|thirty ?two/], "How many ATP does each stage make?", "Slide Krebs-ETC 18, answer 1."),
@@ -181,7 +191,7 @@ UNITS.push({
     ]},
   { n:16, heading:"Why Fermentation Happens", prompt:"Explain what goes wrong when oxygen runs out.",
     guide:"What stops first? Why can't NADH unload? What happens to NAD+ and glycolysis?", where:"Slide: Fermentation 4 | Book: Fermentation, p. 262",
-    model:"Without oxygen, the electron transport chain stops first. NADH has nowhere to drop off its electrons, so it cannot turn back into NAD+. NAD+ runs out, and glycolysis stops.",
+    model:"• Without oxygen, the electron transport chain stops first\n• NADH has nowhere to drop off its electrons, so it cannot turn back into NAD+\n• NAD+ runs out, and glycolysis stops",
     watch:[
       W(/\bglycolysis (?:\w+ )?stops first/, "Check that. Which stage stops first when oxygen runs out?"),
       W(/\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:keeps going|keeps running|continues|still (?:runs|works|goes))/, "Check that. Can the Krebs cycle keep going if the carriers cannot unload?"),
@@ -193,7 +203,7 @@ UNITS.push({
     ]},
   { n:17, heading:"Why Fermentation Happens", prompt:"Explain why humans undergo fermentation.",
     guide:"What is missing? What does fermentation give back to glycolysis? How many ATP does the cell still get?", where:"Slide: Fermentation 5 | Book: Fermentation, p. 262",
-    model:"When oxygen is missing, fermentation turns NADH back into NAD+. That gives NAD+ back to glycolysis so it can keep going and keep making 2 ATP per glucose.",
+    model:"• When oxygen is missing, fermentation turns NADH back into NAD+\n• That gives NAD+ back to glycolysis so it can keep going and keep making 2 ATP per glucose",
     watch:[
       W(/\bturns? (?:\w+ )?nad\b(?! ?h\b)(?: back)? into (?:an? )?nad ?h\b|\bnad\b(?! ?h\b) (?:\w+ ){0,2}into (?:an? )?nad ?h\b/, "Check that. Which way does fermentation change the carrier?"),
       W(/\b(?:humans?|we|people|muscles?|muscle cells) (?:make|makes|produce|produces|do|does) (?:\w+ )?(?:alcohol|ethanol|alcoholic)\b/, "Check that. Which type of fermentation do human muscle cells use?"), W(/fermentation (makes|gives|produces) (a lot|lots|more|tons) (of )?atp/, "Check that. Fermentation keeps glycolysis going, so the cell still gets only 2 ATP.") ],
@@ -204,7 +214,7 @@ UNITS.push({
     ]},
   { n:18, heading:"Two Types of Fermentation", prompt:"Describe alcoholic fermentation.",
     guide:"Who does it? What does it make? How does it make bread rise?", where:"Slide: Fermentation 7 | Book: Alcoholic Fermentation, p. 263",
-    model:"Yeast do alcoholic fermentation. Pyruvic acid and NADH make ethyl alcohol, carbon dioxide, and NAD+. The CO2 bubbles make bread dough rise.",
+    model:"• Yeast do alcoholic fermentation\n• Pyruvic acid and NADH make ethyl alcohol, carbon dioxide, and NAD+\n• The CO2 bubbles make bread dough rise",
     watch:[
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:gives? off|releases?|makes?|produces?) (?:\w+ )?oxygen\b|\boxygen (?:bubbles|gas)\b/, "Check that. Which gas makes the bubbles in bread?"),
       W(/\balcohol (?:\w+ ){0,2}(?:makes?|causes?|helps?) (?:\w+ ){0,3}(?:rise|puff)/, "Check that. Which product makes the dough rise?"), W(/lactic/, "Check that. Yeast make a different product. What is it?", "Makes alcohol") ],
@@ -216,7 +226,7 @@ UNITS.push({
     ]},
   { n:19, heading:"Two Types of Fermentation", prompt:"Explain why ethyl alcohol cannot easily become pyruvic acid again.",
     guide:"Count the carbons. Where does the missing carbon go?", where:"Slide: Fermentation 8 | Book: Alcoholic Fermentation, Figure 9-8, p. 263",
-    model:"Pyruvic acid has 3 carbons, but ethyl alcohol has only 2. One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid.",
+    model:"• Pyruvic acid has 3 carbons, but ethyl alcohol has only 2\n• One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid",
     watch:[
       W(/\balcohol (?:has |have )?(?:only )?(?:3|three|4|four)\b|\b(?:pyruv|pyro ?vic)\w*(?: acid)? (?:has |have )?(?:only )?(?:2|two)\b/, "Check that. Count again. Which one has 3 carbons, and which has 2?"),
       W(/\b(?:carbon|it) (?:leaves|escapes|goes|floats away|is lost) (?:as |in |into )(?:an? )?(?:oxygen|o ?2|water|alcohol|lactic|glucose)\b/, "Check that. What gas does the missing carbon leave as?") ],
@@ -226,7 +236,7 @@ UNITS.push({
     ]},
   { n:20, heading:"Two Types of Fermentation", prompt:"Describe lactic acid fermentation.",
     guide:"Who does it? What does it make? Does it give off CO2? Name two foods it helps make.", where:"Slide: Fermentation 9 | Book: Lactic Acid Fermentation, p. 263",
-    model:"Humans (muscle cells) and many bacteria do lactic acid fermentation. Pyruvic acid and NADH make lactic acid and NAD+. It does not give off CO2. It helps make yogurt and cheese.",
+    model:"• Humans (muscle cells) and many bacteria do lactic acid fermentation\n• Pyruvic acid and NADH make lactic acid and NAD+\n• It does not give off CO2\n• It helps make yogurt and cheese",
     watch:[
       W(/\byeast (?:do|does|make|makes|use|uses|perform|performs)\b|\b(?:made|done) by yeast\b/, "Check that. Is it yeast, or humans and bacteria, that do lactic acid fermentation?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:makes?|produces?) (?:\w+ ){0,2}(?:alcohol|ethanol)\b|\bbread (?:\w+ )?rises?\b/, "Check that. Which type of fermentation makes alcohol and raises bread?"), W(/(give|gives|release|releases|makes?) (off )?(carbon dioxide|co2)/, "Check that. Does lactic acid fermentation give off CO2?", "CO2") ],
@@ -239,7 +249,7 @@ UNITS.push({
   { n:21, heading:"Two Types of Fermentation", prompt:"Compare alcoholic and lactic acid fermentation in a two-column chart.",
     guide:"Who, what they make, CO2 or not, and what they have in common.", where:"Slide: Fermentation 10 to 12 | Book: Alcoholic Fermentation, Lactic Acid Fermentation, p. 263",
     draw:"Make a two-column chart here: Alcoholic | Lactic acid.",
-    model:"Alcoholic: yeast; makes ethyl alcohol, CO2, and NAD+; gives off CO2. Lactic acid: humans and bacteria; makes lactic acid and NAD+; no CO2. Both regenerate NAD+, both are anaerobic, and both make only 2 ATP per glucose.",
+    model:"• Alcoholic: yeast; makes ethyl alcohol, CO2, and NAD+; gives off CO2\n• Lactic acid: humans and bacteria; makes lactic acid and NAD+; no CO2\n• Both regenerate NAD+, both are anaerobic, and both make only 2 ATP per glucose",
     watch:[
       W(/\byeast (?:do|does|make|makes|produce|produces) lactic|\b(?:humans?|muscles?|we|bacteria) (?:do|does|make|makes|produce|produces) (?:\w+ )?(?:alcohol|ethanol|alcoholic)\b/, "Check that. Which organisms go in each column?"),
       W(/\blactic (?:acid )?(?:fermentation )?(?:gives|releases|makes|produces) (?:off )?(?:carbon dioxide|co ?2)/, "Check that. Which fermentation gives off CO2?"),
@@ -252,8 +262,9 @@ UNITS.push({
     ]},
   { n:22, heading:"Energy and Exercise", prompt:"Sequence where muscles get ATP during exercise.",
     guide:"What lasts seconds? What lasts about 90 seconds? What powers long exercise? What is oxygen debt?", where:"Slide: Fermentation 14 to 15 | Book: Energy and Exercise, pp. 264 to 265",
-    model:"1. Stored ATP lasts only a few seconds. 2. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint. 3. Cellular respiration powers longer exercise. Oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used.",
+    model:"1. Stored ATP lasts only a few seconds\n2. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint\n3. Cellular respiration powers longer exercise\n• Oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used",
     watch:[
+      W(/\boxygen debt (?:is|means) (?:\w+ ){0,3}(?:hold|holds|holding|not breathing|stop breathing|stops breathing|stopping breathing)\b/, "Check that. Oxygen debt is about after exercise. Do you breathe less or more?"),
       W(/\b(?:lactic|ferment)\w*(?: acid)?(?: fermentation)? (?:powers?|is (?:used )?for|supplies? (?:atp )?for|lasts?) (?:\w+ )?(?:long|longer|marathons?|hours)\b/, "Check that. How long can lactic acid fermentation supply ATP?"),
       W(/\b(?:stored|already made|on hand) atp (?:lasts? |is used for )?(?:about |for )?(?:90|ninety|minutes|hours|a long time)/, "Check that. How long does the ATP already in muscles last?") ],
     ideas:[
@@ -264,8 +275,9 @@ UNITS.push({
     ]},
   { n:23, heading:"Energy and Exercise", prompt:"Compare energy with oxygen and without oxygen.",
     guide:"What happens after glycolysis in each case? How many ATP per glucose in each?", where:"Slide: Fermentation 18 | Book: The Totals, p. 260; Fermentation, p. 262",
-    model:"With oxygen, glycolysis is followed by the Krebs cycle and the electron transport chain, making about 36 ATP per glucose. Without oxygen, glycolysis is followed by fermentation, making only 2 ATP per glucose.",
+    model:"• With oxygen, glycolysis is followed by the Krebs cycle and the electron transport chain, making about 36 ATP per glucose\n• Without oxygen, glycolysis is followed by fermentation, making only 2 ATP per glucose",
     watch:[
+      W(/\bwithout oxygen (?:\w+ ){0,2}glycolysis (?:\w+ )?(?:stops|can't|cant|cannot|can not|does not happen|doesn't happen|doesnt happen)\b/, "Check that. Without oxygen, glycolysis keeps going. What follows it?"),
       W(/\bwithout oxygen (?:\w+ ){0,2}(?:36|thirty six)\b|\bfermentation (?:makes|gives|produces) (?:about )?(?:36|thirty six|34|32|4|four|a lot|lots)\b/, "Check that. Without oxygen, how many ATP does the cell get per glucose?"),
       W(/\bwith oxygen (?:\w+ ){0,4}(?<!\b(?:no|not) )ferment/, "Check that. Which steps follow glycolysis when oxygen is present?") ],
     ideas:[

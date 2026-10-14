@@ -121,7 +121,7 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .fb .lead{margin:0;font-weight:700}
 .sample{background:var(--card);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 14px;display:flex;flex-direction:column;gap:6px}
 .sample p{margin:0}
-.sample-text{font-size:var(--t-l)}
+.sample-text{font-size:var(--t-l);white-space:pre-line}
 
 /* sheet integrity: entry marks, sheet code, name watermark */
 .sheet{position:relative;overflow:hidden}
@@ -137,7 +137,7 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 /* marked note: wrong parts and extra parts */
 .marked{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
 .marked p{margin:0}
-.marked-text{font-size:var(--t-m);line-height:1.7}
+.marked-text{font-size:var(--t-m);line-height:1.7;white-space:pre-line}
 .mk.wrong{color:var(--rec);background:var(--rec-bg);text-decoration:line-through;text-decoration-thickness:2px;border-radius:4px;padding:0 2px}
 .mk.extra{color:var(--ink-soft);text-decoration:underline dotted var(--warn);text-decoration-thickness:3px;text-underline-offset:4px}
 .legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:var(--t-s)}

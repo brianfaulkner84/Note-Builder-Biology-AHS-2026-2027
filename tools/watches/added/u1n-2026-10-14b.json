@@ -1,0 +1,188 @@
+{
+ "1": [
+  {
+   "re": "\\btemperature\\b|\\bhow (hot|warm|cold)\\b|\\bweigh\\w*|\\bheavy\\b",
+   "say": "Check that. A Calorie measures the energy in food, not its temperature or weight.",
+   "unless": "What it measures",
+   "hit": [
+    "a calorie measures the temperature of food",
+    "calories tell you how hot the food is",
+    "a calorie is how much the food weighs"
+   ],
+   "miss": [
+    "A Calorie is the unit used to measure the amount of energy in food.",
+    "a calorie is a unit of energy it is not how much food weighs",
+    "calorie is the energy needed to raise the temperature of water",
+    "a calorie measures energy in food"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\bamino",
+   "say": "Check that. Amino acids build proteins. What does fat do for the body?",
+   "hit": [
+    "fat is a nutrient made of amino acids that stores energy",
+    "fat is built from amino acids"
+   ],
+   "miss": [
+    "Fat is a nutrient that stores energy, about 9 calories per gram, and insulates the body",
+    "fat stores energy and helps absorb fat soluble vitamins",
+    "fat insulates the body and is part of cell membranes"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\bvitamins? (is|are) (a |an )?(type of |kind of )?minerals?\\b",
+   "say": "Check that. Vitamins and minerals are different nutrients. Which one is organic?",
+   "hit": [
+    "a vitamin is a mineral the body needs in small amounts",
+    "vitamins are a type of mineral that is organic"
+   ],
+   "miss": [
+    "A vitamin is an organic molecule the body needs in small amounts.",
+    "a vitamin is organic but a mineral is inorganic",
+    "vitamins are not minerals they are organic and needed in small amounts"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\b(low|few|little|less|fewer|small amount of) calories?\\b|\\b(diet|low cal) (foods?|sodas?|drinks?)\\b",
+   "say": "Check that. Empty-Calorie foods still have plenty of Calories. What do they leave out?",
+   "hit": [
+    "empty calories are foods with low calories like diet soda",
+    "empty calories means the food has few calories",
+    "empty calories are diet foods"
+   ],
+   "miss": [
+    "Empty Calories are foods that supply Calories without the other nutrients the body needs, like chips and candy",
+    "empty calories give energy but not nutrients",
+    "they have calories but no vitamins or minerals",
+    "empty calories are not low calorie foods they have energy but no nutrients"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(water|proteins?|vitamins?|minerals?|fats?|carbohydrates?|carbs?) (is not|isn't|isnt|are not|aren't|arent|is never|are never) (one|on the list|a nutrient|an essential|essential)\\b",
+   "say": "Check that. Water, carbohydrates, fats, proteins, vitamins, and minerals are all on the list.",
+   "hit": [
+    "the nutrients are carbs fats proteins vitamins and minerals water is not one of them",
+    "proteins are not on the list"
+   ],
+   "miss": [
+    "The six essential nutrients are water, carbohydrates, fats, proteins, vitamins, and minerals. Cholesterol is NOT one of them.",
+    "water carbs fats proteins vitamins and minerals and cholesterol is not on the list",
+    "six nutrients water carbohydrates fats proteins vitamins minerals fiber is not one"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\b(bread|pasta|potato\\w*|rice|grains?|whole wheat|cereal|oatmeal) (is|are) (a |an )?(examples? of )?simple\\b|\\b(candy|soda|table sugar|honey|juice|fruit juice) (is|are) (a |an )?(examples? of )?complex\\b",
+   "say": "Check that. Is that food mostly sugar or mostly starch?",
+   "hit": [
+    "simple carbs are sugars and bread and pasta are simple carbs",
+    "candy is a complex carbohydrate"
+   ],
+   "miss": [
+    "Simple carbohydrates are sugars. The body absorbs them and uses them for energy quickly. Complex carbohydrates are starches. They must be broken down before the body can use them.",
+    "simple carbs are sugar like candy and complex carbs are starch like bread and pasta",
+    "bread is a complex carb and candy is a simple carb",
+    "bread is not a simple carb it is starch"
+   ]
+  },
+  {
+   "re": "\\bsimple (carbs?|carbohydrates?|sugars?) (take|takes) (longer|a long time|more time)\\b|\\bcomplex (carbs?|carbohydrates?) (are |is )?(absorbed|used|digested) (right away|immediately|instantly)\\b",
+   "say": "Check that. Which kind can the body use right away, and which must be broken down first?",
+   "hit": [
+    "simple carbs take longer to break down",
+    "complex carbohydrates are absorbed right away"
+   ],
+   "miss": [
+    "Simple carbohydrates are sugars used for energy quickly. Complex carbohydrates are starches that must be broken down first.",
+    "complex carbs take longer to digest and simple carbs are used right away",
+    "simple sugars are absorbed right away"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\b(body|stomach|we|you|intestines?|people) (can |does |do |is able to |are able to )?(digests?|absorbs?|breaks? down) (the )?(fiber|cellulose|it)\\b",
+   "say": "Check that. Can the body digest fiber?",
+   "unless": "Can't digest",
+   "hit": [
+    "fiber is a carbohydrate and the body digests it for energy",
+    "fiber is cellulose and your stomach breaks down the fiber"
+   ],
+   "miss": [
+    "Fiber (cellulose) is a complex carbohydrate the body cannot digest. It adds bulk that helps move food and waste through the digestive system.",
+    "the body can't digest fiber but it helps move waste",
+    "we cannot break down cellulose but we need it for bulk",
+    "the body does not digest fiber it pushes waste through"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bboth (are |is )?(solid|liquid|always solid|always liquid)\\b|\\bboth (have |has )?(only )?(single|double) bonds?\\b",
+   "say": "Check that. One is solid and one is liquid at room temperature. What do both do?",
+   "hit": [
+    "similarity both are solid at room temperature",
+    "both have double bonds"
+   ],
+   "miss": [
+    "Saturated fats have only single bonds and are solid at room temperature. Unsaturated fats have one or more double bonds and are liquid. Similarity: both help the body absorb fat-soluble vitamins.",
+    "both help absorb fat soluble vitamins saturated is solid unsaturated is liquid",
+    "both store energy saturated is solid and unsaturated is liquid at room temperature"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\b(builds?|building|repairs?|repairing) (\\w+ )?(muscles?|tissues?|bones?)\\b",
+   "say": "Check that. Building and repairing tissue is mainly a job of proteins.",
+   "hit": [
+    "fats insulate the body and build muscle",
+    "fat is part of membranes and repairs tissues"
+   ],
+   "miss": [
+    "Fats insulate the body, are part of cell membranes, and help absorb fat-soluble vitamins. Fats are NOT hormones and enzymes; those are jobs of proteins.",
+    "fats insulate keep us warm make up membranes and absorb vitamins but they are not enzymes",
+    "fats do not build muscle that is protein and fats are not hormones"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\b(eyesight|vision|see (better )?(in the dark|at night)|night vision|blood clot\\w*|clotting)\\b",
+   "say": "Check that. That job belongs to a different vitamin. What does vitamin C do?",
+   "hit": [
+    "vitamin c is ascorbic acid and it helps your eyesight",
+    "ascorbic acid helps blood clotting"
+   ],
+   "miss": [
+    "Vitamin C is also called ascorbic acid. It helps wounds heal, keeps gums healthy, helps the body absorb iron, and maintains cartilage and bone.",
+    "vitamin c ascorbic acid heals wounds and keeps gums healthy",
+    "ascorbic acid helps absorb iron and keeps bones and cartilage strong"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\\b(price|prices|cost|costs|expiration|expires?|expiring|best by)\\b",
+   "say": "Check that. A food label shows the nutrients in a serving. What does that help you plan?",
+   "hit": [
+    "a food label shows the price and expiration date",
+    "the label tells you how much the food costs"
+   ],
+   "miss": [
+    "A food label shows the amount of each nutrient in a serving. It helps a person plan a balanced diet with all the nutrients they need in the right amounts.",
+    "the label shows nutrients per serving so you can eat a balanced diet",
+    "it shows the amount of fat protein and carbs so you can plan healthy meals"
+   ]
+  }
+ ]
+}

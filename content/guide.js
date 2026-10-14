@@ -16,6 +16,11 @@ window.NOTE_GUIDE = [
     weak:"Homeostasis is in chapter 30 and it is about the body and a lot of things happen with it.",
     strong:"Homeostasis = keeping the inside of the body stable when the outside changes." },
 
+  { type:"tip", title:"Write it as bullets",
+    tip:"Good notes are short bullet points, one idea per bullet. In Notes Builder, each time you tap Speak you add a new bullet, and pressing Enter starts the next one.",
+    weak:"Diffusion is when the particles they move from where there is a lot of them to where there is not as many and it does not need any energy and oxygen does it.",
+    strong:"• Diffusion: particles move from high to low concentration\n• Needs no energy\n• Example: oxygen moving into cells" },
+
   { type:"cut", title:"Practice: spot the fluff",
     prompt:"The prompt says: Define stimulus. Tap each sentence that does NOT help answer it.",
     sentences:[

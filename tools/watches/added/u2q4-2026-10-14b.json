@@ -1,0 +1,178 @@
+{
+  "2": [
+    {
+      "re": "\\bglycolysis (?:\\w+ ){0,3}(?:in|inside) (?:the )?(?:nucleus|new ?clear|chloro ?plast|ribosomes?|golgi)\\b",
+      "say": "Check that. Where in the cell does glycolysis happen?",
+      "hit": [
+        "Glycolysis happens in the nucleus and does not need oxygen.",
+        "glycolysis takes place in the chloroplast and is anaerobic"
+      ],
+      "miss": [
+        "Glycolysis happens in the cytoplasm. It does not need oxygen, so it is anaerobic.",
+        "glycolysis is in the cytoplasm and is anaerobic",
+        "it happens in the cytoplasm outside the nucleus with no oxygen"
+      ]
+    }
+  ],
+  "4": [
+    {
+      "re": "\\b(?:spend|spends|spent|spending|invest\\w*|uses?|used|use up) (?:\\w+ )?(?:1|one|3|three|6|six) atp\\b",
+      "say": "Check that. How many ATP does the cell invest to start glycolysis?",
+      "hit": [
+        "The cell has to spend 1 ATP to get started and gets 4 back.",
+        "it invests three atp like buying lemons and gets four back"
+      ],
+      "miss": [
+        "The cell has to invest 2 ATP to get glycolysis started, like buying lemons and cups before selling lemonade. It spends 2 ATP and gets 4 back.",
+        "spend 2 ATP to make 4, like spending money to make money",
+        "it uses two ATP to start and makes four"
+      ]
+    }
+  ],
+  "5": [
+    {
+      "re": "\\bnad\\b(?! ?h\\b)(?: plus)? (?:\\w+ ){0,2}(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )(?:picks? up|picked up|carries|grabs?) (?:\\w+ )?(?:atp|oxygen|glucose|carbon dioxide|co2|phosphates?)\\b",
+      "say": "Check that. What does NAD+ pick up to become NADH?",
+      "hit": [
+        "NAD+ picks up oxygen and becomes NADH. 2 NADH per glucose.",
+        "nad plus grabs a phosphate and turns into nadh"
+      ],
+      "miss": [
+        "NAD+ picks up high-energy electrons (2 electrons and a hydrogen ion) and becomes NADH. Glycolysis makes 2 NADH per glucose.",
+        "nad picks up electrons and becomes nadh, 2 per glucose",
+        "NAD+ does not pick up oxygen, it picks up electrons and H+ and becomes NADH"
+      ]
+    }
+  ],
+  "6": [
+    {
+      "re": "\\b(?:nad ?h|n a d h|oxygen|glucose|atp) (?:is )?(?:the )?limiting\\b",
+      "say": "Check that. Which carrier does the cell have only a small supply of?",
+      "hit": [
+        "NADH is the limiting reagent because it runs out and glycolysis stops.",
+        "oxygen is the limiting reagent so glycolysis stops"
+      ],
+      "miss": [
+        "The cell has only a small supply of NAD+, so it runs out first. When NAD+ runs out, glycolysis stops and ATP production stops.",
+        "NAD+ is the limiting reagent, there is only a little so it runs out first and glycolysis stops",
+        "nad plus is limiting because it all gets loaded into nadh and then glycolysis stops"
+      ]
+    }
+  ],
+  "7": [
+    {
+      "re": "(?<!\\bnot )\\b(?:glycolysis|it) (?:is )?(?:very |really |super |kind of )?slow\\b",
+      "say": "Check that. Is glycolysis fast or slow?",
+      "hit": [
+        "Glycolysis is slow but it does not need oxygen.",
+        "it is very slow and 90 percent of the energy is still left in pyruvic acid"
+      ],
+      "miss": [
+        "Glycolysis is very fast; it can make thousands of ATP in a few milliseconds. It does not need oxygen. About 90 percent of glucose's energy is still left in pyruvic acid afterward.",
+        "it is fast, no oxygen needed, and 90 percent of the energy is left",
+        "glycolysis is not slow, it makes thousands of ATP in milliseconds"
+      ]
+    }
+  ],
+  "9": [
+    {
+      "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(?:turn|turns|turned|becomes?|changed?|converted?) (?:\\w+ ){0,2}(?:into )?(?:lactic|alcohol|ethanol|glucose)\\b",
+      "say": "Check that. That is fermentation. What does pyruvic acid become in the matrix?",
+      "hit": [
+        "Pyruvic acid goes into the matrix and turns into lactic acid.",
+        "pyruvic acid is changed into alcohol and then citric acid"
+      ],
+      "miss": [
+        "Pyruvic acid from glycolysis passes into the matrix of the mitochondrion. One carbon leaves as CO2 and the rest becomes acetyl-CoA. Acetyl-CoA joins a 4-carbon molecule to make citric acid, so it is also called the citric acid cycle.",
+        "pyruvic acid goes into the matrix, loses a carbon as co2, becomes acetyl coa, which joins a 4 carbon molecule to make citric acid",
+        "it does not turn into lactic acid, it becomes acetyl coa in the matrix"
+      ]
+    },
+    {
+      "re": "\\b(?:2|two|3|three|all) (?:of the )?carbons? (?:leave|leaves|left|are released|is released|are lost|come off|comes off|escape|escapes)\\b",
+      "say": "Check that. How many carbons leave as CO2 when pyruvic acid becomes acetyl CoA?",
+      "hit": [
+        "Pyruvic acid goes into the matrix and two carbons leave as CO2, then it becomes acetyl CoA.",
+        "in the matrix all 3 carbons leave as carbon dioxide"
+      ],
+      "miss": [
+        "Pyruvic acid from glycolysis passes into the matrix of the mitochondrion. One carbon leaves as CO2 and the rest becomes acetyl-CoA.",
+        "one carbon leaves as co2 and the other two carbons become acetyl coa",
+        "1 carbon is released as carbon dioxide, the 2 carbon piece becomes acetyl coa and joins a 4 carbon molecule"
+      ]
+    }
+  ],
+  "12": [
+    {
+      "re": "(?<!\\bnot )\\b(?:atp )?synth\\w* (?:\\w+ )?pumps?\\b",
+      "say": "Check that. The electron transport chain pumps the H+. What does ATP synthase do as they flow back?",
+      "hit": [
+        "ATP synthase pumps H+ ions into the intermembrane space and spins to make ATP.",
+        "the atp synthase pumps hydrogen and makes atp"
+      ],
+      "miss": [
+        "H+ ions pile up in the intermembrane space, then flow back into the matrix through ATP synthase. The H+ flow makes ATP synthase spin, and each turn attaches a phosphate to ADP, making ATP.",
+        "the chain pumps H+ out, then they flow back through ATP synthase and it spins and adds a phosphate to ADP",
+        "atp synthase does not pump, it spins like a water wheel when h flows through"
+      ]
+    },
+    {
+      "re": "\\belectrons? (?:\\w+ ){0,3}(?:flow|flows|rush|rushes|go|goes|pass|passes|move|moves) (?:\\w+ ){0,4}through (?:the )?(?:atp )?synth",
+      "say": "Check that. Which particles flow through ATP synthase, electrons or H+ ions?",
+      "hit": [
+        "Electrons flow back into the matrix through ATP synthase which spins and makes ATP.",
+        "the electrons go through atp synthase and it turns"
+      ],
+      "miss": [
+        "H+ ions pile up in the intermembrane space, then flow back into the matrix through ATP synthase. The H+ flow makes ATP synthase spin, and each turn attaches a phosphate to ADP, making ATP.",
+        "electrons move down the chain and h flows through atp synthase making it spin",
+        "hydrogen ions rush back through ATP synthase, it spins and adds a phosphate to ADP"
+      ]
+    }
+  ],
+  "15": [
+    {
+      "re": "\\bglycolysis (?:makes |gives |produces |is |nets )?(?:about )?(?:4|four)\\b(?!(?: atp)? (?:minus|but|and spends|and uses|total|in total|gross))|\\b(?:krebs|kreb|crebs|citric acid)\\w*(?: cycle)? (?:makes |gives |produces |is )?(?:about )?(?:32|thirty two|34|thirty four)\\b",
+      "say": "Check that. Use the net ATP for each stage from your notes. Which stage makes 32?",
+      "hit": [
+        "glycolysis makes 4 atp, krebs 2, and the etc 32, so about 36",
+        "Glycolysis 2, Krebs cycle 32, ETC 2, total 36."
+      ],
+      "miss": [
+        "Glycolysis 2 + Krebs cycle 2 + electron transport chain 32 = about 36 ATP per glucose. The electron transport chain makes the most.",
+        "glycolysis 2 plus krebs 2 plus etc 32 equals 36 and the etc makes the most",
+        "glycolysis makes 4 but spends 2 so net 2, krebs 2, electron transport chain 32, total 36"
+      ]
+    }
+  ],
+  "22": [
+    {
+      "re": "\\boxygen debt (?:is|means) (?:\\w+ ){0,3}(?:hold|holds|holding|not breathing|stop breathing|stops breathing|stopping breathing)\\b",
+      "say": "Check that. Oxygen debt is about after exercise. Do you breathe less or more?",
+      "hit": [
+        "Stored ATP lasts a few seconds, lactic acid 90 seconds, respiration for long exercise. Oxygen debt is when you hold your breath.",
+        "oxygen debt means you stop breathing during a sprint"
+      ],
+      "miss": [
+        "1. Stored ATP lasts only a few seconds. 2. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint. 3. Cellular respiration powers longer exercise. Oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used.",
+        "oxygen debt is the extra oxygen you breathe hard afterward to pay back",
+        "oxygen debt is when you keep breathing heavily after you stop running"
+      ]
+    }
+  ],
+  "23": [
+    {
+      "re": "\\bwithout oxygen (?:\\w+ ){0,2}glycolysis (?:\\w+ )?(?:stops|can't|cant|cannot|can not|does not happen|doesn't happen|doesnt happen)\\b",
+      "say": "Check that. Without oxygen, glycolysis keeps going. What follows it?",
+      "hit": [
+        "With oxygen the Krebs cycle and ETC make 36 ATP. Without oxygen glycolysis stops.",
+        "without oxygen, glycolysis can't happen"
+      ],
+      "miss": [
+        "With oxygen, glycolysis is followed by the Krebs cycle and the electron transport chain, making about 36 ATP per glucose. Without oxygen, glycolysis is followed by fermentation, making only 2 ATP per glucose.",
+        "without oxygen the krebs cycle and etc stop but glycolysis keeps going with fermentation, 2 atp",
+        "without oxygen glycolysis still runs and fermentation follows, only 2 ATP"
+      ]
+    }
+  ]
+}

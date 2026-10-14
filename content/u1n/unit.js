@@ -16,13 +16,14 @@ UNITS.push({
   questions: [
   { n:1, heading:"Vocabulary", prompt:"Define Calorie.",
     guide:"What does a Calorie measure?", where:S + "4 | Book: p. 868",
-    model:"A Calorie is the unit used to measure the amount of energy in food.",
+    model:"• A Calorie is the unit used to measure the amount of energy in food",
     watch:[
+      W(/\btemperature\b|\bhow (hot|warm|cold)\b|\bweigh\w*|\bheavy\b/, "Check that. A Calorie measures the energy in food, not its temperature or weight.", "What it measures"),
       W(/\bcalories? (is|are) (a |an )?(type of |kind of )?(nutrients?|fats?|foods?)\b/, "Check that. Is a Calorie a thing you eat, or a unit that measures something?"), W(/(measur\w*|amount of) (fat|sugar|weight|mass|food)\b/, "Check that. A Calorie measures energy.", "What it measures") ],
     ideas:[ I("What it measures", [/energy/], "What does a Calorie measure?", "Slide 4, the Calorie box.") ]},
   { n:2, heading:"Vocabulary", prompt:"Define carbohydrate.",
     guide:"What elements is it made of? What does the body use it for?", where:S + "5 | Book: p. 869",
-    model:"A carbohydrate is a molecule made of carbon, hydrogen, and oxygen. It is the body's quick source of energy.",
+    model:"• A carbohydrate is a molecule made of carbon, hydrogen, and oxygen\n• It is the body's quick source of energy",
     watch:[
       W(/\bamino/, "Check that. Amino acids build a different nutrient. What elements make up a carbohydrate?"),
       W(/(?<!not )(?<!n't )(?<!dont )\b(builds?|building|repairs?) (\w+ )?(muscles?|tissues?)/, "Check that. Building and repairing tissue is mainly a job of a different nutrient."), W(/nitrogen/, "Check that. Carbohydrates are made of carbon, hydrogen, and oxygen only.") ],
@@ -32,8 +33,9 @@ UNITS.push({
     ]},
   { n:3, heading:"Vocabulary", prompt:"Define fat.",
     guide:"What does fat do for the body? How many Calories per gram?", where:S + "6 to 7 | Book: p. 870",
-    model:"Fat is a nutrient that stores energy (about 9 Calories per gram). It insulates the body, is part of cell membranes, and helps absorb fat-soluble vitamins.",
+    model:"• Fat is a nutrient that stores energy (about 9 Calories per gram)\n• It insulates the body, is part of cell membranes, and helps absorb fat-soluble vitamins",
     watch:[
+      W(/\bamino/, "Check that. Amino acids build proteins. What does fat do for the body?"),
       W(/(?<!not )\bwater soluble/, "Check that. Which kind of vitamins does fat help the body absorb?"),
       W(/(?<!not )(?<!not the )(?<!not a )\b(quick|quickest|fast|fastest) (source of )?energy/, "Check that. Is fat the body's quick energy, or stored energy?"), W(/\b(4|four) calories per gram/, "Check that. Fat gives about 9 Calories per gram.") ],
     ideas:[
@@ -42,31 +44,32 @@ UNITS.push({
     ]},
   { n:4, heading:"Vocabulary", prompt:"Define protein.",
     guide:"What smaller units is it built from?", where:S + "8 | Book: p. 870",
-    model:"A protein is a nutrient built from smaller units called amino acids.",
+    model:"• A protein is a nutrient built from smaller units called amino acids",
     ideas:[ I("Built from", [/amino/], "What are proteins built from?", "Slide 8, the line under the title.") ],
     watch:[
       W(/(?<!not )(?<!not the )(?<!not a )\b(main|quick|quickest|fast|fastest|first) (source of )?energy/, "Check that. Is protein the body's main energy source, or a building material?", "Built from"),
       W(/\b(made|built|composed) (up )?(of|from) (\w+ )?(sugars?|carbs?|carbohydrates?|fats?|lipids?|starch\w*)\b/, "Check that. What smaller units are proteins built from?", "Built from"), W(/fatty acid|simple sugar|glucose/, "Check that. That is the building block of a different nutrient.", "Built from") ]},
   { n:5, heading:"Vocabulary", prompt:"Define vitamin.",
     guide:"Organic or inorganic? How much does the body need?", where:S + "9 | Book: pp. 871 to 872",
-    model:"A vitamin is an organic molecule the body needs in small amounts.",
+    model:"• A vitamin is an organic molecule the body needs in small amounts",
     ideas:[
       I("Organic", [/(?<!in)(?<!in )\borganic/], "Is a vitamin organic or inorganic?", "Slide 9, the title."),
       I("How much", [/small|little|tiny|few/], "How much does the body need?", "Slide 9: needed in ___ amounts.")
     ],
     watch:[
+      W(/\bvitamins? (is|are) (a |an )?(type of |kind of )?minerals?\b/, "Check that. Vitamins and minerals are different nutrients. Which one is organic?"),
       W(/\b(large|big|huge|great|giant) amounts?\b|\b(a lot|lots) of (vitamins?|them)\b/, "Check that. Does the body need a lot of vitamins or only a little?", "How much"),
       W(/\bvitamins? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\w+ )?(source of )?energy\b|\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\b/, "Check that. Do vitamins supply energy (Calories)?"), W(/\binorganic/, "Check that. Which one is organic, a vitamin or a mineral?", "Organic") ]},
   { n:6, heading:"Vocabulary", prompt:"Define mineral.",
     guide:"Organic or inorganic? How is it different from a vitamin?", where:S + "11 | Book: p. 872",
-    model:"A mineral is an inorganic nutrient the body needs in small amounts. Vitamins are organic; minerals are inorganic.",
+    model:"• A mineral is an inorganic nutrient the body needs in small amounts\n• Vitamins are organic; minerals are inorganic",
     watch:[
       W(/(?<!not )(?<!not in )(?<!n't need )(?<!not need )(?<!not needed in )(?<!n't needed in )\b(large|big|huge|great) amounts?\b|\b(a lot|lots) of minerals?\b/, "Check that. Does the body need a lot of minerals or only a little?"),
       W(/\bminerals? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\w+ )?(source of )?energy\b|\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\b/, "Check that. Do minerals supply energy (Calories)?"), W(/(?<!in)(?<!in )(?<!not )\borganic/, "Check that. Is a mineral organic or inorganic?", "Inorganic") ],
     ideas:[ I("Inorganic", [/inorganic|in organic|not organic/], "Is a mineral organic or inorganic?", "Slide 11, the line under the title.") ]},
   { n:7, heading:"Why We Eat and Calories", prompt:"Recall the two reasons the body needs food.",
     guide:"What does food supply besides energy?", where:S + "2 | Book: p. 868",
-    model:"The body needs food for energy and for raw materials to build and repair tissues.",
+    model:"• The body needs food for energy and for raw materials to build and repair tissues",
     watch:[
       W(/\bcalories? and energy\b|\benergy and calories?\b/, "Check that. Calories are a measure of energy, so that is one reason. What is the second?", "Reason 2"),
       W(/\b(food|it|eating) (gives?|provides?|supplies?) (the body |us |you )?(\w+ )?(oxygen|air)\b/, "Check that. Food gives energy and raw materials. Where does oxygen come from?") ],
@@ -76,8 +79,9 @@ UNITS.push({
     ]},
   { n:8, heading:"Why We Eat and Calories", prompt:"Explain what \"empty Calories\" means.",
     guide:"What do these foods give you, and what do they leave out?", where:S + "4 | Book: p. 868",
-    model:"Empty Calories are foods that supply Calories (energy) without the other nutrients the body needs. Example: chips and candy.",
+    model:"• Empty Calories are foods that supply Calories (energy) without the other nutrients the body needs\n• Example: chips and candy",
     watch:[
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\b(low|few|little|less|fewer|small amount of) calories?\b|\b(diet|low cal) (foods?|sodas?|drinks?)\b/, "Check that. Empty-Calorie foods still have plenty of Calories. What do they leave out?"),
       W(/(?<!not )(?<!not have )\b(no|zero) energy\b|\b(do not|don't|dont|does not|doesn't|doesnt) (have|give|supply|provide) (any )?energy/, "Check that. Empty Calories still give energy. What do they leave out?"),
       W(/(?<!not )(?<!n't )(?<!no )\b(lots of|full of|high in|packed with|rich in) (\w+ )?(nutrients|vitamins|nutrition)\b/, "Check that. Do empty-Calorie foods have lots of nutrients?"), W(/\b(no|zero) calories/, "Check that. Empty-Calorie foods do have Calories. What do they leave out?") ],
     ideas:[
@@ -86,8 +90,9 @@ UNITS.push({
     ]},
   { n:9, heading:"Carbohydrates", prompt:"List the six essential nutrients, and identify one thing that is NOT on the list.",
     guide:"Which six nutrients make up every food? Is cholesterol on the list?", where:S + "3 | Book: p. 869",
-    model:"The six essential nutrients are water, carbohydrates, fats, proteins, vitamins, and minerals. Cholesterol is NOT one of them.",
+    model:"• The six essential nutrients are water, carbohydrates, fats, proteins, vitamins, and minerals\n• Cholesterol is NOT one of them",
     watch:[
+      W(/\b(water|proteins?|vitamins?|minerals?|fats?|carbohydrates?|carbs?) (is not|isn't|isnt|are not|aren't|arent|is never|are never) (one|on the list|a nutrient|an essential|essential)\b/, "Check that. Water, carbohydrates, fats, proteins, vitamins, and minerals are all on the list."),
       W(/\b(five|5|seven|7|four|4|eight|8) (essential )?nutrients\b/, "Check that. How many essential nutrients are there?"),
       W(/\b(fiber|sugar|sodium|calories?|salt) (is|are) (one|1|an essential|essential|a nutrient|on the list)\b/, "Check that. Is that one of the six essential nutrients?"), W(/cholesterol (is|counts as) (one|a nutrient|essential|on the list)/, "Check that. Is cholesterol one of the six essential nutrients?") ],
     ideas:[
@@ -98,8 +103,10 @@ UNITS.push({
     ]},
   { n:10, heading:"Carbohydrates", prompt:"Distinguish simple carbohydrates from complex carbohydrates.",
     guide:"Which are sugars and which are starches? Which one does the body use for quick energy?", where:S + "5 | Book: p. 869",
-    model:"Simple carbohydrates are sugars. The body absorbs them and uses them for energy quickly. Complex carbohydrates are starches. They must be broken down before the body can use them.",
+    model:"• Simple carbohydrates are sugars\n• The body absorbs them and uses them for energy quickly\n• Complex carbohydrates are starches\n• They must be broken down before the body can use them",
     watch:[
+      W(/\b(bread|pasta|potato\w*|rice|grains?|whole wheat|cereal|oatmeal) (is|are) (a |an )?(examples? of )?simple\b|\b(candy|soda|table sugar|honey|juice|fruit juice) (is|are) (a |an )?(examples? of )?complex\b/, "Check that. Is that food mostly sugar or mostly starch?"),
+      W(/\bsimple (carbs?|carbohydrates?|sugars?) (take|takes) (longer|a long time|more time)\b|\bcomplex (carbs?|carbohydrates?) (are |is )?(absorbed|used|digested) (right away|immediately|instantly)\b/, "Check that. Which kind can the body use right away, and which must be broken down first?"),
       W(/\bcomplex (carbs?|carbohydrates?) (are|is) (just |simple )?sugars?\b(?! (linked|joined|bonded|together|chain|hooked))|\bsimple (carbs?|carbohydrates?) (are|is) (\w+ )?starch/, "Check that. Which kind are sugars and which kind are starches?"),
       W(/\bcomplex (carbs?|carbohydrates?) (are |is )?(used |absorbed |digested |give |gives |provide |for )(quick|fast)\w*|\bsimple (carbs?|carbohydrates?) (are |is )?(must|have to|need to) be broken down/, "Check that. Which kind of carbohydrate is used for energy right away?") ],
     ideas:[
@@ -109,8 +116,9 @@ UNITS.push({
     ]},
   { n:11, heading:"Carbohydrates", prompt:"Explain what fiber (cellulose) is and why the body still needs it.",
     guide:"Can the body digest it? What does it help move?", where:S + "5 | Book: p. 869",
-    model:"Fiber (cellulose) is a complex carbohydrate the body cannot digest. It is still needed because it adds bulk that helps move food and waste through the digestive system.",
+    model:"• Fiber (cellulose) is a complex carbohydrate the body cannot digest\n• It is still needed because it adds bulk that helps move food and waste through the digestive system",
     watch:[
+      W(/\b(body|stomach|we|you|intestines?|people) (can |does |do |is able to |are able to )?(digests?|absorbs?|breaks? down) (the )?(fiber|cellulose|it)\b/, "Check that. Can the body digest fiber?", "Can't digest"),
       W(/\bfiber (\w+ )?(is|are) (a |an )?(protein|fat|lipid|vitamin|mineral|simple)\b/, "Check that. What type of nutrient is fiber (cellulose)?"),
       W(/\bfiber (is |gets |can be )?(absorbed|broken down)\b/, "Check that. Can the body break down or absorb fiber?"), W(/fiber (is|gives) (a lot of )?energy|(easy|easily) (to )?digest/, "Check that. The body cannot digest fiber.", "Can\'t digest") ],
     ideas:[
@@ -119,8 +127,9 @@ UNITS.push({
     ]},
   { n:12, heading:"Fats", prompt:"Compare saturated and unsaturated fats (one similarity, one difference).",
     guide:"Solid or liquid at room temperature? Single or double bonds? What do both do?", where:S + "6 | Book: p. 870",
-    model:"Saturated fats have only single bonds and are solid at room temperature. Unsaturated fats have one or more double bonds and are liquid at room temperature. Similarity: both help the body absorb fat-soluble vitamins.",
+    model:"• Saturated fats have only single bonds and are solid at room temperature\n• Unsaturated fats have one or more double bonds and are liquid at room temperature\n• Similarity: both help the body absorb fat-soluble vitamins",
     watch:[
+      W(/\bboth (are |is )?(solid|liquid|always solid|always liquid)\b|\bboth (have |has )?(only )?(single|double) bonds?\b/, "Check that. One is solid and one is liquid at room temperature. What do both do?"),
       W(/(?<!un)(?<!un )\bsaturated (fats? )?(have|has|contain|contains) (\w+ )?double|\bunsaturated (fats? )?(have|has|contain|contains) (only )?single/, "Check that. Which kind of fat has double bonds?"),
       W(/\b(butter|lard|bacon grease) (is |are )?(an )?unsaturated|\b(olive oil|vegetable oil|oils?) (is|are) (a )?saturated/, "Check that. Is that fat solid or liquid at room temperature?"), W(/(?<!un)saturated (fats? )?(is|are) liquid|unsaturated (fats? )?(is|are) solid/, "Check that. Which kind of fat is solid at room temperature?") ],
     ideas:[
@@ -130,8 +139,9 @@ UNITS.push({
     ]},
   { n:13, heading:"Fats", prompt:"Identify the roles fats play in the body, and the one role that is NOT a job of fats.",
     guide:"Name three jobs. What job belongs to proteins instead?", where:S + "7 | Book: p. 870",
-    model:"Fats insulate the body, are part of cell membranes, and help absorb fat-soluble vitamins. Fats are NOT hormones and enzymes; those are jobs of proteins.",
+    model:"• Fats insulate the body, are part of cell membranes, and help absorb fat-soluble vitamins\n• Fats are NOT hormones and enzymes; those are jobs of proteins",
     watch:[
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\b(builds?|building|repairs?|repairing) (\w+ )?(muscles?|tissues?|bones?)\b/, "Check that. Building and repairing tissue is mainly a job of proteins."),
       W(/\bfats? (also )?(act as|work as|are|make|makes|serve as|can be) (?!not |no )(\w+ )?(enzymes?|hormones?)\b/, "Check that. Are enzymes and hormones a job of fats or of a different nutrient?"),
       W(/(?<!not )\bwater soluble/, "Check that. Which kind of vitamins do fats help the body absorb?") ],
     ideas:[
@@ -142,7 +152,7 @@ UNITS.push({
     ]},
   { n:14, heading:"Proteins", prompt:"Identify the functions of proteins besides supplying energy.",
     guide:"Name at least two jobs proteins do.", where:S + "8 | Book: p. 870",
-    model:"Proteins supply raw materials for growth and repair. Some act as enzymes that speed up reactions. Some have regulatory or transport jobs.",
+    model:"• Proteins supply raw materials for growth and repair\n• Some act as enzymes that speed up reactions\n• Some have regulatory or transport jobs",
     watch:[
       W(/\bproteins? .{0,20}\binsulat/, "Check that. Insulating the body is a job of a different nutrient."),
       W(/(?<!not )(?<!not the )(?<!not a )\b(main|quick|quickest|fast|fastest|first) (source of )?energy/, "Check that. Is protein the body's main or quick energy source?") ],
@@ -152,7 +162,7 @@ UNITS.push({
     ]},
   { n:15, heading:"Vitamins and Minerals", prompt:"Classify vitamins as fat-soluble or water-soluble.",
     guide:"Which letters are fat-soluble? Which are water-soluble? Which kind is stored?", where:S + "9 | Book: pp. 871 to 872",
-    model:"Fat-soluble vitamins are A, D, E, and K. They are stored in fat tissue. Water-soluble vitamins are the B vitamins and C. They are not stored, so they must be replaced more often.",
+    model:"• Fat-soluble vitamins are A, D, E, and K\n• They are stored in fat tissue\n• Water-soluble vitamins are the B vitamins and C\n• They are not stored, so they must be replaced more often",
     ideas:[
       I("Fat-soluble", [either(/fat/, /\ba\b.{0,10}\bd\b.{0,10}\be\b.{0,10}\bk\b|a d e (and )?k|\bk\b/, 40)], "Which vitamins are fat-soluble?", "Slide 9, the Fat-Soluble box."),
       I("Water-soluble", [either(/water/, /\bb\b|\bc\b/, 40)], "Which vitamins are water-soluble?", "Slide 9, the Water-Soluble box.")
@@ -162,8 +172,9 @@ UNITS.push({
       W(/\bvitamins? (a|d|e|k) (is|are) water|\b(vitamins? b|b vitamins?) (is |are )fat/, "Check that. Which letters are fat-soluble and which are water-soluble?"), W(/vitamin c (is )?fat/, "Check that. Is vitamin C fat-soluble or water-soluble?") ]},
   { n:16, heading:"Vitamins and Minerals", prompt:"Recall Vitamin C's other name and what it does for the body.",
     guide:"What is its chemical name? Name two jobs.", where:S + "10 | Book: p. 871",
-    model:"Vitamin C is also called ascorbic acid. It helps wounds heal, keeps gums healthy, helps the body absorb iron, and maintains cartilage and bone.",
+    model:"• Vitamin C is also called ascorbic acid\n• It helps wounds heal, keeps gums healthy, helps the body absorb iron, and maintains cartilage and bone",
     watch:[
+      W(/\b(eyesight|vision|see (better )?(in the dark|at night)|night vision|blood clot\w*|clotting)\b/, "Check that. That job belongs to a different vitamin. What does vitamin C do?"),
       W(/\bcitric acid/, "Check that. Citric acid is in citrus fruit, but what is vitamin C's chemical name?", "Other name"),
       W(/\babsorb\w* (\w+ )?calcium/, "Check that. Vitamin C helps the body absorb a different mineral."), W(/retinol|thiamine/, "Check that. That is a different vitamin\'s name.", "Other name") ],
     ideas:[
@@ -172,8 +183,9 @@ UNITS.push({
     ]},
   { n:17, heading:"Food Labels and a Balanced Diet", prompt:"Explain what a food label shows and how it helps plan a balanced diet.",
     guide:"What does the label list? How does that help you eat the right amounts?", where:S + "12 | Book: p. 872",
-    model:"A food label shows the amount of each nutrient in a serving. It helps a person plan a balanced diet with all the nutrients they need in the right amounts.",
+    model:"• A food label shows the amount of each nutrient in a serving\n• It helps a person plan a balanced diet with all the nutrients they need in the right amounts",
     watch:[
+      W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\b(price|prices|cost|costs|expiration|expires?|expiring|best by)\b/, "Check that. A food label shows the nutrients in a serving. What does that help you plan?"),
       W(/(?<!not )\b(in|for) the (whole|entire) (package|box|bag|container|thing)\b/, "Check that. Are the amounts on a food label for the whole package or for one serving?"),
       W(/(?<!than )\b(only|just) (shows? |lists? |tells? )?(you )?(the )?(calories|ingredients)\b/, "Check that. Does a food label show only one thing, or the amount of each nutrient?") ],
     ideas:[
@@ -182,7 +194,7 @@ UNITS.push({
     ]},
   { n:18, heading:"Food Labels and a Balanced Diet", prompt:"Identify which nutrient groups provide the body with energy.",
     guide:"Which three nutrients have Calories? Which ones do not?", where:S + "12 | Book: p. 872",
-    model:"Carbohydrates, fats, and proteins provide energy. Vitamins, minerals, and water do not.",
+    model:"• Carbohydrates, fats, and proteins provide energy\n• Vitamins, minerals, and water do not",
     ideas:[ I("The three", [near(/carb|fat|protein/, near(/carb|fat|protein/, /carb|fat|protein/, 40), 40)], "Which three nutrients provide energy?", "Read the last line on Slide 12.") ],
     watch:[
       W(/\bwater (gives?|provides?|supplies?|has) (?!no |zero )(you |the body )?(\w+ )?(energy|calories)\b/, "Check that. Does water supply energy (Calories)?"),

@@ -208,6 +208,14 @@ function pasteAllowed(){
 }
 function srcOf(n){ S.src = S.src || {}; return S.src[n] = S.src[n] || {s:0, t:0, p:0}; }
 function wireNoteBox(box, n){
+  /* Bullets: the first letter typed in an empty box starts a bullet, and Enter starts the next one. */
+  let busy = false;
+  const ins = txt => { busy = true; try { if (!document.execCommand("insertText", false, txt)) throw 0; } catch(e){ box.setRangeText(txt, box.selectionStart, box.selectionEnd, "end"); S.notes[n] = box.value; save(); } busy = false; };
+  box.addEventListener("beforeinput", e => {
+    if (busy) return;
+    if (e.inputType === "insertText" && e.data && !box.value.trim() && !/^[•\d]/.test(e.data)){ e.preventDefault(); ins("• " + e.data); }
+    else if (e.inputType === "insertLineBreak" || e.inputType === "insertParagraph"){ e.preventDefault(); ins("\n• "); }
+  });
   const block = e => { if (!pasteAllowed()){ e.preventDefault(); setTip("Pasting is turned off for this quiz. Say or type your note in your own words."); } };
   box.addEventListener("paste", block);
   box.addEventListener("drop", block);
@@ -248,6 +256,7 @@ function sheetCode(){
 /* ---------- speech out ---------- */
 function speak(text){
   if (listening) stopMic(false);
+  text = String(text).replace(/•/g, "").replace(/\n+/g, ". ");
   try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate = 0.9; u.lang = "en-US"; speechSynthesis.speak(u); } catch(e){}
 }
 function stopSpeak(){ try { speechSynthesis.cancel(); } catch(e){} }
@@ -286,13 +295,18 @@ function toggleMic(){
   const n = q().n, my = ++micSession;
   micStopping = false;
   const box0 = $("#note");
-  const base = (box0 ? box0.value : (S.notes[n] || "")).replace(/\s+$/, "");
+  /* Each Speak session adds one bullet. If the last line is an empty bullet, fill it. */
+  const raw = box0 ? box0.value : (S.notes[n] || "");
+  let base, sep;
+  if (/(^|\n)[ \t]*•[ \t]*$/.test(raw)){ base = raw.replace(/[ \t]*$/, "") + " "; sep = ""; }
+  else if (raw.trim()){ base = raw.replace(/\s+$/, ""); sep = "\n• "; }
+  else { base = ""; sep = "• "; }
   let finals = "", lastFinal = "", interim = "", heard = 0, quiet = 0;
   const liveBox = () => (my === micSession && unit && unit.questions[idx] && unit.questions[idx].n === n) ? $("#note") : null;
   const paint = () => {
     let t = (finals + " " + interim).replace(/\s+/g, " ").trim();
-    if (!base && t) t = t[0].toUpperCase() + t.slice(1);
-    const v = base + (t ? (base ? " " : "") + t : "");
+    if (t) t = t[0].toUpperCase() + t.slice(1);
+    const v = base + (t ? sep + t : "");
     S.notes[n] = v; heard = t.length;
     const b = liveBox(); if (b && b.value !== v) b.value = v;
     save();
@@ -522,7 +536,7 @@ function renderQuestion(){
   </section>
   <section class="card">
     <label for="note" class="eyebrow">My note</label>
-    <textarea id="note" class="note" spellcheck="true" placeholder="Tap Speak, or type here.">${esc(note)}</textarea>
+    <textarea id="note" class="note" spellcheck="true" placeholder="Tap Speak, or type here. Each point gets its own bullet.">${esc(note)}</textarea>
     <div class="row">
       <button class="btn big mic" id="mic" aria-pressed="false">${ICON.mic}<span>Speak</span></button>
       <button class="btn primary big" id="check">${ICON.check}<span>${Q.free ? "Save my note" : "Check my note"}</span></button>
@@ -633,11 +647,19 @@ function markedNoteHTML(text, marks, r){
   </div>`;
 }
 /* Clean up after removing words: spaces, stray punctuation, dangling "and"/"so". */
-function tidy(t){
+function tidyLine(t){
   t = t.replace(/\s+([.,!?;:])/g, "$1").replace(/[ \t]{2,}/g, " ").replace(/([.,!?;:])\1+/g, "$1").trim();
   t = t.replace(/^(?:(?:and|but|so|because|also|then|plus)\b[ ,]*)+/i, "").replace(/(?:[ ,]+\b(?:and|but|so|because|also|then|plus))+([.!?]?)$/i, "$1");
   t = t.replace(/\b(and|but|so|because)\s+(?:and|but|so|because)\b/gi, "$1").replace(/^[,.;:\s]+/, "").trim();
   return t ? t[0].toUpperCase() + t.slice(1) : t;
+}
+/* Clean up after removing words, line by line so bullets survive. Empty bullets are dropped. */
+function tidy(t){
+  return t.split("\n").map(l => {
+    const m = l.match(/^\s*(•|\d+\.)\s*/), head = m ? m[1] + " " : "";
+    const body = tidyLine(l.slice(m ? m[0].length : 0));
+    return body ? head + body : "";
+  }).filter(Boolean).join("\n");
 }
 /* Cut sentences marked extra, one at a time, keeping any cut that would lose a key idea. */
 function cutExtra(){
