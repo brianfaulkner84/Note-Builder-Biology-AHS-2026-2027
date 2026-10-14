@@ -1,0 +1,77 @@
+{
+ "3": [
+  {
+   "re": "\\b(?:makes?|produces?|gets?) (?:\\w+ )?(?:2|two) atp (?:in )?(?:total|altogether)\\b|\\btotal (?:of |is |made is )?(?:2|two) atp\\b",
+   "say": "Check that. Glycolysis makes 4 ATP in total. Which number is the net gain?",
+   "hit": [
+    "glycolysis spends 2 atp and makes 2 atp in total",
+    "the total is 2 atp per glucose"
+   ],
+   "miss": [
+    "The cell spends 2 ATP to start. Glycolysis makes 4 ATP in total. Net gain: 4 - 2 = 2 ATP per glucose.",
+    "it spends 2 atp, makes 4 atp total, so the net gain is 2 atp",
+    "4 total minus 2 spent equals a net of 2 atp"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\bglycolysis (?:\\w+ ){0,2}(?:makes|produces|gives|creates) (?:only |just )?(?:1|one|a single) (?:nad ?h|n a d h)\\b|\\b(?:1|one|a single) (?:nad ?h|n a d h) per glucose\\b",
+   "say": "Check that. How many NADH does glycolysis make per glucose?",
+   "hit": [
+    "glycolysis makes one nadh per glucose",
+    "nad plus picks up electrons and glycolysis only makes 1 nadh"
+   ],
+   "miss": [
+    "NAD+ picks up high-energy electrons (2 electrons and a hydrogen ion) and becomes NADH. Glycolysis makes 2 NADH per glucose.",
+    "nad+ picks up 2 electrons and a hydrogen ion and becomes nadh, glycolysis makes 2 nadh",
+    "each nad+ becomes one nadh, and one glucose gives 2 nadh"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bglycolysis (?:\\w+ )?(?:makes|produces|gives|creates) (?:about |around )?(?:32|thirty two|34|thirty four|36|thirty six|38|thirty eight)\\b(?!(?: atp)? (?:total|in total|altogether|with|when)\\b)",
+   "say": "Check that. Glycolysis nets only 2 ATP per glucose. What are its real advantages?",
+   "hit": [
+    "glycolysis makes 36 atp very fast",
+    "glycolysis quickly makes 36 atp without oxygen"
+   ],
+   "miss": [
+    "Glycolysis is very fast; it can make thousands of ATP in a few milliseconds. It does not need oxygen. About 90 percent of glucose's energy is still left in pyruvic acid afterward.",
+    "glycolysis is very fast and makes thousands of atp in milliseconds, it does not need oxygen, and 90 percent of the energy is left",
+    "glycolysis only makes 2 atp but it is fast; with oxygen the whole process makes about 36"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bmatrix (?:is )?(?:the )?(?:space |area |part )?(?:in )?between\\b|\\binter ?membrane (?:space )?(?:is )?(?:the )?(?:inner ?most|cent(?:er|re)|middle)\\b",
+   "say": "Check that. Which space is between the two membranes, and which is the innermost space?",
+   "hit": [
+    "the matrix is the space between the two membranes",
+    "the intermembrane space is the innermost part where krebs happens"
+   ],
+   "miss": [
+    "A mitochondrion has an outer membrane and a folded inner membrane. The matrix is the innermost space, where the Krebs cycle happens. The intermembrane space is between the two membranes, where H+ ions pile up. The electron transport chain is in the inner membrane.",
+    "the intermembrane space is between the outer and inner membranes and the matrix is the innermost space",
+    "outer membrane, folded inner membrane, matrix in the middle where the krebs cycle happens, intermembrane space between the membranes, etc in the inner membrane"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\boxygen debt\\b(?:(?!\\bnot\\b|n't|\\bno\\b).){0,40}\\b(?:breathe|breathing|breath)\\w* (?:less|slower|slowly|lighter|lightly)\\b",
+   "say": "Check that. After hard exercise, do you breathe less or more to repay the oxygen?",
+   "hit": [
+    "oxygen debt is when you breathe less after exercise",
+    "after a sprint the oxygen debt makes you breathe slower"
+   ],
+   "miss": [
+    "1. Stored ATP lasts only a few seconds 2. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint 3. Cellular respiration powers longer exercise. Oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used.",
+    "oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used",
+    "stored atp lasts seconds, lactic acid about 90 seconds, respiration for long exercise, oxygen debt means you breathe heavily after, you do not breathe less"
+   ]
+  }
+ ]
+}

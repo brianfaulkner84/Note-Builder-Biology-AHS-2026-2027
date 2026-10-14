@@ -18,6 +18,7 @@ UNITS.push({
     guide:"What does a Calorie measure?", where:S + "4 | Book: p. 868",
     model:"• A Calorie is the unit used to measure the amount of energy in food",
     watch:[
+      W(/(?<!\b(not|don't|dont|doesn't|doesnt|never)\b.{0,10})\bcalories? (are|is) (bad|unhealthy|evil)\b|(?<!\b(not|don't|dont|doesn't|doesnt|never)\b.{0,10})\bcalories? (make|makes|will make) you (fat|gain weight|unhealthy)\b/, "Check that. A Calorie is just a unit. What does it measure?"),
       W(/\btemperature\b|\bhow (hot|warm|cold)\b|\bweigh\w*|\bheavy\b/, "Check that. A Calorie measures the energy in food, not its temperature or weight.", "What it measures"),
       W(/\bcalories? (is|are) (a |an )?(type of |kind of )?(nutrients?|fats?|foods?)\b/, "Check that. Is a Calorie a thing you eat, or a unit that measures something?"), W(/(measur\w*|amount of) (fat|sugar|weight|mass|food)\b/, "Check that. A Calorie measures energy.", "What it measures") ],
     ideas:[ I("What it measures", [/energy/], "What does a Calorie measure?", "Slide 4, the Calorie box.") ]},
@@ -36,6 +37,7 @@ UNITS.push({
     guide:"What does fat do for the body? How many Calories per gram?", where:S + "6 to 7 | Book: p. 870",
     model:"• Fat is a nutrient that stores energy (about 9 Calories per gram)\n• It insulates the body, is part of cell membranes, and helps absorb fat-soluble vitamins",
     watch:[
+      W(/\b(body|we|you|people|humans) (does not|doesn't|doesnt|don't|dont|do not|never) (ever )?needs? (any )?fats?\b/, "Check that. Fat stores energy, insulates, and is part of cell membranes. Does the body need it?"),
       W(/\bamino/, "Check that. Amino acids build proteins. What does fat do for the body?"),
       W(/(?<!not )\bwater soluble/, "Check that. Which kind of vitamins does fat help the body absorb?"),
       W(/(?<!not )(?<!not the )(?<!not a )\b(quick|quickest|fast|fastest) (source of )?energy/, "Check that. Is fat the body's quick energy, or stored energy?"), W(/\b(4|four) calories per gram/, "Check that. Fat gives about 9 Calories per gram.") ],
@@ -66,6 +68,7 @@ UNITS.push({
     guide:"Organic or inorganic? How is it different from a vitamin?", where:S + "11 | Book: p. 872",
     model:"• A mineral is an inorganic nutrient the body needs in small amounts\n• Vitamins are organic; minerals are inorganic",
     watch:[
+      W(/\bminerals? (is|are) (a |an )?(type of |kind of |form of )?vitamins?\b/, "Check that. Vitamins and minerals are different nutrients. Which one is inorganic?"),
       W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )\b(contains?|has|have|made of|made from) (?!no |not |any )(\w+ )?carbon\b/, "Check that. Organic molecules contain carbon. Is a mineral organic?"),
       W(/(?<!not )(?<!not in )(?<!n't need )(?<!not need )(?<!not needed in )(?<!n't needed in )\b(large|big|huge|great) amounts?\b|\b(a lot|lots) of minerals?\b/, "Check that. Does the body need a lot of minerals or only a little?"),
       W(/\bminerals? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\w+ )?(source of )?energy\b|\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\b/, "Check that. Do minerals supply energy (Calories)?"), W(/(?<!in)(?<!in )(?<!not )\borganic/, "Check that. Is a mineral organic or inorganic?", "Inorganic") ],
@@ -74,6 +77,7 @@ UNITS.push({
     guide:"What does food supply besides energy?", where:S + "2 | Book: p. 868",
     model:"• The body needs food for energy and for raw materials to build and repair tissues",
     watch:[
+      W(/\b(tastes? good|for (the )?taste|because (we|you|people) (are|get) hungry|so (we|you) (are not|aren't|arent|don't|dont) (get )?hungry|to (stop|not) (be |being )?hungry)\b/, "Check that. Hunger and taste are not the two reasons. What does food supply besides energy?", "Reason 2"),
       W(/\bcalories? and energy\b|\benergy and calories?\b/, "Check that. Calories are a measure of energy, so that is one reason. What is the second?", "Reason 2"),
       W(/\b(food|it|eating) (gives?|provides?|supplies?) (the body |us |you )?(\w+ )?(oxygen|air)\b/, "Check that. Food gives energy and raw materials. Where does oxygen come from?") ],
     ideas:[
@@ -158,6 +162,7 @@ UNITS.push({
     guide:"Name at least two jobs proteins do.", where:S + "8 | Book: p. 870",
     model:"• Proteins supply raw materials for growth and repair\n• Some act as enzymes that speed up reactions\n• Some have regulatory or transport jobs",
     watch:[
+      W(/\benzymes? (are|is) (made (up )?of |a type of |a kind of |types of |kinds of )?(fats?|lipids?|carb\w*|sugars?|vitamins?|minerals?|starch\w*)\b/, "Check that. Enzymes are proteins. What else do proteins do?"),
       W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!never )\bslow(s|ing)? (down )?(the )?(chemical )?reactions?\b/, "Check that. Do enzymes speed up reactions or slow them down?"),
       W(/(?<!not )(?<!n't )(?<!dont )(?<!doesnt )(?<!fats )(?<!fat )(?<!lipids )(?<!carbs )(?<!carbohydrates )\b(stores?|storing) (\w+ )?energy\b|(?<!not )(?<!not for )\blong term energy\b/, "Check that. Storing energy is a job of a different nutrient. What else do proteins do?"),
       W(/\bproteins? .{0,20}\binsulat/, "Check that. Insulating the body is a job of a different nutrient."),

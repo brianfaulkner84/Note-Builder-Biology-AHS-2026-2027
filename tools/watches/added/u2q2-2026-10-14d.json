@@ -1,0 +1,41 @@
+{
+ "4": [
+  {
+   "re": "\\bfluid (means|is|because) (that )?(it is |it's |its )?(made (up )?of |full of |filled with |mostly )?water\\b",
+   "say": "Check that. Fluid here is not about water. What do the parts of the membrane do?",
+   "unless": "Fluid",
+   "hit": ["fluid means it is made of water and mosaic means many different pieces", "fluid means water and mosaic means lots of parts"],
+   "miss": ["Fluid means the parts are not locked in place; they move and drift around. Mosaic means the membrane is made of many different pieces: phospholipids, proteins, carbohydrates, and cholesterol.", "fluid means the parts move around, mosaic means it is made of many different pieces like proteins", "fluid does not mean water, it means the parts drift around"]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(membrane|middle|tails?|bilayer) (is|are) (also )?(positively |negatively )?(charged|positive|negative|magnetic)\\b",
+   "say": "Check that. The middle of the bilayer is not charged. What are the tails like?",
+   "hit": ["they need help because the membrane is charged and pushes them away", "the tails are negative so charged particles get pushed away"],
+   "miss": ["The middle of the bilayer is made of hydrophobic (non-polar, oily) tails. It pushes charged and polar molecules away, so they need a transport protein to get across.", "the tails are non polar and oily so charged particles are pushed away and need a protein", "the middle is not charged, it is oily and hydrophobic so they need a channel"]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\b(pumps?|it) (is|are) (an? )?(type of |kind of |form of )?(facilitated|osmosis|endocytosis|exocytosis)\\b",
+   "say": "Check that. A pump moves molecules against the flow with energy. Which kind of transport is that?",
+   "hit": ["a protein pump is facilitated diffusion because it uses a protein", "the pump is a kind of osmosis that moves water"],
+   "miss": ["A protein pump moves molecules from low concentration to high concentration, against the flow. It needs energy (ATP) to do that.", "a pump is not facilitated diffusion because it goes low to high with atp", "it is active transport, low to high using atp"]
+  },
+  {
+   "re": "\\b(pumps?|it) (makes?|produces?|creates?|releases?) (\\w+ )?(energy|atp)\\b",
+   "say": "Check that. Does the pump make ATP, or use it?",
+   "hit": ["the pump makes atp and moves molecules low to high", "a protein pump creates energy to move things against the flow"],
+   "miss": ["A protein pump moves molecules from low concentration to high concentration, against the flow. It needs energy (ATP) to do that.", "the pump uses atp to move molecules from low to high", "it does not make atp, it uses atp to go against the flow"]
+  }
+ ],
+ "16": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(endo|exo)\\w*(?:(?!\\bnot\\b|n't|\\bno\\b|without|\\bactive\\b).){0,40}\\b(pumps?|channels?|carrier proteins?)\\b",
+   "say": "Check that. Endocytosis and exocytosis move big things with vesicles and the membrane. Do they use a pump or channel?",
+   "hit": ["endocytosis uses a channel protein to bring big things in", "exocytosis uses a pump to send things out of the cell"],
+   "miss": ["Endocytosis brings large particles into the cell; the membrane folds around them. Exocytosis sends things out of the cell; a vesicle joins the membrane and releases them. Exocytosis is how the cell gets rid of bulk waste. Both use energy.", "endocytosis brings large particles in when the membrane folds around them, no pump needed", "exocytosis does not use channels, a vesicle joins the membrane and sends things out"]
+  }
+ ]
+}

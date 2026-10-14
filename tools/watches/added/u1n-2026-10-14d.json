@@ -1,0 +1,83 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\b(not|don't|dont|doesn't|doesnt|never)\\b.{0,10})\\bcalories? (are|is) (bad|unhealthy|evil)\\b|(?<!\\b(not|don't|dont|doesn't|doesnt|never)\\b.{0,10})\\bcalories? (make|makes|will make) you (fat|gain weight|unhealthy)\\b",
+   "say": "Check that. A Calorie is just a unit. What does it measure?",
+   "hit": [
+    "a calorie is energy in food and calories are bad",
+    "calories make you fat, it measures energy"
+   ],
+   "miss": [
+    "A Calorie is the unit used to measure the amount of energy in food",
+    "calories are not bad, they measure energy",
+    "a calorie measures how much energy is in food",
+    "calories don't make you fat by themselves, they are a unit of energy"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(body|we|you|people|humans) (does not|doesn't|doesnt|don't|dont|do not|never) (ever )?needs? (any )?fats?\\b",
+   "say": "Check that. Fat stores energy, insulates, and is part of cell membranes. Does the body need it?",
+   "hit": [
+    "fat is bad and the body doesn't need fat",
+    "fat stores energy but we don't need any fat"
+   ],
+   "miss": [
+    "Fat is a nutrient that stores energy (about 9 Calories per gram); it insulates the body, is part of cell membranes, and helps absorb fat-soluble vitamins",
+    "the body needs fat to insulate and store energy",
+    "we don't need too much fat but some is important",
+    "fat stores 9 calories per gram and is in cell membranes"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\bminerals? (is|are) (a |an )?(type of |kind of |form of )?vitamins?\\b",
+   "say": "Check that. Vitamins and minerals are different nutrients. Which one is inorganic?",
+   "hit": [
+    "a mineral is a type of vitamin that is inorganic",
+    "minerals are vitamins needed in small amounts"
+   ],
+   "miss": [
+    "A mineral is an inorganic nutrient the body needs in small amounts; vitamins are organic and minerals are inorganic",
+    "minerals are not vitamins, they are inorganic",
+    "a mineral is inorganic, like iron or calcium",
+    "minerals and vitamins are both needed in small amounts"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\b(tastes? good|for (the )?taste|because (we|you|people) (are|get) hungry|so (we|you) (are not|aren't|arent|don't|dont) (get )?hungry|to (stop|not) (be |being )?hungry)\\b",
+   "say": "Check that. Hunger and taste are not the two reasons. What does food supply besides energy?",
+   "unless": "Reason 2",
+   "hit": [
+    "we need food for energy and because it tastes good",
+    "food gives energy and we eat because we are hungry"
+   ],
+   "miss": [
+    "The body needs food for energy and for raw materials to build and repair tissues",
+    "food gives us energy and materials to grow and repair",
+    "energy and building materials for the body",
+    "we eat for energy and raw materials"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\benzymes? (are|is) (made (up )?of |a type of |a kind of |types of |kinds of )?(fats?|lipids?|carb\\w*|sugars?|vitamins?|minerals?|starch\\w*)\\b",
+   "say": "Check that. Enzymes are proteins. What else do proteins do?",
+   "hit": [
+    "proteins build and repair and enzymes are made of fat",
+    "enzymes are a type of carbohydrate that speed up reactions"
+   ],
+   "miss": [
+    "Proteins supply raw materials for growth and repair; some act as enzymes that speed up reactions; some have regulatory or transport jobs",
+    "enzymes are proteins that speed up reactions",
+    "proteins build and repair tissue and some are enzymes",
+    "enzymes are not fats, they are proteins"
+   ]
+  }
+ ]
+}

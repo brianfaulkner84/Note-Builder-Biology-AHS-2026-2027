@@ -87,6 +87,7 @@ UNITS.push({
         hints:["What is a mosaic picture made of?","Think of a picture made of tiles. One kind of tile, or many kinds?"]}
     ],
     watch:[
+      W(/\bfluid (means|is|because) (that )?(it is |it's |its )?(made (up )?of |full of |filled with |mostly )?water\b/, "Check that. Fluid here is not about water. What do the parts of the membrane do?", "Fluid"),
       W(/\b(solid|rigid|hard|stiff|frozen)\b/, "Check that. Are the parts of the membrane stiff, or do they move?", "Fluid"),
       W(/colou?rful|colou?rs\b|pretty|stained glass/, "Check that. Mosaic here is not about color. What is the membrane made of?", "Mosaic"),
       W(/\b(only|just) (made )?(of )?(proteins?|phospholipids?|lipids?|fats?)\b/, "Check that. Is the membrane made of just one kind of molecule?", "Mosaic"),{match:/liquid/, unless:"Fluid", say:"Fluid here is not about being a liquid. What do the parts of the membrane do?"}]},
@@ -121,6 +122,7 @@ UNITS.push({
     guide:"What is the middle of the bilayer like? Why does that block them?", where:"Slide 11 | Book: Facilitated Diffusion, p. 209",
     model:"• The middle of the bilayer is made of hydrophobic (non-polar, oily) tails\n• It pushes charged and polar molecules away, so they need a transport protein to get across",
     watch:[
+      W(/(?<!\bnot )(?<!n't )\b(membrane|middle|tails?|bilayer) (is|are) (also )?(positively |negatively )?(charged|positive|negative|magnetic)\b/, "Check that. The middle of the bilayer is not charged. What are the tails like?"),
       W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )(?<!\bno )\b(?:need|needs|use|uses|require|requires) (?:\w+ )?(?:energy|atp) to (?:get|go|move|cross|pass)\b/, "Check that. What they need is a way through, not energy. What helps them cross?"),
       W(/\bheads? (?:\w+ )?(?:block|blocks|push|pushes|repel|repels|stop|stops|keep|keeps)\b/, "Check that. The heads love water. Which part in the middle blocks charged particles?"),
       W(/\bmiddle (is |are )?(made (up )?of )?(the )?(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|heads?\b|(?<!non )polar)/, "Check that. What part of the phospholipid is in the middle, and how does it feel about water?"),
@@ -199,7 +201,7 @@ UNITS.push({
       W(/\baqua ?por\w* (?:\w+ )?pump/, "Check that. Aquaporins are channels. Does osmosis need a pump?"),
       W(/(diffusion|movement|moving|flow) of (salt|sugar|solutes?|particles|stuff|ions)\b|(?<!\bnot )(?<!n't )\b(salt|sugar|solutes?)\w* (moves?|diffuses?|goes|flows?) (across|through|from|toward)/, "Check that. In osmosis, which substance moves across the membrane?"),
       W(/\b(toward\w*|to|into) (the )?(side |area |place )?(with |that has |where there is )?(less|lower|fewer|least|little|no) (solute|stuff|salt|sugar)/, "Check that. Does water move toward more solute or less?"),
-      W(/(?<!\bno )(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of )?(energy|atp)/, "Check that. Osmosis is a kind of diffusion. Does it cost energy?") ],
+      W(/(?<!\bno )(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )(?<!\bactive (?:transport )?)\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of )?(energy|atp)/, "Check that. Osmosis is a kind of diffusion. Does it cost energy?") ],
     ideas:[
       {label:"What moves", match:[/water/], hints:["What substance moves during osmosis?","Osmosis is the diffusion of one special substance. What is it?"]},
       {label:"How it moves", match:[/diffus|across|through|membrane|cross/], hints:["What kind of movement is it, and across what?","Osmosis is a type of a movement you already wrote about in note 9."]},
@@ -250,6 +252,8 @@ UNITS.push({
       {label:"What it needs", match:[/energy|\batp\b/], hints:["What does a pump need to move molecules that way?","Slide 26: the cell pays with its energy molecule."]}
     ],
     watch:[
+      W(/\b(pumps?|it) (is|are) (an? )?(type of |kind of |form of )?(facilitated|osmosis|endocytosis|exocytosis)\b/, "Check that. A pump moves molecules against the flow with energy. Which kind of transport is that?"),
+      W(/\b(pumps?|it) (makes?|produces?|creates?|releases?) (\w+ )?(energy|atp)\b/, "Check that. Does the pump make ATP, or use it?"),
       W(/\b(?:pumps?|it) (?:is|are) (?:a |an )?(?:type of |kind of |form of )?(?:passive|diffusion)\b/, "Check that. A pump costs energy. Is that active or passive?"),
       W(/\b(pumps?|it)\b( \w+){0,2} (doesn't|doesnt|does not|do not|don't|dont|never) (need|use|require|take)\w* (any )?(energy|atp)|\b(pumps?|it) (needs?|uses?|requires?) no (energy|atp)/, "Check that. Does moving molecules against the flow cost energy?"),
       W(/(?<!\bnot )(?<!\bnot go )(?<!n't go )\b(with|down) the (flow|gradient|concentration gradient)\b/, "Check that. Do pumps go with the flow or against it?"),{match:HL, unless:"Which way", say:"Check the direction. Pumps go the opposite way from diffusion."}]},
@@ -265,6 +269,7 @@ UNITS.push({
         hints:["Which one does the cell use to get rid of bulk waste?","Read both boxes on Slide 27. Which one mentions waste?"]}
     ],
     watch:[
+      W(/(?<!\bnot )(?<!n't )\b(endo|exo)\w*(?:(?!\bnot\b|n't|\bno\b|without|\bactive\b).){0,40}\b(pumps?|channels?|carrier proteins?)\b/, "Check that. Endocytosis and exocytosis move big things with vesicles and the membrane. Do they use a pump or channel?"),
       W(/\b(both|they|endo\w*|exo\w*) (are|is) passive\b|\b(both|they) (do not|don't|dont|never) (use|need) (any )?(energy|atp)/, "Check that. Moving big things with vesicles is active. Does it cost energy?"),
       W(/\bendo\w*(?:(?!\bexo).){0,40}(gets? rid|remov\w* (the )?waste|throws? out|dumps? (the )?waste)/, "Check that. Which one does the cell use to get rid of bulk waste?"),
       {match:/\bendo\w*( is| means)?( when)?( the cell)? (sends?|puts?|pushes?|releases?|lets?) (\w+ )?out\b/, say:"Check endocytosis. Does it bring things in or send them out?"},

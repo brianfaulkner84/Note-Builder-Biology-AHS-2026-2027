@@ -26,6 +26,7 @@ A guided note-taking tool for students with an ISP printed-notes accommodation. 
 | `u2q2` | Unit 2 | Quiz 2: Cell Membrane and Transport | 18 |
 | `u2q3` | Unit 2 | Quiz 3: Energy, Photosynthesis, and Respiration | 28 |
 | `u2q4` | Unit 2 | Quiz 4: Glycolysis, Krebs Cycle, ETC, and Fermentation | 23 |
+| `u2t` | Unit 2 | Unit 2 Test: Cells and Energy | 32 |
 
 Unit 2 quizzes follow the notebook guides prompt for prompt. Unit 1 study guides were topic checklists, so each checklist item became a prompt with a guiding question, and items that repeated a vocabulary word were merged into that word's prompt.
 
@@ -201,7 +202,7 @@ Marking works on phrases, not sentences, because spoken notes often have no peri
 
 ## Common mistakes (watches)
 
-Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 693 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
+Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 858 across the 10 quizzes and tests, and every question has at least one (except the two drag-and-sort questions).
 
 To add more, put a new batch in `tools/watches/<quiz id>.json` with examples that must be flagged (`hit`) and correct notes that must not be (`miss`), then run the two commands below and move the file into `tools/watches/added/` so it is not inserted twice:
 

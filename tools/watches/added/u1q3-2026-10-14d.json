@@ -1,0 +1,80 @@
+{
+ "4": [
+  {
+   "re": "\\bseptum (is|means) (an? |the )?(valve|flap|chamber|blood vessel|vessel|artery|vein|atrium|ventricle)\\b",
+   "say": "Check that. The septum is a wall. Is it a valve, a chamber, or a vessel?",
+   "hit": [
+    "the septum is a valve that divides the left and right sides",
+    "septum is a chamber between the left and right sides"
+   ],
+   "miss": [
+    "The septum is the wall that divides the left and right sides of the heart, so oxygen-rich blood does not mix with oxygen-poor blood",
+    "the septum is a wall between the left and right sides",
+    "the septum is not a chamber, it is a wall",
+    "septum means the wall in the middle of the heart"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|cannot|can't|cant|won't|wont)\\b.{0,20})\\bblood (can |will |could |does |do |just )?(flows?|go(es)?|pass(es)?|moves?|travels?) (through|across) the septum\\b",
+   "say": "Check that. The septum is a solid wall. Can blood pass through it?",
+   "hit": [
+    "blood flows through the septum from right to left",
+    "the septum is a wall but blood can pass through the septum"
+   ],
+   "miss": [
+    "The septum is the wall that divides the left and right sides of the heart",
+    "no blood flows through the septum",
+    "the septum doesn't let blood go through the septum or mix",
+    "blood cannot pass across the septum so it stays apart"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\b(back|returns?|comes?|goes?|enters?)\\w* .{0,30}\\b(into|to|in) the right atri",
+   "say": "Check that. Blood coming back from the lungs enters the left side of the heart. Which atrium?",
+   "hit": [
+    "blood goes to the lungs and comes back into the right atrium",
+    "pulmonary is heart and lungs, then it returns to the right atrium"
+   ],
+   "miss": [
+    "Pulmonary circulation carries blood between the heart and the lungs; the right side of the heart pumps oxygen-poor blood to the lungs to pick up oxygen",
+    "blood comes back from the lungs into the left atrium",
+    "the right ventricle pumps blood to the lungs and it comes back to the left atrium",
+    "heart to lungs and back"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\b(back|returns?|comes?|goes?|enters?)\\w* .{0,30}\\b(into|to|in) the left atri",
+   "say": "Check that. Blood coming back from the body enters the right side of the heart. Which atrium?",
+   "hit": [
+    "the left side pumps blood to the body and it comes back into the left atrium",
+    "systemic goes to the body and returns to the left atrium"
+   ],
+   "miss": [
+    "Systemic circulation carries blood between the heart and the rest of the body; the left side of the heart pumps oxygen-rich blood to the body",
+    "blood comes back from the body into the right atrium",
+    "the left ventricle pumps blood to the body and it returns to the right atrium",
+    "between the heart and the body"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "(?<!\\b(not|never|no|unlike)\\b.{0,15})\\bveins? (are|is) (the )?(smallest|tiniest|thinnest)\\b",
+   "say": "Check that. The smallest blood vessels are capillaries. What do veins do?",
+   "hit": [
+    "veins are the smallest blood vessels and carry blood to the heart",
+    "veins are the tiniest vessels with valves"
+   ],
+   "miss": [
+    "Veins carry blood back toward the heart; valves keep the blood from flowing backward, and skeletal muscles squeeze the veins to push blood along",
+    "veins are not the smallest, capillaries are",
+    "veins bring blood back to the heart with valves and muscles",
+    "veins have valves and thin walls"
+   ]
+  }
+ ]
+}

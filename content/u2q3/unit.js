@@ -90,6 +90,7 @@ UNITS.push({
     guide:"Name at least three things cells use ATP for.", where:"Slide: Energy 12 | Book: Using Biochemical Energy, p. 227",
     model:"• ATP powers active transport (protein pumps), movement (muscles, cilia, and flagella), building proteins and other molecules, and making light, like a firefly's glow",
     watch:[
+      W(/\batp (?:(?!(?:not|never|dont|doesnt|doesn't|don't|cannot|can't|cant)\b)[\w']+ ){0,2}(carries|carry|carrying|transports?|delivers?) (the |high energy )?(oxygen|blood|electrons)\b/, "Check that. ATP is not a carrier of oxygen or electrons. Which cell jobs does ATP power?"),
       W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )(?<!\bisnt )\b(?:makes?|making|creates?|creating|produces?|producing) (?:more |new )?energy\b/, "Check that. ATP does not make energy. Which cell jobs does ATP power?"),
       W(/(?<!\b(?:not|no|never|unlike|than|isn't|isnt|doesn't|doesnt|or) (?:\w+ )?)\b(?:passive transport|diffusion|osmosis)\b/, "Check that. Which kind of transport needs no energy from the cell?") ],
     ideas:[
@@ -147,6 +148,7 @@ UNITS.push({
     guide:"How does each one get energy? Give two examples of each.", where:"Slide: Energy 19 | Book: Heterotrophs and Autotrophs, p. 228",
     model:"• Autotrophs make their own food using energy from sunlight\n• Examples: plants and algae\n• Heterotrophs get energy by eating or absorbing other living things\n• Examples: animals and mushrooms",
     watch:[
+      W(/\bauto\w* means (\w+ )?(other|others|different)\b|\bhetero\w* means (\w+ )?(self|own|same)\b/, "Check that. Auto means self and hetero means other. Which group makes its own food?"),
       W(/\bhetero\w*.{0,30}(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:make|makes|produce|produces) (?:their|its) own food/, "Check that. \"Hetero\" means other. Which group makes its own food?"),
       W(/\b(?:animals?|humans?|mushrooms?|fungi|fungus|people) (?:are|is) (?:an? )?auto|\b(?:plants?|algae|trees?|grass) (?:are|is) (?:an? )?hetero/, "Check that. Does that organism make its own food or eat other things?"), W(/auto\w*.{0,30}\beat/, "Check that. Autotrophs make their own food. Which group eats?", "Autotrophs") ],
     ideas:[
@@ -164,6 +166,7 @@ UNITS.push({
       I("Why the mushroom", [/absorb|decompos|dead|rott|can.?t make|cannot make|don.?t make|doesn.?t make|no (chloro|sun)|not (make|photo)|from other/], "Why is a mushroom NOT an autotroph?", "Read the line at the top of Slide Energy 21.")
     ],
     watch:[
+      W(/(?<!\bnot )(?<!n't )\bmushrooms? (are|is) (a |an )?(type of |kind of )?(plants?|vegetables?)\b/, "Check that. Mushrooms are fungi, not plants. How do they get food?"),
       W(/\balgae (?:is|are) (?:an? )?hetero/, "Check that. Can algae make food from sunlight?"),
       W(/\bmushrooms? (?:make|makes|get|gets) (?:their |its )?(?:own )?food from (?:the )?(?:sun|light)/, "Check that. Does a mushroom have chlorophyll to use sunlight?"), W(/mushrooms? (is|are) (an? )?auto/, "Check that. Can a mushroom make food from sunlight?") ]},
   { n:14, heading:"Photosynthesis Basics", prompt:"Define photosynthesis.",
@@ -196,7 +199,7 @@ UNITS.push({
     ],
     watch:[
       W(/(?<!\bnot )(?<!n't )\babsorbs? (?:all|every|each) (?:of )?(?:the )?(?:colou?rs?|light)\b/, "Check that. If chlorophyll absorbed every color, what color would leaves look?"),
-      W(/\breflect\w* (?:\w+ ){0,2}(?<!not |no )(?:red|blue|violet|purple)\b/, "Check that. The color that bounces back is the color you see. Which color is that?"), W(near(/absorb/, /green/, 15), "Check that. Does chlorophyll absorb green, or bounce it back?", "Color reflected") ]},
+      W(/\breflect\w* (?:\w+ ){0,2}(?<!not |no )(?:red|blue|violet|purple)\b/, "Check that. The color that bounces back is the color you see. Which color is that?"), W(/(?<!\b(?:not|never|doesn.t|doesnt|does not|can.t|cannot) )\babsorbs? (?:\w+ ){0,2}green\b|\bgreen (?:light )?(?:is|gets|are) absorbed/, "Check that. Does chlorophyll absorb green, or bounce it back?", "Color reflected") ]},
   { n:17, heading:"Light and Pigments", prompt:"Predict how a plant would grow under only green light.",
     guide:"Which color of light is least useful to a plant, and why?", where:"Slide: Photosynthesis 8 to 10 | Book: Pigments, p. 230",
     model:"• The plant would grow poorly\n• Green light is the least useful color because chlorophyll reflects green light instead of absorbing it, so the plant gets little energy",
@@ -262,6 +265,7 @@ UNITS.push({
     guide:"What does it release, and which gas does it need?", where:"Slide: Respiration 5 | Book: Overview of Cellular Respiration, p. 251",
     model:"• Cellular respiration is the process that releases energy from food (glucose) in the presence of oxygen",
     watch:[
+      W(/(?<!\bnot )(?<!\bnot just )(?<!n't )\b(in|inside) (the |your |our )?lungs?\b/, "Check that. The lungs bring in oxygen, but where does cellular respiration happen?"),
       W(/\b(?:is|means) (?:just |basically |the same as )?(?:breathing|breathe|inhaling|exhaling)\b/, "Check that. Breathing brings in oxygen, but what does cellular respiration do inside the cell?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:creates?|creating) (?:new )?energy\b/, "Check that. Does respiration create energy, or release energy already stored in food?"), W(/(needs?|requires?|uses?) carbon dioxide/, "Check that. Which gas does cellular respiration need?", "The gas it needs") ],
     ideas:[
@@ -284,6 +288,7 @@ UNITS.push({
     guide:"Which comes first, second, and third? Which happen in the cytoplasm, and which in the mitochondria? How many ATP does each stage make?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
     model:"1. Glycolysis, in the cytoplasm\n2. The Krebs cycle, in the mitochondria\n3. The electron transport chain, in the mitochondria",
     watch:[
+      W(/(?<!\bnot )(?<!\bnot the )(?<!n't )\bcalvin/, "Check that. The Calvin cycle belongs to photosynthesis. What are the three stages of respiration?"),
       W(/\b(?:krebs|kreb|crebs|citric acid|electron transport|etc|e t c)\w*(?: cycle| chain)? (?:is |comes |happens |goes )?first\b|\bfirst (?:is |comes |stage is |step is )?(?:the )?(?:krebs|kreb|crebs|citric|electron transport)/, "Check that. Which stage comes first, in the cytoplasm?"),
       W(/\bglycolysis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)|\b(?:(?:krebs|kreb|crebs|citric acid)(?: cycle)?|(?:electron transport(?: chain)?|\betc\b|\be t c\b)) (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)/, "Check that. Which stage is in the cytoplasm, and which are in the mitochondria?"), W(/krebs.{0,60}glycolysis/, "Check the order. Which stage comes first?", "The order") ],
     ideas:[

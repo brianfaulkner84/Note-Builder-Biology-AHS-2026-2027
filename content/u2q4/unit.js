@@ -46,6 +46,7 @@ UNITS.push({
     guide:"How many ATP are spent to start? How many are made in total? What is the net gain? Show the math.", where:"Slide: Glycolysis 6 to 8 | Book: ATP Production, p. 254",
     model:"• The cell spends 2 ATP to start\n• Glycolysis makes 4 ATP in total\n• Net gain: 4 - 2 = 2 ATP per glucose",
     watch:[
+      W(/\b(?:makes?|produces?|gets?) (?:\w+ )?(?:2|two) atp (?:in )?(?:total|altogether)\b|\btotal (?:of |is |made is )?(?:2|two) atp\b/, "Check that. Glycolysis makes 4 ATP in total. Which number is the net gain?"),
       W(/\b(?:spend|spends|spent|spending|invest\w*|uses?|used|use up) (?:\w+ )?(?:4|four) atp\b/, "Check that. How many ATP are spent to start, and how many are made?"),
       W(/\bnet (?:gain )?(?:is |of |was |equals )?(?:about )?(?:6|six|36|thirty six|0|zero)\b/, "Check that. Net means the ATP made minus the ATP spent."), W(/net (gain )?(is |of |was )?(4|four)\b(?! (minus )?(2|two))/, "Check that. Net means what is left after paying back the 2 ATP spent.") ],
     ideas:[
@@ -68,6 +69,7 @@ UNITS.push({
     guide:"What does NAD+ pick up? How many NADH are made per glucose?", where:"Slide: Glycolysis 10 | Book: NADH Production, p. 255",
     model:"• NAD+ picks up high-energy electrons (2 electrons and a hydrogen ion) and becomes NADH\n• Glycolysis makes 2 NADH per glucose",
     watch:[
+      W(/\bglycolysis (?:\w+ ){0,2}(?:makes|produces|gives|creates) (?:only |just )?(?:1|one|a single) (?:nad ?h|n a d h)\b|\b(?:1|one|a single) (?:nad ?h|n a d h) per glucose\b/, "Check that. How many NADH does glycolysis make per glucose?"),
       W(/\bnad\b(?! ?h\b)(?: plus)? (?:\w+ ){0,2}(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )(?:picks? up|picked up|carries|grabs?) (?:\w+ )?(?:atp|oxygen|glucose|carbon dioxide|co2|phosphates?)\b/, "Check that. What does NAD+ pick up to become NADH?"),
       W(/\b(?:4|four|36|thirty six) (?:nad ?h|n a d h)\b/, "Check that. How many NADH does glycolysis make per glucose?"),
       W(/\b(?:picks?|picked|picking) up (?:\w+ ){0,6}becomes? (?:an? )?nad\b(?! ?h\b)/, "Check that. What does NAD+ become after it picks up electrons?") ],
@@ -90,6 +92,7 @@ UNITS.push({
     guide:"How fast is it? Does it need oxygen? How much energy is still left in pyruvic acid?", where:"Slide: Glycolysis 12 | Book: The Advantages of Glycolysis, p. 255",
     model:"• Glycolysis is very fast; it can make thousands of ATP in a few milliseconds\n• It does not need oxygen\n• About 90 percent of glucose's energy is still left in pyruvic acid afterward",
     watch:[
+      W(/\bglycolysis (?:\w+ )?(?:makes|produces|gives|creates) (?:about |around )?(?:32|thirty two|34|thirty four|36|thirty six|38|thirty eight)\b(?!(?: atp)? (?:total|in total|altogether|with|when)\b)/, "Check that. Glycolysis nets only 2 ATP per glucose. What are its real advantages?"),
       W(/(?<!\bnot )\b(?:glycolysis|it) (?:is )?(?:very |really |super |kind of )?slow\b/, "Check that. Is glycolysis fast or slow?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:needs?|requires?) oxygen\b|\bis aerobic\b/, "Check that. Does glycolysis need oxygen?", "Oxygen"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:releases?|uses?|gets?|captures?|takes?|extracts?|uses up) (?:\w+ )?(?:most|all|90|ninety)(?: percent)? (?:of )?(?:the )?(?:glucose's |glucoses |glucose )?energy\b/, "Check that. After glycolysis, how much of glucose's energy is still left in pyruvic acid?") ],
@@ -103,6 +106,7 @@ UNITS.push({
     draw:"Sketch a mitochondrion. Label the outer membrane, inner membrane, matrix, and intermembrane space.",
     model:"• A mitochondrion has an outer membrane and a folded inner membrane\n• The matrix is the innermost space, where the Krebs cycle happens\n• The intermembrane space is between the two membranes, where H+ ions pile up\n• The electron transport chain is in the inner membrane",
     watch:[
+      W(/\bmatrix (?:is )?(?:the )?(?:space |area |part )?(?:in )?between\b|\binter ?membrane (?:space )?(?:is )?(?:the )?(?:inner ?most|cent(?:er|re)|middle)\b/, "Check that. Which space is between the two membranes, and which is the innermost space?"),
       W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b)\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:outer membrane|matrix|inter ?membrane)/, "Check that. Which membrane holds the electron transport chain?"),
       W(/\b(?:h|hydrogen|protons?)(?: ions?)? (?:pile|piles|build|builds|collect|collects|accumulate|accumulates) up in (?:the )?matrix/, "Check that. Where do the H+ ions pile up?"), W(/krebs.{0,40}inter ?membrane/, "Check that. Where does the Krebs cycle happen?", "Matrix") ],
     ideas:[
@@ -279,6 +283,7 @@ UNITS.push({
     guide:"What lasts seconds? What lasts about 90 seconds? What powers long exercise? What is oxygen debt?", where:"Slide: Fermentation 14 to 15 | Book: Energy and Exercise, pp. 264 to 265",
     model:"1. Stored ATP lasts only a few seconds\n2. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint\n3. Cellular respiration powers longer exercise\n• Oxygen debt is the extra oxygen you breathe in heavily afterward to repay what you used",
     watch:[
+      W(/\boxygen debt\b(?:(?!\bnot\b|n't|\bno\b).){0,40}\b(?:breathe|breathing|breath)\w* (?:less|slower|slowly|lighter|lightly)\b/, "Check that. After hard exercise, do you breathe less or more to repay the oxygen?"),
       W(/\boxygen debt (?:is|means) (?:\w+ ){0,3}(?:hold|holds|holding|not breathing|stop breathing|stops breathing|stopping breathing)\b/, "Check that. Oxygen debt is about after exercise. Do you breathe less or more?"),
       W(/\b(?:lactic|ferment)\w*(?: acid)?(?: fermentation)? (?:powers?|is (?:used )?for|supplies? (?:atp )?for|lasts?) (?:\w+ )?(?:long|longer|marathons?|hours)\b/, "Check that. How long can lactic acid fermentation supply ATP?"),
       W(/\b(?:stored|already made|on hand) atp (?:lasts? |is used for )?(?:about |for )?(?:90|ninety|minutes|hours|a long time)/, "Check that. How long does the ATP already in muscles last?") ],

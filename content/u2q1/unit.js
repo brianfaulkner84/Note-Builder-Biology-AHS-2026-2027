@@ -54,6 +54,7 @@ UNITS.push({
       I("What he looked at", [/pond|mouth|teeth|saliva|spit|plaque/], "What did he look at?", "Slide Intro 5 names two places he looked.")
     ],
     watch:[
+      W(/(?<!(\bnot|n't|\bdidnt|\bwithout|\bno)\b[\w' ]{0,12})\belectron/, "Check that. Electron microscopes came much later. What kind did Leeuwenhoek use?"),
       W(/schleiden|schwann|\bswan\b|virchow|vir ?cow|pasteur/, "Check that. That scientist is from a different part of the cell story. Who first saw living cells?", "Who"),
       W(/\bcork\b/, "Check that. Cork cells were dead. What did he look at to see living cells?", "What he looked at"), W(/\bhooke?\b/, "Check that. Hooke saw dead cork. Who saw living cells?", "Who") ]},
   { n:5, heading:"Cell Theory and Microscopes", prompt:"Compare light microscopes and electron microscopes.",
@@ -97,12 +98,14 @@ UNITS.push({
       I("The reason", [/nucle/], "How can you tell? What do your cells have?", "Do your cells keep their DNA in a nucleus?")
     ],
     watch:[
+      W(/\bbecause (they |it |human cells |humans )?(have no|has no|do not have|don't have|dont have|does not have|doesn't have|doesnt have|lack|lacks) (a |any )?(nucle|new ?clear)/, "Check that. Do human cells have a nucleus?"),
       W(/\bbecause (they |it |human cells )?(has|have|contain|contains) (dna|ribosomes?|a cell membrane|cytoplasm)\b/, "Check that. All cells have that. What do human cells have that bacteria do not?", "The reason"),
       W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bnever )\b(has|have|with) (a )?(cell )?walls?\b/, "Check that. Do human cells have a cell wall?"), W(near(/human|my|our|people/, T.pro, 40), "Check that. Do human cells have a nucleus?", "Which group") ]},
   { n:9, heading:"Two Kinds of Cells", prompt:"List the four things every cell has, and name the organelle found in ALL cells.",
     guide:"What do a bacterium and a brain cell both have? Which organelle is on that list?", where:"Slide: Intro 9, Organelles 13 | Book: Prokaryotes and Eukaryotes, p. 193",
     model:"• Every cell has a cell membrane, DNA, cytoplasm, and ribosomes\n• The ribosome is the organelle found in all cells",
     watch:[
+      W(/(?<!\bnot )\b(all|every) cells? (has|have|contain|contains) (a |an )?(cell walls?|walls?|chloro ?plasts?|vacuoles?|lysosomes?|golgi|centrioles?)\b|\b(nucleus|nuclei|mitochondri\w*|chloroplasts?|golgi|lysosomes?|vacuoles?) (is|are) the (only )?organelles? (that is |that are )?(found )?in (all|every)/, "Check that. Bacteria are cells too. Which organelle is found in ALL cells?"),
       W(/\b(chloroplasts?|chloro ?plasts?|cell walls?|walls?|centrioles?|vacuoles?|lysosomes?|golgi) (is|are) (found )?in (all|every)/, "Check that. Which organelle is found in ALL cells, even bacteria?"),
       W(/(?<!\bnot )\b(all|every) cells? (has|have|contain|contains) (a |an )?(nucle|mitochond|chloroplast)/, "Check that. Does every cell, even a bacterium, have that?"), W(/\b(nucleus|nuclei|mitochondri\w*) (is|are) (found )?in (all|every)/, "Check that. Which organelle is found in ALL cells, even bacteria?") ],
     ideas:[
@@ -284,6 +287,7 @@ UNITS.push({
     guide:"How is it like the beams and conveyor belts of a factory?", where:"Slide: Organelles 23 | Book: The Cytoskeleton, p. 199",
     model:"• The cytoskeleton is a network of protein fibers\n• Like beams, it gives the cell its shape and support\n• Like conveyor belts, it moves materials around the cell",
     watch:[
+      W(/(?<!\bnot )(?<!n't )\b(made|built|composed) (up )?of (lipids?|fats?|phospholipids?|dna|sugars?|cellulose|carbohydrates?)\b|(?<!\bnot )(?<!n't )\b(controls?|regulates?|decides?) (what|which)\b/, "Check that. That sounds like a different cell part. What is the cytoskeleton made of, and what does it do?"),
       W(/(made|built) (up )?of (bones?|calcium)|\bis (a |the )?bones? of/, "Check that. The cytoskeleton is not bone. What are its fibers made of?"),
       W(/(?<!\bnot )\bonly (found )?(in )?animals?\b/, "Check that. Do plant cells have a cytoskeleton too?"),
       W(/(?<!\bnot )(?<!\bnot the )(?<!\bnot an )\b(outer (layer|wall|covering|shell)|is the (cell )?wall|outside (layer|of the cell))/, "Check that. Is the cytoskeleton on the outside, or inside the cell?") ],
@@ -299,6 +303,7 @@ UNITS.push({
       I("Which cells", [/animal/], "Which cells have centrioles?", "Slide Organelles 24, FOUND IN.")
     ],
     watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(make|makes|produce|produces|build|builds) (the )?(cell'?s? )?(proteins?|energy|atp|food|dna)\b|\b(bacteri\w*|prokaryot\w*) (also )?(have|has) (them|centri)/, "Check that. Centrioles do not make things. What process do they help organize?"),
       W(/(?<!\bnot )\bonly (found )?(in )?plants?\b|\bonly plant cells? (have|has)/, "Check that. Which cells have centrioles?"),
       W(/animal cells? (do not|don't|dont|never|doesn't|doesnt) have (them|centri)|\bno animal cells?/, "Check that. Do animal cells have centrioles?"), W(/plant cells? (have|has|do have) (them|centri)|both plant and animal/, "Check that. Do plant cells have centrioles?") ]},
   { n:27, heading:"Putting It Together", prompt:"Sequence the path a protein takes to be shipped out of the cell.",

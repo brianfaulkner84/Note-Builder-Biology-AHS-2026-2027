@@ -54,8 +54,10 @@ UNITS.push({
     guide:"What does it divide? What does it keep from mixing?", where:S + "4 | Book: Chapter 33.1, p. 949",
     model:"• The septum is the wall that divides the left and right sides of the heart\n• It keeps oxygen-rich blood from mixing with oxygen-poor blood",
     watch:[
+      W(/\bseptum (is|means) (an? |the )?(valve|flap|chamber|blood vessel|vessel|artery|vein|atrium|ventricle)\b/, "Check that. The septum is a wall. Is it a valve, a chamber, or a vessel?"),
+      W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|cannot|can't|cant|won't|wont)\b.{0,20})\bblood (can |will |could |does |do |just )?(flows?|go(es)?|pass(es)?|moves?|travels?) (through|across) the septum\b/, "Check that. The septum is a solid wall. Can blood pass through it?"),
       W(/(?<!\b(left|right)\b.{0,60})(\b(top|upper) (and|from) (the )?(bottom|lower)\b|\b(separat\w*|divid\w*) (the )?atri\w* (and|from) (the )?ventric\w*)(?!.{0,40}\b(left|right|middle|sides?)\b)/, "Check that. Does the septum separate top from bottom, or one side from the other?"),
-      W(/(?<!\b(not|never|doesn't|doesnt|don't|dont|from|to) )\bmix(es|ing)? (the |up )?(oxygen|blood)|\b(lets?|allows?|helps?) (the )?(oxygen \w+ )?blood (to )?mix/, "Check that. Does the septum mix the blood or keep it apart?"), W(/valve|one (direction|way)/, "Check that. Keeping blood moving one way is the job of the valves.", "What it divides") ],
+      W(/(?<!\b(not|never|doesn't|doesnt|don't|dont|from|to) )\bmix(es|ing)? (the |up )?(oxygen|blood)|\b(lets?|allows?|helps?) (the )?(oxygen \w+ )?blood (to )?mix/, "Check that. Does the septum mix the blood or keep it apart?"), W(/(?<!\b(?:not|never|isn't|isnt|no) (?:a |an )?)\bvalves?\b|(?<!\b(?:not|never) )\bone (direction|way)/, "Check that. Keeping blood moving one way is the job of the valves.", "What it divides") ],
     ideas:[
       I("What it divides", [either(LEFT, RIGHT, 30), /divid|separat|split/], "What does the septum divide?", "Slide 4: wall that divides the left side from the ___."),
       I("What it prevents", [/mix/], "What does the septum keep from mixing?", "Slide 4, the second line under Septum.")
@@ -83,6 +85,7 @@ UNITS.push({
     model:"• Pulmonary circulation carries blood between the heart and the lungs\n• The right side of the heart pumps oxygen-poor blood to the lungs to pick up oxygen",
     ideas:[ I("Heart and lungs", [either(/heart/, LUNG, 60), LUNG], "Pulmonary circulation carries blood between the heart and what?", "Pulmonary means having to do with the lungs.") ],
     watch:[
+      W(/\b(back|returns?|comes?|goes?|enters?)\w* .{0,30}\b(into|to|in) the right atri/, "Check that. Blood coming back from the lungs enters the left side of the heart. Which atrium?"),
       W(/\b(picks?|picking|gets?|getting) up (the )?oxygen (in|from|at|inside) the heart\b|\b(gets?|getting|receives?) (its |the )?oxygen (in|from|at|inside) the heart\b/, "Check that. Where does blood pick up oxygen, in the heart or in the lungs?"),
       W(/\bleft (side|ventricle) (of the heart )?pumps? (the )?(oxygen \w+ )?(blood )?(to|into) the lungs/, "Check that. Which side of the heart sends blood to the lungs?"),
       W(/\b(drops? off|gives?|delivers?|unloads?) (the )?oxygen (to|in|at|into) the lungs|\bpicks? up (carbon dioxide|co ?2|co two) (in|from|at) the lungs|\boxygen (rich|full) (blood )?(to|into) the lungs/, "Check that. What does blood pick up in the lungs, and what does it drop off?"), W(/rest of the body|whole body/, "Check that. Pulmonary means lungs. Which pathway goes to the rest of the body?", "Heart and lungs") ]},
@@ -90,6 +93,7 @@ UNITS.push({
     guide:"Between the heart and what? Which side of the heart pumps it?", where:"Book: Chapter 33.1, p. 950",
     model:"• Systemic circulation carries blood between the heart and the rest of the body\n• The left side of the heart pumps oxygen-rich blood to the body",
     watch:[
+      W(/\b(back|returns?|comes?|goes?|enters?)\w* .{0,30}\b(into|to|in) the left atri/, "Check that. Blood coming back from the body enters the right side of the heart. Which atrium?"),
       W(/\b(picks?|picking|gets?|getting) (up )?(more )?oxygen (in|from|at) (the )?(body|cells|tissues|organs|rest of the body)\b/, "Check that. In the body, does blood pick up oxygen or drop it off?"),
       W(/\bright (side|ventricle) (of the heart )?pumps? (the )?(oxygen \w+ )?(blood )?(to|into|through|out to) the (rest of the )?body/, "Check that. Which side of the heart pumps blood to the body?"),
       W(/\b(pumps?|carr\w*|sends?|delivers?) (the )?oxygen (poor|less|low) (blood )?(to|into|out to) (the )?(rest of the )?body/, "Check that. Is the blood sent out to the body oxygen rich or oxygen poor?"), W(/(only|just) (to )?the lungs|heart and (the )?lungs/, "Check that. Systemic means the rest of the body. Which pathway goes to the lungs?", "Heart and body") ],
@@ -161,6 +165,7 @@ UNITS.push({
     guide:"Which way do veins carry blood? What two things help push it back?", where:S + "6 | Book: Chapter 33.1, pp. 951 to 952",
     model:"• Veins carry blood back toward the heart\n• Valves keep the blood from flowing backward, and skeletal muscles squeeze the veins to push blood along",
     watch:[
+      W(/(?<!\b(not|never|no|unlike)\b.{0,15})\bveins? (are|is) (the )?(smallest|tiniest|thinnest)\b/, "Check that. The smallest blood vessels are capillaries. What do veins do?"),
       W(/\bveins? (have no|has no|don't have|dont have|do not have|does not have|doesn't have|doesnt have|lack|lacks) valves?\b/, "Check that. What inside veins keeps blood from flowing backward?"),
       W(/(?<!not )(?<!n't )(?<!isnt )\bblood (in (the )?veins )?(is|turns|looks) blue\b|(?<!not )\bblue blood/, "Check that. Is blood ever really blue?"),
       W(/(?<!not )(?<!n't )(?<!not have )(?<!n't have )(?<!dont have )(?<!no )\bhigh (blood )?pressure|(?<!not )(?<!n't )(?<!not as )(?<!not have )(?<!dont have )\bthick(er)? (and elastic )?walls?/, "Check that. Which vessels have thick walls for high pressure? Is that veins?"), W(/away from (the )?heart/, "Check that. Veins carry blood back to the heart.", "Which way") ],

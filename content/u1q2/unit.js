@@ -57,6 +57,7 @@ UNITS.push({
     guide:"What does it make possible?", where:H + "6 | " + B30,
     model:"• Muscle tissue makes movement possible, both voluntary and involuntary",
     watch:[
+      W(/\binvoluntary (means|is|are) (?:(?!not\b|cant\b|cannot\b|dont\b|no\b|without\b|never\b)\w+ ){0,2}(control|choose|on purpose|decide)\b|(?<!in)\bvoluntary (means|is|are) (?:(?!not\b)\w+ ){0,2}(automatic\w*|without (you )?thinking|on its own|by itself)\b/, "Check that. Voluntary movements are the ones you choose. Which kind happens without thinking?"),
       W(/\b(heart|heartbeat|heart beat|heart muscle|stomach|intestines?)s? (is|are) (a )?voluntary\b|(?<!\b(not|can't|cant|cannot|don't|dont|doesn't|doesnt|never|unable)\b.{0,15})\b(control|choose|decide) (when )?(your |the |our )?(heart ?beats?|heart)\b/, "Check that. Can you choose when your heart beats? Heart muscle is involuntary."),
       W(/(?<!\bnot )\b(only|just|always) (voluntary|on purpose|when you (want|choose|decide))|\ball muscles? (are|is) (voluntary|controlled by you)/, "Check that. Are all muscle movements ones you choose?"), W(/impulse|signal|message/, "Check that. Carrying signals is the job of nervous tissue.", "Its job") ],
     ideas:[ I("Its job", [/\bmov|motion|contract/], "What does muscle tissue make possible?", "Slide 6 calls it the mover.") ]},
@@ -64,6 +65,7 @@ UNITS.push({
     guide:"What does the body keep constant, even when things change?", where:H + "9 | " + B30,
     model:"• Homeostasis is the relatively constant internal conditions that organisms maintain, even when things change around them",
     watch:[
+      W(/\bhomeostasis (is|means) (?:(?!not\b)\w+ ){0,2}(chemical reactions|metabol)/, "Check that. That describes metabolism. What does homeostasis keep constant?"),
       W(/(?<!\b(not|never|doesn't|doesnt|don't|dont|without)\b.{0,15})\b(match\w*|the same as|changes? with) (the )?(outside|external|environment|surroundings|weather)\b/, "Check that. Do internal conditions match the outside, or stay constant when the outside changes?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})(\b(stable|constant|steady|balanced?) (external|outside)\b|\bkeep\w* the (outside|external) (environment|world|temperature|conditions)\b)/, "Check that. Does homeostasis keep the inside or the outside of the body constant?"),
       W(/(?<!\bnot )\b(exactly|perfectly) the same\b/, "Check that. Do internal conditions stay exactly the same, or relatively constant?") ],
@@ -89,6 +91,7 @@ UNITS.push({
       I("Too hot", [/sweat/], "What does your body do when you are too hot?", "Slide 12, the Too Hot column.")
     ],
     watch:[
+      W(/\bhypo ?thalam\w* (is )?(in|inside|part of|located in|found in) (the |your )?(heart|skin|neck|stomach|spinal cord|lungs?|chest)\b/, "Check that. The hypothalamus is part of the brain. Where is it?"),
       W(/\b(hot|warm)\w* (you |your body |the body |it |they )?(shivers?|shivering)\b|\bshiver\w* (to|and|so you|helps you) (cool|cools|get cool)/, "Check that. Does shivering cool you down or warm you up?"),
       W(/\b(heart|medulla|pituitary|cerebellum|thyroid|skin|spinal cord) is the control (center|centre)\b|\bcontrol (center|centre) is the (heart|medulla|pituitary|cerebellum|thyroid|skin|brain stem|spinal cord)\b/, "Check that. Which part of the brain is the control center for body temperature?", "Control center"), W(near(/cold/, /sweat/, 25), "Check that. Do you sweat when you are cold?", "Too cold") ]},
   { n:9, heading:"The Respiratory System", prompt:"Define pharynx.",
@@ -103,6 +106,7 @@ UNITS.push({
     guide:"What is its nickname?", where:R + "4 | " + B33,
     model:"• The larynx is the voice box",
     watch:[
+      W(/\b(larynx|larinx|larnyx|voice ?box) (is )?(in|inside|part of|located in|found in) (the |your )?(lungs?|chest|stomach|heart|mouth)\b/, "Check that. The larynx sits in the neck, between the throat and the windpipe. Where is it?"),
       W(/\b(larynx|larinx|larnyx) (is|means) (the |your )?(throat|pharynx|esophagus|food ?pipe)\b/, "Check that. The throat is the pharynx. What is the larynx's nickname?"),
       W(/\b(air and food|food and air)\b/, "Check that. Air and food both pass through the pharynx. What is the larynx?", "Nickname"), W(/wind ?pipe/, "Check that. The windpipe is the trachea. What is the larynx?", "Nickname") ],
     ideas:[ I("Nickname", [/voice|vocal|speak|talk|sound/], "What is the larynx's nickname?", "Slide 4: the ___ box.") ]},
@@ -144,6 +148,7 @@ UNITS.push({
     guide:"Where is this muscle, and what does it do?", where:"Slide: Respiratory slideshow 11 | " + B33,
     model:"• The diaphragm is a large, dome-shaped muscle under the lungs\n• It contracts and relaxes to move air in and out of the lungs",
     watch:[
+      W(/\bdiaphragm (is|means) (an? |the )?(part of (the |your )?)?(lungs?|stomach|heart|organ that (holds|stores) air|air sacs?)\b/, "Check that. The diaphragm is a muscle under the lungs. Is it part of the lungs?"),
       W(/\b(above|on top of|over) (the )?lungs?\b|\bin (the )?(throat|neck|head)\b/, "Check that. Where is the diaphragm compared to the lungs?"),
       W(/\bdiaphragm\w*.{0,20}\b(fills?|filled|inflates?) (up )?with air\b|\bholds? (the )?air\b/, "Check that. The diaphragm is a muscle. Which organs fill with air?"), W(/\bbone\b/, "Check that. The diaphragm is a muscle, not a bone.") ],
     ideas:[

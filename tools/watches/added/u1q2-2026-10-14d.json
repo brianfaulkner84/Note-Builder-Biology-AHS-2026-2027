@@ -1,0 +1,82 @@
+{
+ "5": [
+  {
+   "re": "\\binvoluntary (means|is|are) (?:(?!not\\b|cant\\b|cannot\\b|dont\\b|no\\b|without\\b|never\\b)\\w+ ){0,2}(control|choose|on purpose|decide)\\b|(?<!in)\\bvoluntary (means|is|are) (?:(?!not\\b)\\w+ ){0,2}(automatic\\w*|without (you )?thinking|on its own|by itself)\\b",
+   "say": "Check that. Voluntary movements are the ones you choose. Which kind happens without thinking?",
+   "hit": [
+    "muscle tissue makes movement, involuntary means you control it",
+    "muscle makes you move, voluntary means it happens automatically"
+   ],
+   "miss": [
+    "Muscle tissue makes movement possible, both voluntary and involuntary",
+    "voluntary means you choose it and involuntary means it happens automatically",
+    "involuntary means you can't control it, like your heart",
+    "involuntary is not on purpose, voluntary is on purpose"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\bhomeostasis (is|means) (?:(?!not\\b)\\w+ ){0,2}(chemical reactions|metabol)",
+   "say": "Check that. That describes metabolism. What does homeostasis keep constant?",
+   "hit": [
+    "homeostasis is all the chemical reactions in your body",
+    "homeostasis means metabolism"
+   ],
+   "miss": [
+    "Homeostasis is the relatively constant internal conditions that organisms maintain, even when things change around them",
+    "homeostasis is not metabolism, it keeps the inside constant",
+    "homeostasis is keeping the inside steady even when the outside changes",
+    "homeostasis means a stable inside despite changes"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bhypo ?thalam\\w* (is )?(in|inside|part of|located in|found in) (the |your )?(heart|skin|neck|stomach|spinal cord|lungs?|chest)\\b",
+   "say": "Check that. The hypothalamus is part of the brain. Where is it?",
+   "hit": [
+    "the hypothalamus is in the heart and it makes you shiver or sweat",
+    "hypothalamus is part of the skin, when cold you shiver and when hot you sweat"
+   ],
+   "miss": [
+    "The hypothalamus is the control center; when you are too cold you shiver and when you are too hot you sweat",
+    "the hypothalamus is in the brain and controls temperature, shiver when cold, sweat when hot",
+    "the hypothalamus signals the skin to sweat when hot and muscles to shiver when cold",
+    "hypothalamus is part of the brain"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\b(larynx|larinx|larnyx|voice ?box) (is )?(in|inside|part of|located in|found in) (the |your )?(lungs?|chest|stomach|heart|mouth)\\b",
+   "say": "Check that. The larynx sits in the neck, between the throat and the windpipe. Where is it?",
+   "hit": [
+    "the larynx is in the chest and it is the voice box",
+    "larynx is the voice box inside the lungs"
+   ],
+   "miss": [
+    "The larynx is the voice box",
+    "the larynx is the voice box in the neck",
+    "the voice box is in your throat area above the trachea",
+    "larynx means voice box, it helps you talk"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bdiaphragm (is|means) (an? |the )?(part of (the |your )?)?(lungs?|stomach|heart|organ that (holds|stores) air|air sacs?)\\b",
+   "say": "Check that. The diaphragm is a muscle under the lungs. Is it part of the lungs?",
+   "hit": [
+    "the diaphragm is part of the lungs and helps you breathe",
+    "diaphragm is a lung that moves air in and out"
+   ],
+   "miss": [
+    "The diaphragm is a large, dome-shaped muscle under the lungs that contracts and relaxes to move air in and out of the lungs",
+    "the diaphragm is a muscle under the lungs",
+    "the diaphragm is not part of the lungs, it is a muscle below them",
+    "diaphragm is the muscle that helps the lungs breathe"
+   ]
+  }
+ ]
+}

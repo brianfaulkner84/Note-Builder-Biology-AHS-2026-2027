@@ -1,0 +1,77 @@
+{
+ "7": [
+  {
+   "re": "\\batp (?:(?!(?:not|never|dont|doesnt|doesn't|don't|cannot|can't|cant)\\b)[\\w']+ ){0,2}(carries|carry|carrying|transports?|delivers?) (the |high energy )?(oxygen|blood|electrons)\\b",
+   "say": "Check that. ATP is not a carrier of oxygen or electrons. Which cell jobs does ATP power?",
+   "hit": [
+    "atp carries oxygen to the muscles and powers pumps",
+    "atp transports electrons and powers movement"
+   ],
+   "miss": [
+    "ATP powers active transport (protein pumps), movement (muscles, cilia, and flagella), building proteins and other molecules, and making light, like a firefly's glow",
+    "atp powers active transport, muscle movement, and building proteins",
+    "atp does not carry oxygen, it powers pumps, movement, and building proteins"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bauto\\w* means (\\w+ )?(other|others|different)\\b|\\bhetero\\w* means (\\w+ )?(self|own|same)\\b",
+   "say": "Check that. Auto means self and hetero means other. Which group makes its own food?",
+   "hit": [
+    "auto means other and hetero means self",
+    "plants are autotrophs because auto means different"
+   ],
+   "miss": [
+    "Autotrophs make their own food using energy from sunlight. Examples: plants and algae. Heterotrophs get energy by eating or absorbing other living things. Examples: animals and mushrooms.",
+    "auto means self and hetero means other",
+    "autotrophs make their own food from sunlight, hetero means other so they eat other living things"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\bmushrooms? (are|is) (a |an )?(type of |kind of )?(plants?|vegetables?)\\b",
+   "say": "Check that. Mushrooms are fungi, not plants. How do they get food?",
+   "hit": [
+    "mushrooms are plants but they are heterotrophs",
+    "a mushroom is a plant that absorbs food from dead stuff"
+   ],
+   "miss": [
+    "Algae are autotrophs because they make food from sunlight. Mushrooms are heterotrophs. They cannot make their own food from sunlight, so they absorb food from dead matter.",
+    "mushrooms are not plants, they are fungi and heterotrophs",
+    "mushrooms are heterotrophs because they can't make food, they absorb it from dead matter"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot just )(?<!n't )\\b(in|inside) (the |your |our )?lungs?\\b",
+   "say": "Check that. The lungs bring in oxygen, but where does cellular respiration happen?",
+   "hit": [
+    "cellular respiration happens in the lungs and releases energy from food",
+    "it is the process in your lungs that uses oxygen to get energy"
+   ],
+   "miss": [
+    "Cellular respiration is the process that releases energy from food (glucose) in the presence of oxygen",
+    "cellular respiration happens inside cells, not in the lungs, and releases energy from glucose using oxygen",
+    "respiration releases energy from food in the presence of oxygen"
+   ]
+  }
+ ],
+ "24": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot the )(?<!n't )\\bcalvin",
+   "say": "Check that. The Calvin cycle belongs to photosynthesis. What are the three stages of respiration?",
+   "hit": [
+    "glycolysis then the calvin cycle then the electron transport chain",
+    "1 glycolysis 2 calvin cycle in the mitochondria 3 etc"
+   ],
+   "miss": [
+    "1. Glycolysis, in the cytoplasm 2. The Krebs cycle, in the mitochondria 3. The electron transport chain, in the mitochondria",
+    "glycolysis in the cytoplasm, then the krebs cycle and the electron transport chain in the mitochondria",
+    "first glycolysis then krebs, not the calvin cycle, then the etc"
+   ]
+  }
+ ]
+}

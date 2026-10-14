@@ -48,12 +48,14 @@ UNITS.push({
     model:"• Sexual reproduction is when cells from two parents join to make offspring",
     ideas:[ I("How many parents", [/\b(2|two) parents?|both parents|mom and dad|male and female|mother and father/], "How many parents are needed for sexual reproduction?", "Slide 7: sexually means ___ parents.") ],
     watch:[
+      W(/(?<!\bnot )\b(only|just) (in |happens in |for |with )?(humans|people|animals|mammals)\b/, "Check that. Do only animals reproduce sexually? Think about plants and flowers."),
       W(/(?<!(asexual|a sexual).{0,40})(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|cannot|can't|cant)\b.{0,20})\b(split\w* (in|into) (two|2|half)|budding|binary fission|clones? (it|them)sel\w*|cop(y|ies) (it|them)sel\w*)\b/, "Check that. Splitting in two or copying itself is asexual reproduction. What joins in sexual reproduction?"),
       W(/(?<!asexual.{0,40})\b(offspring|babies|kids|children|they)( are| is| look)? (genetically )?(identical|the same as (the|their) parents?|exact copies|clones)\b/, "Check that. With two parents, are the offspring exact copies?"), W(/\b(1|one) parent|single parent/, "Check that. That describes asexual reproduction.", "How many parents") ]},
   { n:5, heading:"Vocabulary", prompt:"Define asexual reproduction.",
     guide:"How many parents? How do the offspring compare to the parent?", where:BOOK + ", Characteristics of Living Things",
     model:"• Asexual reproduction is when one parent makes offspring that are genetically identical to it\n• Example: bacteria splitting in two",
     watch:[
+      W(/(?<!\bnot )\b(only|just) (bacteria|plants|single celled (organisms|things)|tiny organisms|microorganisms) (can |do |reproduce|use)/, "Check that. Is it only one kind of organism? Some plants and animals reproduce asexually too."),
       W(/\b(offspring|babies|kids|children|they)( are| is| look)? (genetically )?(different|unique|a mix|mixed)\b/, "Check that. With only one parent, how do the offspring compare to it?", "The offspring"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})\b(sperm|eggs? and sperm|male and female|fertiliz\w*)\b/, "Check that. Does asexual reproduction need a sperm and egg from two parents?"), W(/\b(2|two) parents|both parents|mom and dad/, "Check that. Asexual reproduction needs how many parents?", "How many parents") ],
     ideas:[
@@ -64,6 +66,7 @@ UNITS.push({
     guide:"What does the body keep stable, even when the outside changes?", where:BOOK + ", Characteristics of Living Things",
     model:"• Homeostasis is keeping a stable internal environment, even when conditions outside change\n• Example: sweating to cool down",
     watch:[
+      W(/\bhomeostasis (is|means) (?:(?!not\b)\w+ ){0,2}(chemical reactions|metabol)/, "Check that. That describes metabolism. What does homeostasis keep stable?"),
       W(/\bsweat\w* (to|and|so you|helps you|will) (warm|heat)|\bshiver\w* (to|and|so you|helps you|will) (cool|get cool)|\bshiver\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(hot|warm)\b|\bsweat\w* when (you'?re |you are |it'?s |it is |its |your body is |the body is |we are |we're )?(too )?(cold|cool)\b/, "Check that. Which response cools you down and which warms you up?"),
       W(/(?<!\b(not|never|doesn't|doesnt|don't|dont|without)\b.{0,15})\b(match\w*|the same as|changes? with) (the )?(outside|external|environment|surroundings|weather)\b/, "Check that. Does the inside match the outside, or stay stable when the outside changes?"),
       W(/(?<!\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\b.{0,20})(\b(stable|constant|steady|balanced?) (external|outside)\b|\bkeep\w* the (outside|external) (environment|world|temperature|conditions)\b)/, "Check that. Does homeostasis keep the inside or the outside of the body stable?") ],
@@ -75,6 +78,7 @@ UNITS.push({
     guide:"What chemical reactions? What do they help the organism get and use?", where:BOOK + ", Characteristics of Living Things",
     model:"• Metabolism is all the chemical reactions an organism uses to build up and break down materials to get and use energy",
     watch:[
+      W(/\bmetabolism (is|means) (?:(?!not\b|chemical\b|reactions?\b|all\b)\w+ ){0,3}(stable|steady|balanced|constant|the same)\b/, "Check that. Keeping the inside stable is homeostasis. What is metabolism made of?"),
       W(/\bmetabolism (is|means) (how fast|how quickly|the speed|the rate|how much)\b.{0,30}\b(burn|digest|calorie|food|eat)/, "Check that. Metabolism is more than a speed. What reactions does it include?", "Chemical reactions"),
       W(/(?<!\bnot )\b(only|just) (about )?(break\w*|digest\w*|burn\w*)/, "Check that. Does metabolism only break things down, or does it build things up too?"),
       W(/\bmetabolism (is|means) (the |your )?(stomach|digestive system|digestion|intestines?)\b/, "Check that. Is metabolism one organ, or all of the chemical reactions in an organism?") ],
@@ -101,6 +105,7 @@ UNITS.push({
     guide:"Where is the information stored, and how is it passed on?", where:"Slide: " + DECK + " 5 | " + BOOK,
     model:"• Living things store their information in DNA, a universal genetic code\n• It is passed from parents to offspring",
     watch:[
+      W(/(?<!\bnot )\b(dna|d n a) (is|means) (an? |the )?(type of |kind of )?(proteins?|sugars?|lipids?|fats?|cells?|tissues?|organs?)\b/, "Check that. DNA is a molecule found inside cells. Is it a cell or a protein?"),
       W(/\b(?<!(not|never) )(passed|goes|go|comes?|travels?|inherited) from (the )?(offspring|children|kids|babies|child|baby) to (the )?parents?\b/, "Check that. Which way is the genetic code passed, parent to offspring or offspring to parent?"),
       W(/(?<!\bnot )\bonly (in )?(humans|people|animals|mammals)\b/, "Check that. Do only some living things store their information in DNA?") ],
     ideas:[

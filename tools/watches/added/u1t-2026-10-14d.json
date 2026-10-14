@@ -1,0 +1,82 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot always )\\b(exactly|perfectly) the same\\b",
+   "say": "Check that. Internal conditions stay relatively stable. Do they stay exactly the same?",
+   "hit": [
+    "homeostasis is keeping the inside exactly the same all the time",
+    "the body stays perfectly the same inside even when the outside changes"
+   ],
+   "miss": [
+    "Homeostasis is keeping a stable internal environment, even when conditions outside change",
+    "the inside stays about the same even when the outside changes",
+    "the inside is not exactly the same but it stays stable",
+    "keeping the body steady inside despite changes outside"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\b(examples?|like|such as)\\b(?:(?!not\\b|peanut\\b).){0,15}\\b(bread|pasta|rice|candy|potato\\w*|cereal|beans?)\\b",
+   "say": "Check that. Is that food rich in lipids, or in a different nutrient?",
+   "hit": [
+    "lipids store energy, made of fatty acids and glycerol, examples like bread and pasta",
+    "lipids store energy and form membranes, fatty acids and glycerol, such as rice"
+   ],
+   "miss": [
+    "Lipids store energy and form cell membranes and waterproof coverings; their building blocks are fatty acids and glycerol; examples: butter, oil, fats",
+    "lipids store energy, fatty acids and glycerol, examples like butter and oil",
+    "lipids form membranes, made of fatty acids, like bacon grease and lard",
+    "lipids store energy, examples are avocado and olive oil, not bread"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bsystemic (circulation )?(means|is|refers to|has to do with) (the )?(lungs?|heart)\\b(?! (to|and) (the )?(rest of the )?body)",
+   "say": "Check that. Systemic means the whole body system. Which pathway goes to the lungs?",
+   "hit": [
+    "pulmonary goes to the lungs and systemic means the heart",
+    "systemic circulation has to do with the heart only"
+   ],
+   "miss": [
+    "Pulmonary circulation carries blood between the heart and the lungs; systemic circulation carries blood between the heart and the rest of the body",
+    "pulmonary means the lungs and systemic means the body",
+    "systemic circulation is the heart to the body and back",
+    "pulmonary goes heart to lungs, systemic goes heart to body"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\bgas exchange (happens|occurs|takes place) (in|at) the (trachea|bronch\\w*|heart|nose|throat)\\b|\\bbetween the (alveol\\w*|air sacs?) and the (heart|bronch\\w*|trachea)\\b",
+   "say": "Check that. Gas exchange happens between the air sacs and which tiny blood vessels?",
+   "hit": [
+    "gas exchange happens in the heart, oxygen goes into the blood by diffusion",
+    "oxygen diffuses between the alveoli and the heart"
+   ],
+   "miss": [
+    "Gas exchange happens between the alveoli and the capillaries by diffusion; oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into the alveoli to be breathed out",
+    "gas exchange happens at the alveoli by diffusion",
+    "oxygen diffuses into the capillaries and carbon dioxide goes into the alveoli",
+    "gas exchange does not happen in the trachea, it happens in the alveoli"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "\\bindependent (variables? )?(is|are) (the )?(result|results|outcome|data|what happens|what you (see|observe|measure|record))\\b",
+   "say": "Check that. The result you measure is the dependent variable. What is the independent one?",
+   "hit": [
+    "the independent variable is the result of the experiment",
+    "the independent variable is what you observe at the end"
+   ],
+   "miss": [
+    "The independent variable is the one you change on purpose; the dependent variable is the one you measure, and it responds to the change",
+    "the independent variable is what you change and the dependent is the result",
+    "the dependent variable is what you measure",
+    "independent is the cause and dependent is the result"
+   ]
+  }
+ ]
+}

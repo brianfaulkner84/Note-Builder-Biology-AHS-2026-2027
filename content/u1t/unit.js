@@ -20,6 +20,7 @@ UNITS.push({
     guide:"What does the body keep stable, even when the outside changes?", where:"Slide: Ch30.1 slideshow 9 | " + B301,
     model:"• Homeostasis is keeping a stable internal environment, even when conditions outside change",
     watch:[
+      W(/(?<!\bnot )(?<!\bnot always )\b(exactly|perfectly) the same\b/, "Check that. Internal conditions stay relatively stable. Do they stay exactly the same?"),
       W(/\bhomeostasis (is|means) (?:(?!not\b)\w+ ){0,2}(chemical reactions|metabol)/, "Check that. That describes metabolism. What does homeostasis keep stable?"),
       W(/\b(stable|steady|constant|same) (external|outside) (environment|conditions?)\b/, "Check that. Is homeostasis about the inside of the body or the outside?"),
       W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(match\w*|same as) (the )?(outside|external|environment|surroundings)\b/, "Check that. Does the body copy the outside, or stay steady when the outside changes?") ],
@@ -86,6 +87,7 @@ UNITS.push({
     guide:"What does the body use them for? What are the building blocks? Name foods.", where:"Slide: Nutrition slideshow 6 to 7, Enzymes slideshow 5 | " + B302,
     model:"• Lipids store energy and form cell membranes and waterproof coverings\n• Their building blocks are fatty acids and glycerol\n• Examples: butter, oil, fats",
     watch:[
+      W(/\b(examples?|like|such as)\b(?:(?!not\b|peanut\b).){0,15}\b(bread|pasta|rice|candy|potato\w*|cereal|beans?)\b/, "Check that. Is that food rich in lipids, or in a different nutrient?"),
       W(/\b(lipids?|fats?) (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\b/, "Check that. Lipids store energy, but which macromolecule is the main, quick energy source?"),
       W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(dissolves?|dissolving|mix|mixes|mixing) (in|with|into) water\b/, "Check that. Do lipids mix with water, or keep water out?"), W(/amino acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
@@ -182,8 +184,9 @@ UNITS.push({
     guide:"Where does each pathway carry blood?", where:"Book: Chapter 33.1, p. 950",
     model:"• Pulmonary circulation carries blood between the heart and the lungs\n• Systemic circulation carries blood between the heart and the rest of the body",
     watch:[
+      W(/\bsystemic (circulation )?(means|is|refers to|has to do with) (the )?(lungs?|heart)\b(?! (to|and) (the )?(rest of the )?body)/, "Check that. Systemic means the whole body system. Which pathway goes to the lungs?"),
       W(/\bpulmonary.{0,30}\b(oxygen rich|oxygenated) blood (to|into) the lungs?\b|\bsystemic.{0,30}\b(oxygen poor|deoxygenated) blood (out )?(to|into) the (body|cells)\b/, "Check that. Is blood going to the lungs oxygen rich or oxygen poor?"),
-      W(/\bpulmonary (means|is|refers to|has to do with) (the )?(heart|body|blood)\b/, "Check that. What body part does the word pulmonary refer to?"), W(/pulmonary.{0,40}(rest of the body|whole body)|systemic.{0,40}lungs/, "Check that. Which pathway goes to the lungs, and which goes to the body?") ],
+      W(/\bpulmonary (means|is|refers to|has to do with) (the )?(heart|body|blood)\b/, "Check that. What body part does the word pulmonary refer to?"), W(/pulmonary (?:\w+ ){0,4}(rest of the body|whole body)|systemic (?:\w+ ){0,4}lungs/, "Check that. Which pathway goes to the lungs, and which goes to the body?") ],
     ideas:[
       I("Pulmonary", [either(/pulmonary/, /lungs?/, 90)], "Where does pulmonary circulation carry blood?", "Pulmonary means lungs."),
       I("Systemic", [either(/systemic/, /\bbody\b/, 90)], "Where does systemic circulation carry blood?", "Systemic means the whole body system.")
@@ -226,6 +229,7 @@ UNITS.push({
     guide:"Which way does oxygen move? Which way does carbon dioxide move? Why?", where:"Slide: Respiratory slideshow 6 to 7 | " + B333,
     model:"• Gas exchange happens between the alveoli and the capillaries by diffusion\n• Oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into the alveoli to be breathed out",
     watch:[
+      W(/\bgas exchange (happens|occurs|takes place) (in|at) the (trachea|bronch\w*|heart|nose|throat)\b|\bbetween the (alveol\w*|air sacs?) and the (heart|bronch\w*|trachea)\b/, "Check that. Gas exchange happens between the air sacs and which tiny blood vessels?"),
       W(/\b(carbon dioxide|co ?2)\b(?:(?!oxygen).){0,30}\b(from|out of) the (alveol\w*|lungs?|air sacs?)\b|\b(carbon dioxide|co ?2)\b(?:(?!oxygen).){0,20}\binto the (blood|capillar\w*)\b/, "Check that. Which way does carbon dioxide move, into the blood or out of it?"),
       W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(active transport|osmosis)\b/, "Check that. Which process moves gases from high to low concentration?", "How"), W(/oxygen (moves |goes )?(from|out of) the blood/, "Check that. Oxygen moves from the alveoli into the blood.") ],
     ideas:[
@@ -261,6 +265,7 @@ UNITS.push({
     guide:"Which one do you change? Which one do you measure?", where:"Book: Lesson 1.1, Designing Controlled Experiments",
     model:"• The independent variable is the one you change on purpose\n• The dependent variable is the one you measure; it responds to the change",
     watch:[
+      W(/\bindependent (variables? )?(is|are) (the )?(result|results|outcome|data|what happens|what you (see|observe|measure|record))\b/, "Check that. The result you measure is the dependent variable. What is the independent one?"),
       W(/\b(in)?dependent variables? (is |are )?(the (one|thing|variable) )?(that )?(you )?(keep|keeps|stays?|is kept|are kept|remains?) (the )?(same|constant)\b/, "Check that. The things you keep the same are called controlled variables. What is this one?"),
       W(/\bdependent\w*( variables?)?.{0,20}\b(causes?|affects?|changes) the independent\b/, "Check that. Which variable causes the change in the other?"), W(/\bindependent\w*.{0,30}measur|(?<!in)dependent\w*.{0,25}(you change|change on purpose)/, "Check that. Which variable do you change, and which do you measure?") ],
     ideas:[

@@ -1,0 +1,219 @@
+{
+ "1": [
+  {
+   "re": "(eu|you|u) ?kary\\w*(?:(?!pro|bacteri|nucle|\\bnot\\b|n't|\\bno\\b|\\bnever\\b|\\bwithout\\b).){0,40}\\b(?:in|inside) (?:the )?(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|ribo ?som\\w*|cell membrane|cell wall|vacuoles?)\\b",
+   "say": "Check that. In a eukaryotic cell, which organelle holds the DNA?",
+   "hit": [
+    "a eukaryotic cell keeps its DNA in the cytoplasm",
+    "eukaryote DNA floats in the cytoplasm",
+    "eukaryotic cells store their dna inside the ribosomes"
+   ],
+   "miss": [
+    "eukaryotic cells keep DNA in the nucleus, prokaryotes have no nucleus so the DNA floats in the cytoplasm",
+    "in a eukaryote the DNA is in the nucleus. in bacteria the DNA is loose in the cytoplasm",
+    "eukaryote DNA is not in the cytoplasm, it is in the nucleus",
+    "you carry attic cell keeps DNA in the nucleus"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bosmosis (?:is |counts as |uses |needs )(?:an? )?(?:type |kind |form |example )?(?:of )?active\\b|(?<!\\bnot )(?<!n't )\\bwater (?:is |gets )?pumped\\b",
+   "say": "Check that. Osmosis is a kind of diffusion. Is it active or passive?",
+   "hit": [
+    "osmosis is active transport of water across a membrane",
+    "osmosis is a type of active transport",
+    "water is pumped across the membrane toward more solute"
+   ],
+   "miss": [
+    "osmosis is the diffusion of water across a selectively permeable membrane toward more solute",
+    "osmosis is a type of passive transport, water is not pumped",
+    "osmosis is not active transport. water moves to the side with more solute",
+    "osmosis is passive, unlike active transport it is just diffusion of water"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(?:moves?|moving|carries|transports?|releases?|sends?|gets? rid of) (?:\\w+ ){0,2}(?:small|tiny|single) (?:molecules?|particles?|ions?|things|stuff)\\b",
+   "say": "Check that. Exocytosis is bulk transport. Does it move small molecules or large materials?",
+   "hit": [
+    "exocytosis moves small molecules out of the cell using energy",
+    "it releases tiny particles outside the cell"
+   ],
+   "miss": [
+    "exocytosis moves large materials like waste out of the cell, a vesicle joins the membrane and releases them, it uses energy",
+    "exocytosis sends big stuff like proteins outside the cell in a vesicle and it is active",
+    "it does not move small molecules, it moves bulk materials out using ATP"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(?:engulf\\w*|wraps? around|pinch\\w* in|folds? (?:in|inward))\\b",
+   "say": "Check that. That describes bringing things in. In exocytosis, what does the vesicle do?",
+   "hit": [
+    "exocytosis is when the membrane wraps around waste and it leaves",
+    "the cell engulfs the material and sends it out"
+   ],
+   "miss": [
+    "exocytosis moves large materials out of the cell, a vesicle joins the membrane and releases them, it uses energy",
+    "the vesicle fuses with the membrane and dumps stuff outside, active transport",
+    "the membrane does not wrap around anything, the vesicle merges with it and releases waste outside"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\bwhales? (?:is|are) (?:an? )?auto",
+   "say": "Check that. Does a whale make its own food or eat other organisms?",
+   "hit": [
+    "whales are autotrophs",
+    "a whale is an autotroph because it is big"
+   ],
+   "miss": [
+    "algae are autotrophs, mushrooms and whales are heterotrophs because they cannot make food from sunlight",
+    "whales are not autotrophs, they are heterotrophs that eat krill",
+    "algae auto, mushrooms hetero they absorb dead stuff, whales hetero"
+   ]
+  },
+  {
+   "re": "\\bmushrooms? (?:is|are) (?:an? )?(?:kind of |type of )?plants?\\b|\\bmushrooms? (?:do |does |can |use |uses |perform |performs )?photo ?synth",
+   "say": "Check that. A mushroom is a fungus. Can it use sunlight to make food?",
+   "hit": [
+    "mushrooms are plants so they are autotrophs",
+    "mushrooms do photosynthesis",
+    "a mushroom uses photosynthesis"
+   ],
+   "miss": [
+    "algae are autotrophs because they make food from sunlight, mushrooms are heterotrophs because they cannot make food from sunlight and absorb food from dead matter, whales are heterotrophs",
+    "mushrooms are not plants, they are heterotrophs",
+    "mushrooms do not do photosynthesis, they decompose dead things",
+    "mushrooms cannot photosynthesize"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\b(?:red|blue|violet|purple|yellow|orange)(?: light)? (?:is |would be )?(?:the )?least (?:useful|helpful)\\b|\\bleast (?:useful|helpful)(?: colou?r)?(?: of light)?(?: to (?:a |the )?plants?)? (?:is |would be )(?:red|blue|violet|purple)\\b",
+   "say": "Check that. Which color does chlorophyll bounce back instead of using?",
+   "hit": [
+    "red light is the least useful to a plant",
+    "the least useful color is blue",
+    "least useful to a plant is violet light"
+   ],
+   "miss": [
+    "green light is the least useful to a plant, chlorophyll absorbs blue violet and red but reflects green",
+    "red and blue are the most useful and green is least useful because it is reflected",
+    "the least useful is not red, it is green because chlorophyll bounces green back",
+    "chlorophyll takes in blue violet and red, green is the least useful"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "\\b(?:reactants?|inputs?|ingredients) (?:are|is|include) (?:the )?(?:\\w+ ){0,2}(?:carbon dioxide|co ?2|c o 2|co two)\\b|(?:carbon dioxide|co ?2) (?:and|plus) water (?:are|is) (?:the )?(?:reactants|inputs)\\b",
+   "say": "Check that. Carbon dioxide is a waste product of respiration. What are the reactants?",
+   "hit": [
+    "the reactants are carbon dioxide and oxygen",
+    "inputs are glucose and co2",
+    "carbon dioxide and water are the reactants"
+   ],
+   "miss": [
+    "oxygen plus glucose makes carbon dioxide plus water plus energy ATP",
+    "reactants are oxygen and glucose, products are carbon dioxide water and energy",
+    "the inputs are glucose and oxygen and the outputs are co2 water and ATP",
+    "glucose and oxygen go in, carbon dioxide and water come out with ATP energy"
+   ]
+  }
+ ],
+ "26": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\b(?:speeds? up|goes faster|runs faster|makes more atp)\\b",
+   "say": "Check that. Without NAD+, can glycolysis keep going?",
+   "hit": [
+    "when NAD+ runs out glycolysis speeds up",
+    "when nad runs out the cell makes more atp"
+   ],
+   "miss": [
+    "the cell has a small supply of NAD+ so it runs out first and glycolysis stops and ATP production stops",
+    "nad plus is limited so when it is used up glycolysis halts, it does not speed up",
+    "nad runs out first and then no more atp is made"
+   ]
+  }
+ ],
+ "27": [
+  {
+   "re": "\\bmatrix (?:is |is the |is in the )?(?:space )?between\\b|\\binter ?membrane space (?:is )?(?:the )?(?:innermost|center|middle of the mitochondri\\w*)\\b",
+   "say": "Check that. Which space is between the two membranes, and which is the innermost?",
+   "hit": [
+    "the matrix is between the two membranes",
+    "the intermembrane space is the innermost space where krebs happens"
+   ],
+   "miss": [
+    "outer membrane and folded inner membrane, the matrix is the innermost space where the krebs cycle happens, the intermembrane space is between the membranes where H+ piles up, ETC is in the inner membrane",
+    "the intermembrane space is between the two membranes and the matrix is the innermost part",
+    "matrix is the inside space with the krebs cycle"
+   ]
+  }
+ ],
+ "28": [
+  {
+   "re": "\\b(?:krebs|kreb|crebs|citric acid)\\w*(?: cycle)? (?:happens |occurs |takes place |is |is done )?(?:in|inside) (?:the )?(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)",
+   "say": "Check that. The Krebs cycle is the second stage. Which organelle is it in?",
+   "hit": [
+    "the krebs cycle happens in the cytoplasm and releases carbon dioxide",
+    "krebs is in the cytoplasm and makes NADH"
+   ],
+   "miss": [
+    "the krebs cycle releases carbon dioxide, its main product is NADH plus some FADH2, and it makes 2 ATP per glucose",
+    "krebs cycle happens in the mitochondria matrix and gives off co2 and NADH",
+    "it makes co2 and loaded electron carriers and 2 atp, not in the cytoplasm"
+   ]
+  }
+ ],
+ "29": [
+  {
+   "re": "\\boxygen (?:\\w+ ){0,6}(?:forms?|makes?|becomes?|turns into) (?:\\w+ )?(?:carbon dioxide|co ?2)\\b",
+   "say": "Check that. When oxygen picks up the electrons and H+, what does it form?",
+   "hit": [
+    "oxygen is the final electron acceptor and forms carbon dioxide",
+    "oxygen takes the electrons and becomes co2"
+   ],
+   "miss": [
+    "the chain is proteins in the inner membrane, NADH and FADH2 drop off electrons, the energy pumps H+ into the intermembrane space, oxygen is the final electron acceptor and forms water",
+    "oxygen accepts the electrons at the end and makes water",
+    "oxygen is the last acceptor, it forms water not carbon dioxide",
+    "oxygen is the final acceptor and it makes water, the krebs cycle makes co2"
+   ]
+  }
+ ],
+ "30": [
+  {
+   "re": "\\b(?:too much|lots of|a lot of|plenty of|extra) oxygen\\b",
+   "say": "Check that. Do we ferment when there is plenty of oxygen, or when it is missing?",
+   "hit": [
+    "humans do fermentation when there is too much oxygen",
+    "we ferment when muscles have lots of oxygen"
+   ],
+   "miss": [
+    "when oxygen is missing fermentation turns NADH back into NAD+ so glycolysis can keep going and make 2 ATP",
+    "without enough oxygen our muscles ferment to give NAD+ back to glycolysis",
+    "there is not enough oxygen so the cell regenerates NAD plus"
+   ]
+  }
+ ],
+ "31": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bno )\\blactose\\b",
+   "say": "Check that. Lactose is milk sugar. What acid do muscle cells make?",
+   "hit": [
+    "human muscle cells make lactose",
+    "the product is lactose from lactose fermentation"
+   ],
+   "miss": [
+    "human muscle cells do lactic acid fermentation and make lactic acid and turn NADH back into NAD+",
+    "muscles make lactic acid, that is what burns when you sprint",
+    "the product is lactic acid not lactose"
+   ]
+  }
+ ]
+}

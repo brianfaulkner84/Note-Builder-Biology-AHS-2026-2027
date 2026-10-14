@@ -1,0 +1,82 @@
+{
+ "4": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (in |happens in |for |with )?(humans|people|animals|mammals)\\b",
+   "say": "Check that. Do only animals reproduce sexually? Think about plants and flowers.",
+   "hit": [
+    "sexual reproduction is two parents and it only happens in animals",
+    "only humans and their cells from two parents join"
+   ],
+   "miss": [
+    "Sexual reproduction is when cells from two parents join to make offspring",
+    "two parents join cells, plants and animals both do this",
+    "it is not only animals, plants do it too",
+    "a mom and dad cell join to make a baby"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (bacteria|plants|single celled (organisms|things)|tiny organisms|microorganisms) (can |do |reproduce|use)",
+   "say": "Check that. Is it only one kind of organism? Some plants and animals reproduce asexually too.",
+   "hit": [
+    "one parent makes identical offspring and only bacteria can do this",
+    "only plants reproduce this way with one parent"
+   ],
+   "miss": [
+    "Asexual reproduction is when one parent makes offspring that are genetically identical to it, like bacteria splitting in two",
+    "one parent makes an exact copy, like bacteria",
+    "only one parent, the offspring are clones",
+    "not just bacteria do it, some plants do too"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\bhomeostasis (is|means) (?:(?!not\\b)\\w+ ){0,2}(chemical reactions|metabol)",
+   "say": "Check that. That describes metabolism. What does homeostasis keep stable?",
+   "hit": [
+    "homeostasis is all the chemical reactions in the body",
+    "homeostasis means metabolism and using energy"
+   ],
+   "miss": [
+    "Homeostasis is keeping a stable internal environment, even when conditions outside change, like sweating to cool down",
+    "homeostasis is not metabolism, it keeps the inside stable",
+    "homeostasis means keeping the inside of the body balanced even when outside changes",
+    "homeostasis is staying steady inside when the weather changes"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bmetabolism (is|means) (?:(?!not\\b|chemical\\b|reactions?\\b|all\\b)\\w+ ){0,3}(stable|steady|balanced|constant|the same)\\b",
+   "say": "Check that. Keeping the inside stable is homeostasis. What is metabolism made of?",
+   "hit": [
+    "metabolism is keeping a stable inside",
+    "metabolism means keeping your body balanced"
+   ],
+   "miss": [
+    "Metabolism is all the chemical reactions an organism uses to build up and break down materials to get and use energy",
+    "metabolism is not keeping things stable, it is chemical reactions",
+    "metabolism is chemical reactions that keep the body stable",
+    "metabolism means all reactions that get energy"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "(?<!\\bnot )\\b(dna|d n a) (is|means) (an? |the )?(type of |kind of )?(proteins?|sugars?|lipids?|fats?|cells?|tissues?|organs?)\\b",
+   "say": "Check that. DNA is a molecule found inside cells. Is it a cell or a protein?",
+   "hit": [
+    "dna is a protein that holds the code and is passed from parents",
+    "DNA is a cell passed from parents to offspring"
+   ],
+   "miss": [
+    "Living things store their information in DNA, a universal genetic code, and it is passed from parents to offspring",
+    "DNA is the genetic code passed from parents to kids",
+    "dna is not a protein, it is a molecule passed down",
+    "DNA is found in the cells of all living things and passed from parents"
+   ]
+  }
+ ]
+}

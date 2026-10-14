@@ -1,0 +1,42 @@
+{
+ "4": [
+  {
+   "re": "(?<!(\\bnot|n't|\\bdidnt|\\bwithout|\\bno)\\b[\\w' ]{0,12})\\belectron",
+   "say": "Check that. Electron microscopes came much later. What kind did Leeuwenhoek use?",
+   "hit": ["leeuwenhoek used an electron microscope to look at pond water", "anton van leeuwenhoek saw living cells with an electron microscope"],
+   "miss": ["Anton van Leeuwenhoek was the first to see living cells. He looked at pond water and his own mouth.", "leeuwenhoek used a simple light microscope he made himself to look at pond water", "he did not have an electron microscope but he saw living things in pond water"]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bbecause (they |it |human cells |humans )?(have no|has no|do not have|don't have|dont have|does not have|doesn't have|doesnt have|lack|lacks) (a |any )?(nucle|new ?clear)",
+   "say": "Check that. Do human cells have a nucleus?",
+   "hit": ["human cells are eukaryotic because they have no nucleus", "they are eukaryotic because they don't have a nucleus"],
+   "miss": ["Human cells are eukaryotic because they have a nucleus", "human cells are eukaryotic because they have a nucleus and bacteria do not", "they are not prokaryotic because prokaryotes have no nucleus and human cells do"]
+  }
+ ],
+ "9": [
+  {
+   "re": "(?<!\\bnot )\\b(all|every) cells? (has|have|contain|contains) (a |an )?(cell walls?|walls?|chloro ?plasts?|vacuoles?|lysosomes?|golgi|centrioles?)\\b|\\b(nucleus|nuclei|mitochondri\\w*|chloroplasts?|golgi|lysosomes?|vacuoles?) (is|are) the (only )?organelles? (that is |that are )?(found )?in (all|every)",
+   "say": "Check that. Bacteria are cells too. Which organelle is found in ALL cells?",
+   "hit": ["all cells have a cell wall and ribosomes", "the nucleus is the organelle found in all cells"],
+   "miss": ["Every cell has a cell membrane, DNA, cytoplasm, and ribosomes. The ribosome is the organelle found in all cells.", "not all cells have a cell wall but all cells have ribosomes", "the ribosome is the only organelle found in all cells even bacteria"]
+  }
+ ],
+ "25": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(made|built|composed) (up )?of (lipids?|fats?|phospholipids?|dna|sugars?|cellulose|carbohydrates?)\\b|(?<!\\bnot )(?<!n't )\\b(controls?|regulates?|decides?) (what|which)\\b",
+   "say": "Check that. That sounds like a different cell part. What is the cytoskeleton made of, and what does it do?",
+   "hit": ["the cytoskeleton is made of cellulose and gives the cell shape", "cytoskeleton is a network of fibers made of lipids", "the cytoskeleton controls what enters and leaves the cell"],
+   "miss": ["The cytoskeleton is a network of protein fibers. Like beams, it gives the cell its shape and support. Like conveyor belts, it moves materials around the cell.", "it is made of protein fibers that give shape and support and move materials", "it is not made of cellulose like the cell wall, it is protein fibers that support the cell"]
+  }
+ ],
+ "26": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(make|makes|produce|produces|build|builds) (the )?(cell'?s? )?(proteins?|energy|atp|food|dna)\\b|\\b(bacteri\\w*|prokaryot\\w*) (also )?(have|has) (them|centri)",
+   "say": "Check that. Centrioles do not make things. What process do they help organize?",
+   "hit": ["centrioles make proteins for the cell, only animal cells have them", "centrioles make energy and are in animal cells", "bacteria also have centrioles"],
+   "miss": ["Centrioles help organize cell division. Only animal cells have them, not plant cells.", "centrioles help organize cell division, they do not make proteins, only animal cells have them", "they help the cell divide; plants and bacteria do not have them"]
+  }
+ ]
+}
