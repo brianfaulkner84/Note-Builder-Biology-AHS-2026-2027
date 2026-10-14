@@ -1,0 +1,764 @@
+{
+ "1": [
+  {
+   "re": "\\b(stable|steady|constant|same) (external|outside) (environment|conditions?)\\b",
+   "say": "Check that. Is homeostasis about the inside of the body or the outside?",
+   "hit": [
+    "homeostasis is keeping a stable external environment",
+    "keeping a constant outside environment for the body"
+   ],
+   "miss": [
+    "homeostasis is keeping a stable internal environment even when the outside changes",
+    "keeping the inside steady even when outside conditions change",
+    "a stable inside even if the external environment changes"
+   ]
+  },
+  {
+   "re": "(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\b(match\\w*|same as) (the )?(outside|external|environment|surroundings)\\b",
+   "say": "Check that. Does the body copy the outside, or stay steady when the outside changes?",
+   "hit": [
+    "homeostasis is when your body matches the outside temperature",
+    "the body stays the same as the environment"
+   ],
+   "miss": [
+    "homeostasis keeps the inside stable even when the outside changes",
+    "your body does not match the outside it stays steady",
+    "keeping a balanced internal environment"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\bshiver\\w*.{0,15}\\b(cools?|cooling)\\b|\\bsweat\\w*.{0,15}\\b(warms?|warming)\\b",
+   "say": "Check that. Which response warms you up, and which one cools you down?",
+   "hit": [
+    "shivering cools you down when you are hot",
+    "sweating warms the body when it is cold"
+   ],
+   "miss": [
+    "sweating cools the body when it is too hot shivering warms the body when it is too cold",
+    "when you are cold you shiver to warm up",
+    "you sweat to cool off"
+   ]
+  },
+  {
+   "re": "\\binsulin.{0,15}\\b(raises?|raising|increases?|increasing) (the )?(blood )?(sugar|glucose)\\b(?! (uptake|absorption|use))",
+   "say": "Check that. Does insulin raise blood sugar or lower it?",
+   "hit": [
+    "insulin raises blood sugar when it is low",
+    "the pancreas makes insulin which increases blood glucose"
+   ],
+   "miss": [
+    "insulin lowers blood sugar when it gets too high",
+    "the liver releases stored sugar when blood glucose drops",
+    "insulin increases glucose uptake into cells"
+   ]
+  },
+  {
+   "re": "\\bbreath\\w*.{0,15}\\b(slows?( down)?|slower)\\b (during|when you|while( you)?) (exercis|work ?out|run)",
+   "say": "Check that. What happens to your breathing rate while you exercise?",
+   "hit": [
+    "breathing slows down during exercise",
+    "your breathing gets slower when you exercise"
+   ],
+   "miss": [
+    "breathing speeds up during exercise to get rid of carbon dioxide",
+    "breathing slows down after exercise",
+    "you breathe faster while you exercise"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(they|all living things|living things|it|must|can|need to) (move|moves|breathe|breathes|need oxygen|needs oxygen|breathe air)\\b",
+   "say": "Check that. Not every living thing moves or breathes air. Is that one of the 8?",
+   "hit": [
+    "made of cells living things move reproduce grow",
+    "all living things breathe and use energy"
+   ],
+   "miss": [
+    "made of cells has dna grows and develops reproduces responds to the environment maintains homeostasis uses energy evolves",
+    "living things respond to stimuli and use energy",
+    "they reproduce and grow and evolve over time"
+   ]
+  },
+  {
+   "re": "\\b(made of|made up of|have|has) (many|multiple|lots of|more than one) cells\\b",
+   "say": "Check that. Do all living things have many cells, or can some have just one?",
+   "hit": [
+    "all living things are made of many cells",
+    "living things have multiple cells and dna"
+   ],
+   "miss": [
+    "made of one or more cells",
+    "all living things are made of cells",
+    "made of cells has a genetic code grows reproduces"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\brespirat\\w* system.{0,15}\\b(carries|delivers|transports|pumps|takes)\\b.{0,25}\\b(oxygen|o2|o 2)\\b.{0,15}\\bto (the |all )?(cells|body|organs|tissues)\\b",
+   "say": "Check that. Which system actually carries the oxygen to the cells?",
+   "hit": [
+    "the respiratory system carries oxygen to the cells",
+    "respiratory system delivers the oxygen to the body"
+   ],
+   "miss": [
+    "the respiratory system brings in oxygen and the circulatory system carries it to the cells",
+    "the lungs take in oxygen and the blood delivers it to the cells",
+    "the respiratory system brings oxygen into the lungs"
+   ]
+  },
+  {
+   "re": "\\bdigest\\w* system.{0,15}\\b(carries|delivers|transports|pumps|sends)\\b.{0,25}\\bto (the |all )?(cells|body|organs|tissues)\\b",
+   "say": "Check that. The digestive system breaks food down. Which system delivers the nutrients?",
+   "hit": [
+    "the digestive system delivers nutrients to the cells",
+    "the digestive system carries food to the body"
+   ],
+   "miss": [
+    "the digestive system breaks food into nutrients and the circulatory system delivers them to the cells",
+    "digestive system breaks down food then blood carries nutrients to cells",
+    "the nervous system sends signals to muscles"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\bmonomers? (is|are|of carbohydrates? (is|are)) (a |an )?(starch|polysacchar\\w*|glycogen|cellulose)\\b|\\b(starch|polysacchar\\w*|glycogen|cellulose) (is|are) (the |a |their )?monomers?\\b",
+   "say": "Check that. Is that the single building block, or a long chain made of many?",
+   "hit": [
+    "the monomer is starch",
+    "starch is the monomer of carbohydrates"
+   ],
+   "miss": [
+    "the monomer is a simple sugar like glucose examples bread pasta potatoes",
+    "glucose monomers link together to form starch",
+    "monosaccharides are the monomer and starch is a polysaccharide"
+   ]
+  },
+  {
+   "re": "\\bcarb\\w* (are |is )?(used to |help |helps )?(build|builds|repair|repairs) (muscle|muscles|the body|tissue)",
+   "say": "Check that. Is building and repairing the main job of carbohydrates?",
+   "hit": [
+    "carbohydrates build muscle",
+    "carbs are used to repair the body"
+   ],
+   "miss": [
+    "carbohydrates are the main source of energy proteins build muscle",
+    "carbs give quick energy",
+    "carbohydrates give energy and the monomer is glucose"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\b(lipids?|fats?) (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\\b",
+   "say": "Check that. Lipids store energy, but which macromolecule is the main, quick energy source?",
+   "hit": [
+    "lipids are the main source of energy",
+    "fats are the quickest source of energy"
+   ],
+   "miss": [
+    "lipids store energy and form cell membranes",
+    "carbohydrates are the main source of energy but lipids store energy",
+    "fats are long term energy storage"
+   ]
+  },
+  {
+   "re": "(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\b(dissolves?|dissolving|mix|mixes|mixing) (in|with|into) water\\b",
+   "say": "Check that. Do lipids mix with water, or keep water out?",
+   "hit": [
+    "lipids dissolve in water",
+    "fats mix with water easily"
+   ],
+   "miss": [
+    "lipids do not dissolve in water so they make waterproof coverings",
+    "oil doesn't mix with water",
+    "lipids never mix with water"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bproteins? (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\\b",
+   "say": "Check that. Which macromolecule is the body's main energy source?",
+   "hit": [
+    "proteins are the main source of energy",
+    "protein is the quickest source of energy"
+   ],
+   "miss": [
+    "proteins build and repair the body and act as enzymes",
+    "carbohydrates are the main source of energy and proteins build muscle",
+    "proteins transport substances"
+   ]
+  },
+  {
+   "re": "\\benzymes? (are|get|is|gets) (all )?(used up|consumed)\\b",
+   "say": "Check that. Is an enzyme used up in a reaction, or can it be used again?",
+   "hit": [
+    "enzymes get used up in the reaction",
+    "the enzyme is consumed when it speeds up the reaction"
+   ],
+   "miss": [
+    "enzymes control the rate of reactions and are not used up",
+    "proteins act as enzymes that speed up reactions",
+    "enzymes can be reused"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bstomach (absorbs|absorbing)\\b|\\babsorb\\w* (most |all )?(of )?(the )?(nutrients |food )?(in|into|by) the stomach\\b",
+   "say": "Check that. Which organ absorbs most of the nutrients?",
+   "hit": [
+    "the stomach absorbs most of the nutrients",
+    "nutrients are absorbed in the stomach"
+   ],
+   "miss": [
+    "the small intestine absorbs most nutrients into the blood",
+    "stomach churns food and pepsin digests protein",
+    "nutrients are absorbed into the blood in the small intestine"
+   ]
+  },
+  {
+   "re": "\\bstomach\\b(?:(?!mouth|saliva|intestin).){0,20}\\b(starch|carbs?|carbohydrates?|amylase)\\b|\\b(saliva|mouth)\\b(?:(?!stomach|intestin).){0,20}\\b(protein|proteins|pepsin)\\b",
+   "say": "Check that. Which enzyme works in the mouth, and which works in the stomach?",
+   "hit": [
+    "the stomach uses amylase to break down starch",
+    "saliva breaks down protein in the mouth"
+   ],
+   "miss": [
+    "mouth teeth chew food and amylase in saliva starts digesting starch stomach churns food and pepsin digests protein",
+    "mouth chews stomach pepsin protein small intestine absorbs",
+    "the stomach makes chyme with pepsin and acid"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\bpancrea\\w* (makes|produces|releases|secretes|creates) bile\\b|\\bbile (is )?(made|produced|created) (by|in) the pancrea",
+   "say": "Check that. Which organ makes bile?",
+   "hit": [
+    "the pancreas makes bile to break down fat",
+    "bile is made by the pancreas"
+   ],
+   "miss": [
+    "the liver makes bile and the pancreas makes enzymes",
+    "pancreas makes enzymes and a base",
+    "the liver produces bile which breaks fat into droplets"
+   ]
+  },
+  {
+   "re": "\\bbile (is )?(a |an )?(digestive )?enzymes?\\b(?! (and|from|go))",
+   "say": "Check that. Is bile an enzyme, or does it just break fat into droplets?",
+   "hit": [
+    "bile is an enzyme that digests fat",
+    "the liver makes bile is a digestive enzyme"
+   ],
+   "miss": [
+    "the liver makes bile and the pancreas makes enzymes",
+    "bile breaks fat into small droplets",
+    "bile is not an enzyme"
+   ]
+  },
+  {
+   "re": "\\bpancrea\\w* (makes|produces|releases|secretes|adds) (an |more |stomach )?acids?\\b",
+   "say": "Check that. Does the pancreas add acid, or neutralize the stomach acid?",
+   "hit": [
+    "the pancreas makes acid to digest food",
+    "pancreas releases stomach acid into the small intestine"
+   ],
+   "miss": [
+    "the pancreas makes a base that neutralizes stomach acid",
+    "pancreas makes digestive enzymes and bicarbonate",
+    "the pancreas makes enzymes and neutralizes acid"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\bmechanical\\b.{0,30}(?<!(not|nt|never|without|t) )\\b(changes?|changing) (the |its )?(chemical|molecul)",
+   "say": "Check that. Does mechanical digestion change what food is made of, or only its size?",
+   "hit": [
+    "mechanical digestion changes the chemical makeup of food",
+    "mechanical changes the molecules into new ones"
+   ],
+   "miss": [
+    "mechanical digestion breaks food into smaller pieces without changing its chemical makeup",
+    "mechanical digestion does not change the chemical makeup",
+    "chemical digestion changes the molecules with enzymes"
+   ]
+  },
+  {
+   "re": "\\bchemical (digestion )?(only|just) (happens|occurs|takes place) in the stomach\\b|\\bchemical (digestion )?(happens|occurs|takes place) only in the stomach\\b",
+   "say": "Check that. Does chemical digestion start somewhere before the stomach?",
+   "hit": [
+    "chemical digestion only happens in the stomach",
+    "chemical digestion happens only in the stomach"
+   ],
+   "miss": [
+    "chemical digestion uses enzymes like amylase in the mouth",
+    "chemical digestion happens in the mouth stomach and small intestine",
+    "mechanical digestion is chewing"
+   ]
+  },
+  {
+   "re": "\\b(chew\\w*|churn\\w*) (is|are) (an )?(example (of )?)?chemical\\b|\\b(enzymes?|amylase|pepsin) (is|are) (an )?(example (of )?)?mechanical\\b",
+   "say": "Check that. Is that example mechanical or chemical?",
+   "hit": [
+    "chewing is chemical digestion",
+    "amylase is an example of mechanical digestion"
+   ],
+   "miss": [
+    "chewing is mechanical digestion and amylase is chemical",
+    "chewing is an example of mechanical",
+    "enzymes are chemical digestion"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bpepsin.{0,40}(?<!not )\\b(high|basic|neutral|alkaline) ph\\b|\\bpepsin.{0,40}\\bph (of )?(7|8|9|10|seven|eight|nine|ten)\\b",
+   "say": "Check that. Pepsin works in the stomach. Is the stomach acidic or basic?",
+   "hit": [
+    "pepsin works best at a high ph",
+    "pepsin breaks down protein at a basic ph"
+   ],
+   "miss": [
+    "pepsin breaks down protein in the stomach and works best at low acidic ph",
+    "pepsin likes low ph not high ph",
+    "pepsin works at a ph of 2"
+   ]
+  },
+  {
+   "re": "\\benzymes? (are|get|is|gets) (all )?(used up|consumed)\\b",
+   "say": "Check that. Is an enzyme used up in a reaction, or can it be used again?",
+   "hit": [
+    "enzymes get used up after the reaction",
+    "the enzyme is consumed in the reaction"
+   ],
+   "miss": [
+    "enzymes speed up reactions and are not used up",
+    "enzymes are proteins that speed up reactions",
+    "enzymes can be used again"
+   ]
+  },
+  {
+   "re": "(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\b(cold|freezing|low temp\\w*) (will |can |does |also )?(denatur\\w*|kills?|destroys?)\\b",
+   "say": "Check that. Does cold change the enzyme's shape, or just slow it down?",
+   "hit": [
+    "cold denatures the enzyme",
+    "freezing kills enzymes"
+   ],
+   "miss": [
+    "too much heat or the wrong ph denatures the enzyme",
+    "cold slows enzymes down but does not denature them",
+    "high heat denatures the enzyme so it stops working"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bvill\\w* (are |is )?(found |located )?(in|line|lines|lining) (the )?(stomach|large intestine|esophagus)\\b",
+   "say": "Check that. Which organ are villi found in?",
+   "hit": [
+    "villi are found in the stomach",
+    "villi line the large intestine"
+   ],
+   "miss": [
+    "villi line the small intestine",
+    "villi are in the small intestine and increase surface area",
+    "villi are tiny finger like projections"
+   ]
+  },
+  {
+   "re": "\\bvill\\w*.{0,15}\\b(digest|digests|break down|breaks down|chew|chews|churn|churns)\\b",
+   "say": "Check that. Is the main job of villi to break down food, or to absorb it?",
+   "hit": [
+    "villi break down food",
+    "the villi digest the food"
+   ],
+   "miss": [
+    "villi increase surface area so more nutrients are absorbed",
+    "villi absorb digested food into the blood",
+    "villi are finger like projections that absorb nutrients"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bleft atri\\w*\\b(?:(?!right|ventricle).){0,40}\\b(oxygen poor|deoxygenated|from the body|low (in )?oxygen|without oxygen|no oxygen)\\b",
+   "say": "Check that. Where does the left atrium get its blood from?",
+   "hit": [
+    "the left atrium receives oxygen poor blood",
+    "left atrium gets blood from the body"
+   ],
+   "miss": [
+    "the left atrium receives oxygen rich blood from the lungs",
+    "the left atrium gets blood from the lungs and the right atrium gets oxygen poor blood from the body",
+    "right atrium gets deoxygenated blood left atrium gets oxygenated blood"
+   ]
+  },
+  {
+   "re": "\\bventricles? (receive|receives|collect|collects)\\b|\\batri(a|um|ums) (pump|pumps) (blood )?(out|to the body|to the lungs)\\b",
+   "say": "Check that. Which chambers receive blood, and which pump it out?",
+   "hit": [
+    "the ventricles receive blood and the atria pump it out",
+    "atria pump blood out to the body"
+   ],
+   "miss": [
+    "two atria receive blood and two ventricles pump blood out",
+    "the atria receive blood and the ventricles pump it out",
+    "ventricles pump blood to the body"
+   ]
+  },
+  {
+   "re": "\\batri(a|um|ums) (are |is )?(on )?(the )?(bottom|lower)\\b|\\bventricles? (are |is )?(on )?(the )?(top|upper)\\b",
+   "say": "Check that. Which chambers are on top, and which are on the bottom?",
+   "hit": [
+    "atria on the bottom ventricles on top",
+    "the ventricles are the upper chambers"
+   ],
+   "miss": [
+    "two atria on top and two ventricles on the bottom",
+    "the atria are the upper chambers",
+    "ventricles are lower chambers"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bpulmonary.{0,30}\\b(oxygen rich|oxygenated) blood (to|into) the lungs?\\b|\\bsystemic.{0,30}\\b(oxygen poor|deoxygenated) blood (out )?(to|into) the (body|cells)\\b",
+   "say": "Check that. Is blood going to the lungs oxygen rich or oxygen poor?",
+   "hit": [
+    "pulmonary circulation carries oxygen rich blood to the lungs",
+    "systemic circulation carries deoxygenated blood to the body"
+   ],
+   "miss": [
+    "pulmonary circulation carries blood between the heart and the lungs",
+    "systemic carries oxygen rich blood to the body",
+    "pulmonary carries oxygen poor blood to the lungs"
+   ]
+  },
+  {
+   "re": "\\bpulmonary (means|is|refers to|has to do with) (the )?(heart|body|blood)\\b",
+   "say": "Check that. What body part does the word pulmonary refer to?",
+   "hit": [
+    "pulmonary means heart",
+    "pulmonary refers to the body"
+   ],
+   "miss": [
+    "pulmonary means lungs",
+    "pulmonary circulation goes between the heart and lungs",
+    "systemic means the whole body"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bveins?\\b(?:(?!arter|capillar).){0,25}(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\bthick\\b|\\barter\\w*(?:(?!vein|capillar).){0,25}\\bvalves?\\b",
+   "say": "Check that. Which vessel has thick walls, and which has valves?",
+   "hit": [
+    "veins have thick walls",
+    "arteries have valves to stop backflow"
+   ],
+   "miss": [
+    "arteries have thick elastic walls and veins have valves",
+    "veins have thin walls and valves",
+    "veins are not thick walled"
+   ]
+  },
+  {
+   "re": "\\bcapillar\\w*(?:(?!arter|vein).){0,25}\\b(thick walls?|many cells|several cells|lots of cells|two cells)\\b",
+   "say": "Check that. How thick are capillary walls?",
+   "hit": [
+    "capillaries have thick walls",
+    "capillary walls are many cells thick"
+   ],
+   "miss": [
+    "capillaries have walls one cell thick so oxygen can pass",
+    "capillary walls are thin",
+    "arteries have thick walls and capillaries are one cell thick"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\b(turns?|becomes?|goes) red (only )?when (it )?(hits|touches|is exposed to|meets|gets to|comes in contact with) (the )?(air|oxygen)\\b",
+   "say": "Check that. Is blood already red inside the body?",
+   "hit": [
+    "blood turns red when it hits the air",
+    "blood becomes red when it touches oxygen"
+   ],
+   "miss": [
+    "blood is always red",
+    "oxygen rich blood is bright red and oxygen poor blood is dark red",
+    "blood is red and veins only look blue"
+   ]
+  },
+  {
+   "re": "\\bblood (is|turns|becomes|looks) purple\\b|\\bpurple blood\\b",
+   "say": "Check that. What color is oxygen poor blood?",
+   "hit": [
+    "oxygen poor blood is purple",
+    "veins carry purple blood"
+   ],
+   "miss": [
+    "oxygen poor blood is dark red",
+    "blood is always red",
+    "oxygen rich blood is bright red"
+   ]
+  },
+  {
+   "re": "\\bveins (are|is) (actually |really )?blue\\b",
+   "say": "Check that. Are veins really blue, or do they only look blue?",
+   "hit": [
+    "veins are blue because the blood has no oxygen",
+    "the veins are blue"
+   ],
+   "miss": [
+    "veins only look blue through the skin",
+    "blood is red even in veins",
+    "veins look blue but blood is dark red"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\bbronchioles?\\b.{0,25}\\bbronchi\\b",
+   "say": "Check that. Which comes first, the bronchi or the bronchioles?",
+   "hit": [
+    "trachea bronchioles bronchi alveoli",
+    "air goes to the bronchioles then the bronchi"
+   ],
+   "miss": [
+    "nose pharynx larynx trachea bronchi bronchioles alveoli",
+    "bronchi then bronchioles then alveoli",
+    "the trachea splits into bronchi and then smaller bronchioles"
+   ]
+  },
+  {
+   "re": "\\blarynx\\b.{0,25}\\bpharynx\\b",
+   "say": "Check that. Which comes first after the nose, the pharynx or the larynx?",
+   "hit": [
+    "nose larynx pharynx trachea",
+    "air goes through the larynx then pharynx"
+   ],
+   "miss": [
+    "nose pharynx larynx trachea bronchi bronchioles alveoli",
+    "the pharynx comes before the larynx",
+    "nose then pharynx then larynx then trachea"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\b(carbon dioxide|co ?2)\\b(?:(?!oxygen).){0,30}\\b(from|out of) the (alveol\\w*|lungs?|air sacs?)\\b|\\b(carbon dioxide|co ?2)\\b(?:(?!oxygen).){0,20}\\binto the (blood|capillar\\w*)\\b",
+   "say": "Check that. Which way does carbon dioxide move, into the blood or out of it?",
+   "hit": [
+    "carbon dioxide moves from the alveoli into the blood",
+    "co2 goes into the blood"
+   ],
+   "miss": [
+    "oxygen moves from the alveoli into the blood and carbon dioxide moves from the blood into the alveoli",
+    "carbon dioxide diffuses out of the blood into the air sacs",
+    "carbon dioxide leaves the blood and oxygen goes from the alveoli into the blood"
+   ]
+  },
+  {
+   "re": "(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\b(active transport|osmosis)\\b",
+   "say": "Check that. Which process moves gases from high to low concentration?",
+   "unless": "How",
+   "hit": [
+    "gas exchange happens by osmosis",
+    "oxygen moves into the blood by active transport"
+   ],
+   "miss": [
+    "gas exchange happens by diffusion",
+    "gases diffuse from high to low concentration",
+    "oxygen diffuses into the capillaries"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\binhal\\w*(?:(?!exhal).){0,30}\\bdiaphragm\\b(?:(?!exhal).){0,20}\\b(moves?|goes|go|pushes|push) up\\b",
+   "say": "Check that. When you inhale, does the diaphragm move up or down?",
+   "hit": [
+    "when you inhale the diaphragm moves up",
+    "inhaling the diaphragm goes up and the chest gets bigger"
+   ],
+   "miss": [
+    "when you inhale the diaphragm contracts and moves down",
+    "when you exhale the diaphragm moves up",
+    "inhale the diaphragm moves down exhale the diaphragm moves up"
+   ]
+  },
+  {
+   "re": "\\bexhal\\w*(?:(?!inhal).){0,25}\\bcontracts?\\b",
+   "say": "Check that. When you exhale, does the diaphragm contract or relax?",
+   "hit": [
+    "when you exhale the diaphragm contracts",
+    "exhaling the muscles contract and push air out"
+   ],
+   "miss": [
+    "when you exhale the diaphragm and rib cage relax",
+    "when you inhale the diaphragm contracts and when you exhale it relaxes",
+    "exhale the diaphragm relaxes and moves up"
+   ]
+  },
+  {
+   "re": "\\blungs? (are|is) (a |made of )?(muscle|muscles)\\b",
+   "say": "Check that. Are the lungs muscles, or do other muscles move air in and out?",
+   "hit": [
+    "the lungs are muscles that pull air in",
+    "lungs are made of muscle"
+   ],
+   "miss": [
+    "the diaphragm is a muscle under the lungs",
+    "the lungs fill with air when the chest gets bigger",
+    "the lungs are not muscles"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "\\b(exhal\\w*|breathe? out|breathing out) (the )?oxygen\\b|\\b(inhal\\w*|breathe? in|breathing in) (the )?(carbon dioxide|co ?2)\\b",
+   "say": "Check that. Which gas do you breathe in, and which do you breathe out?",
+   "hit": [
+    "we inhale carbon dioxide and exhale oxygen",
+    "you breathe out oxygen"
+   ],
+   "miss": [
+    "the respiratory system brings oxygen into the lungs and we exhale carbon dioxide",
+    "breathe in oxygen breathe out carbon dioxide",
+    "the blood carries carbon dioxide back to the lungs to be breathed out"
+   ]
+  },
+  {
+   "re": "\\b(blood|heart|circulatory system)\\b.{0,10}\\b(makes|produces|creates) (the )?oxygen\\b",
+   "say": "Check that. Does the blood make oxygen, or carry oxygen it got from the lungs?",
+   "hit": [
+    "the heart makes oxygen for the cells",
+    "blood makes oxygen"
+   ],
+   "miss": [
+    "the blood carries oxygen from the lungs to the cells",
+    "the circulatory system delivers oxygen",
+    "the lungs bring in oxygen and the heart pumps it"
+   ]
+  },
+  {
+   "re": "\\b(carbon dioxide|co ?2)\\b.{0,30}\\b(rises|goes up|increases|is high|gets high|builds up)\\b(?:(?!faster|speed|quicker).){0,40}\\b(slower|slows)\\b",
+   "say": "Check that. When carbon dioxide rises, do you breathe faster or slower?",
+   "hit": [
+    "when carbon dioxide rises you breathe slower",
+    "if co2 goes up the medulla makes breathing slower"
+   ],
+   "miss": [
+    "when carbon dioxide rises the medulla oblongata makes you breathe faster",
+    "when carbon dioxide goes up breathing speeds up",
+    "co2 builds up so you breathe faster then slows down later"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "\\b(in)?dependent variables? (is |are )?(the (one|thing|variable) )?(that )?(you )?(keep|keeps|stays?|is kept|are kept|remains?) (the )?(same|constant)\\b",
+   "say": "Check that. The things you keep the same are called controlled variables. What is this one?",
+   "hit": [
+    "the dependent variable is the one that stays the same",
+    "independent variable is the one you keep constant"
+   ],
+   "miss": [
+    "the independent variable is the one you change on purpose the dependent variable is the one you measure",
+    "controlled variables stay the same",
+    "the dependent variable responds to the change"
+   ]
+  },
+  {
+   "re": "\\bdependent\\w*( variables?)?.{0,20}\\b(causes?|affects?|changes) the independent\\b",
+   "say": "Check that. Which variable causes the change in the other?",
+   "hit": [
+    "the dependent variable affects the independent variable",
+    "dependent causes the independent to change"
+   ],
+   "miss": [
+    "the independent variable affects the dependent variable",
+    "the dependent variable depends on the independent",
+    "the independent is what you change"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\bcontrol group\\b.{0,20}\\b(gets|receives|is given|has) (the )?(treatment|change|medicine|drug|variable|independent variable|new)\\b",
+   "say": "Check that. Does the control group get the change being tested?",
+   "hit": [
+    "the control group gets the treatment",
+    "control group is given the medicine"
+   ],
+   "miss": [
+    "a control group gets no change so you can compare it",
+    "the control group does not get the treatment",
+    "the test group gets the treatment and the control group is the comparison"
+   ]
+  },
+  {
+   "re": "(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\\b(change|test|changing|testing) (many|multiple|lots of|all the|several|two|2|more than one) (variables|things)\\b",
+   "say": "Check that. How many variables should you change in a fair test?",
+   "hit": [
+    "you change many variables to see what happens",
+    "testing multiple variables at once is best"
+   ],
+   "miss": [
+    "change only one variable at a time",
+    "do not change multiple variables",
+    "keep everything the same except one variable"
+   ]
+  },
+  {
+   "re": "\\bcontrolled variables? (is |are )?(the (one|ones|thing|things) )?(that )?(you )?(change|changes|changed|measure|measured)\\b",
+   "say": "Check that. Do you change controlled variables, or keep them the same?",
+   "hit": [
+    "controlled variables are the ones you change",
+    "the controlled variable is the thing you measure"
+   ],
+   "miss": [
+    "controlled variables are the things you keep the same",
+    "controlled variables stay constant so only one variable changes",
+    "the control group gets no change"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "\\bdependent\\w*(?:(?!y ?axis|why ?axis|vertical|independent).){0,25}\\b((x|ex) ?axis|horizontal)\\b",
+   "say": "Check that. Which axis does the dependent variable go on?",
+   "hit": [
+    "the dependent variable goes on the x axis",
+    "dependent on the horizontal axis"
+   ],
+   "miss": [
+    "the independent variable goes on the x axis and the dependent variable goes on the y axis",
+    "dependent goes on the y axis independent goes on the x axis",
+    "the dependent variable is on the vertical axis"
+   ]
+  },
+  {
+   "re": "\\b(x|ex) ?axis (is )?(the )?(vertical|up and down)\\b|\\by ?axis (is )?(the )?(horizontal|side to side|across)\\b",
+   "say": "Check that. Which axis runs across, and which runs up and down?",
+   "hit": [
+    "the x axis is the vertical one",
+    "the y axis is horizontal"
+   ],
+   "miss": [
+    "the x axis is horizontal and the y axis is vertical",
+    "read the title and axis labels first",
+    "independent on the x axis dependent on the y axis"
+   ]
+  }
+ ]
+}

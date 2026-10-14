@@ -1,0 +1,498 @@
+{
+ "1": [
+  {
+   "re": "\\bcalories? (is|are) (a |an )?(type of |kind of )?(nutrients?|fats?|foods?)\\b",
+   "say": "Check that. Is a Calorie a thing you eat, or a unit that measures something?",
+   "hit": [
+    "a calorie is a nutrient in food",
+    "calories are fat that you eat"
+   ],
+   "miss": [
+    "a calorie is the unit used to measure the amount of energy in food",
+    "a calorie is a unit of energy",
+    "calories are not a nutrient they measure energy"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\bamino",
+   "say": "Check that. Amino acids build a different nutrient. What elements make up a carbohydrate?",
+   "hit": [
+    "a carbohydrate is made of amino acids and gives energy",
+    "carbohydrates are built from amino acids"
+   ],
+   "miss": [
+    "a carbohydrate is made of carbon hydrogen and oxygen it is the body's quick source of energy",
+    "carbs are made of sugars",
+    "a carbohydrate is c h o and gives quick energy"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!n't )(?<!dont )\\b(builds?|building|repairs?) (\\w+ )?(muscles?|tissues?)",
+   "say": "Check that. Building and repairing tissue is mainly a job of a different nutrient.",
+   "hit": [
+    "carbohydrates build muscle and give energy",
+    "a carbohydrate repairs tissues"
+   ],
+   "miss": [
+    "a carbohydrate is made of carbon hydrogen and oxygen and is the body's quick energy",
+    "carbs give energy but do not build muscle",
+    "carbohydrates are sugars and starches"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "(?<!not )\\bwater soluble",
+   "say": "Check that. Which kind of vitamins does fat help the body absorb?",
+   "hit": [
+    "fat stores energy and helps absorb water soluble vitamins",
+    "fat insulates and absorbs water soluble vitamins like c"
+   ],
+   "miss": [
+    "fat is a nutrient that stores energy about 9 calories per gram it insulates the body and helps absorb fat soluble vitamins",
+    "fat helps absorb vitamins a d e and k",
+    "fat is part of cell membranes"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!not the )(?<!not a )\\b(quick|quickest|fast|fastest) (source of )?energy",
+   "say": "Check that. Is fat the body's quick energy, or stored energy?",
+   "hit": [
+    "fat is the body's quick source of energy",
+    "fat gives fast energy and insulates"
+   ],
+   "miss": [
+    "fat stores energy about nine calories per gram",
+    "fat is stored energy not quick energy",
+    "fat insulates the body and is part of membranes"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "(?<!not )(?<!not the )(?<!not a )\\b(main|quick|quickest|fast|fastest|first) (source of )?energy",
+   "say": "Check that. Is protein the body's main energy source, or a building material?",
+   "unless": "Built from",
+   "hit": [
+    "protein is the main source of energy",
+    "proteins give the body quick energy"
+   ],
+   "miss": [
+    "a protein is a nutrient built from amino acids",
+    "protein is built from amino acids and is not the main source of energy",
+    "proteins help build and repair the body"
+   ]
+  },
+  {
+   "re": "\\b(made|built|composed) (up )?(of|from) (\\w+ )?(sugars?|carbs?|carbohydrates?|fats?|lipids?|starch\\w*)\\b",
+   "say": "Check that. What smaller units are proteins built from?",
+   "unless": "Built from",
+   "hit": [
+    "a protein is made of sugars",
+    "proteins are built from fats and give energy"
+   ],
+   "miss": [
+    "a protein is a nutrient built from smaller units called amino acids",
+    "proteins are made of amino acids not sugars",
+    "protein is a nutrient in meat and beans"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(large|big|huge|great|giant) amounts?\\b|\\b(a lot|lots) of (vitamins?|them)\\b",
+   "say": "Check that. Does the body need a lot of vitamins or only a little?",
+   "unless": "How much",
+   "hit": [
+    "a vitamin is an organic molecule the body needs in large amounts",
+    "the body needs lots of vitamins"
+   ],
+   "miss": [
+    "a vitamin is an organic molecule the body needs in small amounts",
+    "vitamins are organic and only needed in tiny amounts not large amounts",
+    "a vitamin is organic and the body needs a little"
+   ]
+  },
+  {
+   "re": "\\bvitamins? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\\w+ )?(source of )?energy\\b|\\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\\b",
+   "say": "Check that. Do vitamins supply energy (Calories)?",
+   "hit": [
+    "a vitamin is an organic molecule that gives you energy",
+    "vitamins provide the body energy"
+   ],
+   "miss": [
+    "a vitamin is an organic molecule the body needs in small amounts",
+    "vitamins do not give energy",
+    "vitamins help the body use energy from food"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!not )(?<!not in )(?<!n't need )(?<!not need )(?<!not needed in )(?<!n't needed in )\\b(large|big|huge|great) amounts?\\b|\\b(a lot|lots) of minerals?\\b",
+   "say": "Check that. Does the body need a lot of minerals or only a little?",
+   "hit": [
+    "a mineral is an inorganic nutrient the body needs in large amounts",
+    "minerals are inorganic and you need lots of minerals"
+   ],
+   "miss": [
+    "a mineral is an inorganic nutrient the body needs in small amounts",
+    "minerals are not needed in large amounts",
+    "vitamins are organic and minerals are inorganic"
+   ]
+  },
+  {
+   "re": "\\bminerals? (gives?|provides?|supplies?|is|are) (you |the body |us )?(a |an )?(\\w+ )?(source of )?energy\\b|\\bthat (gives?|provides?|supplies?) (you |us |the body )?energy\\b",
+   "say": "Check that. Do minerals supply energy (Calories)?",
+   "hit": [
+    "a mineral is an inorganic nutrient that gives energy",
+    "minerals provide the body energy"
+   ],
+   "miss": [
+    "a mineral is an inorganic nutrient the body needs in small amounts",
+    "minerals do not give energy",
+    "minerals like calcium help build bones"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bcalories? and energy\\b|\\benergy and calories?\\b",
+   "say": "Check that. Calories are a measure of energy, so that is one reason. What is the second?",
+   "unless": "Reason 2",
+   "hit": [
+    "the body needs food for energy and calories",
+    "the two reasons are calories and energy"
+   ],
+   "miss": [
+    "the body needs food for energy and for raw materials to build and repair tissues",
+    "food gives energy and calories and materials to grow",
+    "food supplies energy and building materials"
+   ]
+  },
+  {
+   "re": "\\b(food|it|eating) (gives?|provides?|supplies?) (the body |us |you )?(\\w+ )?(oxygen|air)\\b",
+   "say": "Check that. Food gives energy and raw materials. Where does oxygen come from?",
+   "hit": [
+    "food gives the body oxygen and energy",
+    "food provides us oxygen"
+   ],
+   "miss": [
+    "the body needs food for energy and raw materials to build and repair tissues",
+    "food gives energy and we breathe in oxygen",
+    "food provides raw materials"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "(?<!not )(?<!not have )\\b(no|zero) energy\\b|\\b(do not|don't|dont|does not|doesn't|doesnt) (have|give|supply|provide) (any )?energy",
+   "say": "Check that. Empty Calories still give energy. What do they leave out?",
+   "hit": [
+    "empty calories are foods with no energy",
+    "empty calorie foods do not give any energy like chips"
+   ],
+   "miss": [
+    "empty calories are foods that supply calories or energy without the other nutrients the body needs like chips and candy",
+    "they give energy but no vitamins",
+    "empty calories have energy but not nutrients"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!n't )(?<!no )\\b(lots of|full of|high in|packed with|rich in) (\\w+ )?(nutrients|vitamins|nutrition)\\b",
+   "say": "Check that. Do empty-Calorie foods have lots of nutrients?",
+   "hit": [
+    "empty calories are foods full of nutrients",
+    "empty calorie foods are high in vitamins"
+   ],
+   "miss": [
+    "empty calories give calories without the other nutrients the body needs",
+    "they are not full of nutrients just calories",
+    "chips and candy have energy but little else"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(five|5|seven|7|four|4|eight|8) (essential )?nutrients\\b",
+   "say": "Check that. How many essential nutrients are there?",
+   "hit": [
+    "the five essential nutrients are carbs fats proteins vitamins and minerals",
+    "there are 7 nutrients"
+   ],
+   "miss": [
+    "the six essential nutrients are water carbohydrates fats proteins vitamins and minerals cholesterol is not one",
+    "there are 6 essential nutrients",
+    "the 6 nutrients include water"
+   ]
+  },
+  {
+   "re": "\\b(fiber|sugar|sodium|calories?|salt) (is|are) (one|1|an essential|essential|a nutrient|on the list)\\b",
+   "say": "Check that. Is that one of the six essential nutrients?",
+   "hit": [
+    "the six nutrients are water carbs fats proteins vitamins and minerals sugar is one of them",
+    "fiber is an essential nutrient"
+   ],
+   "miss": [
+    "the six essential nutrients are water carbohydrates fats proteins vitamins and minerals cholesterol is not one of them",
+    "sugar is not on the list",
+    "fiber is a carbohydrate"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\bcomplex (carbs?|carbohydrates?) (are|is) (just |simple )?sugars?\\b(?! (linked|joined|bonded|together|chain|hooked))|\\bsimple (carbs?|carbohydrates?) (are|is) (\\w+ )?starch",
+   "say": "Check that. Which kind are sugars and which kind are starches?",
+   "hit": [
+    "complex carbohydrates are sugars and simple carbs are starches",
+    "simple carbs are starches"
+   ],
+   "miss": [
+    "simple carbohydrates are sugars used quickly complex carbohydrates are starches that must be broken down",
+    "complex carbs are starches made of many sugars linked together",
+    "simple carbs are sugars"
+   ]
+  },
+  {
+   "re": "\\bcomplex (carbs?|carbohydrates?) (are |is )?(used |absorbed |digested |give |gives |provide |for )(quick|fast)\\w*|\\bsimple (carbs?|carbohydrates?) (are |is )?(must|have to|need to) be broken down",
+   "say": "Check that. Which kind of carbohydrate is used for energy right away?",
+   "hit": [
+    "complex carbohydrates are used quickly for energy",
+    "simple carbs must be broken down before the body uses them"
+   ],
+   "miss": [
+    "simple carbohydrates are sugars the body uses quickly complex carbohydrates are starches that must be broken down first",
+    "complex carbs are not used quickly",
+    "simple carbs are absorbed fast and complex carbs take longer"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bfiber (\\w+ )?(is|are) (a |an )?(protein|fat|lipid|vitamin|mineral|simple)\\b",
+   "say": "Check that. What type of nutrient is fiber (cellulose)?",
+   "hit": [
+    "fiber is a protein the body cannot digest",
+    "fiber is a simple carbohydrate"
+   ],
+   "miss": [
+    "fiber cellulose is a complex carbohydrate the body cannot digest it adds bulk",
+    "fiber is a complex carb",
+    "fiber is not a protein"
+   ]
+  },
+  {
+   "re": "\\bfiber (is |gets |can be )?(absorbed|broken down)\\b",
+   "say": "Check that. Can the body break down or absorb fiber?",
+   "hit": [
+    "fiber is absorbed and helps move waste",
+    "fiber gets broken down for energy"
+   ],
+   "miss": [
+    "fiber is a complex carbohydrate the body cannot digest so it adds bulk to move waste",
+    "fiber is not absorbed",
+    "the body cannot break down fiber"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(?<!un)(?<!un )\\bsaturated (fats? )?(have|has|contain|contains) (\\w+ )?double|\\bunsaturated (fats? )?(have|has|contain|contains) (only )?single",
+   "say": "Check that. Which kind of fat has double bonds?",
+   "hit": [
+    "saturated fats have double bonds and are solid",
+    "unsaturated fats have only single bonds"
+   ],
+   "miss": [
+    "saturated fats have only single bonds and are solid at room temperature unsaturated fats have one or more double bonds and are liquid",
+    "unsaturated fat has double bonds",
+    "saturated fats contain single bonds"
+   ]
+  },
+  {
+   "re": "\\b(butter|lard|bacon grease) (is |are )?(an )?unsaturated|\\b(olive oil|vegetable oil|oils?) (is|are) (a )?saturated",
+   "say": "Check that. Is that fat solid or liquid at room temperature?",
+   "hit": [
+    "butter is unsaturated because it has double bonds",
+    "olive oil is saturated"
+   ],
+   "miss": [
+    "butter is saturated and solid olive oil is unsaturated and liquid",
+    "oils are unsaturated",
+    "saturated fats are solid at room temperature"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bfats? (also )?(act as|work as|are|make|makes|serve as|can be) (?!not |no )(\\w+ )?(enzymes?|hormones?)\\b",
+   "say": "Check that. Are enzymes and hormones a job of fats or of a different nutrient?",
+   "hit": [
+    "fats insulate the body and fats make enzymes",
+    "fats act as hormones and are part of cell membranes"
+   ],
+   "miss": [
+    "fats insulate the body are part of cell membranes and help absorb fat soluble vitamins fats are not hormones and enzymes those are jobs of proteins",
+    "fats are not enzymes",
+    "proteins make enzymes and fats insulate"
+   ]
+  },
+  {
+   "re": "(?<!not )\\bwater soluble",
+   "say": "Check that. Which kind of vitamins do fats help the body absorb?",
+   "hit": [
+    "fats insulate and help absorb water soluble vitamins",
+    "fats are in membranes and absorb water soluble vitamins"
+   ],
+   "miss": [
+    "fats help absorb fat soluble vitamins",
+    "fats insulate the body and are part of cell membranes",
+    "fats help absorb vitamins a d e and k"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bproteins? .{0,20}\\binsulat",
+   "say": "Check that. Insulating the body is a job of a different nutrient.",
+   "hit": [
+    "proteins insulate the body and act as enzymes",
+    "protein helps insulate us"
+   ],
+   "miss": [
+    "proteins supply raw materials for growth and repair some act as enzymes",
+    "fats insulate and proteins build tissue",
+    "proteins speed up reactions as enzymes"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!not the )(?<!not a )\\b(main|quick|quickest|fast|fastest|first) (source of )?energy",
+   "say": "Check that. Is protein the body's main or quick energy source?",
+   "hit": [
+    "proteins are the main source of energy and build muscle",
+    "protein gives quick energy"
+   ],
+   "miss": [
+    "proteins supply raw materials for growth and repair and some act as enzymes",
+    "protein is not the main source of energy",
+    "proteins can transport things and regulate the body"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bwater soluble (vitamins? )?(are |is |get |gets )?stored\\b|\\bfat soluble (vitamins? )?(are |is )?(not|never) stored",
+   "say": "Check that. Which group of vitamins is stored in the body?",
+   "hit": [
+    "water soluble vitamins are stored in fat",
+    "fat soluble vitamins are not stored so you need them every day"
+   ],
+   "miss": [
+    "fat soluble vitamins are a d e and k and are stored in fat tissue water soluble vitamins are b and c and are not stored",
+    "water soluble vitamins are not stored",
+    "fat soluble vitamins get stored"
+   ]
+  },
+  {
+   "re": "\\bvitamins? (a|d|e|k) (is|are) water|\\b(vitamins? b|b vitamins?) (is |are )fat",
+   "say": "Check that. Which letters are fat-soluble and which are water-soluble?",
+   "hit": [
+    "vitamin d is water soluble",
+    "b vitamins are fat soluble"
+   ],
+   "miss": [
+    "fat soluble vitamins are a d e and k water soluble are b and c",
+    "vitamin a is fat soluble",
+    "the fat soluble vitamins are a d e and vitamin k water soluble ones are b vitamins and c"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\bcitric acid",
+   "say": "Check that. Citric acid is in citrus fruit, but what is vitamin C's chemical name?",
+   "unless": "Other name",
+   "hit": [
+    "vitamin c is also called citric acid",
+    "vitamin c citric acid helps heal wounds"
+   ],
+   "miss": [
+    "vitamin c is also called ascorbic acid it helps wounds heal and keeps gums healthy",
+    "vitamin c is ascorbic acid not citric acid",
+    "vitamin c helps the body absorb iron"
+   ]
+  },
+  {
+   "re": "\\babsorb\\w* (\\w+ )?calcium",
+   "say": "Check that. Vitamin C helps the body absorb a different mineral.",
+   "hit": [
+    "vitamin c helps the body absorb calcium",
+    "it helps absorb more calcium for bones"
+   ],
+   "miss": [
+    "vitamin c helps wounds heal keeps gums healthy helps the body absorb iron and maintains cartilage and bone",
+    "vitamin c is ascorbic acid",
+    "it helps absorb iron"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "(?<!not )\\b(in|for) the (whole|entire) (package|box|bag|container|thing)\\b",
+   "say": "Check that. Are the amounts on a food label for the whole package or for one serving?",
+   "hit": [
+    "a food label shows the nutrients in the whole package",
+    "it shows the calories for the entire box"
+   ],
+   "miss": [
+    "a food label shows the amount of each nutrient in a serving it helps plan a balanced diet",
+    "the label shows nutrients per serving not for the whole package",
+    "it helps you plan the right amounts"
+   ]
+  },
+  {
+   "re": "(?<!than )\\b(only|just) (shows? |lists? |tells? )?(you )?(the )?(calories|ingredients)\\b",
+   "say": "Check that. Does a food label show only one thing, or the amount of each nutrient?",
+   "hit": [
+    "a food label only shows the calories",
+    "the label just shows the ingredients"
+   ],
+   "miss": [
+    "a food label shows the amount of each nutrient in a serving",
+    "the label shows calories and nutrients so you can plan a balanced diet",
+    "it shows more than just calories"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\bwater (gives?|provides?|supplies?|has) (?!no |zero )(you |the body )?(\\w+ )?(energy|calories)\\b",
+   "say": "Check that. Does water supply energy (Calories)?",
+   "hit": [
+    "carbohydrates fats proteins and water provide energy because water gives energy",
+    "water provides the body energy"
+   ],
+   "miss": [
+    "carbohydrates fats and proteins provide energy vitamins minerals and water do not",
+    "water does not give energy",
+    "water has no calories"
+   ]
+  },
+  {
+   "re": "\\b(carb\\w*|fats?|proteins?) (do not|don't|dont|does not|doesn't|doesnt|never) (provide|give|supply|have)\\b",
+   "say": "Check that. Which three nutrients do have Calories?",
+   "hit": [
+    "carbohydrates and fats give energy but proteins do not provide energy",
+    "fats don't give energy"
+   ],
+   "miss": [
+    "carbohydrates fats and proteins provide energy vitamins minerals and water do not",
+    "proteins give energy too",
+    "vitamins and minerals do not provide energy"
+   ]
+  }
+ ]
+}

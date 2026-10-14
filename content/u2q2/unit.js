@@ -32,6 +32,10 @@ UNITS.push({
   { n:1, heading:"The Cell Membrane", prompt:"State the main job of the cell membrane.",
     guide:"What does the membrane control?", where:"Slide 5 | Book: Cell Membranes, p. 204",
     model:"The cell membrane regulates (controls) what enters and leaves the cell.",
+    watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(lets?|allows?) (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go|enter)|(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(blocks?|stops?|keeps?) (everything|anything)( out)?\b/, "Check that. Does the membrane let everything through, nothing, or only some things?"),
+      W(/\bonly (lets?|allows?) (\w+ )?(things |stuff |materials? |food )?in\b|\bonly (keeps?|lets?|sends?) (things |stuff |waste )?out\b/, "Check that. Does the membrane only work in one direction?", "In and out"),
+      W(/(?<!\bnot )(?<!n't )(?<!\bdont )\b(makes?|produces?|creates?|builds?) (the )?(cell'?s? )?(energy|proteins?|food|atp|dna)\b/, "Check that. The membrane is the border of the cell. What does it control?") ],
     ideas:[
       {label:"The job", match:[/regulat|control|decid|choos|gate ?keep|filter|manag|in charge|guard/],
         hints:["What job does the membrane do at the border of the cell?","Slide 5 calls it the gatekeeper. What does a gatekeeper do?"]},
@@ -42,6 +46,10 @@ UNITS.push({
     guide:"Which part loves water (polar)? Which part fears water (non-polar)?", where:"Slide 6 | Book: Cell Membranes, p. 204",
     draw:"Draw a phospholipid here. Label the head and the tails.",
     model:"A phospholipid has a hydrophilic (water-loving, polar) head and two hydrophobic (water-fearing, non-polar) fatty acid tails.",
+    watch:[
+      W(/\bheads? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)o ?b\w*|water ?(fear|hat|scar)\w*|non ?polar|afraid of (the )?water|hates? (the )?water)|(?<!\btails? (are |is )?)(hydro ?(ph|f)o ?b\w*|water ?(fear|hat|scar)\w*|non ?polar|afraid of (the )?water|hates? (the )?water) (phosphate )?heads?\b/, "Check that. Which part of the phospholipid loves water?"),
+      W(/\btails? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar)|(?<!\bheads? (is |are )?)(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar) (fatty acid )?tails?\b/, "Check that. How do the tails feel about water?"),
+      W(/\b(one|1|a single|only one) (fatty acid |hydrophobic |long )?tail\b/, "Check that. How many tails does a phospholipid have?") ],
     ideas:[
       {label:"Top part", match:[/\bheads?\b/], hints:["Name the round top part of the phospholipid.","Look at the top of the drawing on Slide 6. What is it called?"]},
       {label:"Top part and water", match:[PHILIC], hints:["How does the top part feel about water?","Slide 6 memory trick: -philic means ____."]},
@@ -51,6 +59,10 @@ UNITS.push({
   { n:3, heading:"The Cell Membrane", prompt:"Explain why phospholipids form two layers with the tails in the middle.",
     guide:"Where is the water? Where do the tails want to be?", where:"Slide 7 | Book: Cell Membranes, p. 204",
     model:"There is water outside the cell and water inside the cell (cytoplasm). The water-loving heads face the water on both sides. The water-fearing tails hide in the middle, away from the water.",
+    watch:[
+      W(/\btails? (all )?(face|faces|facing|point|points|pointing|touch|touches|go|goes|are|stick|sticks) (out )?(toward |towards |into |to |on |at |in )?(the )?(water|outside|outer)\b/, "Check that. Do the water-fearing tails want to touch the water?"),
+      W(/\bheads? (all )?(are |go |hide |stay |point |face |sit )(in |toward |towards |to )?(the )?(middle|center|centre|each other)\b/, "Check that. Which part hides in the middle, away from the water?"),
+      W(/\b(only|just) (on the |is )?outside\b|\bno water (inside|in the cell)|\bwater is not inside/, "Check that. Is there water only outside the cell, or inside too?", "Where the water is") ],
     ideas:[
       {label:"Where the water is", match:[/both sides|inside and (the )?outside|outside and (the )?inside|in and out|(inside|cytoplasm|in the cell)\b.{0,50}\boutside|outside\b.{0,50}\b(inside|cytoplasm)/],
         hints:["Where is there water around a cell?","Think about inside the cell AND outside the cell."]},
@@ -68,7 +80,10 @@ UNITS.push({
       {label:"Mosaic", match:[/(many|different|lots of|lot of|various|several|mix\w*|bunch of|variety)\b.{0,30}\b(piece|part|thing|molecule|kind|type|tile|stuff|component)/, /made (up )?of (many|different|lots)/],
         hints:["What is a mosaic picture made of?","Think of a picture made of tiles. One kind of tile, or many kinds?"]}
     ],
-    watch:[{match:/liquid/, unless:"Fluid", say:"Fluid here is not about being a liquid. What do the parts of the membrane do?"}]},
+    watch:[
+      W(/\b(solid|rigid|hard|stiff|frozen)\b/, "Check that. Are the parts of the membrane stiff, or do they move?", "Fluid"),
+      W(/colou?rful|colou?rs\b|pretty|stained glass/, "Check that. Mosaic here is not about color. What is the membrane made of?", "Mosaic"),
+      W(/\b(only|just) (made )?(of )?(proteins?|phospholipids?|lipids?|fats?)\b/, "Check that. Is the membrane made of just one kind of molecule?", "Mosaic"),{match:/liquid/, unless:"Fluid", say:"Fluid here is not about being a liquid. What do the parts of the membrane do?"}]},
   { n:5, heading:"The Cell Membrane", prompt:"Identify what cholesterol does, and where carbohydrate tags are found.",
     guide:"How does cholesterol help the membrane? Are the tags inside or outside?", where:"Slide 9 | Book: not in the textbook; use the slide",
     model:"Cholesterol stabilizes the membrane. It keeps it from getting too runny or too stiff and makes it heat resistant. Carbohydrate tags are on the outside of the cell, where they work as ID tags.",
@@ -78,10 +93,16 @@ UNITS.push({
       {label:"Where the tags are", match:[/outside|outer|exterior|out side|on the out/],
         hints:["Are the carbohydrate tags inside or outside the cell?","Look at the labeled membrane picture on Slide 13."]}
     ],
-    watch:[{match:/\binside\b/, unless:"Where the tags are", say:"Check where the carbohydrate tags are. Look at Slide 13."}]},
+    watch:[
+      W(/\bbad\b|unhealthy|harmful|\bclogs?\b/, "Check that. In the membrane, cholesterol has a helpful job. What is it?", "Cholesterol"),
+      W(/(?<!\bnot )(?<!\bdoesn't )(?<!\bdoesnt )\b(makes?|make) (the membrane |it )?(more )?(runny|melt|leaky|weak|weaker|floppy|unstable)\b/, "Check that. Does cholesterol make the membrane more stable or less stable?"),
+      W(/\btags?\b.{0,45}\b(energy|food|fuel)\b/, "Check that. What job do the carbohydrate tags do on the outside?"),{match:/\binside\b/, unless:"Where the tags are", say:"Check where the carbohydrate tags are. Look at Slide 13."}]},
   { n:6, heading:"Selectively Permeable", prompt:"Define selectively permeable, and give one everyday example.",
     guide:"What gets through and what does not? What object at home works the same way?", where:"Slide 10 | Book: Cell Membranes, p. 205",
     model:"Selectively permeable means the membrane lets some things pass through but blocks others. Example: a colander lets water through but keeps the pasta in.",
+    watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(lets?|allows?) (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go)|(?<!\bnot )(?<!n't )(?<!\bdoesnt )(?<!\bdont )\b(blocks?|stops?) (everything|anything|all (things|molecules|substances|stuff))\b|water ?proof/, "Check that. Does everything get through, nothing, or only some things?"),
+      W(/\b(brick wall|glass|plastic bag|plastic wrap|rock|metal|balloon)\b/, "Check that. Does your example let some things through but not others?", "Everyday example") ],
     ideas:[
       {label:"What it means", match:[/\bsome\b.{0,50}\b(not|others?|block\w*|keep\w*|can.?t|cannot|don.?t|stop\w*|out)\b/, /certain (things|substances|molecules|stuff)/, /lets? (only )?(some|certain|small)/, /only (some|certain|small)/, /not (everything|all|anything)/, /pick\w* |choos\w*/],
         hints:["Does everything get through the membrane?","Finish this: some things ____, but others ____."]},
@@ -91,6 +112,9 @@ UNITS.push({
   { n:7, heading:"Selectively Permeable", prompt:"Explain why charged particles and polar molecules need help to cross.",
     guide:"What is the middle of the bilayer like? Why does that block them?", where:"Slide 11 | Book: Facilitated Diffusion, p. 209",
     model:"The middle of the bilayer is made of hydrophobic (non-polar, oily) tails. It pushes charged and polar molecules away, so they need a transport protein to get across.",
+    watch:[
+      W(/\bmiddle (is |are )?(made (up )?of )?(the )?(hydro ?(ph|f)(i|e|ee|y)l\w*|water ?lov\w*|heads?\b|(?<!non )polar)/, "Check that. What part of the phospholipid is in the middle, and how does it feel about water?"),
+      W(/\btoo (big|large)\b/, "Check that. Even small charged particles need help. What is the middle of the bilayer like?", "The middle") ],
     ideas:[
       {label:"The middle", match:[/hydro ?(ph|f)o ?b|non ?polar|\boil|\bfat|water ?fear|\btails?\b/],
         hints:["What is the middle of the bilayer made of?","Think back to note 2. What part sits in the middle, and how does it feel about water?"]},
@@ -111,6 +135,8 @@ UNITS.push({
         hints:["Does active transport cost the cell energy?","Active is like pedaling uphill. What does that take?"]}
     ],
     watch:[
+      W(/\bpassive\b(?:(?!\bactive\b).){0,40}\b(low|less|lower)\w*( concentration)? to (high|more|higher|greater)/, "Check that. Which way does passive transport move things?"),
+      W(/\bactive\b(?:(?!passive).){0,40}\b(high|more|higher|greater)\w*( concentration)? to (low|less|lower)/, "Check that. Which way does active transport move things?"),
       {match:/\bactive\b (transport )?(doesn.?t|does not|don.?t) (use|need|require)/, say:"Check active transport. Is it the free one, or the one that costs energy?"},
       {match:/\bpassive\b (transport )?(uses?|needs?|requires?|costs?) (energy|atp|some|a lot)/, say:"Check passive transport. Is it the free one, or the one that costs energy?"}
     ]},
@@ -122,7 +148,9 @@ UNITS.push({
       {label:"What sets the direction", match:[/concentrat/], hints:["What word tells you how crowded a substance is?","Slide 16 defines this word in the first box."]},
       {label:"Oxygen example", match:[/oxygen|\bo ?(2|two)\b/], hints:["Add how oxygen gets into a cell.","Think about your lungs passing a gas into your blood."]}
     ],
-    watch:[{match:LH, unless:"Which way", say:"Check your direction. Air freshener spreads from where to where?"}]},
+    watch:[
+      W(/(?<!\bno )(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of |lots of )?(energy|atp)/, "Check that. Is diffusion active or passive? Does it cost energy?"),
+      W(/diffusion (is|means) (the )?(movement|diffusion|moving|flow) of water\b/, "Check that. Does diffusion only move water? That sounds like osmosis."),{match:LH, unless:"Which way", say:"Check your direction. Air freshener spreads from where to where?"}]},
   { n:10, heading:"Passive Transport", prompt:"Describe what molecules do at equilibrium.",
     guide:"Do they stop moving, or keep moving? Which way?", where:"Slide 17 | Book: Diffusion, p. 208",
     model:"At equilibrium the concentration is the same on both sides. The molecules do not stop. They keep moving back and forth across the membrane, the same number each way.",
@@ -133,7 +161,9 @@ UNITS.push({
       {label:"Which way", match:[/back and forth|both (ways|directions)|each way|in and out|either way|each direction/],
         hints:["Which direction do they move?","Picture people walking through a doorway at a busy time. Which way are they going?"]}
     ],
-    watch:[{match:/(they|molecules|particles|it|everything) (all )?(stop|stops|stopped)\b|stop (moving|moves)/, unless:"Do they stop?", say:"Check that. Do the molecules really stop? Look at Slide 17."}]},
+    watch:[
+      W(/(?<!\bnot )(?<!n't )(?<!\bnever )\b(no (more )?(movement|motion)|stays? still|stand still|freeze|froze|frozen)\b/, "Check that. Do the molecules really stop moving at equilibrium?", "Do they stop?"),
+      W(/(?<!\bnot )(?<!\bnot in )(?<!\bnot just )\b(only )?(in )?(one|1) (way|direction)\b/, "Check that. Do the molecules move only one way at equilibrium?", "Which way"),{match:/(they|molecules|particles|it|everything) (all )?(stop|stops|stopped)\b|stop (moving|moves)/, unless:"Do they stop?", say:"Check that. Do the molecules really stop? Look at Slide 17."}]},
   { n:11, heading:"Passive Transport", prompt:"Explain how facilitated diffusion works.",
     guide:"What helps the molecules cross? Does it cost energy?", where:"Slide 18 | Book: Facilitated Diffusion, p. 209",
     model:"Molecules that cannot get through on their own (charged or large ones like glucose) cross through channel or carrier proteins. It still goes high to low, so it uses no energy. It is passive.",
@@ -142,10 +172,16 @@ UNITS.push({
       {label:"Energy", match:[/(no|without|zero|doesn.?t (use|need|require|take|cost)|does not (use|need|require|take|cost)|not (use|need)\w*|don.?t (use|need)) (any |extra )?(energy|atp)/, /\bpassive\b/, /\bfree\b/],
         hints:["Does facilitated diffusion cost the cell energy?","It is still a kind of diffusion. Is diffusion active or passive?"]}
     ],
-    watch:[{match:/(uses?|needs?|requires?|takes?) (energy|atp)/, unless:"Energy", say:"Check the energy part. Is facilitated diffusion active or passive?"}]},
+    watch:[
+      W(/(?<!\b(not|n't|never|dont|doesnt|no)\b[\w ]{0,12})\b(low|less|lower)\w*( concentration)? to (high|more|higher|greater)\b/, "Check that. Facilitated diffusion is still diffusion. Which way does it go?"),
+      W(/(?<!\bnot )(?<!n't )\b(is|are|it'?s) (an? )?(type of |kind of |form of )?active\b/, "Check that. Does facilitated diffusion cost energy? So is it active or passive?"),{match:/(uses?|needs?|requires?|takes?) (energy|atp)/, unless:"Energy", say:"Check the energy part. Is facilitated diffusion active or passive?"}]},
   { n:12, heading:"Passive Transport", prompt:"Define osmosis, and explain which way water moves.",
     guide:"Use the water-to-solute (\"stuff\") ratio. What does an aquaporin let in?", where:"Slide 19 | Book: Osmosis: An Example of Facilitated Diffusion, p. 210",
     model:"Osmosis is the diffusion of water across a selectively permeable membrane. Water moves from where the water-to-solute ratio is high to where it is low, so it moves toward the side with more solute. Aquaporins are water channel proteins that let water in.",
+    watch:[
+      W(/(diffusion|movement|moving|flow) of (salt|sugar|solutes?|particles|stuff|ions)\b|(?<!\bnot )(?<!n't )\b(salt|sugar|solutes?)\w* (moves?|diffuses?|goes|flows?) (across|through|from|toward)/, "Check that. In osmosis, which substance moves across the membrane?"),
+      W(/\b(toward\w*|to|into) (the )?(side |area |place )?(with |that has |where there is )?(less|lower|fewer|least|little|no) (solute|stuff|salt|sugar)/, "Check that. Does water move toward more solute or less?"),
+      W(/(?<!\bno )(?<!\bnot )(?<!n't )(?<!\bdont )(?<!\bdoesnt )\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of )?(energy|atp)/, "Check that. Osmosis is a kind of diffusion. Does it cost energy?") ],
     ideas:[
       {label:"What moves", match:[/water/], hints:["What substance moves during osmosis?","Osmosis is the diffusion of one special substance. What is it?"]},
       {label:"How it moves", match:[/diffus|across|through|membrane|cross/], hints:["What kind of movement is it, and across what?","Osmosis is a type of a movement you already wrote about in note 9."]},
@@ -167,6 +203,9 @@ UNITS.push({
         hints:["In hypotonic, does water go in or out? What does the cell do?","\"Hypo\" means LESS solute outside. Water moves toward more solute."]}
     ],
     watch:[
+      W(/hyper ?tonic(?:(?!hypo|iso).){0,40}\b(water )?(moves?|goes|rushes|flows?|comes?) in(to)?\b/, "Check that. In hypertonic, more solute is outside. Which way does water move?"),
+      W(/hypo ?tonic(?:(?!hyper|iso).){0,40}\b(water )?(moves?|goes|rushes|flows?|leaves?) out\b/, "Check that. In hypotonic, less solute is outside. Which way does water move?"),
+      W(/iso ?tonic(?:(?!hyp).){0,40}(no water (moves|movement|goes)|water (stops|doesn't move|does not move|doesnt move|does not go|doesn't go))/, "Check that. In isotonic, does water stop, or move in and out equally?"),
       {match:/hyper ?tonic(?:(?!hypo|iso).){0,40}(swell|burst|bigger)/, say:"Check hypertonic. More solute is outside the cell. Which way does water move?"},
       {match:/hypo ?tonic(?:(?!hyper|iso).){0,40}(shrink|shrivel|smaller)/, say:"Check hypotonic. Less solute is outside the cell. Which way does water move?"}
     ]},
@@ -180,7 +219,10 @@ UNITS.push({
       {label:"Salty water", match:[/(salt\w*|hyper ?tonic)(?:(?!pure|fresh).){0,90}(shrink|shrank|shrunk|shrivel|lose|loses|losing|\bout\b|smaller|dry|wilt)/, /(shrink|shrivel|shrunk)(?:(?!pure).){0,50}salt/],
         hints:["What happens to the cells in salty water?","Salty water has MORE solute outside. Which way does water move?"]}
     ],
-    watch:[{match:/plant cells? (will |would |can )?(bursts?|pops?|explodes?)\b/, say:"Check the plant cell. What does it have that stops it from bursting?"}]},
+    watch:[
+      W(/(pure|fresh|distilled|plain|tap) water(?:(?!salt).){0,50}\b(shrinks?|shrivel\w*|smaller|shrank)\b/, "Check that. In pure water, does water move into the cells or out of them?"),
+      W(/salt\w*(?:(?!pure|fresh|distilled|plain).){0,50}\b(swell\w*|swole|bursts?|bigger|pops?|explod\w*)/, "Check that. In salty water, is there more solute inside or outside the cells?"),
+      W(/\bwalls? (keeps?|stops?|blocks?) (the )?water (from )?(going |coming |getting )?(in|out|entering|into)\b/, "Check that. Water still gets into the plant cell. What does the wall stop?"),{match:/plant cells? (will |would |can )?(bursts?|pops?|explodes?)\b/, say:"Check the plant cell. What does it have that stops it from bursting?"}]},
   { n:15, heading:"Active Transport", prompt:"Explain how a protein pump works.",
     guide:"Which direction does it move molecules? What does it need to do that?", where:"Slide 26 | Book: Molecular Transport, p. 212",
     model:"A protein pump moves molecules from low concentration to high concentration, against the flow. It needs energy (ATP) to do that.",
@@ -188,7 +230,9 @@ UNITS.push({
       {label:"Which way", match:[LH, /against/], hints:["Which direction does a pump move molecules?","Pumps go the opposite way from diffusion. Look back at note 9."]},
       {label:"What it needs", match:[/energy|\batp\b/], hints:["What does a pump need to move molecules that way?","Slide 26: the cell pays with its energy molecule."]}
     ],
-    watch:[{match:HL, unless:"Which way", say:"Check the direction. Pumps go the opposite way from diffusion."}]},
+    watch:[
+      W(/\b(pumps?|it)\b( \w+){0,2} (doesn't|doesnt|does not|do not|don't|dont|never) (need|use|require|take)\w* (any )?(energy|atp)|\b(pumps?|it) (needs?|uses?|requires?) no (energy|atp)/, "Check that. Does moving molecules against the flow cost energy?"),
+      W(/(?<!\bnot )(?<!\bnot go )(?<!n't go )\b(with|down) the (flow|gradient|concentration gradient)\b/, "Check that. Do pumps go with the flow or against it?"),{match:HL, unless:"Which way", say:"Check the direction. Pumps go the opposite way from diffusion."}]},
   { n:16, heading:"Active Transport", prompt:"Compare endocytosis and exocytosis.",
     guide:"Which brings things in? Which sends things out? How does a cell get rid of bulk waste?", where:"Slide 27 | Book: Bulk Transport, p. 213",
     model:"Endocytosis brings large particles into the cell; the membrane folds around them. Exocytosis sends things out of the cell; a vesicle joins the membrane and releases them. Exocytosis is how the cell gets rid of bulk waste. Both use energy.",
@@ -201,6 +245,8 @@ UNITS.push({
         hints:["Which one does the cell use to get rid of bulk waste?","Read both boxes on Slide 27. Which one mentions waste?"]}
     ],
     watch:[
+      W(/\b(both|they|endo\w*|exo\w*) (are|is) passive\b|\b(both|they) (do not|don't|dont|never) (use|need) (any )?(energy|atp)/, "Check that. Moving big things with vesicles is active. Does it cost energy?"),
+      W(/\bendo\w*(?:(?!\bexo).){0,40}(gets? rid|remov\w* (the )?waste|throws? out|dumps? (the )?waste)/, "Check that. Which one does the cell use to get rid of bulk waste?"),
       {match:/\bendo\w*( is| means)?( when)?( the cell)? (sends?|puts?|pushes?|releases?|lets?) (\w+ )?out\b/, say:"Check endocytosis. Does it bring things in or send them out?"},
       {match:/\bexo\w*( is| means)?( when)?( the cell)? (brings?|takes?|lets?) (\w+ )?in\b/, say:"Check exocytosis. Does it bring things in or send them out?"}
     ]},
@@ -226,6 +272,9 @@ UNITS.push({
       {label:"What keeps going", match:[/(passive|diffus|osmos)(?:(?!\bactive\b|pump).){0,70}\b(keep\w*|continu\w*|still|go(es)? on|fine|work\w*|unaffect\w*|not affect\w*|don.?t stop|doesn.?t stop|won.?t stop)/, /(keep\w*|continu\w*|still)\b(?:(?!\bactive\b).){0,50}(passive|diffus|osmos)/],
         hints:["Which processes keep going without ATP?","Look at your chart from note 17. Which column is free?"]}
     ],
-    watch:[{match:/passive (transport )?(would |will )?(stops?|quits?)\b/, say:"Check passive transport. Does it need ATP?"}]}
+    watch:[
+      W(/(diffusion|osmosis)(?:(?!keep|still|continu|\bnot\b|n't|\bactive\b|pump|never).){0,30}\b(would |will )?(stops?|quits?|ends?)\b/, "Check that. Does diffusion or osmosis need ATP?"),
+      W(/(\bactive\b|pumps?)(?:(?!passive|diffus|osmos|stop|\bnot\b|n't|\bcan\b|cannot|without).){0,30}\b(keeps? (going|working)|still (work|works|go|goes|happen\w*)|continues?)\b/, "Check that. Can active transport keep going without ATP?"),
+      W(/(?<!\bnot )\b(everything|all (transport|processes|of them|the processes)) (would |will )?(stops?|quits?)\b/, "Check that. Do all of them need ATP?"),{match:/passive (transport )?(would |will )?(stops?|quits?)\b/, say:"Check passive transport. Does it need ATP?"}]}
   ]
 });

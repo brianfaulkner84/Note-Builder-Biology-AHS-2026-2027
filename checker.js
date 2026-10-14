@@ -107,9 +107,11 @@ function markPhrases(q, text){
     const i = keys[k], j = keys[k + 1];
     if (j - i > 1 && j - i <= 4 && sameClause(i, j)) for (let z = i + 1; z < j; z++){ tw[z].kind = "key"; tw[z].labels = tw[i].labels; }
   }
+  const vocab = vocabOf(q);
+  const glueOk = w => STOP.has(w) || /ly$/.test(w) || (w.length > 2 && vocab.has(w.slice(0, 5)));
   keys.forEach(i => {
-    for (let z = i - 1, n = 0; z >= 0 && n < 3 && !tw[z].kind && sameClause(z, i); z--, n++){ if (CONNECT.has(tw[z].w) || STARTS.has(tw[z].w)) break; tw[z].kind = "key"; tw[z].labels = tw[i].labels; }
-    for (let z = i + 1, n = 0; z < tw.length && n < 3 && !tw[z].kind && sameClause(i, z); z++, n++){ if (CONNECT.has(tw[z].w) || STARTS.has(tw[z].w)) break; tw[z].kind = "key"; tw[z].labels = tw[i].labels; }
+    for (let z = i - 1, n = 0; z >= 0 && n < 3 && !tw[z].kind && sameClause(z, i); z--, n++){ if (CONNECT.has(tw[z].w) || STARTS.has(tw[z].w) || !glueOk(tw[z].w)) break; tw[z].kind = "key"; tw[z].labels = tw[i].labels; }
+    for (let z = i + 1, n = 0; z < tw.length && n < 3 && !tw[z].kind && sameClause(i, z); z++, n++){ if (CONNECT.has(tw[z].w) || STARTS.has(tw[z].w) || !glueOk(tw[z].w)) break; tw[z].kind = "key"; tw[z].labels = tw[i].labels; }
   });
   /* wrong: watch matches, widened to their clause (stops at a break or connector, max 6 words each way) */
   const ideasOk = new Set((q.ideas||[]).filter(i => anyMatch(i.match, nm.t)).map(i => i.label));
@@ -125,7 +127,10 @@ function markPhrases(q, text){
     });
   });
   /* extra: runs of unmarked words, split at breaks */
-  const vocab = vocabOf(q), runs = []; let cur = null;
+  /* the prompt's own content words, minus its first word (the command: Describe, State...) */
+  const pwords = norm(q.prompt).trim().split(" ").slice(1).filter(w => w.length > 2 && !STOP.has(w)).map(w => w.slice(0, 5));
+  const pvocab = new Set(pwords);
+  const runs = []; let cur = null;
   tw.forEach((x, i) => {
     if (x.kind){ cur = null; return; }
     if (!cur || x.brk){ cur = []; runs.push(cur); }
@@ -136,7 +141,19 @@ function markPhrases(q, text){
     const content = ws.filter(w => w.length > 2 && !STOP.has(w));
     const off = content.filter(w => !vocab.has(w.slice(0, 5)));
     const filler = FILLER.test(phrase);
-    if (!((content.length >= 2 && off.length >= 2 && off.length / content.length >= 0.5) || (filler && off.length >= 1) || (filler && !content.length))) return;
+    /* repeats the question: 4+ words, mostly the prompt's own words, earns nothing */
+    const hasP = new Set(content.map(w => w.slice(0, 5)).filter(w => pvocab.has(w)));
+    const verb = norm(q.prompt).trim().split(" ")[0];
+    const meta = (verb.length > 2 && phrase.indexOf(" " + verb) >= 0) || /\b(an example of how|this question|the question|is about|talks? about|we have to|asks? (us|you))\b/.test(phrase);
+    if (ws.length >= 4 && meta && pvocab.size >= 2 && hasP.size >= 2 && hasP.size / pvocab.size >= 0.7){
+      let hi = run.length - 1;
+      const next = tw[run[hi] + 1];
+      if (next && next.kind === "key") for (let n = 0; n < 2 && hi > 0 && (STOP.has(tw[run[hi]].w) || pvocab.has(tw[run[hi]].w.slice(0, 5))); n++) hi--;
+      if (hi >= 3) { for (let k = 0; k <= hi; k++){ tw[run[k]].kind = "extra"; tw[run[k]].why = "repeat"; } }
+      return;
+    }
+    const allOff = content.length >= 1 && off.length === content.length;
+    if (!(allOff || (content.length >= 2 && off.length >= 2 && off.length / content.length >= 0.5) || (filler && off.length >= 1) || (filler && !content.length))) return;
     /* keep on-topic words at either end of the run (e.g. "...today at equilibrium") */
     const onTopic = w => (w.length > 2 && vocab.has(w.slice(0, 5)) && !FILLER.test(" " + w + " "));
     let lo = 0, hi = run.length - 1;
@@ -156,7 +173,8 @@ function markPhrases(q, text){
     if (last && last.kind === x.kind && last._i === tw.indexOf(x) - 1){
       last.end = x.e; last._i++;
       if (x.kind === "key") x.labels.forEach(l => { if (last.labels.indexOf(l) < 0) last.labels.push(l); });
-    } else marks.push({start:x.s, end:x.e, kind:x.kind, labels:x.labels.slice(), say:x.say, _i:tw.indexOf(x)});
+      if (x.why) last.why = x.why;
+    } else marks.push({start:x.s, end:x.e, kind:x.kind, labels:x.labels.slice(), say:x.say, why:x.why, _i:tw.indexOf(x)});
   });
   marks.forEach(k => delete k._i);
   return marks;

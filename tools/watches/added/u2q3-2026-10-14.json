@@ -1,0 +1,701 @@
+{
+ "1": [
+  {
+   "re": "\\benergy (?:is|gets|can be) (?:created|made from nothing)|(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:create|creates|creating) (?:new )?energy\\b",
+   "say": "Check that. Can energy be created, or only changed from one form to another?",
+   "hit": [
+    "energy is created when we eat food",
+    "living things create energy from food",
+    "energy can be created by cells"
+   ],
+   "miss": [
+    "energy is the ability to do work it cannot be created or destroyed",
+    "energy is the ability to do work and is stored in chemical bonds like sugar",
+    "cells do not create energy they store it in molecules",
+    "energy can't be created"
+   ]
+  },
+  {
+   "re": "\\bstor\\w* (?:the |their |its )?energy in (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)",
+   "say": "Check that. Where do living things store energy, in an organelle or in the bonds of molecules?",
+   "hit": [
+    "living things store energy in the mitochondria",
+    "cells store their energy in the mitochondria"
+   ],
+   "miss": [
+    "energy is the ability to do work living things store energy in chemical bonds",
+    "energy is stored in the bonds of sugar molecules in food",
+    "the mitochondria release energy from food but energy is stored in bonds"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\b(?:monomer|building block)s? (?:of (?:a )?carbohydrates? )?(?:is|are) (?:a |an |the )?(?:starch|glycogen|cellulose|polysaccharide|disaccharide|sucrose|lactose)",
+   "say": "Check that. That is a big carbohydrate made of many sugars. What is the single building block?",
+   "unless": "The monomer",
+   "hit": [
+    "the monomer of carbohydrates is starch",
+    "the building block is a polysaccharide like starch"
+   ],
+   "miss": [
+    "the monomer of carbohydrates is a simple sugar monosaccharide example glucose",
+    "the monomer is a monosaccharide like glucose starch is a polymer",
+    "building block is a simple sugar"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(?:100|one hundred|a hundred|hundred)(?: small)? calories\\b",
+   "say": "Check that. How many small calories are in one food label Calorie?",
+   "hit": [
+    "a big calorie is 100 small calories",
+    "one food calorie equals one hundred calories"
+   ],
+   "miss": [
+    "a calorie raises 1 gram of water 1 degree celsius a food calorie is 1000 calories",
+    "1 calorie equals 1 000 calories",
+    "a kilocalorie is one thousand calories"
+   ]
+  },
+  {
+   "re": "\\bfahrenheit|\\bfarenheit|\\bfarenhite|\\bfahrenheight",
+   "say": "Check that. Which temperature scale does science use for the small calorie?",
+   "hit": [
+    "a calorie raises 1 gram of water 1 degree fahrenheit",
+    "one degree farenheit for one gram of water"
+   ],
+   "miss": [
+    "a calorie raises 1 gram of water 1 degree celsius",
+    "small calorie heats one gram of water one degree c",
+    "a food calorie is a kilocalorie 1000 calories"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\bfats? (?:give |gives |have |has |are |is |equal |equals |provide |provides )?(?:about |around |only )?(?:4|four)\\b|\\b(?:carb\\w*|proteins?) (?:give |gives |have |has |are |is |equal |equals |provide |provides )?(?:about |around )?(?:9|nine)\\b",
+   "say": "Check that. Which one gives more Calories per gram, fat or carbohydrates?",
+   "hit": [
+    "fats give 4 calories per gram and carbs give 9",
+    "carbohydrates have nine calories per gram"
+   ],
+   "miss": [
+    "carbs and proteins give about 4 calories per gram fats give about 9",
+    "fats 9 proteins 4 carbs 4",
+    "10 grams of fat times 9 is 90 calories",
+    "fat has more than twice as many calories as carbs"
+   ]
+  },
+  {
+   "re": "\\b(?:40|forty)\\b",
+   "say": "Check that. Which Calories per gram number goes with fat?",
+   "unless": "The practice problem",
+   "hit": [
+    "10 grams of fat times 4 is 40 calories",
+    "ten grams of fat equals forty calories"
+   ],
+   "miss": [
+    "10 grams of fat x 9 = 90 calories",
+    "carbs and proteins are 4 per gram fat is 9 per gram so 10 grams of fat is ninety calories",
+    "fats give about 9 calories per gram"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\bdeoxy ?ribose|\\b(?:sugar|ribose) (?:is |called |named |which is )?glucose\\b",
+   "say": "Check that. Which 5 carbon sugar is in ATP?",
+   "hit": [
+    "atp is made of adenine deoxyribose and three phosphates",
+    "the sugar is glucose and there are three phosphate groups"
+   ],
+   "miss": [
+    "atp stands for adenosine triphosphate it has adenine ribose and three phosphate groups",
+    "the sugar in atp is ribose a 5 carbon sugar",
+    "adenine ribose sugar and 3 phosphates main energy source of the cell"
+   ]
+  },
+  {
+   "re": "\\badenine tri ?phosphate",
+   "say": "Check that. Adenine is one of the parts. What is the full name of ATP?",
+   "unless": "What ATP stands for",
+   "hit": [
+    "atp stands for adenine triphosphate",
+    "adenine tri phosphate has three phosphates"
+   ],
+   "miss": [
+    "atp stands for adenosine triphosphate it is made of adenine ribose and three phosphates",
+    "adenosine tri phosphate",
+    "the base is adenine and there are three phosphate groups"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\b(?:add|adds|adding|added|attach\\w*) (?:a |one |the )?phosphate (?:to (?:adp|atp) )?releases?\\b|\\breleas\\w* energy by (?:add|attach)\\w*",
+   "say": "Check that. Does adding a phosphate store energy or release it?",
+   "hit": [
+    "adding a phosphate releases energy",
+    "atp releases energy by adding a phosphate"
+   ],
+   "miss": [
+    "to store energy the cell adds a phosphate to adp which makes atp to release energy it breaks the bond to the third phosphate",
+    "adding a phosphate stores energy and breaking it off releases energy",
+    "adp plus a phosphate makes atp"
+   ]
+  },
+  {
+   "re": "\\b(?:break\\w*|remov\\w*|los\\w*) (?:\\w+ ){0,3}(?:stores?|storing) (?:the )?energy\\b|\\badp (?:has|have|with|contains) (?:\\w+ )?(?:3|three|tri)\\b",
+   "say": "Check that. Which one has three phosphates, and which change stores energy?",
+   "hit": [
+    "breaking off a phosphate stores energy",
+    "adp has three phosphates"
+   ],
+   "miss": [
+    "to store energy add a phosphate to adp to release energy break the bond to the third phosphate",
+    "breaking the bond to the last phosphate releases energy and atp becomes adp",
+    "adp has two phosphates and atp has three"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!\\b(?:not|no|never|unlike|than|isn't|isnt|doesn't|doesnt|or) (?:\\w+ )?)\\b(?:passive transport|diffusion|osmosis)\\b",
+   "say": "Check that. Which kind of transport needs no energy from the cell?",
+   "hit": [
+    "atp powers passive transport and muscle movement",
+    "atp is used for diffusion and building proteins"
+   ],
+   "miss": [
+    "atp powers active transport protein pumps movement like muscles cilia and flagella building proteins and making light",
+    "active transport not passive transport",
+    "atp powers active transport unlike diffusion",
+    "atp powers pumps moving and building molecules"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\batp (?:stores?|holds?|has|contains?) (?:much |a lot |way |way more |far )?more energy\\b|\\b(?:glucose|sugar) (?:stores?|holds?|has|contains?) less energy|\\b(?:glucose|sugar) (?:is )?(?:better|good|best) (?:for|at) (?:moving|spending|transferring|quick)",
+   "say": "Check that. Which one stores more energy, and which one is better for moving energy quickly?",
+   "hit": [
+    "atp stores more energy than glucose so cells only keep a little",
+    "glucose is better for moving energy quickly"
+   ],
+   "miss": [
+    "glucose stores much more energy than atp more than 90 times as much atp is better for moving energy quickly",
+    "atp does not store more energy than glucose",
+    "cells store energy in glucose and remake atp from adp when needed"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(?:picks? up|picking up|carr(?:y|ies)|carrying) (?:the )?(?:oxygen|atp|glucose|sugar)\\b",
+   "say": "Check that. What does an electron carrier actually pick up and carry?",
+   "hit": [
+    "an electron carrier picks up oxygen and carries it",
+    "it carries atp to where the energy is needed"
+   ],
+   "miss": [
+    "an electron carrier picks up high energy electrons carries them and drops them off like a taxi",
+    "it picks up electrons and brings them where energy is needed",
+    "carries electrons to make atp"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:makes?|creates?|produces?) (?:high energy )?electrons\\b",
+   "say": "Check that. Does the carrier make electrons, or move them?",
+   "hit": [
+    "an electron carrier makes electrons for the cell",
+    "it creates high energy electrons"
+   ],
+   "miss": [
+    "an electron carrier picks up high energy electrons and drops them off where needed",
+    "it doesn't make electrons it carries them like a taxi",
+    "it delivers electrons"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\bnadp ?h?\\b(?: (?!nad\\b|nadh\\b|nad h\\b)\\w+){0,4} (?:is )?(?:used )?(?:in|for|during) (?:cellular )?respiration|\\bnad ?h?\\b(?: (?!nadp)\\w+){0,4} (?:is )?(?:used )?(?:in|for|during) photo ?synth",
+   "say": "Check that. Which carrier goes with photosynthesis, and which goes with respiration?",
+   "hit": [
+    "nadp becomes nadph it is used in cellular respiration",
+    "nadh is used in photosynthesis"
+   ],
+   "miss": [
+    "nad picks up electrons and becomes nadh it is used in cellular respiration nadp picks up electrons and becomes nadph it is used in photosynthesis",
+    "nadph is used in photosynthesis",
+    "nadh is used for respiration"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bhetero\\w*.{0,30}(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:make|makes|produce|produces) (?:their|its) own food",
+   "say": "Check that. \"Hetero\" means other. Which group makes its own food?",
+   "hit": [
+    "heterotrophs make their own food using sunlight",
+    "a heterotroph produces its own food"
+   ],
+   "miss": [
+    "autotrophs make their own food from sunlight heterotrophs eat other living things",
+    "heterotrophs do not make their own food",
+    "heterotrophs can't make their own food so they eat"
+   ]
+  },
+  {
+   "re": "\\b(?:animals?|humans?|mushrooms?|fungi|fungus|people) (?:are|is) (?:an? )?auto|\\b(?:plants?|algae|trees?|grass) (?:are|is) (?:an? )?hetero",
+   "say": "Check that. Does that organism make its own food or eat other things?",
+   "hit": [
+    "animals are autotrophs",
+    "plants are heterotrophs and animals are autotrophs"
+   ],
+   "miss": [
+    "autotrophs like plants and algae make their own food heterotrophs like animals and mushrooms eat",
+    "plants are autotrophs animals are heterotrophs",
+    "mushrooms are heterotrophs"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\balgae (?:is|are) (?:an? )?hetero",
+   "say": "Check that. Can algae make food from sunlight?",
+   "hit": [
+    "algae are heterotrophs and mushrooms are autotrophs",
+    "algae is a heterotroph"
+   ],
+   "miss": [
+    "algae are autotrophs because they make food from sunlight mushrooms are heterotrophs",
+    "algae are not heterotrophs",
+    "mushrooms are heterotrophs they absorb food"
+   ]
+  },
+  {
+   "re": "\\bmushrooms? (?:make|makes|get|gets) (?:their |its )?(?:own )?food from (?:the )?(?:sun|light)",
+   "say": "Check that. Does a mushroom have chlorophyll to use sunlight?",
+   "hit": [
+    "mushrooms make their own food from sunlight",
+    "a mushroom gets its food from the sun"
+   ],
+   "miss": [
+    "mushrooms cannot make their own food from sunlight so they absorb food from dead matter",
+    "algae make food from sunlight mushrooms are heterotrophs",
+    "mushrooms absorb food from dead things"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:food|energy|sugar|nutrients?) (?:\\w+ )?from (?:the )?(?:soil|dirt|ground)\\b",
+   "say": "Check that. Where does a plant's food really come from?",
+   "hit": [
+    "plants get their food from the soil",
+    "photosynthesis is how plants take energy from the dirt"
+   ],
+   "miss": [
+    "photosynthesis means using light to put something together light energy becomes chemical energy in sugar",
+    "plants use light energy to make sugar",
+    "plants take water from the soil and use light to make sugar"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:make|makes|making|create|creates|creating) (?:their own |its own |new )?energy\\b",
+   "say": "Check that. Energy is not made from nothing. Which kind of energy is changed into which kind?",
+   "hit": [
+    "plants use light to make energy",
+    "photosynthesis creates energy for the plant"
+   ],
+   "miss": [
+    "plants use light energy to make sugar so light energy becomes chemical energy",
+    "photosynthesis means putting together with light",
+    "plants don't make energy they change light energy into chemical energy"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bphoto ?synth\\w*.{0,20}(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:uses?|needs?|requires?|takes? in) oxygen\\b",
+   "say": "Check that. Is oxygen a reactant or a product of photosynthesis?",
+   "hit": [
+    "photosynthesis uses oxygen and water to make sugar",
+    "photosynthesis needs oxygen and carbon dioxide"
+   ],
+   "miss": [
+    "carbon dioxide plus water plus light makes glucose and oxygen",
+    "6co2 + 6h2o + light makes c6h12o6 + 6o2",
+    "photosynthesis doesn't use oxygen it gives off oxygen"
+   ]
+  },
+  {
+   "re": "\\bphoto ?synth\\w*.{0,20}(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:makes?|produces?|releases?|gives? off) (?:carbon dioxide|co ?2|c o 2)\\b",
+   "say": "Check that. Does photosynthesis take in carbon dioxide or give it off?",
+   "hit": [
+    "photosynthesis makes carbon dioxide",
+    "photosynthesis gives off co2 and sugar"
+   ],
+   "miss": [
+    "in words carbon dioxide plus water plus light makes sugar plus oxygen",
+    "photosynthesis takes in co2 and gives off oxygen",
+    "photosynthesis does not release carbon dioxide"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\breflect\\w* (?:\\w+ ){0,2}(?<!not |no )(?:red|blue|violet|purple)\\b",
+   "say": "Check that. The color that bounces back is the color you see. Which color is that?",
+   "hit": [
+    "chlorophyll reflects red and blue light",
+    "it absorbs green and reflects blue"
+   ],
+   "miss": [
+    "chlorophyll absorbs blue violet and red light it reflects green light so leaves look green",
+    "it reflects green not red",
+    "reflects green light back to our eyes"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:absorb|absorbs|absorbing) (?:\\w+ ){0,2}green\\b",
+   "say": "Check that. Does chlorophyll absorb green light or reflect it?",
+   "hit": [
+    "the plant would grow well because chlorophyll absorbs green light",
+    "it absorbs all the green"
+   ],
+   "miss": [
+    "the plant would grow poorly because chlorophyll reflects green light instead of absorbing it",
+    "chlorophyll does not absorb green",
+    "it can't absorb green light so it grows poorly"
+   ]
+  },
+  {
+   "re": "\\bgreen (?:light )?(?:is )?(?:the )?(?:best|most useful|most helpful|most energy)\\b",
+   "say": "Check that. Is green light the most useful or the least useful color for a plant?",
+   "hit": [
+    "green light is the best for plants",
+    "green is the most useful color"
+   ],
+   "miss": [
+    "the plant would grow poorly green light is the least useful color",
+    "green light is not useful because it is reflected",
+    "red and blue are the most useful green is the least"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\bchloro ?phyl\\w* (?:is )?(?:found )?(?:in|inside) (?:the )?(?:stroma|stromo)",
+   "say": "Check that. Where is the chlorophyll, in the fluid or in the membranes?",
+   "hit": [
+    "chlorophyll is in the stroma",
+    "the chlorophyll is found inside the stroma fluid"
+   ],
+   "miss": [
+    "thylakoids are flattened sacs a stack is a granum the stroma is the fluid chlorophyll is in the thylakoid membranes",
+    "chlorophyll is in the thylakoids not the stroma",
+    "the stroma is the fluid around the thylakoids"
+   ]
+  },
+  {
+   "re": "\\bstroma (?:is|are) (?:a |the )?(?:stacks?|piles?|sacs?|flattened)|\\b(?:thyla\\w*|grana|granum) (?:is|are) (?:the )?(?:fluid|liquid|jelly)",
+   "say": "Check that. Which part is the fluid, and which part is the stack of sacs?",
+   "hit": [
+    "the stroma is a stack of thylakoids",
+    "the granum is the fluid outside"
+   ],
+   "miss": [
+    "thylakoids are flattened sacs a stack of thylakoids is a granum the stroma is the fluid",
+    "a granum is a stack",
+    "stroma is the fluid around the grana"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\blight ?dependent(?: reactions?)? (?:happens? |occurs? |takes? place |is |are )?(?:in|inside) (?:the )?(?:stroma|stromo)",
+   "say": "Check that. Where do the light dependent reactions happen?",
+   "hit": [
+    "light dependent reactions happen in the stroma",
+    "the light dependent is in the stroma and the calvin cycle is in the thylakoid"
+   ],
+   "miss": [
+    "part 1 is the light dependent reactions in the thylakoid membranes part 2 is the calvin cycle in the stroma",
+    "light dependent reactions are not in the stroma",
+    "the light independent reactions are in the stroma"
+   ]
+  },
+  {
+   "re": "\\bcalvin\\w*(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)",
+   "say": "Check that. The Calvin cycle is part of photosynthesis. Which organelle is it in?",
+   "hit": [
+    "the calvin cycle happens in the mitochondria",
+    "calvin cycle is in the mitochondria"
+   ],
+   "miss": [
+    "the calvin cycle is in the stroma of the chloroplast",
+    "light dependent reactions in the thylakoids and calvin cycle in the stroma",
+    "the calvin cycle happens in the chloroplast"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "\\boxygen (?:comes?|is|came) (?:\\w+ )?from (?:the )?(?:carbon dioxide|co ?2|c o 2)\\b",
+   "say": "Check that. Which molecule is split to release the oxygen?",
+   "hit": [
+    "the oxygen comes from carbon dioxide",
+    "oxygen is made from co2 in the calvin cycle"
+   ],
+   "miss": [
+    "the light dependent reactions take in light and water and make atp nadph and oxygen the oxygen comes from water that is split",
+    "oxygen comes from water",
+    "the calvin cycle takes in carbon dioxide and builds sugar"
+   ]
+  },
+  {
+   "re": "\\blight ?(?:dependent )?reactions? (?:make|makes|build|builds|produce|produces) (?:\\w+ ){0,2}(?:sugar|glucose)\\b",
+   "say": "Check that. Which part actually builds the sugar?",
+   "hit": [
+    "the light reactions make sugar and oxygen",
+    "light dependent reactions produce glucose"
+   ],
+   "miss": [
+    "the light dependent reactions make atp nadph and oxygen the calvin cycle builds sugar",
+    "light independent reactions build sugar",
+    "light reactions make atp and nadph not sugar"
+   ]
+  },
+  {
+   "re": "\\bcalvin\\w*(?: cycle)? (?:makes?|releases?|produces?|gives? off) (?:\\w+ ){0,2}oxygen\\b",
+   "say": "Check that. Which part releases the oxygen?",
+   "hit": [
+    "the calvin cycle releases oxygen",
+    "the calvin cycle makes sugar and oxygen"
+   ],
+   "miss": [
+    "the light dependent reactions release oxygen and the calvin cycle makes sugar",
+    "the calvin cycle takes in carbon dioxide atp and nadph and builds sugar",
+    "calvin cycle makes glucose"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "(?<!\\b(?:if|when|suppose|supposing) (?:a |the )?)\\bcells? (?:burns?|releases?|uses?) (?:\\w+ ){0,3}all at once\\b",
+   "say": "Check that. Do cells release the energy all at once, or a little at a time?",
+   "hit": [
+    "cells burn glucose all at once to get energy fast",
+    "the cell releases its energy all at once"
+   ],
+   "miss": [
+    "if a cell burned glucose all at once it would release all the energy as heat and light and destroy the cell",
+    "if a cell burns glucose all at once it would die so it uses small steps",
+    "cells break glucose down in small steps"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:captur\\w*|stor\\w*|saves?|saving|keeps?) (?:the |its |that |some |a little )?(?:energy )?(?:as|in) heat\\b",
+   "say": "Check that. What form does the cell capture the energy in, a little at a time?",
+   "hit": [
+    "cells capture the energy as heat a little at a time",
+    "the cell stores the energy as heat"
+   ],
+   "miss": [
+    "it would release all the energy as heat and light and destroy the cell",
+    "cells capture a little energy at a time as atp",
+    "energy is lost as heat if burned all at once"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\b(?:is|means) (?:just |basically |the same as )?(?:breathing|breathe|inhaling|exhaling)\\b",
+   "say": "Check that. Breathing brings in oxygen, but what does cellular respiration do inside the cell?",
+   "hit": [
+    "cellular respiration is breathing in oxygen",
+    "cellular respiration means breathing"
+   ],
+   "miss": [
+    "cellular respiration is the process that releases energy from food in the presence of oxygen",
+    "cellular respiration is not breathing it releases energy from glucose",
+    "we breathe to get the oxygen it needs"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:creates?|creating) (?:new )?energy\\b",
+   "say": "Check that. Does respiration create energy, or release energy already stored in food?",
+   "hit": [
+    "cellular respiration creates energy using oxygen",
+    "it is the process that creates energy"
+   ],
+   "miss": [
+    "cellular respiration releases energy from food glucose in the presence of oxygen",
+    "respiration does not create energy it releases it",
+    "breaks down glucose to make atp"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "\\brespiration (?:makes?|produces?|releases?|gives? off) (?:\\w+ ){0,2}(?:oxygen|glucose|sugar)\\b|\\bproducts? (?:are|is) (?:\\w+ ){0,2}(?:oxygen|glucose|sugar)\\b",
+   "say": "Check that. Which molecules go in, and which come out of respiration?",
+   "hit": [
+    "the products are glucose and oxygen",
+    "cellular respiration makes oxygen and water"
+   ],
+   "miss": [
+    "oxygen plus glucose makes carbon dioxide plus water plus energy atp",
+    "the reactants are oxygen and glucose the products are carbon dioxide water and energy",
+    "6o2 + c6h12o6 makes 6co2 + 6h2o + energy"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:needs?|uses?|requires?) (?:sun ?light|light)\\b|\\b(?:plus|and) (?:sun ?light|light) (?:makes|yields|gives|produces)",
+   "say": "Check that. Does cellular respiration need light?",
+   "hit": [
+    "glucose plus oxygen plus sunlight makes carbon dioxide and water",
+    "respiration uses light to break down glucose"
+   ],
+   "miss": [
+    "oxygen plus glucose makes carbon dioxide plus water plus energy",
+    "respiration does not need light",
+    "unlike photosynthesis it doesn't need sunlight"
+   ]
+  }
+ ],
+ "24": [
+  {
+   "re": "\\bglycolysis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)|\\b(?:(?:krebs|kreb|crebs|citric acid)(?: cycle)?|(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b)) (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)",
+   "say": "Check that. Which stage is in the cytoplasm, and which are in the mitochondria?",
+   "hit": [
+    "glycolysis happens in the mitochondria",
+    "1 glycolysis 2 krebs cycle in the cytoplasm 3 electron transport chain"
+   ],
+   "miss": [
+    "1 glycolysis in the cytoplasm 2 the krebs cycle in the mitochondria 3 the electron transport chain in the mitochondria",
+    "glycolysis is not in the mitochondria it is in the cytoplasm",
+    "krebs cycle and etc are in the mitochondria"
+   ]
+  }
+ ],
+ "25": [
+  {
+   "re": "(?<!\\ban )\\baerobic (?:means|is) (?:it )?(?:does not|doesn't|doesnt|no|without|not|don't|dont)\\b|\\b(?:anaerobic|an aerobic) (?:means|is) (?:it )?(?:needs|requires|uses|with)\\b",
+   "say": "Check that. Which word means with oxygen, and which means without?",
+   "hit": [
+    "aerobic means without oxygen anaerobic means it needs oxygen",
+    "anaerobic means with oxygen"
+   ],
+   "miss": [
+    "aerobic means it requires oxygen anaerobic means it does not require oxygen",
+    "an aerobic means without oxygen",
+    "anaerobic means no oxygen needed"
+   ]
+  },
+  {
+   "re": "\\b(?:krebs|kreb|crebs|citric|electron transport|etc)\\w*(?: cycle| chain)? (?:is |are )?(?:anaerobic|an aerobic)",
+   "say": "Check that. Do the Krebs cycle and the electron transport chain need oxygen?",
+   "hit": [
+    "the krebs cycle is anaerobic",
+    "the krebs cycle and electron transport chain are anaerobic"
+   ],
+   "miss": [
+    "glycolysis is anaerobic the krebs cycle and electron transport chain are aerobic",
+    "glycolysis is anaerobic and the etc is aerobic",
+    "krebs cycle needs oxygen so it is aerobic"
+   ]
+  }
+ ],
+ "26": [
+  {
+   "re": "\\b(?:glycolysis|citric acid cycle|electron transport(?: chain)?|etc) (?:is not|isn't|isnt)\\b",
+   "say": "Check that. That one IS a stage of cellular respiration. Which cycle is not?",
+   "unless": "The cycle",
+   "hit": [
+    "glycolysis is not a stage of respiration",
+    "the electron transport chain isn't a stage"
+   ],
+   "miss": [
+    "the calvin cycle is not a stage of cellular respiration it belongs to photosynthesis",
+    "glycolysis krebs and the etc are the stages",
+    "the krebs cycle is a stage"
+   ]
+  },
+  {
+   "re": "\\bcalvin\\w*(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)|\\bcalvin\\w*(?: cycle)? (?:belongs to|is part of|is a stage of|is in) (?:cellular )?respiration",
+   "say": "Check that. Which process does the Calvin cycle belong to?",
+   "hit": [
+    "the calvin cycle belongs to cellular respiration",
+    "the calvin cycle happens in the mitochondria"
+   ],
+   "miss": [
+    "the calvin cycle is not a stage of cellular respiration it belongs to photosynthesis",
+    "the calvin cycle is a stage of photosynthesis not respiration",
+    "calvin cycle is in the chloroplast"
+   ]
+  }
+ ],
+ "27": [
+  {
+   "re": "\\bphoto ?synthesis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)|\\brespiration (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:chloro ?plast|chlora ?plast|clor[oa] ?plast)",
+   "say": "Check that. Which organelle goes with each process?",
+   "hit": [
+    "photosynthesis happens in the mitochondria",
+    "cellular respiration happens in the chloroplast"
+   ],
+   "miss": [
+    "photosynthesis happens in chloroplasts cellular respiration happens in the cytoplasm and mitochondria",
+    "photosynthesis is in the chloroplast and respiration is in the mitochondria",
+    "plants do both"
+   ]
+  },
+  {
+   "re": "\\bphoto ?synthesis (?:withdraws?|releases? (?:the )?energy|breaks? down (?:glucose|sugar))|\\brespiration (?:deposits?|stores? energy in glucose)",
+   "say": "Check that. Which one deposits energy and which one withdraws it?",
+   "hit": [
+    "photosynthesis withdraws energy and respiration deposits it",
+    "photosynthesis releases energy from glucose"
+   ],
+   "miss": [
+    "photosynthesis deposits stores energy in glucose cellular respiration withdraws releases the energy",
+    "photosynthesis releases oxygen",
+    "respiration withdraws energy to make atp"
+   ]
+  }
+ ],
+ "28": [
+  {
+   "re": "\\bproducts? of photo ?synthesis (?:are|is) (?:\\w+ )?(?:carbon dioxide|co ?2|water)\\b|\\bproducts? of (?:cellular )?respiration (?:are|is) (?:\\w+ )?(?:glucose|sugar|oxygen)\\b|\\bphoto ?synthesis (?:makes?|produces?|gives? off|releases?) (?:\\w+ )?(?:carbon dioxide|co ?2)\\b|\\brespiration (?:makes?|produces?|gives? off|releases?) (?:\\w+ )?(?:glucose|sugar|oxygen)\\b",
+   "say": "Check that. Which process makes glucose and oxygen, and which makes carbon dioxide and water?",
+   "hit": [
+    "photosynthesis makes carbon dioxide and water which respiration uses",
+    "the products of respiration are glucose and oxygen"
+   ],
+   "miss": [
+    "the products of one are the reactants of the other photosynthesis makes glucose and oxygen which respiration uses respiration makes carbon dioxide and water",
+    "the products of photosynthesis are glucose and oxygen",
+    "respiration releases carbon dioxide"
+   ]
+  },
+  {
+   "re": "\\b(?:respiration|it) (?:only )?(?:happens|is) (?:only )?in animals\\b|\\bonly animals (?:do|carry out) (?:cellular )?respiration|\\bplants? (?:do|does) photo ?synthesis (?:and|while|but) animals (?:do|does) (?:cellular )?respiration",
+   "say": "Check that. Is that why they are opposites? Do plants do cellular respiration too?",
+   "hit": [
+    "they are opposite because plants do photosynthesis and animals do respiration",
+    "only animals do cellular respiration"
+   ],
+   "miss": [
+    "they are opposites because the products of one are the reactants of the other",
+    "plants do photosynthesis and both plants and animals do respiration",
+    "respiration happens in plants and animals"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,497 @@
+{
+ "1": [
+  {
+   "re": "\\bcells? (then |to |and |next )?organs? (then |to |and |next )?tissues?\\b",
+   "say": "Check that. Which level comes right after cell?",
+   "hit": [
+    "cell organ tissue organ system",
+    "cells then organs then tissues then organ systems"
+   ],
+   "miss": [
+    "cell tissue organ organ system a tissue is a group of cells doing one job",
+    "cell tissue organ organ system",
+    "an organ is made of tissues and tissues are made of cells"
+   ]
+  },
+  {
+   "re": "\\btissues? (is|are) (a )?(group of|groups of|made of|made up of) (different |many )?organs?\\b|\\bcells? (is|are) (a )?(group of|made of|made up of) (\\w+ )?(tissues?|organs?)\\b",
+   "say": "Check that. Which level is built from which? Smaller pieces make up bigger ones.",
+   "hit": [
+    "a tissue is a group of organs",
+    "a cell is made of tissues"
+   ],
+   "miss": [
+    "a tissue is a group of cells doing one job",
+    "an organ is made of tissues",
+    "an organ system is organs that work together"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "epithelial\\w*.{0,40}(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(messages?|signals?|contract\\w*|movement|moves? the body)\\b",
+   "say": "Check that. Sending signals and moving are jobs of other tissue types.",
+   "unless": "Its job",
+   "hit": [
+    "epithelial tissue sends signals through the body",
+    "epithelial tissue contracts to move"
+   ],
+   "miss": [
+    "epithelial tissue lines the inside and outside surfaces of the body like the skin",
+    "epithelial tissue does not send signals",
+    "epithelial tissue covers the stomach"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (on )?(the )?(outside|skin|outer)\\b",
+   "say": "Check that. Does it only cover the outside, or does it line inside surfaces too?",
+   "hit": [
+    "epithelial tissue covers only the outside of the body",
+    "epithelial tissue is just the skin"
+   ],
+   "miss": [
+    "epithelial tissue lines the inside and outside surfaces of the body",
+    "not only the skin but also the stomach lining",
+    "it covers the skin and lines the stomach"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(examples?( are| is| include)?|like|such as|including) (the )?(skin|nerves?|neurons?|brain|muscles?)\\b",
+   "say": "Check that. Is that example connective tissue, or a different tissue type?",
+   "hit": [
+    "connective tissue supports the body like skin",
+    "examples are muscles and nerves"
+   ],
+   "miss": [
+    "connective tissue supports the body and connects its parts examples bone blood and fat",
+    "ligaments connect bones and tendons connect muscle to bone",
+    "examples are bone blood and fat"
+   ]
+  },
+  {
+   "re": "connective\\w*.{0,40}(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(messages?|signals?|impulses?)\\b",
+   "say": "Check that. Carrying signals is the job of nervous tissue.",
+   "hit": [
+    "connective tissue carries messages to the brain",
+    "connective tissue sends signals"
+   ],
+   "miss": [
+    "connective tissue supports the body and connects its parts",
+    "connective tissue does not carry signals",
+    "connective tissue holds the body together like bone"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (in )?(the )?brain\\b",
+   "say": "Check that. Is nervous tissue found only in the brain?",
+   "hit": [
+    "nervous tissue is only in the brain",
+    "nervous tissue is just the brain"
+   ],
+   "miss": [
+    "nervous tissue transmits nerve impulses throughout the body",
+    "nervous tissue is in the brain spinal cord and nerves",
+    "not only in the brain but all over the body"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(carr\\w*|transport\\w*|moves?) (the )?(blood|oxygen|nutrients|food)\\b",
+   "say": "Check that. Carrying blood and oxygen is a different system's job. What does nervous tissue carry?",
+   "hit": [
+    "nervous tissue carries blood through the body",
+    "it transports oxygen to the body"
+   ],
+   "miss": [
+    "nervous tissue transmits nerve impulses messages throughout the body",
+    "nervous tissue carries signals from the brain",
+    "nervous tissue does not carry blood"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just|always) (voluntary|on purpose|when you (want|choose|decide))|\\ball muscles? (are|is) (voluntary|controlled by you)",
+   "say": "Check that. Are all muscle movements ones you choose?",
+   "hit": [
+    "muscle tissue makes movement only voluntary",
+    "all muscles are voluntary"
+   ],
+   "miss": [
+    "muscle tissue makes movement possible both voluntary and involuntary",
+    "muscles do not only move when you want",
+    "some movement is voluntary and some is involuntary like the heart"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})(\\b(stable|constant|steady|balanced?) (external|outside)\\b|\\bkeep\\w* the (outside|external) (environment|world|temperature|conditions)\\b)",
+   "say": "Check that. Does homeostasis keep the inside or the outside of the body constant?",
+   "hit": [
+    "homeostasis keeps a constant external environment",
+    "the body keeps the outside temperature the same"
+   ],
+   "miss": [
+    "homeostasis is the relatively constant internal conditions organisms maintain even when things change around them",
+    "keeping inside conditions stable when the outside environment changes",
+    "it does not keep the outside temperature the same"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\b(exactly|perfectly) the same\\b",
+   "say": "Check that. Do internal conditions stay exactly the same, or relatively constant?",
+   "hit": [
+    "homeostasis keeps the body exactly the same all the time",
+    "body temperature stays perfectly the same"
+   ],
+   "miss": [
+    "homeostasis is relatively constant internal conditions",
+    "conditions stay about the same",
+    "not exactly the same but close to normal"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bnegative feedback (is|means) (a |something |when something )?(bad|harmful|wrong)\\b",
+   "say": "Check that. Here negative means opposing the change. Is it bad for the body?",
+   "hit": [
+    "negative feedback is bad for your body",
+    "negative feedback means something bad happens"
+   ],
+   "miss": [
+    "negative feedback is when a change causes a response that pushes conditions back toward normal",
+    "negative feedback is not bad it brings things back to normal",
+    "negative feedback is good for homeostasis"
+   ]
+  },
+  {
+   "re": "\\b(furnace|heater|heat)( turns| goes| comes| kicks)? on when (the )?(room|house|it|temperature)( gets| is| becomes)? (too )?(hot|warm)\\b|\\b(furnace|heater|heat)( turns| goes| shuts)? off when (the )?(room|house|it|temperature)( gets| is| becomes)? (too )?(cold|cool)\\b",
+   "say": "Check that. When would a thermostat turn the furnace on?",
+   "hit": [
+    "the thermostat turns the furnace on when the room gets hot",
+    "the heater turns off when the room is cold"
+   ],
+   "miss": [
+    "a thermostat turns the furnace on when the room gets cold",
+    "the furnace turns on when it gets cold and off when it is warm",
+    "the furnace turns off when the room gets hot"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\b(hot|warm)\\w* (you |your body |the body |it |they )?(shivers?|shivering)\\b|\\bshiver\\w* (to|and|so you|helps you) (cool|cools|get cool)",
+   "say": "Check that. Does shivering cool you down or warm you up?",
+   "hit": [
+    "when you are too hot you shiver",
+    "you shiver to cool down"
+   ],
+   "miss": [
+    "the hypothalamus is the control center when you are too cold you shiver to make heat when you are too hot you sweat",
+    "too hot you sweat too cold you shiver",
+    "when you are hot you do not shiver"
+   ]
+  },
+  {
+   "re": "\\b(heart|medulla|pituitary|cerebellum|thyroid|skin|spinal cord) is the control (center|centre)\\b|\\bcontrol (center|centre) is the (heart|medulla|pituitary|cerebellum|thyroid|skin|brain stem|spinal cord)\\b",
+   "say": "Check that. Which part of the brain is the control center for body temperature?",
+   "unless": "Control center",
+   "hit": [
+    "the medulla is the control center",
+    "the control center is the pituitary"
+   ],
+   "miss": [
+    "the hypothalamus is the control center",
+    "the skin senses temperature and the hypothalamus is the control center",
+    "the control center is in the brain"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (for )?(air|food|breathing|swallowing)\\b",
+   "say": "Check that. Is the pharynx a passage for just one thing?",
+   "hit": [
+    "the pharynx is the throat and only air goes through it",
+    "the pharynx is just for food"
+   ],
+   "miss": [
+    "the pharynx is the throat a passageway for both air and food",
+    "not only air but also food",
+    "air and food pass through the throat"
+   ]
+  },
+  {
+   "re": "\\b(pharynx|farinx|farynx|pharnyx) (is|means) (the |your )?(esophagus|food ?pipe|food tube)\\b",
+   "say": "Check that. The food pipe is the esophagus. What is the pharynx?",
+   "hit": [
+    "the pharynx is the esophagus",
+    "pharynx is the food pipe"
+   ],
+   "miss": [
+    "the pharynx is the throat behind the nose and mouth",
+    "the pharynx leads to the esophagus and trachea",
+    "the pharynx is a passage for air and food"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\b(larynx|larinx|larnyx) (is|means) (the |your )?(throat|pharynx|esophagus|food ?pipe)\\b",
+   "say": "Check that. The throat is the pharynx. What is the larynx's nickname?",
+   "hit": [
+    "the larynx is the throat",
+    "larynx is the pharynx"
+   ],
+   "miss": [
+    "the larynx is the voice box",
+    "the larynx is the voice box in the throat",
+    "the larynx is below the throat"
+   ]
+  },
+  {
+   "re": "\\b(air and food|food and air)\\b",
+   "say": "Check that. Air and food both pass through the pharynx. What is the larynx?",
+   "unless": "Nickname",
+   "hit": [
+    "the larynx is a passage for air and food",
+    "food and air go through the larynx"
+   ],
+   "miss": [
+    "the larynx is the voice box",
+    "the larynx is the voice box that air passes through",
+    "the voice box in the throat",
+    "the larynx is the voice box and the pharynx carries air and food"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})(\\b(carr\\w*|takes?|brings?|moves?) (food|water)\\b|\\b(to|into) the stomach\\b|\\btrachea (is|means) (the )?(esophagus|food ?pipe)\\b)",
+   "say": "Check that. Food goes down the esophagus. What does the trachea carry?",
+   "hit": [
+    "the trachea carries food to the stomach",
+    "the trachea is the esophagus"
+   ],
+   "miss": [
+    "the trachea is the windpipe it carries air down to the bronchi",
+    "the trachea is in front of the esophagus",
+    "the trachea does not carry food"
+   ]
+  },
+  {
+   "re": "\\b(air|it)\\b.{0,20}\\b(to|into) the heart\\b",
+   "say": "Check that. Where does the trachea carry air?",
+   "hit": [
+    "it carries air to the heart",
+    "the windpipe brings air into the heart"
+   ],
+   "miss": [
+    "the trachea is the windpipe it carries air down to the bronchi",
+    "carries air to the lungs",
+    "carries air down to the bronchi then lungs"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\b(three|four|3|4) bronchi\\b|\\b(one|1|a single) bronch\\w* .{0,20}\\bboth lungs\\b",
+   "say": "Check that. How many bronchi are there, and how many lungs does each one lead to?",
+   "hit": [
+    "there are three bronchi",
+    "one bronchus goes to both lungs"
+   ],
+   "miss": [
+    "a bronchus is a tube that branches off the trachea there are two bronchi and each one leads to a lung",
+    "two bronchi one to each lung",
+    "each bronchus leads to one lung"
+   ]
+  },
+  {
+   "re": "\\bbranch\\w* (off|from|out of) (of )?(the )?(esophagus|larynx|larinx|pharynx|voice ?box|lungs?|alveol\\w*)\\b",
+   "say": "Check that. Which tube does a bronchus branch off of?",
+   "hit": [
+    "a bronchus branches off the esophagus",
+    "it branches from the larynx"
+   ],
+   "miss": [
+    "a bronchus is a tube that branches off the trachea",
+    "branches off the windpipe",
+    "the bronchi branch into smaller tubes in the lungs"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\b(in|inside) (the )?(heart|stomach|throat|trachea|brain)\\b",
+   "say": "Check that. Where in the body are the alveoli found?",
+   "hit": [
+    "an alveolus is a tiny air sac in the heart",
+    "it is a sac in the stomach"
+   ],
+   "miss": [
+    "an alveolus is a tiny air sac in the lungs where gas exchange happens",
+    "tiny air sacs in the lungs where oxygen goes into the blood",
+    "alveoli are surrounded by capillaries in the lungs"
+   ]
+  },
+  {
+   "re": "\\b(digest\\w*|nutrients?|absorb\\w* food)\\b",
+   "say": "Check that. That sounds like the digestive system. What is exchanged in the alveoli?",
+   "hit": [
+    "alveoli absorb nutrients",
+    "an alveolus is where food is digested"
+   ],
+   "miss": [
+    "an alveolus is a tiny air sac in the lungs where gas exchange happens",
+    "oxygen and carbon dioxide are exchanged",
+    "alveoli are air sacs"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\b(above|on top of|over) (the )?lungs?\\b|\\bin (the )?(throat|neck|head)\\b",
+   "say": "Check that. Where is the diaphragm compared to the lungs?",
+   "hit": [
+    "the diaphragm is a muscle above the lungs",
+    "the diaphragm is in the throat"
+   ],
+   "miss": [
+    "the diaphragm is a large dome shaped muscle under the lungs",
+    "below the lungs",
+    "the diaphragm is under the lungs"
+   ]
+  },
+  {
+   "re": "\\bdiaphragm\\w*.{0,20}\\b(fills?|filled|inflates?) (up )?with air\\b|\\bholds? (the )?air\\b",
+   "say": "Check that. The diaphragm is a muscle. Which organs fill with air?",
+   "hit": [
+    "the diaphragm fills with air when you breathe",
+    "the diaphragm holds air"
+   ],
+   "miss": [
+    "the diaphragm contracts and relaxes to move air in and out of the lungs",
+    "the lungs fill with air when the diaphragm contracts",
+    "it contracts to pull air into the lungs"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\b(larynx|larinx|larnyx|voice ?box) (then |to |and )?(the )?(pharynx|farinx|farynx|pharnyx|throat)\\b|\\b(trachea|wind ?pipe) (then |to |and )?(the )?(larynx|larinx|voice ?box|pharynx|throat)\\b",
+   "say": "Check that. Which comes first: pharynx, larynx, or trachea?",
+   "hit": [
+    "nose larynx pharynx trachea bronchi alveoli",
+    "nose pharynx trachea larynx bronchi alveoli"
+   ],
+   "miss": [
+    "air goes through the nose pharynx larynx trachea bronchi bronchioles and into the alveoli",
+    "the pharynx then the larynx then the trachea",
+    "nose throat voice box windpipe"
+   ]
+  },
+  {
+   "re": "\\b(alveol\\w*|air sacs?) (then|to|into) (the )?(bronch\\w*|trachea|wind ?pipe)\\b|\\bbronch\\w* (then|to|into) (the )?(trachea|wind ?pipe|larynx|voice ?box)\\b",
+   "say": "Check that. After the trachea, which comes first, bronchi or alveoli?",
+   "hit": [
+    "trachea alveoli then bronchi",
+    "nose pharynx larynx bronchi then trachea then alveoli"
+   ],
+   "miss": [
+    "air goes through the nose pharynx larynx trachea bronchi bronchioles and into the alveoli",
+    "trachea to bronchi to bronchioles to alveoli",
+    "air goes from the bronchioles into the alveoli"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\b(carbon dioxide|co2|co 2|c o 2) (moves |goes |diffuses |travels )?(from the (alveol\\w*|lungs?|air sacs?) )?(in)?to the blood\\b|\\b(carbon dioxide|co2|co 2|c o 2) (moves |goes |diffuses |travels )?from the (alveol\\w*|lungs?|air sacs?)\\b",
+   "say": "Check that. Which way does carbon dioxide move, into the blood or out of it?",
+   "hit": [
+    "carbon dioxide moves from the alveoli into the blood",
+    "co2 goes into the blood"
+   ],
+   "miss": [
+    "gas exchange happens between the alveoli and capillaries oxygen moves into the blood carbon dioxide moves from the blood into the alveoli",
+    "carbon dioxide moves from the blood into the alveoli",
+    "oxygen goes into the blood and carbon dioxide goes out"
+   ]
+  },
+  {
+   "re": "\\bgas exchange (happens|occurs|takes place) (in|at) the (trachea|bronch\\w*|heart|nose|throat)\\b|\\bbetween the (alveol\\w*|air sacs?) and the (heart|bronch\\w*|trachea)\\b",
+   "say": "Check that. Gas exchange happens between the air sacs and which tiny blood vessels?",
+   "hit": [
+    "gas exchange happens in the bronchi",
+    "it happens between the alveoli and the heart"
+   ],
+   "miss": [
+    "gas exchange happens between the alveoli and the capillaries",
+    "gas exchange happens in the alveoli",
+    "between the air sacs and the capillaries"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\bexhal\\w* (the diaphragm |it |your diaphragm )?(contracts?|tightens?|moves? down|flattens?)\\b",
+   "say": "Check that. When you exhale, does the diaphragm contract or relax?",
+   "hit": [
+    "when you exhale the diaphragm contracts and moves down",
+    "exhale it moves down"
+   ],
+   "miss": [
+    "when you inhale the diaphragm contracts and moves down when you exhale it relaxes and moves up",
+    "when you exhale it relaxes and moves up",
+    "inhale the diaphragm contracts when you exhale it relaxes"
+   ]
+  },
+  {
+   "re": "\\bcontract\\w* and (moves? )?up\\b|\\brelax\\w* and (moves? )?down\\b",
+   "say": "Check that. When the diaphragm contracts, does it move up or down?",
+   "hit": [
+    "the diaphragm contracts and moves up",
+    "it relaxes and moves down when you exhale"
+   ],
+   "miss": [
+    "when you inhale the diaphragm contracts and moves down",
+    "it relaxes and moves up",
+    "contracts and moves down to pull air in"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "\\b(tells?|signals?|makes?) (the )?(lungs?|you|body|diaphragm) (to )?(breathe )?(slower|slow down|less|stop)\\b",
+   "say": "Check that. When carbon dioxide rises, does breathing speed up or slow down?",
+   "hit": [
+    "the medulla tells the lungs to breathe slower",
+    "the medulla makes you stop breathing"
+   ],
+   "miss": [
+    "the medulla tells the lungs to breathe faster which lowers the carbon dioxide",
+    "tells the lungs to breathe faster so the co2 goes down and breathing slows",
+    "it tells the lungs not to slow down"
+   ]
+  },
+  {
+   "re": "\\bmedulla (oblongata )?(is )?(in|part of) the (lungs?|heart|chest|blood)\\b",
+   "say": "Check that. Where is the medulla oblongata?",
+   "hit": [
+    "the medulla oblongata is in the lungs",
+    "the medulla is part of the heart"
+   ],
+   "miss": [
+    "the medulla oblongata is in the brain stem",
+    "sensors in the blood vessels signal the medulla oblongata",
+    "the medulla tells the lungs to breathe faster"
+   ]
+  }
+ ]
+}

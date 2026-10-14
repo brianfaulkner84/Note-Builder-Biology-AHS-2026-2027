@@ -1,0 +1,606 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\b(lets?|allows?) (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go|enter)|(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\b(blocks?|stops?|keeps?) (everything|anything)( out)?\\b",
+   "say": "Check that. Does the membrane let everything through, nothing, or only some things?",
+   "hit": [
+    "the cell membrane lets everything in and out",
+    "the membrane blocks everything from entering the cell"
+   ],
+   "miss": [
+    "the cell membrane regulates what enters and leaves the cell",
+    "it does not let everything in it controls what enters and leaves",
+    "the membrane doesn't block everything"
+   ]
+  },
+  {
+   "re": "\\bonly (lets?|allows?) (\\w+ )?(things |stuff |materials? |food )?in\\b|\\bonly (keeps?|lets?|sends?) (things |stuff |waste )?out\\b",
+   "say": "Check that. Does the membrane only work in one direction?",
+   "unless": "In and out",
+   "hit": [
+    "the cell membrane only lets things in",
+    "the membrane only lets food in"
+   ],
+   "miss": [
+    "the cell membrane regulates what enters and leaves the cell",
+    "it controls what comes in and what goes out",
+    "it only lets some things in and out"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )\\b(makes?|produces?|creates?|builds?) (the )?(cell'?s? )?(energy|proteins?|food|atp|dna)\\b",
+   "say": "Check that. The membrane is the border of the cell. What does it control?",
+   "hit": [
+    "the cell membrane makes energy for the cell",
+    "the membrane produces proteins and controls the cell"
+   ],
+   "miss": [
+    "the cell membrane regulates what enters and leaves the cell",
+    "the membrane is like a gatekeeper for what comes in and out",
+    "the membrane controls what enters and exits"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\bheads? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)o ?b\\w*|water ?(fear|hat|scar)\\w*|non ?polar|afraid of (the )?water|hates? (the )?water)|(?<!\\btails? (are |is )?)(hydro ?(ph|f)o ?b\\w*|water ?(fear|hat|scar)\\w*|non ?polar|afraid of (the )?water|hates? (the )?water) (phosphate )?heads?\\b",
+   "say": "Check that. Which part of the phospholipid loves water?",
+   "hit": [
+    "the head is hydrophobic and the tails are hydrophilic",
+    "a phospholipid has a water fearing head and two tails"
+   ],
+   "miss": [
+    "a phospholipid has a hydrophilic water loving polar head and two hydrophobic water fearing non polar fatty acid tails",
+    "head hydrophilic tails hydrophobic",
+    "tails hydrophobic head hydrophilic",
+    "the head loves water and the tails are afraid of water"
+   ]
+  },
+  {
+   "re": "\\btails? (is |are |is the |are the |that is |that are |which is |which are |being )?(hydro ?(ph|f)(i|e|ee|y)l\\w*|water ?lov\\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar)|(?<!\\bheads? (is |are )?)(hydro ?(ph|f)(i|e|ee|y)l\\w*|water ?lov\\w*|loves? (the )?water|likes? (the )?water|(?<!non )polar) (fatty acid )?tails?\\b",
+   "say": "Check that. How do the tails feel about water?",
+   "hit": [
+    "the tails are hydrophilic",
+    "a phospholipid has a polar head and two water loving tails"
+   ],
+   "miss": [
+    "a phospholipid has a hydrophilic water loving polar head and two hydrophobic water fearing non polar fatty acid tails",
+    "the tails are non polar and hydrophobic",
+    "head polar tails nonpolar"
+   ]
+  },
+  {
+   "re": "\\b(one|1|a single|only one) (fatty acid |hydrophobic |long )?tail\\b",
+   "say": "Check that. How many tails does a phospholipid have?",
+   "hit": [
+    "a phospholipid has a hydrophilic head and one hydrophobic tail",
+    "it has a single tail that hates water"
+   ],
+   "miss": [
+    "a phospholipid has a hydrophilic head and two hydrophobic tails",
+    "the head loves water and the 2 tails fear water",
+    "each tail is hydrophobic"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\btails? (all )?(face|faces|facing|point|points|pointing|touch|touches|go|goes|are|stick|sticks) (out )?(toward |towards |into |to |on |at |in )?(the )?(water|outside|outer)\\b",
+   "say": "Check that. Do the water-fearing tails want to touch the water?",
+   "hit": [
+    "the tails face the water and the heads are in the middle",
+    "the tails are on the outside touching water"
+   ],
+   "miss": [
+    "the water loving heads face the water on both sides the water fearing tails hide in the middle away from the water",
+    "the tails go in the middle away from water",
+    "the tails are inside the bilayer"
+   ]
+  },
+  {
+   "re": "\\bheads? (all )?(are |go |hide |stay |point |face |sit )(in |toward |towards |to )?(the )?(middle|center|centre|each other)\\b",
+   "say": "Check that. Which part hides in the middle, away from the water?",
+   "hit": [
+    "the heads hide in the middle because they love water",
+    "the heads point toward each other and the tails face out"
+   ],
+   "miss": [
+    "the water loving heads face the water on both sides the water fearing tails hide in the middle",
+    "the heads face the water inside and outside the cell",
+    "the tails are in the middle and the heads are on the edges"
+   ]
+  },
+  {
+   "re": "\\b(only|just) (on the |is )?outside\\b|\\bno water (inside|in the cell)|\\bwater is not inside",
+   "say": "Check that. Is there water only outside the cell, or inside too?",
+   "unless": "Where the water is",
+   "hit": [
+    "water is only outside the cell so the heads face out",
+    "there is no water inside the cell"
+   ],
+   "miss": [
+    "there is water outside the cell and water inside the cell",
+    "water is on both sides so the heads face both ways",
+    "the cytoplasm inside is watery and there is water outside too"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\b(solid|rigid|hard|stiff|frozen)\\b",
+   "say": "Check that. Are the parts of the membrane stiff, or do they move?",
+   "unless": "Fluid",
+   "hit": [
+    "the membrane is solid and made of many pieces",
+    "the fluid mosaic model means the membrane is rigid with different parts"
+   ],
+   "miss": [
+    "fluid means the parts are not locked in place they move and drift around mosaic means many different pieces",
+    "the parts drift around like boats on a pond",
+    "it is not rigid the parts move around and it is made of different molecules"
+   ]
+  },
+  {
+   "re": "colou?rful|colou?rs\\b|pretty|stained glass",
+   "say": "Check that. Mosaic here is not about color. What is the membrane made of?",
+   "unless": "Mosaic",
+   "hit": [
+    "mosaic means it is colorful and fluid means it moves",
+    "the parts move and it has lots of colors"
+   ],
+   "miss": [
+    "mosaic means the membrane is made of many different pieces phospholipids proteins carbohydrates and cholesterol",
+    "the parts move and drift around",
+    "it is made of different kinds of molecules that float"
+   ]
+  },
+  {
+   "re": "\\b(only|just) (made )?(of )?(proteins?|phospholipids?|lipids?|fats?)\\b",
+   "say": "Check that. Is the membrane made of just one kind of molecule?",
+   "unless": "Mosaic",
+   "hit": [
+    "the membrane is made of only proteins that move around",
+    "it is just phospholipids that drift"
+   ],
+   "miss": [
+    "fluid means the parts move mosaic means it is made of many different pieces phospholipids proteins carbohydrates and cholesterol",
+    "the membrane has many different molecules not only proteins",
+    "it is made of lots of different parts"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\bbad\\b|unhealthy|harmful|\\bclogs?\\b",
+   "say": "Check that. In the membrane, cholesterol has a helpful job. What is it?",
+   "unless": "Cholesterol",
+   "hit": [
+    "cholesterol is bad for the membrane and tags are on the outside",
+    "cholesterol clogs the membrane"
+   ],
+   "miss": [
+    "cholesterol stabilizes the membrane carbohydrate tags are on the outside of the cell",
+    "cholesterol keeps the membrane from getting too runny or too stiff",
+    "cholesterol makes it heat resistant and tags are outside"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!\\bdoesn't )(?<!\\bdoesnt )\\b(makes?|make) (the membrane |it )?(more )?(runny|melt|leaky|weak|weaker|floppy|unstable)\\b",
+   "say": "Check that. Does cholesterol make the membrane more stable or less stable?",
+   "hit": [
+    "cholesterol makes the membrane more runny",
+    "cholesterol makes it weak and the tags are outside"
+   ],
+   "miss": [
+    "cholesterol stabilizes the membrane it keeps it from getting too runny or too stiff",
+    "cholesterol keeps it from getting runny",
+    "cholesterol does not make it runny it makes it stable"
+   ]
+  },
+  {
+   "re": "\\btags?\\b.{0,45}\\b(energy|food|fuel)\\b",
+   "say": "Check that. What job do the carbohydrate tags do on the outside?",
+   "hit": [
+    "carbohydrate tags are on the outside and give the cell energy",
+    "the tags are food for the cell"
+   ],
+   "miss": [
+    "carbohydrate tags are on the outside of the cell where they work as id tags",
+    "the tags are on the outside and help cells recognize each other",
+    "cholesterol stabilizes and the tags are id tags on the outside"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\b(lets?|allows?) (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go)|(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\b(blocks?|stops?) (everything|anything|all (things|molecules|substances|stuff))\\b|water ?proof",
+   "say": "Check that. Does everything get through, nothing, or only some things?",
+   "hit": [
+    "selectively permeable means it lets everything through like a colander",
+    "it blocks everything like a wall"
+   ],
+   "miss": [
+    "selectively permeable means the membrane lets some things pass through but blocks others example a colander lets water through but keeps the pasta in",
+    "it does not let everything through",
+    "a strainer keeps all the pasta in but lets water out"
+   ]
+  },
+  {
+   "re": "\\b(brick wall|glass|plastic bag|plastic wrap|rock|metal|balloon)\\b",
+   "say": "Check that. Does your example let some things through but not others?",
+   "unless": "Everyday example",
+   "hit": [
+    "selectively permeable means some things get through but not others like a plastic bag",
+    "example a glass window"
+   ],
+   "miss": [
+    "selectively permeable means it lets some things through but blocks others example a colander",
+    "a window screen lets air in but keeps bugs out",
+    "a coffee filter lets coffee through but not the grounds"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bmiddle (is |are )?(made (up )?of )?(the )?(hydro ?(ph|f)(i|e|ee|y)l\\w*|water ?lov\\w*|heads?\\b|(?<!non )polar)",
+   "say": "Check that. What part of the phospholipid is in the middle, and how does it feel about water?",
+   "hit": [
+    "the middle is hydrophilic so charged particles need help",
+    "the middle is made of the heads"
+   ],
+   "miss": [
+    "the middle of the bilayer is made of hydrophobic non polar oily tails",
+    "the middle is non polar so it pushes charged molecules away",
+    "the middle is the tails which fear water"
+   ]
+  },
+  {
+   "re": "\\btoo (big|large)\\b",
+   "say": "Check that. Even small charged particles need help. What is the middle of the bilayer like?",
+   "unless": "The middle",
+   "hit": [
+    "charged particles are too big to fit through so they need a protein",
+    "polar molecules are too large to cross"
+   ],
+   "miss": [
+    "the middle of the bilayer is made of hydrophobic tails it pushes charged and polar molecules away so they need a transport protein",
+    "the oily tails in the middle repel them so they need a channel",
+    "the hydrophobic middle blocks them"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bpassive\\b(?:(?!\\bactive\\b).){0,40}\\b(low|less|lower)\\w*( concentration)? to (high|more|higher|greater)",
+   "say": "Check that. Which way does passive transport move things?",
+   "hit": [
+    "passive transport uses no energy and moves low to high",
+    "passive goes from low concentration to high concentration"
+   ],
+   "miss": [
+    "passive transport uses no energy and moves high to low active transport uses energy atp and moves low to high",
+    "passive moves high to low",
+    "active moves low to high and uses energy"
+   ]
+  },
+  {
+   "re": "\\bactive\\b(?:(?!passive).){0,40}\\b(high|more|higher|greater)\\w*( concentration)? to (low|less|lower)",
+   "say": "Check that. Which way does active transport move things?",
+   "hit": [
+    "active transport uses energy and moves high to low",
+    "active goes from high concentration to low concentration"
+   ],
+   "miss": [
+    "passive transport uses no energy and moves high to low active transport uses energy atp and moves low to high",
+    "active transport moves low to high using atp",
+    "active needs energy passive moves high to low"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "(?<!\\bno )(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of |lots of )?(energy|atp)",
+   "say": "Check that. Is diffusion active or passive? Does it cost energy?",
+   "hit": [
+    "diffusion is when particles move from high to low and it needs energy",
+    "diffusion uses atp to move oxygen in"
+   ],
+   "miss": [
+    "diffusion is when particles move from high concentration to low concentration it needs no energy",
+    "diffusion doesn't need energy",
+    "it does not use any atp oxygen gets in by diffusion"
+   ]
+  },
+  {
+   "re": "diffusion (is|means) (the )?(movement|diffusion|moving|flow) of water\\b",
+   "say": "Check that. Does diffusion only move water? That sounds like osmosis.",
+   "hit": [
+    "diffusion is the movement of water from high to low",
+    "diffusion means the flow of water across a membrane"
+   ],
+   "miss": [
+    "diffusion is when particles move from high concentration to low concentration",
+    "osmosis is the diffusion of water but diffusion moves any particles",
+    "oxygen gets into cells by diffusion"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bnever )\\b(no (more )?(movement|motion)|stays? still|stand still|freeze|froze|frozen)\\b",
+   "say": "Check that. Do the molecules really stop moving at equilibrium?",
+   "unless": "Do they stop?",
+   "hit": [
+    "at equilibrium the concentration is equal and there is no more movement",
+    "the molecules stay still because it is balanced"
+   ],
+   "miss": [
+    "at equilibrium the concentration is the same on both sides the molecules keep moving back and forth",
+    "the molecules never stand still they keep moving",
+    "they don't stay still they move both ways"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot in )(?<!\\bnot just )\\b(only )?(in )?(one|1) (way|direction)\\b",
+   "say": "Check that. Do the molecules move only one way at equilibrium?",
+   "unless": "Which way",
+   "hit": [
+    "the concentration is the same and they keep moving in one direction",
+    "molecules still move one way across the membrane"
+   ],
+   "miss": [
+    "at equilibrium the concentration is the same on both sides they keep moving back and forth the same number each way",
+    "they move both ways not in one direction",
+    "the same number goes each way"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "(?<!\\b(not|n't|never|dont|doesnt|no)\\b[\\w ]{0,12})\\b(low|less|lower)\\w*( concentration)? to (high|more|higher|greater)\\b",
+   "say": "Check that. Facilitated diffusion is still diffusion. Which way does it go?",
+   "hit": [
+    "proteins carry molecules from low to high with no energy",
+    "facilitated diffusion moves glucose from low concentration to high concentration through channels"
+   ],
+   "miss": [
+    "molecules cross through channel or carrier proteins it still goes high to low so it uses no energy",
+    "it does not go low to high it goes high to low",
+    "channel proteins help it move from high to low"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(is|are|it'?s) (an? )?(type of |kind of |form of )?active\\b",
+   "say": "Check that. Does facilitated diffusion cost energy? So is it active or passive?",
+   "hit": [
+    "facilitated diffusion uses a channel protein and it is active transport",
+    "it is a type of active transport with carrier proteins"
+   ],
+   "miss": [
+    "molecules cross through channel or carrier proteins it uses no energy it is passive",
+    "it is passive not active",
+    "facilitated diffusion isn't active it uses proteins"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(diffusion|movement|moving|flow) of (salt|sugar|solutes?|particles|stuff|ions)\\b|(?<!\\bnot )(?<!n't )\\b(salt|sugar|solutes?)\\w* (moves?|diffuses?|goes|flows?) (across|through|from|toward)",
+   "say": "Check that. In osmosis, which substance moves across the membrane?",
+   "hit": [
+    "osmosis is the diffusion of salt across a membrane",
+    "the solute moves across the membrane to the side with more water"
+   ],
+   "miss": [
+    "osmosis is the diffusion of water across a selectively permeable membrane water moves toward the side with more solute",
+    "in osmosis water moves the solute does not move",
+    "water moves through aquaporins toward more salt"
+   ]
+  },
+  {
+   "re": "\\b(toward\\w*|to|into) (the )?(side |area |place )?(with |that has |where there is )?(less|lower|fewer|least|little|no) (solute|stuff|salt|sugar)",
+   "say": "Check that. Does water move toward more solute or less?",
+   "hit": [
+    "osmosis is the diffusion of water it moves toward the side with less solute",
+    "water moves to where there is less salt"
+   ],
+   "miss": [
+    "water moves from where the water to solute ratio is high to where it is low so it moves toward the side with more solute",
+    "water moves toward more salt",
+    "water goes toward more stuff through aquaporins"
+   ]
+  },
+  {
+   "re": "(?<!\\bno )(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(uses?|needs?|requires?|takes?|costs?) (some |a lot of )?(energy|atp)",
+   "say": "Check that. Osmosis is a kind of diffusion. Does it cost energy?",
+   "hit": [
+    "osmosis is the diffusion of water and it uses energy",
+    "water moves through aquaporins which need atp"
+   ],
+   "miss": [
+    "osmosis is the diffusion of water across a selectively permeable membrane",
+    "osmosis does not use energy",
+    "it needs no energy because it is diffusion"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "hyper ?tonic(?:(?!hypo|iso).){0,40}\\b(water )?(moves?|goes|rushes|flows?|comes?) in(to)?\\b",
+   "say": "Check that. In hypertonic, more solute is outside. Which way does water move?",
+   "hit": [
+    "hypertonic water moves in and the cell gets bigger",
+    "in hypertonic the water goes into the cell"
+   ],
+   "miss": [
+    "hypertonic more solute outside water moves out and the cell shrinks hypotonic less solute outside water moves in",
+    "hypertonic water moves out of the cell",
+    "in a hypertonic solution water goes out"
+   ]
+  },
+  {
+   "re": "hypo ?tonic(?:(?!hyper|iso).){0,40}\\b(water )?(moves?|goes|rushes|flows?|leaves?) out\\b",
+   "say": "Check that. In hypotonic, less solute is outside. Which way does water move?",
+   "hit": [
+    "hypotonic water moves out and the cell gets smaller",
+    "in hypotonic the water goes out of the cell"
+   ],
+   "miss": [
+    "hypotonic less solute outside water moves in and the cell swells",
+    "hypotonic water rushes into the cell",
+    "hypertonic water moves out hypotonic water moves in"
+   ]
+  },
+  {
+   "re": "iso ?tonic(?:(?!hyp).){0,40}(no water (moves|movement|goes)|water (stops|doesn't move|does not move|doesnt move|does not go|doesn't go))",
+   "say": "Check that. In isotonic, does water stop, or move in and out equally?",
+   "hit": [
+    "isotonic no water moves and the cell stays the same",
+    "in isotonic water stops so nothing changes"
+   ],
+   "miss": [
+    "isotonic same solute the cell stays the same",
+    "isotonic water moves in and out equally so the cell stays the same size",
+    "isotonic means same and the cell does not change"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "(pure|fresh|distilled|plain|tap) water(?:(?!salt).){0,50}\\b(shrinks?|shrivel\\w*|smaller|shrank)\\b",
+   "say": "Check that. In pure water, does water move into the cells or out of them?",
+   "hit": [
+    "in pure water the animal cell shrinks",
+    "fresh water makes both cells shrink and get smaller"
+   ],
+   "miss": [
+    "in pure water water rushes in the animal cell swells and can burst the plant cell swells but its cell wall keeps it from bursting in salty water both cells shrink",
+    "in pure water cells swell",
+    "pure water animal cell bursts plant cell wall protects it salt water they shrink"
+   ]
+  },
+  {
+   "re": "salt\\w*(?:(?!pure|fresh|distilled|plain).){0,50}\\b(swell\\w*|swole|bursts?|bigger|pops?|explod\\w*)",
+   "say": "Check that. In salty water, is there more solute inside or outside the cells?",
+   "hit": [
+    "in salty water the animal cell swells and bursts",
+    "salt water makes the cells bigger"
+   ],
+   "miss": [
+    "in salty water water moves out and both cells shrink",
+    "salty water both shrink pure water the animal cell bursts",
+    "in pure water the animal cell swells and in salt water it shrinks"
+   ]
+  },
+  {
+   "re": "\\bwalls? (keeps?|stops?|blocks?) (the )?water (from )?(going |coming |getting )?(in|out|entering|into)\\b",
+   "say": "Check that. Water still gets into the plant cell. What does the wall stop?",
+   "hit": [
+    "the plant cell wall stops the water from going in",
+    "in pure water the wall blocks water from entering"
+   ],
+   "miss": [
+    "the plant cell swells but its cell wall keeps it from bursting",
+    "the cell wall stops the plant cell from popping",
+    "water goes in but the wall keeps it from bursting"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\b(pumps?|it)\\b( \\w+){0,2} (doesn't|doesnt|does not|do not|don't|dont|never) (need|use|require|take)\\w* (any )?(energy|atp)|\\b(pumps?|it) (needs?|uses?|requires?) no (energy|atp)",
+   "say": "Check that. Does moving molecules against the flow cost energy?",
+   "hit": [
+    "a protein pump moves molecules from low to high and it does not need energy",
+    "pumps use no atp"
+   ],
+   "miss": [
+    "a protein pump moves molecules from low concentration to high concentration against the flow it needs energy atp",
+    "diffusion does not need energy but pumps do",
+    "the pump needs atp to work"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot go )(?<!n't go )\\b(with|down) the (flow|gradient|concentration gradient)\\b",
+   "say": "Check that. Do pumps go with the flow or against it?",
+   "hit": [
+    "a pump moves molecules with the flow using energy",
+    "the pump moves things down the concentration gradient"
+   ],
+   "miss": [
+    "a protein pump moves molecules from low concentration to high concentration against the flow",
+    "pumps go against the flow not with the flow",
+    "it pumps up the gradient using atp"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\b(both|they|endo\\w*|exo\\w*) (are|is) passive\\b|\\b(both|they) (do not|don't|dont|never) (use|need) (any )?(energy|atp)",
+   "say": "Check that. Moving big things with vesicles is active. Does it cost energy?",
+   "hit": [
+    "endocytosis brings things in exocytosis sends things out both are passive",
+    "they do not use energy"
+   ],
+   "miss": [
+    "endocytosis brings large particles into the cell exocytosis sends things out both use energy",
+    "both are active transport",
+    "they both need energy"
+   ]
+  },
+  {
+   "re": "\\bendo\\w*(?:(?!\\bexo).){0,40}(gets? rid|remov\\w* (the )?waste|throws? out|dumps? (the )?waste)",
+   "say": "Check that. Which one does the cell use to get rid of bulk waste?",
+   "hit": [
+    "endocytosis is how the cell gets rid of waste",
+    "endocytosis removes waste from the cell"
+   ],
+   "miss": [
+    "endocytosis brings large particles into the cell exocytosis sends things out and is how the cell gets rid of bulk waste",
+    "exocytosis gets rid of waste",
+    "endocytosis takes in food and exocytosis removes waste"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "(diffusion|osmosis)(?:(?!keep|still|continu|\\bnot\\b|n't|\\bactive\\b|pump|never).){0,30}\\b(would |will )?(stops?|quits?|ends?)\\b",
+   "say": "Check that. Does diffusion or osmosis need ATP?",
+   "hit": [
+    "without atp diffusion and osmosis stop",
+    "osmosis would stop if there is no atp"
+   ],
+   "miss": [
+    "without atp active transport stops protein pumps endocytosis and exocytosis passive transport keeps going diffusion facilitated diffusion and osmosis",
+    "diffusion and osmosis keep going but pumps stop",
+    "osmosis does not stop"
+   ]
+  },
+  {
+   "re": "(\\bactive\\b|pumps?)(?:(?!passive|diffus|osmos|stop|\\bnot\\b|n't|\\bcan\\b|cannot|without).){0,30}\\b(keeps? (going|working)|still (work|works|go|goes|happen\\w*)|continues?)\\b",
+   "say": "Check that. Can active transport keep going without ATP?",
+   "hit": [
+    "active transport keeps going without atp",
+    "the pumps still work"
+   ],
+   "miss": [
+    "without atp active transport stops protein pumps endocytosis and exocytosis passive transport keeps going",
+    "pumps stop and diffusion keeps going",
+    "active transport cannot keep going without atp"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\b(everything|all (transport|processes|of them|the processes)) (would |will )?(stops?|quits?)\\b",
+   "say": "Check that. Do all of them need ATP?",
+   "hit": [
+    "if a cell runs out of atp everything stops",
+    "all transport would stop"
+   ],
+   "miss": [
+    "without atp active transport stops passive transport keeps going",
+    "not everything stops only active transport",
+    "pumps endocytosis and exocytosis stop"
+   ]
+  }
+ ]
+}

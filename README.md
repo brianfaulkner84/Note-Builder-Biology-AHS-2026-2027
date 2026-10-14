@@ -196,5 +196,16 @@ Android Chrome resends earlier words while you talk, which caused repeated phras
 Marking works on phrases, not sentences, because spoken notes often have no periods. After every check the student sees their note with:
 
 - **Solid green underline:** words that earn a key idea.
-- **Gray dotted underline:** extra information that earns no key idea and is mostly off-topic (words not in the prompt, clue, or sample note) or filler ("so basically", "I think", "in class today"). **Remove the extra** cuts it, keeping anything a key idea needs.
+- **Gray dotted underline:** extra information that earns no key idea: off-topic words (not in the prompt, clue, or sample note, even a single stray word like "broccoli"), filler ("so basically", "I think", "in class today"), or a phrase that just repeats the question ("the fluid mosaic model is an example of how to describe the cell membrane"). **Remove the extra** cuts it, keeping anything a key idea needs.
 - **Red, crossed out:** a phrase that matches a known mistake for that prompt (a watch in the unit file). **Cross out the red part** removes it. Red only catches mistakes listed in the unit file; add watches to catch more.
+
+## Common mistakes (watches)
+
+Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 517 across the 9 quizzes, and every question has at least one (except the two drag-and-sort questions).
+
+To add more, put a new batch in `tools/watches/<quiz id>.json` with examples that must be flagged (`hit`) and correct notes that must not be (`miss`), then run the two commands below and move the file into `tools/watches/added/` so it is not inserted twice:
+
+```
+node tools/watches/validate.js u2q2   # checks the examples and that the sample note is never flagged
+node tools/watches/insert.js u2q2     # copies them into content/u2q2/unit.js (run once per new batch)
+```

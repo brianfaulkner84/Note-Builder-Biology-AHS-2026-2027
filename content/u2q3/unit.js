@@ -19,6 +19,9 @@ UNITS.push({
   { n:1, heading:"Energy and Food", prompt:"Define energy.",
     guide:"What is energy the ability to do? Where do living things store it?", where:"Slide: Energy 4 | Book: Chemical Energy and ATP, p. 226",
     model:"Energy is the ability to do work. Living things store energy in the chemical bonds of molecules, like the sugar in food.",
+    watch:[
+      W(/\benergy (?:is|gets|can be) (?:created|made from nothing)|(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:create|creates|creating) (?:new )?energy\b/, "Check that. Can energy be created, or only changed from one form to another?"),
+      W(/\bstor\w* (?:the |their |its )?energy in (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)/, "Check that. Where do living things store energy, in an organelle or in the bonds of molecules?") ],
     ideas:[
       I("What energy is", [/ability to do work|able to do work|ability to work|capacity to do work|do work/], "What is energy the ability to do?", "Slide Energy 4, the line under the title."),
       I("Where it is stored", [/bond|chemical|molecule|food|sugar|glucose/], "Where do living things store energy?", "Slide Energy 4, the Chemical box.")
@@ -30,10 +33,14 @@ UNITS.push({
       I("The monomer", [/simple sugar|mono ?sacchar|monosaccharide|single sugar|one sugar/], "What is the building block of a carbohydrate called?", "Slide Energy 5, the Simple sugar box."),
       I("Example", [/glucose|fructose|galactose/], "Give one example of a simple sugar.", "Slide Energy 5 names one. Your body runs on it.")
     ],
-    watch:[ W(/amino acid|nucleotide|fatty acid/, "Check that. That is the monomer of a different macromolecule.", "The monomer") ]},
+    watch:[
+      W(/\b(?:monomer|building block)s? (?:of (?:a )?carbohydrates? )?(?:is|are) (?:a |an |the )?(?:starch|glycogen|cellulose|polysaccharide|disaccharide|sucrose|lactose)/, "Check that. That is a big carbohydrate made of many sugars. What is the single building block?", "The monomer"), W(/amino acid|nucleotide|fatty acid/, "Check that. That is the monomer of a different macromolecule.", "The monomer") ]},
   { n:3, heading:"Energy and Food", prompt:"Compare a calorie and a Calorie.",
     guide:"What does a small calorie heat, and by how much? How many calories are in one food-label Calorie?", where:"Slide: Energy 6 | Book: Chemical Energy and Food, p. 250",
     model:"A calorie (small c) is the energy needed to raise 1 gram of water 1 degree Celsius. A food-label Calorie (capital C) is a kilocalorie: 1 Calorie equals 1,000 calories.",
+    watch:[
+      W(/\b(?:100|one hundred|a hundred|hundred)(?: small)? calories\b/, "Check that. How many small calories are in one food label Calorie?"),
+      W(/\bfahrenheit|\bfarenheit|\bfarenhite|\bfahrenheight/, "Check that. Which temperature scale does science use for the small calorie?") ],
     ideas:[
       I("Small calorie", [/(1|one) ?(gram|g)\b.{0,30}water/, /water.{0,40}(1|one) ?(degree|c\b|celsius)/, /heat\w* water/], "What does a small calorie heat, and by how much?", "Slide Energy 6, the CALORIE (SMALL C) box."),
       I("Food-label Calorie", [/1 ?000|thousand|kilo ?calorie|kcal/], "How many small calories are in one food-label Calorie?", "Slide Energy 6, the CALORIE (CAPITAL C) box.")
@@ -41,6 +48,9 @@ UNITS.push({
   { n:4, heading:"Energy and Food", prompt:"Calculate the Calories in a food.",
     guide:"How many Calories per gram do carbohydrates, proteins, and fats give? Try it: 10 grams of fat.", where:"Slide: Energy 6 to 8 | Book: Chemical Energy and Food, p. 250",
     model:"Carbohydrates and proteins give about 4 Calories per gram. Fats give about 9 Calories per gram. Multiply grams by Calories per gram. 10 grams of fat x 9 = 90 Calories.",
+    watch:[
+      W(/\bfats? (?:give |gives |have |has |are |is |equal |equals |provide |provides )?(?:about |around |only )?(?:4|four)\b|\b(?:carb\w*|proteins?) (?:give |gives |have |has |are |is |equal |equals |provide |provides )?(?:about |around )?(?:9|nine)\b/, "Check that. Which one gives more Calories per gram, fat or carbohydrates?"),
+      W(/\b(?:40|forty)\b/, "Check that. Which Calories per gram number goes with fat?", "The practice problem") ],
     ideas:[
       I("Carbs and proteins", [/\b(4|four)\b/], "How many Calories per gram do carbohydrates and proteins give?", "Slide Energy 6, the PER GRAM box."),
       I("Fats", [/\b(9|nine)\b/], "How many Calories per gram do fats give?", "Slide Energy 6, the PER GRAM box."),
@@ -49,7 +59,9 @@ UNITS.push({
   { n:5, heading:"ATP and ADP", prompt:"Describe the ATP molecule.",
     guide:"What does ATP stand for? What three parts make it up?", where:"Slide: Energy 10 | Book: Chemical Energy and ATP, p. 226",
     model:"ATP stands for adenosine triphosphate. It is made of adenine, ribose (a 5-carbon sugar), and three phosphate groups. It is the main energy source of the cell.",
-    watch:[ W(/\b(2|two|di) ?phosphates?/, "Check that. How many phosphates does ATP have?", "Part 3") ],
+    watch:[
+      W(/\bdeoxy ?ribose|\b(?:sugar|ribose) (?:is |called |named |which is )?glucose\b/, "Check that. Which 5 carbon sugar is in ATP?"),
+      W(/\badenine tri ?phosphate/, "Check that. Adenine is one of the parts. What is the full name of ATP?", "What ATP stands for"), W(/\b(2|two|di) ?phosphates?/, "Check that. How many phosphates does ATP have?", "Part 3") ],
     ideas:[
       I("What ATP stands for", [/adenosine ?tri ?phosphate|adenosine tri/], "What does ATP stand for?", "Slide Energy 10, the line under the title."),
       I("Part 1", [/adenine/], "Name the base in ATP.", "Slide Energy 10, the THREE PARTS box."),
@@ -59,6 +71,9 @@ UNITS.push({
   { n:6, heading:"ATP and ADP", prompt:"Explain how ATP stores and releases energy.",
     guide:"What happens when a phosphate is added to ADP? Which bond breaks to release energy?", where:"Slide: Energy 11 | Book: Storing Energy, Releasing Energy, p. 227",
     model:"To store energy, the cell adds a phosphate to ADP, which makes ATP. To release energy, the cell breaks the bond to the third phosphate, and ATP becomes ADP again.",
+    watch:[
+      W(/\b(?:add|adds|adding|added|attach\w*) (?:a |one |the )?phosphate (?:to (?:adp|atp) )?releases?\b|\breleas\w* energy by (?:add|attach)\w*/, "Check that. Does adding a phosphate store energy or release it?"),
+      W(/\b(?:break\w*|remov\w*|los\w*) (?:\w+ ){0,3}(?:stores?|storing) (?:the )?energy\b|\badp (?:has|have|with|contains) (?:\w+ )?(?:3|three|tri)\b/, "Check that. Which one has three phosphates, and which change stores energy?") ],
     ideas:[
       I("Storing", [either(/add|attach|put/, T.adp, 50), near(T.adp, /\+|plus|and a phosphate|becomes atp|makes atp|to atp/, 40)], "What does the cell add to ADP to store energy?", "Slide Energy 11, the STORING ENERGY box."),
       I("Releasing", [/break\w*.{0,30}(bond|phosphate)|remov\w*.{0,30}phosphate|third phosphate|last phosphate|lose\w* a phosphate/], "Which bond breaks to release the energy?", "Slide Energy 11, the RELEASING ENERGY box.")
@@ -66,6 +81,8 @@ UNITS.push({
   { n:7, heading:"ATP and ADP", prompt:"List the cell jobs that ATP powers.",
     guide:"Name at least three things cells use ATP for.", where:"Slide: Energy 12 | Book: Using Biochemical Energy, p. 227",
     model:"ATP powers active transport (protein pumps), movement (muscles, cilia, and flagella), building proteins and other molecules, and making light, like a firefly's glow.",
+    watch:[
+      W(/(?<!\b(?:not|no|never|unlike|than|isn't|isnt|doesn't|doesnt|or) (?:\w+ )?)\b(?:passive transport|diffusion|osmosis)\b/, "Check that. Which kind of transport needs no energy from the cell?") ],
     ideas:[
       I("Job 1: pumping", [/active transport|pump/], "Which kind of cell transport runs on ATP?", "Slide Energy 12, first box."),
       I("Job 2: moving", [/\bmov|muscle|contract|cilia|flagell/], "What job do motor proteins do with ATP?", "Slide Energy 12, second box."),
@@ -74,6 +91,8 @@ UNITS.push({
   { n:8, heading:"ATP and ADP", prompt:"Explain why cells keep only a small supply of ATP.",
     guide:"Which stores more energy, glucose or ATP? Which is better for moving energy quickly?", where:"Slide: Energy 13 | Book: Using Biochemical Energy, p. 227",
     model:"Glucose stores much more energy than ATP, more than 90 times as much. ATP is better for moving energy quickly. So cells store energy in glucose and remake ATP from ADP when they need it.",
+    watch:[
+      W(/\batp (?:stores?|holds?|has|contains?) (?:much |a lot |way |way more |far )?more energy\b|\b(?:glucose|sugar) (?:stores?|holds?|has|contains?) less energy|\b(?:glucose|sugar) (?:is )?(?:better|good|best) (?:for|at) (?:moving|spending|transferring|quick)/, "Check that. Which one stores more energy, and which one is better for moving energy quickly?") ],
     ideas:[
       I("Better for storing", [near(GLUCOSE, /more energy|stores? more|holds? more|90|ninety|lots of energy|a lot of energy|better (for|at) stor/, 60), near(/stores? more|more energy|holds? more/, GLUCOSE, 40)], "Which stores more energy, glucose or ATP?", "Slide Energy 13, the Bad for saving box."),
       I("Better for moving", [near(T.atp, /quick|fast|mov\w* energy|transfer|spend/, 60)], "What is ATP good for?", "Slide Energy 13, the Good for spending box.")
@@ -81,6 +100,9 @@ UNITS.push({
   { n:9, heading:"Energy Carriers", prompt:"Describe what an electron carrier does.",
     guide:"What does it pick up, and what does it do with it?", where:"Slide: Energy 15 | Book: High-Energy Electrons, p. 232",
     model:"An electron carrier picks up high-energy electrons, carries them, and drops them off where the energy is needed, like a taxi.",
+    watch:[
+      W(/\b(?:picks? up|picking up|carr(?:y|ies)|carrying) (?:the )?(?:oxygen|atp|glucose|sugar)\b/, "Check that. What does an electron carrier actually pick up and carry?"),
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:makes?|creates?|produces?) (?:high energy )?electrons\b/, "Check that. Does the carrier make electrons, or move them?") ],
     ideas:[
       I("What it picks up", [/electron/], "What does an electron carrier pick up?", "Slide Energy 15 calls them energy taxis."),
       I("What it does with it", [/carr|transport|deliver|drop|bring|move|take/], "What does it do with what it picks up?", "Think about what a taxi does with a passenger.")
@@ -88,6 +110,8 @@ UNITS.push({
   { n:10, heading:"Energy Carriers", prompt:"Compare NAD+ and NADP+.",
     guide:"What does each become when it is loaded? Which process uses each one?", where:"Slide: Energy 15 | Book: High-Energy Electrons, p. 232; NADH Production, p. 255",
     model:"NAD+ picks up electrons and becomes NADH. It is used in cellular respiration. NADP+ picks up electrons and becomes NADPH. It is used in photosynthesis.",
+    watch:[
+      W(/\bnadp ?h?\b(?: (?!nad\b|nadh\b|nad h\b)\w+){0,4} (?:is )?(?:used )?(?:in|for|during) (?:cellular )?respiration|\bnad ?h?\b(?: (?!nadp)\w+){0,4} (?:is )?(?:used )?(?:in|for|during) photo ?synth/, "Check that. Which carrier goes with photosynthesis, and which goes with respiration?") ],
     ideas:[
       I("NAD+ loaded", [T.nadh], "What does NAD+ become when it is loaded?", "Slide Energy 15, the NAD+ TO NADH box."),
       I("NAD+ process", [either(T.nadh, T.resp, 80), either(T.nad, T.resp, 80)], "Which process uses NAD+?", "Slide Energy 15, the NAD+ TO NADH box."),
@@ -108,7 +132,9 @@ UNITS.push({
   { n:12, heading:"Autotrophs and Heterotrophs", prompt:"Compare autotrophs and heterotrophs.",
     guide:"How does each one get energy? Give two examples of each.", where:"Slide: Energy 19 | Book: Heterotrophs and Autotrophs, p. 228",
     model:"Autotrophs make their own food using energy from sunlight. Examples: plants and algae. Heterotrophs get energy by eating or absorbing other living things. Examples: animals and mushrooms.",
-    watch:[ W(/auto\w*.{0,30}\beat/, "Check that. Autotrophs make their own food. Which group eats?", "Autotrophs") ],
+    watch:[
+      W(/\bhetero\w*.{0,30}(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:make|makes|produce|produces) (?:their|its) own food/, "Check that. \"Hetero\" means other. Which group makes its own food?"),
+      W(/\b(?:animals?|humans?|mushrooms?|fungi|fungus|people) (?:are|is) (?:an? )?auto|\b(?:plants?|algae|trees?|grass) (?:are|is) (?:an? )?hetero/, "Check that. Does that organism make its own food or eat other things?"), W(/auto\w*.{0,30}\beat/, "Check that. Autotrophs make their own food. Which group eats?", "Autotrophs") ],
     ideas:[
       I("Autotrophs", [near(/auto/, /(make|makes|making|produce)\w* (their|its) own food|sun|light|photo/, 80)], "How does an autotroph get energy?", "\"Auto\" means self. Slide Energy 19."),
       I("Autotroph examples", [/plant|algae|tree|grass/], "Give examples of autotrophs.", "Slide Energy 19, the Examples row."),
@@ -123,11 +149,15 @@ UNITS.push({
       I("Mushrooms", [either(/mushroom/, /hetero/, 40)], "Are mushrooms autotrophs or heterotrophs?", "Slide Energy 21 answers this one."),
       I("Why the mushroom", [/absorb|decompos|dead|rott|can.?t make|cannot make|don.?t make|doesn.?t make|no (chloro|sun)|not (make|photo)|from other/], "Why is a mushroom NOT an autotroph?", "Read the line at the top of Slide Energy 21.")
     ],
-    watch:[ W(/mushrooms? (is|are) (an? )?auto/, "Check that. Can a mushroom make food from sunlight?") ]},
+    watch:[
+      W(/\balgae (?:is|are) (?:an? )?hetero/, "Check that. Can algae make food from sunlight?"),
+      W(/\bmushrooms? (?:make|makes|get|gets) (?:their |its )?(?:own )?food from (?:the )?(?:sun|light)/, "Check that. Does a mushroom have chlorophyll to use sunlight?"), W(/mushrooms? (is|are) (an? )?auto/, "Check that. Can a mushroom make food from sunlight?") ]},
   { n:14, heading:"Photosynthesis Basics", prompt:"Define photosynthesis.",
     guide:"What does the word mean? Which kind of energy becomes which kind?", where:"Slide: Photosynthesis 4 | Book: Heterotrophs and Autotrophs, p. 228",
     model:"Photosynthesis means using light to put something together. Plants use light energy to make sugar, so light energy becomes chemical energy stored in sugar.",
-    watch:[ W(/chemical (energy )?(into|to|becomes) light/, "Check that. Which energy goes in, and which comes out?") ],
+    watch:[
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:food|energy|sugar|nutrients?) (?:\w+ )?from (?:the )?(?:soil|dirt|ground)\b/, "Check that. Where does a plant's food really come from?"),
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:make|makes|making|create|creates|creating) (?:their own |its own |new )?energy\b/, "Check that. Energy is not made from nothing. Which kind of energy is changed into which kind?"), W(/chemical (energy )?(into|to|becomes) light/, "Check that. Which energy goes in, and which comes out?") ],
     ideas:[
       I("What the word means", [/(light|photo).{0,30}(put\w* together|build|synthes|make)/, /put\w* together/], "What does the word photosynthesis mean?", "Photo means ___. Synthesis means ___. Slide Photosynthesis 4."),
       I("Energy change", [near(/light/, /chemical/, 60)], "Which kind of energy becomes which kind?", "Slide Photosynthesis 4, KEY TERMS.")
@@ -140,7 +170,9 @@ UNITS.push({
       I("Products", [either(GLUCOSE, O2, 40)], "What comes out? Name the two products.", "Slide Photosynthesis 5, Products (out)."),
       I("In symbols", [/\b6 ?co ?2\b|c ?6 ?h ?12 ?o ?6/], "Write the equation with chemical symbols too.", "Copy the symbols line from Slide Photosynthesis 5.")
     ],
-    watch:[ W(near(/oxygen.{0,25}(and|plus)? ?(glucose|sugar)|(glucose|sugar).{0,25}(and|plus)? ?oxygen/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(carbon dioxide|co2)/, 40), "Check that. That is the respiration equation. Which way does photosynthesis go?") ]},
+    watch:[
+      W(/\bphoto ?synth\w*.{0,20}(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:uses?|needs?|requires?|takes? in) oxygen\b/, "Check that. Is oxygen a reactant or a product of photosynthesis?"),
+      W(/\bphoto ?synth\w*.{0,20}(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:makes?|produces?|releases?|gives? off) (?:carbon dioxide|co ?2|c o 2)\b/, "Check that. Does photosynthesis take in carbon dioxide or give it off?"), W(near(/oxygen.{0,25}(and|plus)? ?(glucose|sugar)|(glucose|sugar).{0,25}(and|plus)? ?oxygen/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(carbon dioxide|co2)/, 40), "Check that. That is the respiration equation. Which way does photosynthesis go?") ]},
   { n:16, heading:"Light and Pigments", prompt:"Explain why leaves look green.",
     guide:"Which colors does chlorophyll absorb? Which color does it reflect?", where:"Slide: Photosynthesis 7 to 8 | Book: Light, Pigments, p. 230",
     model:"Chlorophyll absorbs blue-violet and red light well. It does not absorb green; it reflects green light back to our eyes, so leaves look green.",
@@ -148,11 +180,14 @@ UNITS.push({
       I("Colors absorbed", [either(/blue|violet|purple/, /\bred\b/, 60)], "Which colors does chlorophyll absorb?", "Slide Photosynthesis 7, the Also know line."),
       I("Color reflected", [near(/reflect|bounc/, /green/, 40), near(/green/, /reflect|bounc/, 40)], "Which color does chlorophyll reflect?", "The color you see is the color that is NOT absorbed. Slide Photosynthesis 8.")
     ],
-    watch:[ W(near(/absorb/, /green/, 15), "Check that. Does chlorophyll absorb green, or bounce it back?", "Color reflected") ]},
+    watch:[
+      W(/\breflect\w* (?:\w+ ){0,2}(?<!not |no )(?:red|blue|violet|purple)\b/, "Check that. The color that bounces back is the color you see. Which color is that?"), W(near(/absorb/, /green/, 15), "Check that. Does chlorophyll absorb green, or bounce it back?", "Color reflected") ]},
   { n:17, heading:"Light and Pigments", prompt:"Predict how a plant would grow under only green light.",
     guide:"Which color of light is least useful to a plant, and why?", where:"Slide: Photosynthesis 8 to 10 | Book: Pigments, p. 230",
     model:"The plant would grow poorly. Green light is the least useful color because chlorophyll reflects green light instead of absorbing it, so the plant gets little energy.",
-    watch:[ W(/grow\w* (better|faster|well|good|great)/, "Check that. Is green light useful to a plant?", "Prediction") ],
+    watch:[
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:absorb|absorbs|absorbing) (?:\w+ ){0,2}green\b/, "Check that. Does chlorophyll absorb green light or reflect it?"),
+      W(/\bgreen (?:light )?(?:is )?(?:the )?(?:best|most useful|most helpful|most energy)\b/, "Check that. Is green light the most useful or the least useful color for a plant?"), W(/grow\w* (better|faster|well|good|great)/, "Check that. Is green light useful to a plant?", "Prediction") ],
     ideas:[
       I("Prediction", [/poor|bad|slow|not (grow )?(well|good)|won.?t grow|wouldn.?t grow|die|struggle|weak|little|less|barely|not much/], "Would the plant grow well or poorly?", "Read the Also know line on Slide Photosynthesis 8."),
       I("Why", [/reflect|not absorb|doesn.?t absorb|can.?t absorb|bounc/], "Why is green light the least useful?", "Use your note 16. What does chlorophyll do with green light?")
@@ -161,6 +196,9 @@ UNITS.push({
     guide:"Where are the thylakoids, grana, and stroma? Where is the chlorophyll?", where:"Slide: Photosynthesis 12 | Book: Chloroplasts, p. 231",
     draw:"Sketch a chloroplast. Label the thylakoids, a granum, and the stroma.",
     model:"Thylakoids are flattened sacs of membrane. A stack of thylakoids is a granum (plural: grana). The stroma is the fluid outside the thylakoids. Chlorophyll is in the thylakoid membranes.",
+    watch:[
+      W(/\bchloro ?phyl\w* (?:is )?(?:found )?(?:in|inside) (?:the )?(?:stroma|stromo)/, "Check that. Where is the chlorophyll, in the fluid or in the membranes?"),
+      W(/\bstroma (?:is|are) (?:a |the )?(?:stacks?|piles?|sacs?|flattened)|\b(?:thyla\w*|grana|granum) (?:is|are) (?:the )?(?:fluid|liquid|jelly)/, "Check that. Which part is the fluid, and which part is the stack of sacs?") ],
     ideas:[
       I("Thylakoids", [/thyla|thila|thigh ?la/], "Name the flattened sacs inside the chloroplast.", "Slide Photosynthesis 12, first box."),
       I("Grana", [/gran(a|um)|stack/], "What is a stack of thylakoids called?", "Slide Photosynthesis 12, second box."),
@@ -170,7 +208,9 @@ UNITS.push({
   { n:19, heading:"The Chloroplast and the Two Parts", prompt:"Identify the two parts of photosynthesis.",
     guide:"What is each part called, and where does each one happen?", where:"Slide: Photosynthesis 15 | Book: An Overview of Photosynthesis, p. 233",
     model:"Part 1 is the light-dependent reactions, in the thylakoid membranes. Part 2 is the light-independent reactions (the Calvin cycle), in the stroma.",
-    watch:[ W(/calvin.{0,25}thyla/, "Check that. Where does the Calvin cycle happen?") ],
+    watch:[
+      W(/\blight ?dependent(?: reactions?)? (?:happens? |occurs? |takes? place |is |are )?(?:in|inside) (?:the )?(?:stroma|stromo)/, "Check that. Where do the light dependent reactions happen?"),
+      W(/\bcalvin\w*(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)/, "Check that. The Calvin cycle is part of photosynthesis. Which organelle is it in?"), W(/calvin.{0,25}thyla/, "Check that. Where does the Calvin cycle happen?") ],
     ideas:[
       I("Part 1", [/light ?dependent|light reactions?/], "What is the first part called?", "Slide Photosynthesis 15, KEY TERMS."),
       I("Where part 1 happens", [/thyla|thila/], "Where do the light-dependent reactions happen?", "Slide Photosynthesis 16, the Where row."),
@@ -180,6 +220,10 @@ UNITS.push({
   { n:20, heading:"The Chloroplast and the Two Parts", prompt:"Compare the light-dependent reactions and the Calvin cycle.",
     guide:"What goes in and comes out of each? Which releases oxygen, and where does the oxygen come from?", where:"Slide: Photosynthesis 16 to 18 | Book: The Light-Dependent Reactions, p. 235; The Light-Independent Reactions, p. 238",
     model:"The light-dependent reactions take in light and water and make ATP, NADPH, and oxygen. The oxygen comes from water that is split. The Calvin cycle takes in carbon dioxide, ATP, and NADPH and builds sugar.",
+    watch:[
+      W(/\boxygen (?:comes?|is|came) (?:\w+ )?from (?:the )?(?:carbon dioxide|co ?2|c o 2)\b/, "Check that. Which molecule is split to release the oxygen?"),
+      W(/\blight ?(?:dependent )?reactions? (?:make|makes|build|builds|produce|produces) (?:\w+ ){0,2}(?:sugar|glucose)\b/, "Check that. Which part actually builds the sugar?"),
+      W(/\bcalvin\w*(?: cycle)? (?:makes?|releases?|produces?|gives? off) (?:\w+ ){0,2}oxygen\b/, "Check that. Which part releases the oxygen?") ],
     ideas:[
       I("Part 1 makes", [near(LIGHT_DEP, /atp|nadph|n a d p h|energy carrier/, 120)], "What do the light-dependent reactions make?", "Slide Photosynthesis 16, the Comes out row."),
       I("Oxygen and water", [either(O2, /split|break|water/, 50)], "Which part releases oxygen, and where does the oxygen come from?", "Read the Also know line on Slide Photosynthesis 16."),
@@ -189,6 +233,9 @@ UNITS.push({
   { n:21, heading:"Cellular Respiration Basics", prompt:"Explain why cells release food energy gradually.",
     guide:"What would happen if a cell burned glucose all at once?", where:"Slide: Respiration 4 | Book: Chemical Energy and Food, p. 250",
     model:"If a cell burned glucose all at once, it would release all the energy as heat and light and destroy the cell. So cells break glucose down in small steps and capture a little energy at a time as ATP.",
+    watch:[
+      W(/(?<!\b(?:if|when|suppose|supposing) (?:a |the )?)\bcells? (?:burns?|releases?|uses?) (?:\w+ ){0,3}all at once\b/, "Check that. Do cells release the energy all at once, or a little at a time?"),
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:captur\w*|stor\w*|saves?|saving|keeps?) (?:the |its |that |some |a little )?(?:energy )?(?:as|in) heat\b/, "Check that. What form does the cell capture the energy in, a little at a time?") ],
     ideas:[
       I("All at once", [/destroy|die|kill|burn|explod|damage|fire|too much (heat|energy)|waste/], "What would happen if a cell burned glucose all at once?", "Slide Respiration 4, the All at once box."),
       I("Step by step", [/step|little at a time|bit at a time|gradual|slow|small (amount|part|piece)|pieces/], "How do cells release the energy instead?", "Slide Respiration 4, the Step by step box.")
@@ -196,7 +243,9 @@ UNITS.push({
   { n:22, heading:"Cellular Respiration Basics", prompt:"Define cellular respiration.",
     guide:"What does it release, and which gas does it need?", where:"Slide: Respiration 5 | Book: Overview of Cellular Respiration, p. 251",
     model:"Cellular respiration is the process that releases energy from food (glucose) in the presence of oxygen.",
-    watch:[ W(/(needs?|requires?|uses?) carbon dioxide/, "Check that. Which gas does cellular respiration need?", "The gas it needs") ],
+    watch:[
+      W(/\b(?:is|means) (?:just |basically |the same as )?(?:breathing|breathe|inhaling|exhaling)\b/, "Check that. Breathing brings in oxygen, but what does cellular respiration do inside the cell?"),
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:creates?|creating) (?:new )?energy\b/, "Check that. Does respiration create energy, or release energy already stored in food?"), W(/(needs?|requires?|uses?) carbon dioxide/, "Check that. Which gas does cellular respiration need?", "The gas it needs") ],
     ideas:[
       I("What it releases", [/releas\w*.{0,30}energy|energy.{0,30}(from|out of) (food|glucose|sugar)|make\w* atp|break\w* down (food|glucose|sugar)/], "What does cellular respiration release?", "Slide Respiration 5, the line under the title."),
       I("The gas it needs", [O2], "Which gas does it need?", "Why do you breathe harder when you run? Slide Respiration 3.")
@@ -210,11 +259,14 @@ UNITS.push({
       I("Energy", [/energy|\batp\b/], "What useful thing does respiration make besides the two waste products?", "Slide Respiration 5, the last product."),
       I("In symbols", [/\b6 ?o ?2\b|c ?6 ?h ?12 ?o ?6/], "Write the equation with chemical symbols too.", "Copy the symbols line from Slide Respiration 5.")
     ],
-    watch:[ W(near(/(carbon dioxide|co2).{0,25}(and|plus)? ?water|water.{0,25}(and|plus)? ?(carbon dioxide|co2)/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(glucose|sugar)/, 40), "Check that. That is the photosynthesis equation. Which way does respiration go?") ]},
+    watch:[
+      W(/\brespiration (?:makes?|produces?|releases?|gives? off) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b|\bproducts? (?:are|is) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b/, "Check that. Which molecules go in, and which come out of respiration?"),
+      W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:needs?|uses?|requires?) (?:sun ?light|light)\b|\b(?:plus|and) (?:sun ?light|light) (?:makes|yields|gives|produces)/, "Check that. Does cellular respiration need light?"), W(near(/(carbon dioxide|co2).{0,25}(and|plus)? ?water|water.{0,25}(and|plus)? ?(carbon dioxide|co2)/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(glucose|sugar)/, 40), "Check that. That is the photosynthesis equation. Which way does respiration go?") ]},
   { n:24, heading:"The Three Stages", prompt:"Sequence the three stages of cellular respiration.",
     guide:"Which comes first, second, and third? Which happen in the cytoplasm, and which in the mitochondria?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
     model:"1. Glycolysis, in the cytoplasm. 2. The Krebs cycle, in the mitochondria. 3. The electron transport chain, in the mitochondria.",
-    watch:[ W(/krebs.{0,60}glycolysis/, "Check the order. Which stage comes first?", "The order") ],
+    watch:[
+      W(/\bglycolysis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)|\b(?:(?:krebs|kreb|crebs|citric acid)(?: cycle)?|(?:electron transport(?: chain)?|\betc\b|\be t c\b)) (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)/, "Check that. Which stage is in the cytoplasm, and which are in the mitochondria?"), W(/krebs.{0,60}glycolysis/, "Check the order. Which stage comes first?", "The order") ],
     ideas:[
       I("The order", [near(T.glycolysis, near(T.krebs, T.etc, 120), 120)], "Which stage comes first, second, and third?", "Slide Respiration 9 shows the map in order."),
       I("Cytoplasm stage", [either(T.glycolysis, T.cytoplasm, 60)], "Which stage happens in the cytoplasm?", "Read the Also know line on Slide Respiration 9."),
@@ -223,7 +275,9 @@ UNITS.push({
   { n:25, heading:"The Three Stages", prompt:"Distinguish aerobic from anaerobic.",
     guide:"Which stage is anaerobic? Which stages need oxygen? What happens when oxygen runs out?", where:"Slide: Respiration 10 | Book: Oxygen and Energy, p. 252",
     model:"Aerobic means it requires oxygen. Anaerobic means it does not require oxygen. Glycolysis is anaerobic. The Krebs cycle and electron transport chain are aerobic. When oxygen runs out, the aerobic stages stop and glycolysis keeps going, followed by fermentation.",
-    watch:[ W(/glycolysis (is )?(aerobic|needs oxygen)/, "Check that. Does glycolysis need oxygen?") ],
+    watch:[
+      W(/(?<!\ban )\baerobic (?:means|is) (?:it )?(?:does not|doesn't|doesnt|no|without|not|don't|dont)\b|\b(?:anaerobic|an aerobic) (?:means|is) (?:it )?(?:needs|requires|uses|with)\b/, "Check that. Which word means with oxygen, and which means without?"),
+      W(/\b(?:krebs|kreb|crebs|citric|electron transport|etc)\w*(?: cycle| chain)? (?:is |are )?(?:anaerobic|an aerobic)/, "Check that. Do the Krebs cycle and the electron transport chain need oxygen?"), W(/glycolysis (is )?(aerobic|needs oxygen)/, "Check that. Does glycolysis need oxygen?") ],
     ideas:[
       I("Aerobic", [near(/\baerobic/, /oxygen|air/, 50)], "What does aerobic mean?", "Slide Respiration 10, the Meaning row."),
       I("Anaerobic", [near(/anaerobic|an aerobic/, new RegExp(NEG + ".{0,25}(oxygen|air)|without (oxygen|air)"), 60)], "What does anaerobic mean?", "Slide Respiration 10, the Meaning row."),
@@ -237,7 +291,9 @@ UNITS.push({
       I("The cycle", [/calvin/], "Which cycle is not a stage of cellular respiration?", "Slide Respiration 12 answers this one."),
       I("Where it belongs", [T.photo], "Which process does the Calvin cycle belong to instead?", "Look back at your note 19.")
     ],
-    watch:[ W(/krebs (cycle )?(is not|isn.?t)/, "Check that. The Krebs cycle IS a stage of respiration.", "The cycle") ]},
+    watch:[
+      W(/\b(?:glycolysis|citric acid cycle|electron transport(?: chain)?|etc) (?:is not|isn't|isnt)\b/, "Check that. That one IS a stage of cellular respiration. Which cycle is not?", "The cycle"),
+      W(/\bcalvin\w*(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)|\bcalvin\w*(?: cycle)? (?:belongs to|is part of|is a stage of|is in) (?:cellular )?respiration/, "Check that. Which process does the Calvin cycle belong to?"), W(/krebs (cycle )?(is not|isn.?t)/, "Check that. The Krebs cycle IS a stage of respiration.", "The cycle") ]},
   { n:27, heading:"Photosynthesis vs. Respiration", prompt:"Compare photosynthesis and cellular respiration.",
     guide:"Which one deposits energy and which withdraws it? Where does each happen? Do plants do both?", where:"Slide: Respiration 14 to 15 | Book: Comparing Photosynthesis and Cellular Respiration, p. 253",
     model:"Photosynthesis deposits (stores) energy in glucose. It happens in chloroplasts. Cellular respiration withdraws (releases) the energy in glucose to make ATP. It happens in the cytoplasm and mitochondria. Plants do both.",
@@ -248,10 +304,15 @@ UNITS.push({
       I("Where respiration happens", [either(T.resp, T.mito, 130)], "Where does cellular respiration happen?", "Slide Respiration 15, the Where row."),
       I("Plants do both", [/both|plants (also|do) (do )?respiration|plants? .{0,30}(also|too)/], "Do plants do both?", "Slide Respiration 14, the Plants do both box.")
     ],
-    watch:[ W(/plants (only|just) do photo|plants (don.?t|do not) do (cellular )?resp|instead of (cellular )?resp/, "Check that. Do plants do cellular respiration too?") ]},
+    watch:[
+      W(/\bphoto ?synthesis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\b)|\brespiration (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:chloro ?plast|chlora ?plast|clor[oa] ?plast)/, "Check that. Which organelle goes with each process?"),
+      W(/\bphoto ?synthesis (?:withdraws?|releases? (?:the )?energy|breaks? down (?:glucose|sugar))|\brespiration (?:deposits?|stores? energy in glucose)/, "Check that. Which one deposits energy and which one withdraws it?"), W(/plants (only|just) do photo|plants (don.?t|do not) do (cellular )?resp|instead of (cellular )?resp/, "Check that. Do plants do cellular respiration too?") ]},
   { n:28, heading:"Photosynthesis vs. Respiration", prompt:"Explain why they are called opposite processes.",
     guide:"How do the products of one match the reactants of the other?", where:"Slide: Respiration 15 to 18 | Book: Comparing Photosynthesis and Cellular Respiration, p. 253",
     model:"They are opposites because the products of one are the reactants of the other. Photosynthesis makes glucose and oxygen, which respiration uses. Respiration makes carbon dioxide and water, which photosynthesis uses.",
+    watch:[
+      W(/\bproducts? of photo ?synthesis (?:are|is) (?:\w+ )?(?:carbon dioxide|co ?2|water)\b|\bproducts? of (?:cellular )?respiration (?:are|is) (?:\w+ )?(?:glucose|sugar|oxygen)\b|\bphoto ?synthesis (?:makes?|produces?|gives? off|releases?) (?:\w+ )?(?:carbon dioxide|co ?2)\b|\brespiration (?:makes?|produces?|gives? off|releases?) (?:\w+ )?(?:glucose|sugar|oxygen)\b/, "Check that. Which process makes glucose and oxygen, and which makes carbon dioxide and water?"),
+      W(/\b(?:respiration|it) (?:only )?(?:happens|is) (?:only )?in animals\b|\bonly animals (?:do|carry out) (?:cellular )?respiration|\bplants? (?:do|does) photo ?synthesis (?:and|while|but) animals (?:do|does) (?:cellular )?respiration/, "Check that. Is that why they are opposites? Do plants do cellular respiration too?") ],
     ideas:[
       I("The big idea", [/products? .{0,40}(reactants?|inputs?|use|need)|outputs? .{0,40}inputs?|reactants? .{0,40}products?|what one makes.{0,40}other (uses|needs)/], "How do the products of one match the reactants of the other?", "Slide Respiration 15, the Also know line."),
       I("An example", [either(GLUCOSE, O2, 40), either(CO2, H2O, 40)], "Give an example: what does one make that the other uses?", "Slide Respiration 18, The Energy Cycle.")

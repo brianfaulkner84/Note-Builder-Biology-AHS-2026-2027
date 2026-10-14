@@ -1,0 +1,460 @@
+{
+ "1": [
+  {
+   "re": "\\bbiology is (the )?(scientific )?stud(y|ies) of (only )?(animals|plants|the (human )?body|humans|people|rocks|chemicals|the earth|space|stars)\\b",
+   "say": "Check that. Does biology study just one kind of thing, or all of life?",
+   "unless": "Definition",
+   "hit": [
+    "biology is the study of animals",
+    "biology is the study of the human body",
+    "biology is the scientific study of rocks"
+   ],
+   "miss": [
+    "biology is the scientific study of life",
+    "biology is the study of life like animals and plants",
+    "biology is not just the study of animals it is all living things"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (stud\\w* |about |looks at )?(animals|humans|people|plants)\\b",
+   "say": "Check that. Is biology about only one group, or every living thing?",
+   "unless": "Definition",
+   "hit": [
+    "biology studies only animals",
+    "biology is about just humans"
+   ],
+   "miss": [
+    "biology is the scientific study of life",
+    "it is not only animals but all living things",
+    "biology studies living things like plants and animals"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\b(?<!(not|never) )(passed|goes|go|comes?|travels?|inherited) from (the )?(offspring|children|kids|babies|child|baby) to (the )?parents?\\b",
+   "say": "Check that. Which way is DNA passed, parent to offspring or offspring to parent?",
+   "hit": [
+    "dna is passed from offspring to parents",
+    "it goes from the kids to the parent"
+   ],
+   "miss": [
+    "dna is the molecule that holds the genetic code it is passed from parents to offspring",
+    "it is not passed from offspring to parents",
+    "kids inherit dna from their parents"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\bonly (in )?(humans|people|animals|mammals)\\b",
+   "say": "Check that. Do only some living things have DNA?",
+   "hit": [
+    "only humans have dna",
+    "dna is found only in animals"
+   ],
+   "miss": [
+    "dna holds the genetic code in all living things",
+    "not only animals have dna plants do too",
+    "dna is passed from parents to offspring"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\bstimul\\w* (is|means) (how|when) (an? |the )?(organism|animal|plant|living thing|person|it|you)\\w* (reacts?|responds?)",
+   "say": "Check that. Is the stimulus the signal, or the reaction to it?",
+   "hit": [
+    "a stimulus is how an organism reacts to something",
+    "stimulus is when an animal responds"
+   ],
+   "miss": [
+    "a stimulus is a signal that an organism responds to",
+    "a stimulus is something an organism responds to like light",
+    "stimulus is what causes an organism to react"
+   ]
+  },
+  {
+   "re": "\\bstimulant\\b|\\bstimul\\w* (is|means) (a )?(drug|caffeine|medicine|energy drink)",
+   "say": "Check that. A stimulus in biology is a signal in the surroundings. Is it a drug?",
+   "hit": [
+    "a stimulus is a drug like caffeine",
+    "a stimulant is something that wakes you up"
+   ],
+   "miss": [
+    "a stimulus is a signal like a loud noise",
+    "a stimulus is not a drug it is a signal",
+    "a stimulus is a change in the environment"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "(?<!asexual.{0,40})\\b(offspring|babies|kids|children|they)( are| is| look)? (genetically )?(identical|the same as (the|their) parents?|exact copies|clones)\\b",
+   "say": "Check that. With two parents, are the offspring exact copies?",
+   "hit": [
+    "two parents join cells and the offspring are identical to the parents",
+    "two parents and the babies are exact copies"
+   ],
+   "miss": [
+    "sexual reproduction is when cells from two parents join to make offspring",
+    "the offspring are not identical to either parent",
+    "unlike asexual where offspring are identical sexual offspring are different",
+    "offspring are a mix of both parents"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(offspring|babies|kids|children|they)( are| is| look)? (genetically )?(different|unique|a mix|mixed)\\b",
+   "say": "Check that. With only one parent, how do the offspring compare to it?",
+   "unless": "The offspring",
+   "hit": [
+    "one parent and the offspring are different from the parent",
+    "one parent and the babies are a mix"
+   ],
+   "miss": [
+    "asexual reproduction is when one parent makes offspring that are genetically identical",
+    "the offspring are not different from the parent",
+    "asexual is different from sexual reproduction because there is one parent"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(sperm|eggs? and sperm|male and female|fertiliz\\w*)\\b",
+   "say": "Check that. Does asexual reproduction need a sperm and egg from two parents?",
+   "hit": [
+    "asexual reproduction is when a sperm fertilizes an egg",
+    "it needs a male and female to make copies"
+   ],
+   "miss": [
+    "one parent makes identical offspring like bacteria splitting in two",
+    "one parent with no sperm or egg",
+    "it does not need a male and female",
+    "without fertilization one parent makes copies"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})(\\b(stable|constant|steady|balanced?) (external|outside)\\b|\\bkeep\\w* the (outside|external) (environment|world|temperature|conditions)\\b)",
+   "say": "Check that. Does homeostasis keep the inside or the outside of the body stable?",
+   "hit": [
+    "homeostasis is keeping a stable external environment",
+    "homeostasis keeps the outside environment the same"
+   ],
+   "miss": [
+    "homeostasis is keeping a stable internal environment even when conditions outside change",
+    "keeping the inside steady even when the outside environment changes",
+    "it does not keep the outside environment the same"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!\\bnot )\\b(only|just) (about )?(break\\w*|digest\\w*|burn\\w*)",
+   "say": "Check that. Does metabolism only break things down, or does it build things up too?",
+   "hit": [
+    "metabolism is only breaking down food for energy",
+    "metabolism is just digesting food"
+   ],
+   "miss": [
+    "metabolism is all the chemical reactions that build up and break down materials to get energy",
+    "metabolism is not only breaking down but also building up",
+    "chemical reactions to get and use energy"
+   ]
+  },
+  {
+   "re": "\\bmetabolism (is|means) (the |your )?(stomach|digestive system|digestion|intestines?)\\b",
+   "say": "Check that. Is metabolism one organ, or all of the chemical reactions in an organism?",
+   "hit": [
+    "metabolism is digestion",
+    "metabolism is the stomach breaking food down"
+   ],
+   "miss": [
+    "metabolism is all the chemical reactions an organism uses to get and use energy",
+    "metabolism includes reactions like digestion",
+    "metabolism is not just digestion"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bbiosphere (is|means) (the )?(layer of (air|gas\\w*)|air around|atmosphere|ozone)",
+   "say": "Check that. Is the biosphere just the air, or everywhere life is found?",
+   "unless": "Definition",
+   "hit": [
+    "the biosphere is the layer of gas around earth",
+    "biosphere is the atmosphere"
+   ],
+   "miss": [
+    "the biosphere is the part of earth where all life exists including land water and air",
+    "biosphere is not just the atmosphere",
+    "the biosphere is the layer of earth where living things are found"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(includes?|including|and) (outer space|space|the moon|the sun|other planets)\\b",
+   "say": "Check that. Is life found in space, or only on part of Earth?",
+   "hit": [
+    "biosphere includes land water air and outer space",
+    "the biosphere is all of earth and the moon"
+   ],
+   "miss": [
+    "the biosphere is the part of earth where all life exists including land water and air",
+    "the biosphere does not include outer space",
+    "all life on earth in land water and air"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "(?<!\\bnot )\\b(all|every) (living things?|organisms?)\\b.{0,25}\\b(many|multiple|lots of|trillions of|millions of) cells",
+   "say": "Check that. Do all living things have many cells, or can some be just one?",
+   "hit": [
+    "all living things are made of many cells",
+    "every organism has trillions of cells"
+   ],
+   "miss": [
+    "living things are made of one or more cells humans have trillions an amoeba is one cell",
+    "all living things are made of one or more cells",
+    "not all organisms have many cells some are one cell"
+   ]
+  },
+  {
+   "re": "\\b(amoeba|amoebas|bacteria|bacterium)s? (is|are|has|have) (made (up )?of )?(many|multiple|lots of|trillions of|millions of)",
+   "say": "Check that. How many cells does a tiny organism like that have?",
+   "hit": [
+    "an amoeba has many cells",
+    "bacteria are made of many cells"
+   ],
+   "miss": [
+    "an amoeba is one cell",
+    "bacteria are made of one cell",
+    "humans have trillions of cells but an amoeba has one"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\b(?<!(not|never) )(passed|goes|go|comes?|travels?|inherited) from (the )?(offspring|children|kids|babies|child|baby) to (the )?parents?\\b",
+   "say": "Check that. Which way is the genetic code passed, parent to offspring or offspring to parent?",
+   "hit": [
+    "the dna is passed from offspring to parents",
+    "genetic code goes from the children to the parents"
+   ],
+   "miss": [
+    "living things store information in dna a universal genetic code passed from parents to offspring",
+    "it is never passed from offspring to parents",
+    "children inherit genes from their parents"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\bonly (in )?(humans|people|animals|mammals)\\b",
+   "say": "Check that. Do only some living things store their information in DNA?",
+   "hit": [
+    "only humans have dna",
+    "the genetic code is found only in animals"
+   ],
+   "miss": [
+    "all living things store information in dna",
+    "not only animals have dna plants and bacteria do too",
+    "dna is a universal genetic code"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bplants? (do not|don't|dont|does not|doesn't|doesnt|never|can't|cant|cannot) (need|use|take in|get) (any )?(energy|food|materials)",
+   "say": "Check that. Do plants need energy and materials too?",
+   "hit": [
+    "plants don't need energy only animals do",
+    "plants do not use energy"
+   ],
+   "miss": [
+    "all organisms take in materials and energy to grow develop and reproduce",
+    "plants get energy from sunlight",
+    "all organisms including plants need energy"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\bonly (animals|humans|people) (need|use|take in|get)\\b",
+   "say": "Check that. Is it only animals, or all organisms?",
+   "hit": [
+    "only animals need energy",
+    "only humans use energy to grow"
+   ],
+   "miss": [
+    "all organisms take in materials and energy to grow",
+    "not only animals need energy plants do too",
+    "animals get energy by eating food"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bdevelop\\w* (is|means) (just |only )?(getting|get|to get) (bigger|larger|taller)",
+   "say": "Check that. Growing means getting bigger. What does developing add?",
+   "hit": [
+    "development means getting bigger",
+    "development is just getting taller"
+   ],
+   "miss": [
+    "organisms grow and develop from their beginning to maturity",
+    "organisms grow bigger and develop into adults",
+    "development is not just getting bigger it means changing"
+   ]
+  },
+  {
+   "re": "\\b(tree|adult|frog|butterfly|chicken|dog|cat|grown up)s? (grows?|develops?|turns?|changes?) into (an? )?(seed|baby|egg|tadpole|caterpillar|child|kid|puppy|kitten|chick)\\b",
+   "say": "Check that. Which comes first, the beginning stage or the mature stage?",
+   "hit": [
+    "a tree grows into a seed",
+    "a butterfly turns into a caterpillar"
+   ],
+   "miss": [
+    "a seed grows into a tree",
+    "a caterpillar turns into a butterfly",
+    "a tadpole grows into a frog"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\breproduc\\w* (in order )?to (stay alive|live|keep living)\\b",
+   "say": "Check that. Does one organism need to reproduce to stay alive, or is it about making offspring?",
+   "hit": [
+    "every organism has to reproduce to stay alive",
+    "an animal must reproduce to live"
+   ],
+   "miss": [
+    "living things produce offspring either sexually or asexually",
+    "living things reproduce so their species can survive",
+    "an organism does not need to reproduce to stay alive"
+   ]
+  },
+  {
+   "re": "(?<!\\ba )\\bsexual\\w* (is |means |has |uses |needs |with )?(one|1|a single) parent|\\b(asexual\\w*|a sexual\\w*) (is |means |has |uses |needs |with )?(two|2|both) parents",
+   "say": "Check that. Which way uses two parents and which uses one?",
+   "hit": [
+    "sexually one parent or asexually two parents",
+    "sexual means one parent"
+   ],
+   "miss": [
+    "living things produce offspring either sexually two parents or asexually one parent",
+    "sexually with two parents or a sexually with one parent",
+    "asexual is one parent and sexual is two"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bplants? (can't|cant|cannot|can not|do not|don't|dont|does not|doesn't|doesnt|never) (respond|react|sense)",
+   "say": "Check that. Look at the slide example. Can plants respond?",
+   "hit": [
+    "plants can't respond because they can't move",
+    "only animals react plants do not respond"
+   ],
+   "miss": [
+    "living things react to signals from their surroundings like a plant bending toward light",
+    "plants respond by bending toward light",
+    "even plants respond to stimuli"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\bonly (animals|humans|people) (can )?(respond|react)",
+   "say": "Check that. Is it only animals, or all living things?",
+   "hit": [
+    "only animals can respond to stimuli",
+    "only humans react to their surroundings"
+   ],
+   "miss": [
+    "living things react to signals from their surroundings",
+    "not only animals respond plants do too",
+    "animals and plants both respond to light"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\bsweat\\w* (to|and|so you|helps you|will) (warm|heat)|\\bshiver\\w* (to|and|so you|helps you|will) (cool|get cool)",
+   "say": "Check that. Which response cools you down and which warms you up?",
+   "hit": [
+    "sweating to warm up when it is cold",
+    "you shiver to cool down"
+   ],
+   "miss": [
+    "organisms keep a stable internal environment example sweating to cool down on a hot day",
+    "shivering to warm up when cold",
+    "sweating to cool off"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})(\\b(stable|constant|steady|balanced?) (external|outside)\\b|\\bkeep\\w* the (outside|external) (environment|world|temperature|conditions)\\b)",
+   "say": "Check that. Do organisms keep the inside or the outside stable?",
+   "hit": [
+    "organisms keep a stable external environment",
+    "they keep the outside temperature the same"
+   ],
+   "miss": [
+    "organisms keep a stable internal environment even when conditions around them change",
+    "the inside stays steady when the outside environment changes",
+    "they do not keep the outside temperature the same"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})\\b(in (one|a|its|their|his|her|a single) (lifetime|life ?time|life)|overnight|in a few (days|weeks|years))\\b",
+   "say": "Check that. How long does evolution take?",
+   "hit": [
+    "populations evolve in one lifetime",
+    "a species can change in a few years"
+   ],
+   "miss": [
+    "populations of organisms change and adapt over many generations one organism does not evolve in its lifetime",
+    "evolution does not happen in one lifetime",
+    "evolution takes many generations not one lifetime"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|no|without|doesn't|doesnt|don't|dont|isn't|isnt|aren't|arent|cannot|can't|cant)\\b.{0,20})(\\b(because|since) (they|it|he|she) (want\\w*|need\\w*|tries|tried|try) to\\b|\\b(choose|chooses|decide|decides) to (evolve|change|adapt)\\b)",
+   "say": "Check that. Do organisms choose to evolve?",
+   "hit": [
+    "giraffes got long necks because they wanted to reach leaves",
+    "animals choose to adapt to their environment"
+   ],
+   "miss": [
+    "populations change and adapt over many generations",
+    "organisms do not choose to evolve",
+    "an animal does not change because it wants to"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\balive (if|when) (it )?(has|have|shows?|does|meets?|does|can do) (just |only )?(one|1|some|most|a few|two|three|half|any|at least)\\b",
+   "say": "Check that. How many of the characteristics does a living thing have to show?",
+   "unless": "The rule",
+   "hit": [
+    "something is alive if it has some of the characteristics",
+    "it is alive if it shows most of them"
+   ],
+   "miss": [
+    "something is alive only if it shows all eight characteristics",
+    "fire shows some characteristics but not all so it is not alive",
+    "something is alive if it has all of the characteristics"
+   ]
+  },
+  {
+   "re": "\\b(mule|seed)s? ((is|are) (not|never)|isn't|isnt|aren't|arent) (alive|living)\\b",
+   "say": "Check that. Does it have cells and DNA? Does it carry out the characteristics of life?",
+   "hit": [
+    "a mule is not alive because it cannot reproduce",
+    "a seed isn't alive"
+   ],
+   "miss": [
+    "something is alive only if it shows all eight characteristics fire is not alive",
+    "a mule is alive even though it can't reproduce",
+    "a seed is alive but dormant"
+   ]
+  }
+ ]
+}

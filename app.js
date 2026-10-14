@@ -609,7 +609,7 @@ function markedNoteHTML(text, marks, r){
   let html = "", at = 0;
   marks.forEach(m => {
     html += esc(text.slice(at, m.start));
-    const tip = m.kind === "key" ? ` title="${esc(m.labels.join(", "))}"` : "";
+    const tip = m.kind === "key" ? ` title="${esc(m.labels.join(", "))}"` : m.why === "repeat" ? ` title="This repeats the question."` : m.kind === "wrong" && m.say ? ` title="${esc(m.say)}"` : "";
     html += `<span class="mk ${m.kind}"${tip}>${esc(text.slice(m.start, m.end))}</span>`;
     at = m.end;
   });
@@ -621,6 +621,7 @@ function markedNoteHTML(text, marks, r){
     <ul class="legend">
       ${key ? `<li><span class="mk key">Underlined</span> = this part earns a key idea. Keep it.</li>` : ""}
       ${extra ? `<li><span class="mk extra">Dotted</span> = extra information. Does it help you remember the idea? If not, remove it. Less is more.</li>` : ""}
+      ${marks.some(m => m.why === "repeat") ? `<li>Some dotted words just repeat the question. Your note can start right with the answer.</li>` : ""}
       ${wrong ? `<li><span class="mk wrong">Red</span> = this part goes against the key idea. Fix it or cross it out.</li>` : ""}
       ${!key && !extra && !wrong ? `<li>No key idea found in your words yet. Use the clues below.</li>` : ""}
     </ul>

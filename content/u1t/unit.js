@@ -19,6 +19,9 @@ UNITS.push({
   { n:1, heading:"Homeostasis", prompt:"Define homeostasis.",
     guide:"What does the body keep stable, even when the outside changes?", where:"Slide: Ch30.1 slideshow 9 | " + B301,
     model:"Homeostasis is keeping a stable internal environment, even when conditions outside change.",
+    watch:[
+      W(/\b(stable|steady|constant|same) (external|outside) (environment|conditions?)\b/, "Check that. Is homeostasis about the inside of the body or the outside?"),
+      W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(match\w*|same as) (the )?(outside|external|environment|surroundings)\b/, "Check that. Does the body copy the outside, or stay steady when the outside changes?") ],
     ideas:[
       I("Stable inside", [/stable|steady|constant|balanc|same|normal/], "What does homeostasis keep?", "Slide 9 of the Ch30.1 slideshow."),
       I("Despite change", [/outside|environment|surroundings|change|despite|even (when|if)/], "When does the body keep this up?", "Even when the outside ___.")
@@ -26,6 +29,10 @@ UNITS.push({
   { n:2, heading:"Homeostasis", prompt:"Give examples of homeostasis in the human body.",
     guide:"How does the body handle getting too hot, too cold, or low on blood sugar?", where:"Slide: Ch30.1 slideshow 12 to 13 | " + B301,
     model:"Sweating cools the body when it is too hot. Shivering warms the body when it is too cold. The liver releases stored sugar when blood glucose drops. Breathing speeds up during exercise to remove extra carbon dioxide.",
+    watch:[
+      W(/\bshiver\w*.{0,15}\b(cools?|cooling)\b|\bsweat\w*.{0,15}\b(warms?|warming)\b/, "Check that. Which response warms you up, and which one cools you down?"),
+      W(/\binsulin.{0,15}\b(raises?|raising|increases?|increasing) (the )?(blood )?(sugar|glucose)\b(?! (uptake|absorption|use))/, "Check that. Does insulin raise blood sugar or lower it?"),
+      W(/\bbreath\w*.{0,15}\b(slows?( down)?|slower)\b (during|when you|while( you)?) (exercis|work ?out|run)/, "Check that. What happens to your breathing rate while you exercise?") ],
     ideas:[
       I("Example 1", [/sweat|shiver/], "How does the body fix its temperature?", "Ch30.1 slideshow, Slide 12."),
       I("Example 2", [/glucose|sugar|insulin|liver|breath|thirst|drink|blood pressure|heart rate/], "Give a second example that is not about temperature.", "Ch30.1 slideshow, Slide 13 (blood glucose).")
@@ -33,6 +40,9 @@ UNITS.push({
   { n:3, heading:"Homeostasis", prompt:"List the 8 characteristics of life.",
     guide:"What do all living things share?", where:"Slide: Characteristics of Life slideshow 3 | Book: Chapter 1, Lesson 1.3",
     model:"Made of cells, has a universal genetic code (DNA), grows and develops, reproduces, responds to the environment, maintains homeostasis, uses energy (metabolism), and evolves as a group.",
+    watch:[
+      W(/\b(they|all living things|living things|it|must|can|need to) (move|moves|breathe|breathes|need oxygen|needs oxygen|breathe air)\b/, "Check that. Not every living thing moves or breathes air. Is that one of the 8?"),
+      W(/\b(made of|made up of|have|has) (many|multiple|lots of|more than one) cells\b/, "Check that. Do all living things have many cells, or can some have just one?") ],
     ideas:[
       I("Cells", [/cell/], "What are all living things made of?", "Characteristic 1."),
       I("DNA", [/\bdna\b|genetic|gene/], "What code do all living things share?", "Characteristic 2."),
@@ -46,6 +56,9 @@ UNITS.push({
   { n:4, heading:"Homeostasis", prompt:"Explain how body systems interact to maintain homeostasis.",
     guide:"Pick two systems. What does each one do for the other?", where:"Slide: Ch30.1 slideshow 7 to 8 | " + B301,
     model:"The respiratory system brings in oxygen, and the circulatory system carries it to the cells. The digestive system breaks food into nutrients, and the circulatory system delivers them. The nervous system senses changes and signals muscles or glands to respond.",
+    watch:[
+      W(/\brespirat\w* system.{0,15}\b(carries|delivers|transports|pumps|takes)\b.{0,25}\b(oxygen|o2|o 2)\b.{0,15}\bto (the |all )?(cells|body|organs|tissues)\b/, "Check that. Which system actually carries the oxygen to the cells?"),
+      W(/\bdigest\w* system.{0,15}\b(carries|delivers|transports|pumps|sends)\b.{0,25}\bto (the |all )?(cells|body|organs|tissues)\b/, "Check that. The digestive system breaks food down. Which system delivers the nutrients?") ],
     ideas:[
       I("Two systems", [near(/respirat|digest|circulat|nervous|muscul|skelet|excret|endocrin|immune/, /respirat|digest|circulat|nervous|muscul|skelet|excret|endocrin|immune/, 120)], "Name two systems that work together.", "Ch30.1 slideshow, Slides 7 and 8."),
       I("What they share", [/oxygen|nutrient|food|signal|blood|waste|carbon dioxide|hormone/], "What does one system pass to the other?", "Example: the lungs bring in oxygen. Which system delivers it?")
@@ -53,7 +66,9 @@ UNITS.push({
   { n:5, heading:"Digestive System", prompt:"Describe carbohydrates: function, monomer, and examples.",
     guide:"What does the body use them for? What is the building block? Name foods.", where:"Slide: Nutrition slideshow 5, Enzymes slideshow 5 | " + B302,
     model:"Carbohydrates are the main source of energy. Their monomer is a simple sugar (monosaccharide), like glucose. Examples: bread, pasta, potatoes, fruit.",
-    watch:[ W(/amino acid|fatty acid/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
+    watch:[
+      W(/\bmonomers? (is|are|of carbohydrates? (is|are)) (a |an )?(starch|polysacchar\w*|glycogen|cellulose)\b|\b(starch|polysacchar\w*|glycogen|cellulose) (is|are) (the |a |their )?monomers?\b/, "Check that. Is that the single building block, or a long chain made of many?"),
+      W(/\bcarb\w* (are |is )?(used to |help |helps )?(build|builds|repair|repairs) (muscle|muscles|the body|tissue)/, "Check that. Is building and repairing the main job of carbohydrates?"), W(/amino acid|fatty acid/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/energy/], "What does the body use carbohydrates for?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/simple sugar|mono ?sacchar|glucose/], "What is the monomer of a carbohydrate?", "It is a single sugar unit."),
@@ -62,7 +77,9 @@ UNITS.push({
   { n:6, heading:"Digestive System", prompt:"Describe lipids: function, monomer, and examples.",
     guide:"What does the body use them for? What are the building blocks? Name foods.", where:"Slide: Nutrition slideshow 6 to 7, Enzymes slideshow 5 | " + B302,
     model:"Lipids store energy and form cell membranes and waterproof coverings. Their building blocks are fatty acids and glycerol. Examples: butter, oil, fats.",
-    watch:[ W(/amino acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
+    watch:[
+      W(/\b(lipids?|fats?) (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\b/, "Check that. Lipids store energy, but which macromolecule is the main, quick energy source?"),
+      W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(dissolves?|dissolving|mix|mixes|mixing) (in|with|into) water\b/, "Check that. Do lipids mix with water, or keep water out?"), W(/amino acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/stor|membrane|insulat|waterproof|energy/], "What does the body use lipids for?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/fatty acid|glycerol/], "What are the building blocks of lipids?", "Fatty ___ and glycerol."),
@@ -71,7 +88,9 @@ UNITS.push({
   { n:7, heading:"Digestive System", prompt:"Describe proteins: function, monomer, and examples.",
     guide:"What do proteins do? What is the building block? Name foods.", where:"Slide: Nutrition slideshow 8, Enzymes slideshow 5 | " + B302,
     model:"Proteins build and repair the body, act as enzymes that control the rates of reactions, and transport substances. Their monomer is the amino acid. Examples: meat, eggs, beans.",
-    watch:[ W(/fatty acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
+    watch:[
+      W(/\bproteins? (are|is) (the )?(body's |bodies )?(main|primary|quickest|fastest|first|number one) (source |form |type )?(of )?energy\b/, "Check that. Which macromolecule is the body's main energy source?"),
+      W(/\benzymes? (are|get|is|gets) (all )?(used up|consumed)\b/, "Check that. Is an enzyme used up in a reaction, or can it be used again?"), W(/fatty acid|simple sugar|mono ?sacchar/, "Check that. That is the monomer of a different macromolecule.", "Monomer") ],
     ideas:[
       I("Function", [/enzyme|build|repair|growth|transport|control|structure|muscle/], "What do proteins do in the body?", "Enzymes slideshow, Slide 5."),
       I("Monomer", [/amino/], "What is the monomer of a protein?", "Nutrition slideshow, Slide 8."),
@@ -80,6 +99,9 @@ UNITS.push({
   { n:8, heading:"Digestive System", prompt:"Describe the jobs of the mouth, stomach, and small intestine.",
     guide:"What happens to food in each organ?", where:"Slide: Digestive slideshow 4, 6, 7 | " + B302,
     model:"Mouth: teeth chew food (mechanical) and amylase in saliva starts digesting starch. Stomach: churns food and pepsin starts digesting protein, making chyme. Small intestine: finishes chemical digestion and absorbs most nutrients into the blood.",
+    watch:[
+      W(/\bstomach (absorbs|absorbing)\b|\babsorb\w* (most |all )?(of )?(the )?(nutrients |food )?(in|into|by) the stomach\b/, "Check that. Which organ absorbs most of the nutrients?"),
+      W(/\bstomach\b(?:(?!mouth|saliva|intestin).){0,20}\b(starch|carbs?|carbohydrates?|amylase)\b|\b(saliva|mouth)\b(?:(?!stomach|intestin).){0,20}\b(protein|proteins|pepsin)\b/, "Check that. Which enzyme works in the mouth, and which works in the stomach?") ],
     ideas:[
       I("Mouth", [either(/mouth/, /chew|teeth|saliva|amylase/, 60)], "What happens to food in the mouth?", "Digestive slideshow, Slide 4."),
       I("Stomach", [either(/stomach/, /pepsin|acid|churn|protein|chyme/, 60)], "What happens to food in the stomach?", "Digestive slideshow, Slide 6."),
@@ -88,6 +110,10 @@ UNITS.push({
   { n:9, heading:"Digestive System", prompt:"Describe the roles of the liver and pancreas in digestion.",
     guide:"What does each one send to the small intestine?", where:"Slide: Digestive slideshow 7 | " + B302,
     model:"The liver makes bile, which breaks fat into small droplets. The pancreas makes digestive enzymes and a base that neutralizes stomach acid, and both send these into the small intestine.",
+    watch:[
+      W(/\bpancrea\w* (makes|produces|releases|secretes|creates) bile\b|\bbile (is )?(made|produced|created) (by|in) the pancrea/, "Check that. Which organ makes bile?"),
+      W(/\bbile (is )?(a |an )?(digestive )?enzymes?\b(?! (and|from|go))/, "Check that. Is bile an enzyme, or does it just break fat into droplets?"),
+      W(/\bpancrea\w* (makes|produces|releases|secretes|adds) (an |more |stomach )?acids?\b/, "Check that. Does the pancreas add acid, or neutralize the stomach acid?") ],
     ideas:[
       I("Liver", [either(/liver/, /bile|fat/, 60)], "What does the liver make for digestion?", "It makes a fluid that breaks up fats."),
       I("Pancreas", [either(/pancrea/, /enzyme|neutraliz|base|bicarbonate|insulin/, 60)], "What does the pancreas make for digestion?", "It makes enzymes that go into the small intestine.")
@@ -95,7 +121,10 @@ UNITS.push({
   { n:10, heading:"Digestive System", prompt:"Compare mechanical and chemical digestion.",
     guide:"Which one only changes size? Which one uses enzymes? Give an example of each.", where:"Slide: Digestive slideshow 3 | " + B302,
     model:"Mechanical digestion breaks food into smaller pieces without changing its chemical makeup, like chewing or the stomach churning. Chemical digestion uses enzymes to break food into small molecules the body can use, like amylase breaking down starch.",
-    watch:[ W(/mechanical (digestion )?(uses|needs|is done by) enzymes|chemical (digestion )?(is|means) (chew|teeth)/, "Check that. Which kind uses enzymes, and which is chewing?") ],
+    watch:[
+      W(/\bmechanical\b.{0,30}(?<!(not|nt|never|without|t) )\b(changes?|changing) (the |its )?(chemical|molecul)/, "Check that. Does mechanical digestion change what food is made of, or only its size?"),
+      W(/\bchemical (digestion )?(only|just) (happens|occurs|takes place) in the stomach\b|\bchemical (digestion )?(happens|occurs|takes place) only in the stomach\b/, "Check that. Does chemical digestion start somewhere before the stomach?"),
+      W(/\b(chew\w*|churn\w*) (is|are) (an )?(example (of )?)?chemical\b|\b(enzymes?|amylase|pepsin) (is|are) (an )?(example (of )?)?mechanical\b/, "Check that. Is that example mechanical or chemical?"), W(/mechanical (digestion )?(uses|needs|is done by) enzymes|chemical (digestion )?(is|means) (chew|teeth)/, "Check that. Which kind uses enzymes, and which is chewing?") ],
     ideas:[
       I("Mechanical", [either(/mechanical/, /chew|piece|physical|smaller|churn|teeth|size/, 60)], "What does mechanical digestion do?", "Digestive slideshow, Slide 3, left side."),
       I("Chemical", [either(/chemical/, /enzyme|molecule|amylase|pepsin|acid/, 60)], "What does chemical digestion use?", "Digestive slideshow, Slide 3, right side.")
@@ -103,7 +132,10 @@ UNITS.push({
   { n:11, heading:"Digestive System", prompt:"Explain how digestive enzymes work and how pH and temperature affect them.",
     guide:"What do amylase and pepsin break down? What happens to an enzyme that gets too hot or is in the wrong pH?", where:"Slide: Digestive slideshow 10, Enzymes slideshow 7 to 8 | " + B302,
     model:"Enzymes are proteins that speed up reactions. Each one fits a specific molecule, like a lock and key. Amylase breaks down starch in the mouth. Pepsin breaks down protein in the stomach and works best at low (acidic) pH. Too much heat or the wrong pH changes the enzyme's shape (denatures it), so it stops working.",
-    watch:[ W(/amylase.{0,30}protein|pepsin.{0,30}(starch|carb)/, "Check that. Which enzyme breaks down starch, and which breaks down protein?") ],
+    watch:[
+      W(/\bpepsin.{0,40}(?<!not )\b(high|basic|neutral|alkaline) ph\b|\bpepsin.{0,40}\bph (of )?(7|8|9|10|seven|eight|nine|ten)\b/, "Check that. Pepsin works in the stomach. Is the stomach acidic or basic?"),
+      W(/\benzymes? (are|get|is|gets) (all )?(used up|consumed)\b/, "Check that. Is an enzyme used up in a reaction, or can it be used again?"),
+      W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(cold|freezing|low temp\w*) (will |can |does |also )?(denatur\w*|kills?|destroys?)\b/, "Check that. Does cold change the enzyme's shape, or just slow it down?"), W(/amylase.{0,30}protein|pepsin.{0,30}(starch|carb)/, "Check that. Which enzyme breaks down starch, and which breaks down protein?") ],
     ideas:[
       I("Amylase", [either(/amylase|amyl/, /starch|carb|sugar/, 50)], "What does amylase break down?", "Digestive slideshow, Slide 4."),
       I("Pepsin", [either(/pepsin/, /protein/, 50)], "What does pepsin break down?", "Digestive slideshow, Slide 6."),
@@ -112,7 +144,9 @@ UNITS.push({
   { n:12, heading:"Digestive System", prompt:"Describe the structure and function of villi in the small intestine.",
     guide:"What do villi look like? Why does more surface area matter?", where:"Slide: Digestive slideshow 7 | " + B302,
     model:"Villi are tiny, finger-like projections lining the small intestine. They greatly increase the surface area, so more nutrients are absorbed into the blood.",
-    watch:[ W(/(less|smaller|decreas\w*|lower) (the )?surface/, "Check that. Villi make the surface area bigger.") ],
+    watch:[
+      W(/\bvill\w* (are |is )?(found |located )?(in|line|lines|lining) (the )?(stomach|large intestine|esophagus)\b/, "Check that. Which organ are villi found in?"),
+      W(/\bvill\w*.{0,15}\b(digest|digests|break down|breaks down|chew|chews|churn|churns)\b/, "Check that. Is the main job of villi to break down food, or to absorb it?"), W(/(less|smaller|decreas\w*|lower) (the )?surface/, "Check that. Villi make the surface area bigger.") ],
     ideas:[
       I("Structure", [/finger|tiny|bump|projection|fold/], "What do villi look like?", "Digestive slideshow, Slide 7."),
       I("Surface area", [/surface area|more (room|space|area)/], "What do villi increase?", "Digestive slideshow, Slide 7."),
@@ -121,7 +155,10 @@ UNITS.push({
   { n:13, heading:"Circulatory System", prompt:"Describe basic heart structure, including the left atrium.",
     guide:"How many chambers? Which are upper and lower? What does the left atrium receive?", where:"Slide: Circulatory slideshow 4 to 5 | " + B331,
     model:"The heart has four chambers: two atria on top that receive blood and two ventricles on the bottom that pump blood out. The septum divides the left and right sides. The left atrium receives oxygen-rich blood from the lungs. On a diagram, the heart's left side is on the viewer's right.",
-    watch:[ W(/\b(2|two|3|three) chambers/, "Check that. How many chambers does the heart have?", "Four chambers") ],
+    watch:[
+      W(/\bleft atri\w*\b(?:(?!right|ventricle).){0,40}\b(oxygen poor|deoxygenated|from the body|low (in )?oxygen|without oxygen|no oxygen)\b/, "Check that. Where does the left atrium get its blood from?"),
+      W(/\bventricles? (receive|receives|collect|collects)\b|\batri(a|um|ums) (pump|pumps) (blood )?(out|to the body|to the lungs)\b/, "Check that. Which chambers receive blood, and which pump it out?"),
+      W(/\batri(a|um|ums) (are |is )?(on )?(the )?(bottom|lower)\b|\bventricles? (are |is )?(on )?(the )?(top|upper)\b/, "Check that. Which chambers are on top, and which are on the bottom?"), W(/\b(2|two|3|three) chambers/, "Check that. How many chambers does the heart have?", "Four chambers") ],
     ideas:[
       I("Four chambers", [/\b(4|four)\b/], "How many chambers does the heart have?", "Circulatory slideshow, Slide 4."),
       I("Atria and ventricles", [either(T.atrium, T.ventricle, 120)], "Name the upper and lower chambers.", "Circulatory slideshow, Slide 4."),
@@ -130,7 +167,9 @@ UNITS.push({
   { n:14, heading:"Circulatory System", prompt:"Distinguish pulmonary circulation from systemic circulation.",
     guide:"Where does each pathway carry blood?", where:"Book: Chapter 33.1, p. 950",
     model:"Pulmonary circulation carries blood between the heart and the lungs. Systemic circulation carries blood between the heart and the rest of the body.",
-    watch:[ W(/pulmonary.{0,40}(rest of the body|whole body)|systemic.{0,40}lungs/, "Check that. Which pathway goes to the lungs, and which goes to the body?") ],
+    watch:[
+      W(/\bpulmonary.{0,30}\b(oxygen rich|oxygenated) blood (to|into) the lungs?\b|\bsystemic.{0,30}\b(oxygen poor|deoxygenated) blood (out )?(to|into) the (body|cells)\b/, "Check that. Is blood going to the lungs oxygen rich or oxygen poor?"),
+      W(/\bpulmonary (means|is|refers to|has to do with) (the )?(heart|body|blood)\b/, "Check that. What body part does the word pulmonary refer to?"), W(/pulmonary.{0,40}(rest of the body|whole body)|systemic.{0,40}lungs/, "Check that. Which pathway goes to the lungs, and which goes to the body?") ],
     ideas:[
       I("Pulmonary", [either(/pulmonary/, /lungs?/, 90)], "Where does pulmonary circulation carry blood?", "Pulmonary means lungs."),
       I("Systemic", [either(/systemic/, /\bbody\b/, 90)], "Where does systemic circulation carry blood?", "Systemic means the whole body system.")
@@ -138,7 +177,9 @@ UNITS.push({
   { n:15, heading:"Circulatory System", prompt:"Explain how the structure of arteries, veins, and capillaries fits their function.",
     guide:"Why thick walls? Why valves? Why one cell thick?", where:"Slide: Circulatory slideshow 6 | " + B331,
     model:"Arteries carry blood away from the heart at high pressure, so they have thick, elastic walls. Veins carry low-pressure blood back to the heart, so they have valves to keep it from flowing backward. Capillaries have walls one cell thick so oxygen and nutrients can pass into the cells.",
-    watch:[ W(/arter\w*.{0,30}(back to|toward) the heart|veins?.{0,30}away from the heart/, "Check that. Arteries carry blood away from the heart; veins bring it back.") ],
+    watch:[
+      W(/\bveins?\b(?:(?!arter|capillar).){0,25}(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\bthick\b|\barter\w*(?:(?!vein|capillar).){0,25}\bvalves?\b/, "Check that. Which vessel has thick walls, and which has valves?"),
+      W(/\bcapillar\w*(?:(?!arter|vein).){0,25}\b(thick walls?|many cells|several cells|lots of cells|two cells)\b/, "Check that. How thick are capillary walls?"), W(/arter\w*.{0,30}(back to|toward) the heart|veins?.{0,30}away from the heart/, "Check that. Arteries carry blood away from the heart; veins bring it back.") ],
     ideas:[
       I("Arteries", [either(T.artery, /thick|elastic|pressure/, 60)], "Why do arteries have thick, elastic walls?", "Circulatory slideshow, Slide 6."),
       I("Veins", [either(T.vein, /valve/, 60)], "What do veins have to keep blood moving the right way?", "Circulatory slideshow, Slide 6."),
@@ -148,11 +189,17 @@ UNITS.push({
     guide:"Is blood ever blue? What color is oxygen-poor blood?", where:B331,
     model:"Blood is always red. Oxygen-rich blood is bright red, and oxygen-poor blood is dark red. Veins only look blue through the skin.",
     ideas:[ I("The color", [/\bred\b/], "What color is blood?", "Think about what you see when you get a cut.") ],
-    watch:[ W(/blood (is|turns|becomes) blue|blue blood/, "Check that. Blood is never blue. Veins only look blue through the skin.") ]},
+    watch:[
+      W(/\b(turns?|becomes?|goes) red (only )?when (it )?(hits|touches|is exposed to|meets|gets to|comes in contact with) (the )?(air|oxygen)\b/, "Check that. Is blood already red inside the body?"),
+      W(/\bblood (is|turns|becomes|looks) purple\b|\bpurple blood\b/, "Check that. What color is oxygen poor blood?"),
+      W(/\bveins (are|is) (actually |really )?blue\b/, "Check that. Are veins really blue, or do they only look blue?"), W(/blood (is|turns|becomes) blue|blue blood/, "Check that. Blood is never blue. Veins only look blue through the skin.") ]},
   { n:17, heading:"Respiratory System", prompt:"Sequence the path air travels through the respiratory system.",
     guide:"Start at the nose. Where does air end up?", where:"Slide: Respiratory slideshow 4 to 5 | " + B333,
     draw:"Sketch the respiratory system. Label the trachea and the alveoli.",
     model:"Nose, pharynx, larynx, trachea, bronchi, bronchioles, alveoli.",
+    watch:[
+      W(/\bbronchioles?\b.{0,25}\bbronchi\b/, "Check that. Which comes first, the bronchi or the bronchioles?"),
+      W(/\blarynx\b.{0,25}\bpharynx\b/, "Check that. Which comes first after the nose, the pharynx or the larynx?") ],
     ideas:[
       I("Start", [/nose|nasal/], "Where does air enter?", "Respiratory slideshow, Slide 4."),
       I("Windpipe", [T.trachea, /wind ?pipe/], "What tube carries air down the neck?", "Respiratory slideshow, Slide 4."),
@@ -161,7 +208,9 @@ UNITS.push({
   { n:18, heading:"Respiratory System", prompt:"Explain how gas exchange happens at the alveoli.",
     guide:"Which way does oxygen move? Which way does carbon dioxide move? Why?", where:"Slide: Respiratory slideshow 6 to 7 | " + B333,
     model:"Gas exchange happens between the alveoli and the capillaries by diffusion. Oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into the alveoli to be breathed out.",
-    watch:[ W(/oxygen (moves |goes )?(from|out of) the blood/, "Check that. Oxygen moves from the alveoli into the blood.") ],
+    watch:[
+      W(/\b(carbon dioxide|co ?2)\b(?:(?!oxygen).){0,30}\b(from|out of) the (alveol\w*|lungs?|air sacs?)\b|\b(carbon dioxide|co ?2)\b(?:(?!oxygen).){0,20}\binto the (blood|capillar\w*)\b/, "Check that. Which way does carbon dioxide move, into the blood or out of it?"),
+      W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(active transport|osmosis)\b/, "Check that. Which process moves gases from high to low concentration?", "How"), W(/oxygen (moves |goes )?(from|out of) the blood/, "Check that. Oxygen moves from the alveoli into the blood.") ],
     ideas:[
       I("Oxygen", [near(/oxygen|\bo ?2\b/, /blood|capillar/, 60)], "Which way does oxygen move?", "From the air sacs into the ___."),
       I("Carbon dioxide", [near(T.co2, /alveol|lungs?|out|exhal|breath/, 60)], "Which way does carbon dioxide move?", "From the blood into the ___."),
@@ -170,7 +219,10 @@ UNITS.push({
   { n:19, heading:"Respiratory System", prompt:"Describe the roles of the diaphragm and rib cage in breathing.",
     guide:"What happens when you inhale? When you exhale?", where:"Slide: Respiratory slideshow 11 | " + B333,
     model:"When you inhale, the diaphragm contracts and moves down and the rib cage rises, making the chest bigger and pulling air in. When you exhale, the diaphragm and rib cage relax, making the chest smaller and pushing air out.",
-    watch:[ W(/inhal\w*.{0,25}relax/, "Check that. When you inhale, does the diaphragm contract or relax?", "Inhale") ],
+    watch:[
+      W(/\binhal\w*(?:(?!exhal).){0,30}\bdiaphragm\b(?:(?!exhal).){0,20}\b(moves?|goes|go|pushes|push) up\b/, "Check that. When you inhale, does the diaphragm move up or down?"),
+      W(/\bexhal\w*(?:(?!inhal).){0,25}\bcontracts?\b/, "Check that. When you exhale, does the diaphragm contract or relax?"),
+      W(/\blungs? (are|is) (a |made of )?(muscle|muscles)\b/, "Check that. Are the lungs muscles, or do other muscles move air in and out?"), W(/inhal\w*.{0,25}relax/, "Check that. When you inhale, does the diaphragm contract or relax?", "Inhale") ],
     ideas:[
       I("Inhale", [either(/inhal|breath\w* in/, /contract|down|rise|up|bigger|expand/, 60)], "What happens when you inhale?", "The diaphragm tightens and pulls down."),
       I("Exhale", [either(/exhal|breath\w* out/, /relax|smaller|push|up\b/, 60)], "What happens when you exhale?", "The muscles relax.")
@@ -178,6 +230,10 @@ UNITS.push({
   { n:20, heading:"Respiratory System", prompt:"Explain how the respiratory and circulatory systems work together to maintain homeostasis.",
     guide:"What does each system do with oxygen and carbon dioxide?", where:"Slide: Respiratory slideshow 9 to 10 | " + B333,
     model:"The respiratory system brings oxygen into the lungs, and the circulatory system carries it to the cells. The blood carries carbon dioxide back to the lungs to be breathed out. When carbon dioxide rises, the medulla oblongata makes you breathe faster.",
+    watch:[
+      W(/\b(exhal\w*|breathe? out|breathing out) (the )?oxygen\b|\b(inhal\w*|breathe? in|breathing in) (the )?(carbon dioxide|co ?2)\b/, "Check that. Which gas do you breathe in, and which do you breathe out?"),
+      W(/\b(blood|heart|circulatory system)\b.{0,10}\b(makes|produces|creates) (the )?oxygen\b/, "Check that. Does the blood make oxygen, or carry oxygen it got from the lungs?"),
+      W(/\b(carbon dioxide|co ?2)\b.{0,30}\b(rises|goes up|increases|is high|gets high|builds up)\b(?:(?!faster|speed|quicker).){0,40}\b(slower|slows)\b/, "Check that. When carbon dioxide rises, do you breathe faster or slower?") ],
     ideas:[
       I("Oxygen delivery", [either(/oxygen/, /blood|circulat|cells|heart/, 80)], "How does oxygen get from the lungs to the cells?", "The lungs bring it in. What carries it?"),
       I("Carbon dioxide removal", [either(T.co2, /lung|breath|exhal|out/, 80)], "How does carbon dioxide leave the body?", "The blood carries it back to the ___.")
@@ -185,7 +241,9 @@ UNITS.push({
   { n:21, heading:"Scientific Skills", prompt:"Distinguish independent and dependent variables.",
     guide:"Which one do you change? Which one do you measure?", where:"Book: Lesson 1.1, Designing Controlled Experiments",
     model:"The independent variable is the one you change on purpose. The dependent variable is the one you measure; it responds to the change.",
-    watch:[ W(/\bindependent\w*.{0,30}measur|(?<!in)dependent\w*.{0,25}(you change|change on purpose)/, "Check that. Which variable do you change, and which do you measure?") ],
+    watch:[
+      W(/\b(in)?dependent variables? (is |are )?(the (one|thing|variable) )?(that )?(you )?(keep|keeps|stays?|is kept|are kept|remains?) (the )?(same|constant)\b/, "Check that. The things you keep the same are called controlled variables. What is this one?"),
+      W(/\bdependent\w*( variables?)?.{0,20}\b(causes?|affects?|changes) the independent\b/, "Check that. Which variable causes the change in the other?"), W(/\bindependent\w*.{0,30}measur|(?<!in)dependent\w*.{0,25}(you change|change on purpose)/, "Check that. Which variable do you change, and which do you measure?") ],
     ideas:[
       I("Independent", [either(/independent/, /change|manipulat|control|test|choose/, 50)], "What is the independent variable?", "It is the one you ___ on purpose."),
       I("Dependent", [either(/(?<!in)dependent/, /measur|respon|result|observ|depends/, 50)], "What is the dependent variable?", "It is the one you ___.")
@@ -193,6 +251,10 @@ UNITS.push({
   { n:22, heading:"Scientific Skills", prompt:"Identify variables and controls in an investigation.",
     guide:"What is a control group? What should stay the same?", where:"Book: Lesson 1.1, Designing Controlled Experiments",
     model:"A control group gets no change, so you can compare it to the test group. Controlled variables are the things you keep the same so only one variable changes.",
+    watch:[
+      W(/\bcontrol group\b.{0,20}\b(gets|receives|is given|has) (the )?(treatment|change|medicine|drug|variable|independent variable|new)\b/, "Check that. Does the control group get the change being tested?"),
+      W(/(?<!(not|nt|never|don't|doesn't|dont|doesnt) )\b(change|test|changing|testing) (many|multiple|lots of|all the|several|two|2|more than one) (variables|things)\b/, "Check that. How many variables should you change in a fair test?"),
+      W(/\bcontrolled variables? (is |are )?(the (one|ones|thing|things) )?(that )?(you )?(change|changes|changed|measure|measured)\b/, "Check that. Do you change controlled variables, or keep them the same?") ],
     ideas:[
       I("Control group", [either(/control/, /compar|no change|normal|not changed|nothing changed|baseline/, 60)], "What is a control group for?", "It is the group you ___ the others to."),
       I("Keep the same", [/same|constant|one variable|only one/], "What should stay the same in a fair test?", "Change only one thing at a time.")
@@ -200,7 +262,9 @@ UNITS.push({
   { n:23, heading:"Scientific Skills", prompt:"Explain how to read and interpret data from a graph or data table.",
     guide:"What do you check first? Which axis is which variable?", where:"Book: Lesson 1.1, Collecting and Analyzing Data",
     model:"Read the title and the axis labels and units first. The independent variable goes on the x-axis and the dependent variable goes on the y-axis. Then look for the trend: does the line go up, go down, or stay the same?",
-    watch:[ W(/\bindependent\w*.{0,30}(y ?axis|vertical)/, "Check that. The independent variable goes on the x-axis.") ],
+    watch:[
+      W(/\bdependent\w*(?:(?!y ?axis|why ?axis|vertical|independent).){0,25}\b((x|ex) ?axis|horizontal)\b/, "Check that. Which axis does the dependent variable go on?"),
+      W(/\b(x|ex) ?axis (is )?(the )?(vertical|up and down)\b|\by ?axis (is )?(the )?(horizontal|side to side|across)\b/, "Check that. Which axis runs across, and which runs up and down?"), W(/\bindependent\w*.{0,30}(y ?axis|vertical)/, "Check that. The independent variable goes on the x-axis.") ],
     ideas:[
       I("Labels first", [/title|label|units?|axis|axes|key/], "What do you read first on a graph?", "Start with the title and the labels."),
       I("Which axis", [either(/x ?axis|horizontal|bottom/, /independent/, 60), either(/y ?axis|vertical|side/, /dependent/, 60)], "Which variable goes on the x-axis?", "The x-axis holds the variable you change."),

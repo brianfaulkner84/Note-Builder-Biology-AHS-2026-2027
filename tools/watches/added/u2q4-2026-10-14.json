@@ -1,0 +1,660 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:make|makes|making|build|builds|building|produce|produces) (?:\\w+ )?(?:glucose|sugar)\\b",
+   "say": "Check that. Does glycolysis build sugar or split it?",
+   "hit": [
+    "glycolysis makes glucose from pyruvic acid",
+    "glycolysis builds sugar"
+   ],
+   "miss": [
+    "glycolysis means splitting sugar one glucose is split into 2 pyruvic acid with 3 carbons each",
+    "glycolysis does not make sugar it splits it",
+    "glycolysis makes pyruvic acid from glucose"
+   ]
+  },
+  {
+   "re": "\\bsplit\\w* (?:\\w+ ){0,3}into (?:\\w+ ){0,2}(?:glucose|lactic|alcohol|carbon dioxide|co ?2)\\b",
+   "say": "Check that. What is glucose split into during glycolysis?",
+   "hit": [
+    "glucose is split into two lactic acids",
+    "glycolysis splits glucose into carbon dioxide"
+   ],
+   "miss": [
+    "one glucose 6 carbons is split into 2 molecules of pyruvic acid with 3 carbons each",
+    "glucose split into two pyruvic acid",
+    "splitting sugar into 2 pyruvic acids"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\bglycolysis (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:(?:mitochond|mito ?cond|mighty ?cond|mido ?cond|mito\\b)|matrix)",
+   "say": "Check that. Where does glycolysis happen, inside or outside the mitochondria?",
+   "hit": [
+    "glycolysis happens in the mitochondria",
+    "glycolysis is in the matrix"
+   ],
+   "miss": [
+    "glycolysis happens in the cytoplasm it does not need oxygen so it is anaerobic",
+    "glycolysis is not in the mitochondria",
+    "glycolysis happens in the cytoplasm before the mitochondria"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(?:spend|spends|spent|spending|invest\\w*|uses?|used|use up) (?:\\w+ )?(?:4|four) atp\\b",
+   "say": "Check that. How many ATP are spent to start, and how many are made?",
+   "hit": [
+    "the cell spends 4 atp and makes 2",
+    "it uses four atp to start"
+   ],
+   "miss": [
+    "the cell spends 2 atp to start glycolysis makes 4 atp in total net gain 4 2 2",
+    "spends two atp makes four atp",
+    "2 atp in 4 atp out net 2"
+   ]
+  },
+  {
+   "re": "\\bnet (?:gain )?(?:is |of |was |equals )?(?:about )?(?:6|six|36|thirty six|0|zero)\\b",
+   "say": "Check that. Net means the ATP made minus the ATP spent.",
+   "hit": [
+    "net gain is 6 atp",
+    "net of six because 4 plus 2"
+   ],
+   "miss": [
+    "the cell spends 2 atp to start glycolysis makes 4 atp in total net gain 4 minus 2 equals 2 atp per glucose",
+    "net gain is 2",
+    "net two atp per glucose"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "\\b(?:get|gets|getting|got) (?:\\w+ )?(?:2|two) (?:atp )?back\\b",
+   "say": "Check that. How many ATP does glycolysis make in total for the 2 it spends?",
+   "hit": [
+    "it spends 2 atp and gets 2 back",
+    "the cell invests two atp and gets two atp back"
+   ],
+   "miss": [
+    "the cell has to invest 2 atp to get glycolysis started it spends 2 atp and gets 4 back",
+    "spend 2 get 4 back so it gains 2 more",
+    "gets 2 more back than it spent"
+   ]
+  },
+  {
+   "re": "\\b(?:spend|spends|spent|invest\\w*|uses?|used) (?:\\w+ )?(?:4|four) atp\\b|\\buses? (?:up )?more (?:atp )?than (?:it )?(?:makes|gets)\\b",
+   "say": "Check that. Does glycolysis get back more ATP than it spends?",
+   "hit": [
+    "the cell has to spend 4 atp to start",
+    "glycolysis uses more atp than it makes"
+   ],
+   "miss": [
+    "the cell invests 2 atp like buying lemons to sell lemonade it spends 2 and gets 4 back",
+    "spend two atp make four",
+    "invest 2 atp to make more"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\b(?:4|four|36|thirty six) (?:nad ?h|n a d h)\\b",
+   "say": "Check that. How many NADH does glycolysis make per glucose?",
+   "hit": [
+    "glycolysis makes 4 nadh per glucose",
+    "four nadh are made"
+   ],
+   "miss": [
+    "nad picks up high energy electrons 2 electrons and a hydrogen ion and becomes nadh glycolysis makes 2 nadh per glucose",
+    "two nadh per glucose",
+    "makes 4 atp and 2 nadh"
+   ]
+  },
+  {
+   "re": "\\b(?:picks?|picked|picking) up (?:\\w+ ){0,6}becomes? (?:an? )?nad\\b(?! ?h\\b)",
+   "say": "Check that. What does NAD+ become after it picks up electrons?",
+   "hit": [
+    "nadh picks up electrons and becomes nad",
+    "it picks up 2 electrons and a hydrogen and becomes nad plus"
+   ],
+   "miss": [
+    "nad picks up high energy electrons and becomes nadh",
+    "nad plus picks up electrons and becomes nad h",
+    "glycolysis makes 2 nadh per glucose"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\b(?:glucose|sugar|atp) (?:\\w+ )?(?:runs|run|running) out (?:first)?",
+   "say": "Check that. Which molecule is in short supply and runs out first?",
+   "hit": [
+    "glucose runs out first so glycolysis stops",
+    "the atp runs out first"
+   ],
+   "miss": [
+    "the cell has only a small supply of nad so it runs out first when nad runs out glycolysis stops and atp production stops",
+    "nad runs out and no more atp is made",
+    "when nad is used up glycolysis stops"
+   ]
+  },
+  {
+   "re": "\\b(?:lots|a lot|plenty|tons|large (?:amount|supply)|big supply|unlimited (?:supply|amount)?) of nad\\b(?! ?h\\b)|\\bunlimited nad\\b",
+   "say": "Check that. Does the cell have a big supply of NAD+ or a small one?",
+   "hit": [
+    "the cell has lots of nad so it never runs out",
+    "there is a large supply of nad"
+   ],
+   "miss": [
+    "the cell has only a small supply of nad so it runs out first",
+    "a limited amount of nad",
+    "lots of nadh builds up"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:needs?|requires?) oxygen\\b|\\bis aerobic\\b",
+   "say": "Check that. Does glycolysis need oxygen?",
+   "unless": "Oxygen",
+   "hit": [
+    "glycolysis is fast and needs oxygen",
+    "it is aerobic and makes atp quickly"
+   ],
+   "miss": [
+    "glycolysis is very fast it does not need oxygen about 90 percent of the energy is left in pyruvic acid",
+    "it doesn't need oxygen",
+    "glycolysis is anaerobic"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:releases?|uses?|gets?|captures?|takes?|extracts?|uses up) (?:\\w+ )?(?:most|all|90|ninety)(?: percent)? (?:of )?(?:the )?(?:glucose's |glucoses |glucose )?energy\\b",
+   "say": "Check that. After glycolysis, how much of glucose's energy is still left in pyruvic acid?",
+   "hit": [
+    "glycolysis releases most of the energy in glucose",
+    "it uses 90 percent of the energy"
+   ],
+   "miss": [
+    "glycolysis is very fast it can make thousands of atp in a few milliseconds about 90 percent of glucose's energy is still left in pyruvic acid",
+    "most of the energy is still left in pyruvic acid",
+    "it doesn't use most of the energy"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b)\\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:outer membrane|matrix|inter ?membrane)",
+   "say": "Check that. Which membrane holds the electron transport chain?",
+   "hit": [
+    "the electron transport chain is in the matrix",
+    "the etc is in the outer membrane"
+   ],
+   "miss": [
+    "a mitochondrion has an outer membrane and a folded inner membrane the matrix is where the krebs cycle happens the electron transport chain is in the inner membrane",
+    "the etc is in the inner membrane",
+    "krebs in the matrix etc in the inner membrane"
+   ]
+  },
+  {
+   "re": "\\b(?:h|hydrogen|protons?)(?: ions?)? (?:pile|piles|build|builds|collect|collects|accumulate|accumulates) up in (?:the )?matrix",
+   "say": "Check that. Where do the H+ ions pile up?",
+   "hit": [
+    "h ions pile up in the matrix",
+    "hydrogen ions build up in the matrix"
+   ],
+   "miss": [
+    "the intermembrane space is between the two membranes where h ions pile up",
+    "h plus ions pile up in the intermembrane space",
+    "the matrix is the innermost space where the krebs cycle happens"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(?:pyruv|pyro ?vic|pie ?ru ?vic)\\w*(?: acid)? (?:\\w+ ){0,3}(?:into|to) (?:the )?(?:(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz)|nucleus|chloro ?plast|inter ?membrane)",
+   "say": "Check that. Where does pyruvic acid go to start the Krebs cycle?",
+   "hit": [
+    "pyruvic acid goes into the cytoplasm",
+    "pyruvic acid passes to the intermembrane space"
+   ],
+   "miss": [
+    "pyruvic acid from glycolysis passes into the matrix of the mitochondrion",
+    "pyruvic acid goes from the cytoplasm into the mitochondria",
+    "pyruvic acid made in the cytoplasm moves into the matrix"
+   ]
+  },
+  {
+   "re": "\\bjoins? (?:\\w+ ){0,2}(?:2|two|3|three|5|five|6|six) ?carbon",
+   "say": "Check that. How many carbons does the molecule that acetyl CoA joins have?",
+   "hit": [
+    "acetyl coa joins a 6 carbon molecule to make citric acid",
+    "it joins a three carbon molecule"
+   ],
+   "miss": [
+    "acetyl coa joins a 4 carbon molecule to make citric acid",
+    "one carbon leaves as co2 and the rest becomes acetyl coa",
+    "it joins a four carbon molecule"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:releases?|gives? off|makes?|produces?) (?:\\w+ )?(?<!\\bno )oxygen\\b",
+   "say": "Check that. Which gas does the Krebs cycle release?",
+   "hit": [
+    "the krebs cycle releases oxygen",
+    "it makes oxygen and nadh"
+   ],
+   "miss": [
+    "the krebs cycle releases carbon dioxide its main product is nadh plus some fadh2 it makes 2 atp per glucose",
+    "it releases co2 not oxygen",
+    "the krebs cycle doesn't make oxygen"
+   ]
+  },
+  {
+   "re": "\\b(?:32|thirty two|34|thirty four|36|thirty six) atp\\b|\\bmakes (?:the )?most (?:of the )?atp\\b|\\bmakes (?:a lot|lots) of atp\\b",
+   "say": "Check that. Does the Krebs cycle make a lot of ATP or just a little?",
+   "hit": [
+    "the krebs cycle makes 34 atp",
+    "it makes the most atp"
+   ],
+   "miss": [
+    "the krebs cycle releases carbon dioxide its main product is nadh it makes 2 atp per glucose",
+    "only 2 atp",
+    "makes a little atp and lots of nadh"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bpump\\w* (?:\\w+ )?electrons\\b",
+   "say": "Check that. The electrons move down the chain. What gets pumped?",
+   "hit": [
+    "the energy pumps electrons into the intermembrane space",
+    "the proteins pump the electrons across"
+   ],
+   "miss": [
+    "nadh and fadh2 drop off electrons as the electrons move down the chain their energy pumps h ions into the intermembrane space",
+    "electrons power the pumps that move h ions",
+    "h plus ions are pumped"
+   ]
+  },
+  {
+   "re": "\\bpump\\w* (?:\\w+ ){0,3}(?:into|to|in) (?:the )?matrix\\b",
+   "say": "Check that. Where are the H+ ions pumped to?",
+   "hit": [
+    "h ions are pumped into the matrix",
+    "it pumps hydrogen ions to the matrix"
+   ],
+   "miss": [
+    "their energy pumps h ions into the intermembrane space",
+    "h ions are pumped into the intermembrane space",
+    "pumped out of the matrix into the intermembrane space"
+   ]
+  },
+  {
+   "re": "\\b(?:carbon dioxide|co ?2|nad\\w*|atp|glucose|water) (?:is )?(?:the )?(?:final|last) (?:electron )?acceptor",
+   "say": "Check that. Which molecule is the final electron acceptor?",
+   "hit": [
+    "carbon dioxide is the final electron acceptor",
+    "water is the final acceptor"
+   ],
+   "miss": [
+    "oxygen is the final electron acceptor and forms water",
+    "the chain is a line of proteins in the inner membrane",
+    "oxygen is the last acceptor"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\bthrough (?:atp )?synth\\w* (?:\\w+ ){0,2}(?:into|to) (?:the )?inter ?membrane|\\b(?:flow|flows|rush|rushes) (?:back )?(?:into|to) (?:the )?inter ?membrane",
+   "say": "Check that. Which way do the H+ ions flow through ATP synthase?",
+   "hit": [
+    "h ions flow through atp synthase into the intermembrane space",
+    "the h ions rush into the intermembrane space and spin atp synthase"
+   ],
+   "miss": [
+    "h ions pile up in the intermembrane space then flow back into the matrix through atp synthase",
+    "h ions are pumped into the intermembrane space and flow back into the matrix",
+    "the flow makes atp synthase spin"
+   ]
+  },
+  {
+   "re": "\\b(?:remov\\w*|break\\w*|takes? off|taking off) (?:\\w+ ){0,2}phosphate|\\b(?:add|adds|adding|attach\\w*) (?:a |one )?phosphate (?:on )?to (?:an? )?atp\\b",
+   "say": "Check that. To make ATP, does ATP synthase add a phosphate to ADP or take one off?",
+   "hit": [
+    "atp synthase removes a phosphate to make atp",
+    "it adds a phosphate to atp"
+   ],
+   "miss": [
+    "each turn attaches a phosphate to adp making atp",
+    "it adds a phosphate to adp",
+    "the h flow makes atp synthase spin like a water wheel"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\boxygen (?:is )?(?:the )?(?:first|starting) (?:electron )?(?:acceptor|carrier|one)|\\boxygen (?:gives?|donates?|drops? off) (?:\\w+ )?electrons",
+   "say": "Check that. Where in the chain does oxygen work, and does it give or take electrons?",
+   "hit": [
+    "oxygen is the first electron acceptor",
+    "oxygen gives electrons to the chain"
+   ],
+   "miss": [
+    "oxygen is the final electron acceptor at the end of the chain it picks up the used electrons and h and forms water",
+    "nadh drops off electrons and oxygen accepts them",
+    "oxygen is the last stop"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:without|no) )\\boxygen (?:(?:\\w+ ){0,4}and |\\w+ )?(?:makes?|forms?|creates?|turns into|becomes) (?:\\w+ )?(?:atp|glucose|sugar)\\b",
+   "say": "Check that. What does oxygen form when it picks up electrons and H+?",
+   "hit": [
+    "oxygen picks up electrons and forms glucose",
+    "oxygen makes atp at the end of the chain"
+   ],
+   "miss": [
+    "oxygen picks up the used electrons and h and forms water",
+    "if oxygen runs out the chain backs up and the krebs cycle and etc stop",
+    "oxygen forms water"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:inner|outer|inter|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))|\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b)\\w* (?:happens |occurs |takes place |is |are |is done )?(?:in|inside|on) (?:the )?(?:matrix|outer|(?:cyto ?plasm|sito ?plasm|site ?o ?plasm|cyto ?plaz))",
+   "say": "Check that. Which one is in the matrix, and which one is in the inner membrane?",
+   "hit": [
+    "the krebs cycle happens in the inner membrane",
+    "the etc is in the matrix and the krebs cycle is in the inner membrane"
+   ],
+   "miss": [
+    "the krebs cycle loads the electron carriers it happens in the matrix the electron transport chain cashes them in for atp it happens in the inner membrane",
+    "krebs in the matrix etc in the inner membrane",
+    "the etc is in the inner membrane"
+   ]
+  },
+  {
+   "re": "\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b)\\w* (?:loads?|makes?|produces?) (?:the )?(?:nad ?h|electron carriers|carriers)\\b|\\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:cashes|cash|unloads?|makes (?:the )?most)",
+   "say": "Check that. Which one loads the carriers, and which one cashes them in?",
+   "hit": [
+    "the electron transport chain loads the carriers and the krebs cycle cashes them in",
+    "the krebs cycle makes the most atp"
+   ],
+   "miss": [
+    "the krebs cycle loads the electron carriers makes nadh and fadh2 the electron transport chain cashes them in for atp",
+    "the etc uses the nadh to make atp",
+    "krebs loads the carriers"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "\\b(?:38|thirty eight)\\b|\\b(?:electron transport(?: chain)?|\\betc\\b|\\be t c\\b) (?:makes |gives |produces )?(?:about )?(?:34|thirty four|36|thirty six)\\b",
+   "say": "Check that. Add up glycolysis, the Krebs cycle, and the electron transport chain from your notes. What total do you get?",
+   "hit": [
+    "glycolysis 2 krebs 2 etc 34 total 38 atp",
+    "about thirty eight atp per glucose"
+   ],
+   "miss": [
+    "glycolysis 2 + krebs cycle 2 + electron transport chain 32 = about 36 atp per glucose the electron transport chain makes the most",
+    "total 36 atp",
+    "etc makes 32"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\bglycolysis (?:\\w+ )?stops first",
+   "say": "Check that. Which stage stops first when oxygen runs out?",
+   "hit": [
+    "without oxygen glycolysis stops first",
+    "glycolysis stops first when oxygen runs out"
+   ],
+   "miss": [
+    "without oxygen the electron transport chain stops first nadh has nowhere to drop off its electrons nad runs out and glycolysis stops",
+    "the etc stops first and glycolysis stops last",
+    "glycolysis stops when nad runs out"
+   ]
+  },
+  {
+   "re": "\\b(?:krebs|kreb|crebs|citric acid)(?: cycle)? (?:keeps going|keeps running|continues|still (?:runs|works|goes))",
+   "say": "Check that. Can the Krebs cycle keep going if the carriers cannot unload?",
+   "hit": [
+    "the krebs cycle keeps going without oxygen",
+    "the krebs cycle continues but the etc stops"
+   ],
+   "miss": [
+    "without oxygen the electron transport chain stops first nad runs out and glycolysis stops",
+    "glycolysis keeps going with fermentation",
+    "the krebs cycle stops too"
+   ]
+  },
+  {
+   "re": "\\bnad\\b(?! ?h\\b) (?:\\w+ )?(?:can't|cant|cannot|can not) (?:unload|drop)",
+   "say": "Check that. Which loaded carrier is stuck holding its electrons?",
+   "hit": [
+    "nad can't unload its electrons",
+    "nad plus cannot drop off its electrons"
+   ],
+   "miss": [
+    "nadh has nowhere to drop off its electrons so it cannot turn back into nad",
+    "nadh can't unload",
+    "nad runs out and glycolysis stops"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\bturns? (?:\\w+ )?nad\\b(?! ?h\\b)(?: back)? into (?:an? )?nad ?h\\b|\\bnad\\b(?! ?h\\b) (?:\\w+ ){0,2}into (?:an? )?nad ?h\\b",
+   "say": "Check that. Which way does fermentation change the carrier?",
+   "hit": [
+    "fermentation turns nad into nadh",
+    "it changes nad back into nadh so glycolysis keeps going"
+   ],
+   "miss": [
+    "when oxygen is missing fermentation turns nadh back into nad that gives nad back to glycolysis so it can keep making 2 atp",
+    "nadh turns into nad",
+    "fermentation regenerates nad"
+   ]
+  },
+  {
+   "re": "\\b(?:humans?|we|people|muscles?|muscle cells) (?:make|makes|produce|produces|do|does) (?:\\w+ )?(?:alcohol|ethanol|alcoholic)\\b",
+   "say": "Check that. Which type of fermentation do human muscle cells use?",
+   "hit": [
+    "humans do alcoholic fermentation when oxygen is missing",
+    "our muscles make alcohol"
+   ],
+   "miss": [
+    "when oxygen is missing fermentation turns nadh back into nad",
+    "humans do lactic acid fermentation",
+    "yeast make alcohol but humans make lactic acid"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:gives? off|releases?|makes?|produces?) (?:\\w+ )?oxygen\\b|\\boxygen (?:bubbles|gas)\\b",
+   "say": "Check that. Which gas makes the bubbles in bread?",
+   "hit": [
+    "yeast give off oxygen bubbles",
+    "the oxygen bubbles make bread rise"
+   ],
+   "miss": [
+    "yeast do alcoholic fermentation pyruvic acid and nadh make ethyl alcohol carbon dioxide and nad the co2 bubbles make bread dough rise",
+    "it gives off carbon dioxide gas",
+    "yeast don't make oxygen"
+   ]
+  },
+  {
+   "re": "\\balcohol (?:\\w+ ){0,2}(?:makes?|causes?|helps?) (?:\\w+ ){0,3}(?:rise|puff)",
+   "say": "Check that. Which product makes the dough rise?",
+   "hit": [
+    "the alcohol makes the bread rise",
+    "ethyl alcohol causes the dough to rise"
+   ],
+   "miss": [
+    "the co2 bubbles make bread dough rise",
+    "yeast make alcohol and carbon dioxide and the gas makes bread rise",
+    "alcoholic fermentation makes bread rise because of co2"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\balcohol (?:has |have )?(?:only )?(?:3|three|4|four)\\b|\\b(?:pyruv|pyro ?vic)\\w*(?: acid)? (?:has |have )?(?:only )?(?:2|two)\\b",
+   "say": "Check that. Count again. Which one has 3 carbons, and which has 2?",
+   "hit": [
+    "ethyl alcohol has 3 carbons and pyruvic acid has 2",
+    "pyruvic acid has two carbons"
+   ],
+   "miss": [
+    "pyruvic acid has 3 carbons but ethyl alcohol has only 2 one carbon leaves as carbon dioxide",
+    "pyruvic acid 3 carbons alcohol 2 carbons",
+    "the alcohol has 2 carbons"
+   ]
+  },
+  {
+   "re": "\\b(?:carbon|it) (?:leaves|escapes|goes|floats away|is lost) (?:as |in |into )(?:an? )?(?:oxygen|o ?2|water|alcohol|lactic|glucose)\\b",
+   "say": "Check that. What gas does the missing carbon leave as?",
+   "hit": [
+    "one carbon leaves as oxygen gas",
+    "the carbon escapes as water"
+   ],
+   "miss": [
+    "one carbon leaves as carbon dioxide gas and floats away",
+    "the carbon leaves as co2",
+    "it is lost as carbon dioxide"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "\\byeast (?:do|does|make|makes|use|uses|perform|performs)\\b|\\b(?:made|done) by yeast\\b",
+   "say": "Check that. Is it yeast, or humans and bacteria, that do lactic acid fermentation?",
+   "hit": [
+    "yeast do lactic acid fermentation",
+    "lactic acid is made by yeast"
+   ],
+   "miss": [
+    "humans muscle cells and many bacteria do lactic acid fermentation it makes lactic acid and nad",
+    "humans and bacteria do it not yeast",
+    "it helps make yogurt and cheese"
+   ]
+  },
+  {
+   "re": "(?<!\\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\\b(?:makes?|produces?) (?:\\w+ ){0,2}(?:alcohol|ethanol)\\b|\\bbread (?:\\w+ )?rises?\\b",
+   "say": "Check that. Which type of fermentation makes alcohol and raises bread?",
+   "hit": [
+    "lactic acid fermentation makes alcohol",
+    "it makes bread rise and yogurt"
+   ],
+   "miss": [
+    "pyruvic acid and nadh make lactic acid and nad it does not give off co2",
+    "it makes lactic acid not alcohol",
+    "it doesn't make alcohol"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "\\byeast (?:do|does|make|makes|produce|produces) lactic|\\b(?:humans?|muscles?|we|bacteria) (?:do|does|make|makes|produce|produces) (?:\\w+ )?(?:alcohol|ethanol|alcoholic)\\b",
+   "say": "Check that. Which organisms go in each column?",
+   "hit": [
+    "yeast make lactic acid",
+    "humans do alcoholic fermentation"
+   ],
+   "miss": [
+    "alcoholic yeast makes ethyl alcohol co2 and nad lactic acid humans and bacteria makes lactic acid and nad no co2",
+    "alcoholic yeast lactic acid humans and bacteria",
+    "humans make lactic acid"
+   ]
+  },
+  {
+   "re": "\\blactic (?:acid )?(?:fermentation )?(?:gives|releases|makes|produces) (?:off )?(?:carbon dioxide|co ?2)",
+   "say": "Check that. Which fermentation gives off CO2?",
+   "hit": [
+    "lactic acid fermentation gives off co2",
+    "lactic releases carbon dioxide"
+   ],
+   "miss": [
+    "alcoholic gives off co2 lactic acid makes lactic acid and nad no co2",
+    "lactic acid fermentation makes lactic acid",
+    "only alcoholic fermentation gives off co2"
+   ]
+  },
+  {
+   "re": "\\b(?:both|they|fermentation|alcoholic|lactic) (?:\\w+ ){0,2}(?<!\\ban )(?<!not )\\baerobic\\b",
+   "say": "Check that. Does fermentation need oxygen?",
+   "hit": [
+    "both are aerobic",
+    "they are both aerobic and make 2 atp"
+   ],
+   "miss": [
+    "both regenerate nad both are anaerobic and both make only 2 atp per glucose",
+    "both are an aerobic",
+    "both are not aerobic"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\b(?:lactic|ferment)\\w*(?: acid)?(?: fermentation)? (?:powers?|is (?:used )?for|supplies? (?:atp )?for|lasts?) (?:\\w+ )?(?:long|longer|marathons?|hours)\\b",
+   "say": "Check that. How long can lactic acid fermentation supply ATP?",
+   "hit": [
+    "lactic acid fermentation powers long exercise like a marathon",
+    "fermentation lasts for hours"
+   ],
+   "miss": [
+    "lactic acid fermentation supplies atp for about 90 seconds like a sprint cellular respiration powers longer exercise",
+    "fermentation lasts about 90 seconds",
+    "respiration powers long exercise"
+   ]
+  },
+  {
+   "re": "\\b(?:stored|already made|on hand) atp (?:lasts? |is used for )?(?:about |for )?(?:90|ninety|minutes|hours|a long time)",
+   "say": "Check that. How long does the ATP already in muscles last?",
+   "hit": [
+    "stored atp lasts 90 seconds",
+    "stored atp lasts for minutes"
+   ],
+   "miss": [
+    "stored atp lasts only a few seconds",
+    "lactic acid fermentation supplies atp for about 90 seconds",
+    "stored atp a few seconds"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "\\bwithout oxygen (?:\\w+ ){0,2}(?:36|thirty six)\\b|\\bfermentation (?:makes|gives|produces) (?:about )?(?:36|thirty six|34|32|4|four|a lot|lots)\\b",
+   "say": "Check that. Without oxygen, how many ATP does the cell get per glucose?",
+   "hit": [
+    "without oxygen you get 36 atp",
+    "fermentation makes 36 atp"
+   ],
+   "miss": [
+    "with oxygen glycolysis is followed by the krebs cycle and the electron transport chain making about 36 atp per glucose without oxygen glycolysis is followed by fermentation making only 2 atp",
+    "without oxygen only 2 atp",
+    "with oxygen 36 without oxygen 2"
+   ]
+  },
+  {
+   "re": "\\bwith oxygen (?:\\w+ ){0,4}(?<!\\b(?:no|not) )ferment",
+   "say": "Check that. Which steps follow glycolysis when oxygen is present?",
+   "hit": [
+    "with oxygen glycolysis is followed by fermentation",
+    "with oxygen fermentation happens"
+   ],
+   "miss": [
+    "with oxygen glycolysis is followed by the krebs cycle and the electron transport chain",
+    "with oxygen no fermentation",
+    "without oxygen fermentation follows glycolysis"
+   ]
+  }
+ ]
+}

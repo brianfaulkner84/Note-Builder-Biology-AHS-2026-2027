@@ -1,0 +1,957 @@
+{
+ "1": [
+  {
+   "re": "(?<!\\bnot )(?<!\\bjust )\\b(most|some|many) (living things|organisms|things that are alive)\\b (are )?(made|built|composed)",
+   "say": "Check that. Are only some living things made of cells?",
+   "hit": [
+    "most living things are made of cells",
+    "some organisms are made up of cells and cells are the basic unit"
+   ],
+   "miss": [
+    "all living things are made of cells",
+    "every organism is made up of one or more cells",
+    "not just some living things all of them are made of cells"
+   ]
+  },
+  {
+   "re": "\\bcells? (can |are |were |could )?(come|comes|form|forms|formed|produced|made|arise|arises|appear|appears|grow|grows) (from|out of) (nonliving|non living|nothing|dirt|air|nowhere|mud)\\b",
+   "say": "Check that. Can a new cell come from something that is not a cell?",
+   "hit": [
+    "all living things are made of cells new cells come from nonliving things",
+    "cells can form from nothing"
+   ],
+   "miss": [
+    "new cells are produced from existing cells",
+    "cells do not come from nonliving things",
+    "new cells come from cells that already exist"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\b(come|comes|made|produced|built|formed)\\w* (from|by) (the )?(ribosomes?|nucleus|organelles?|proteins?|food|dna)\\b",
+   "say": "Check that. Do new cells come from a part of a cell, or from a whole existing cell?",
+   "unless": "Where new cells come from",
+   "hit": [
+    "new cells are made by the nucleus",
+    "new cells are produced from food and proteins"
+   ],
+   "miss": [
+    "new cells are produced from existing cells",
+    "a cell divides to make new cells",
+    "new cells come from old cells splitting"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(pond|mouth|teeth|saliva|spit|plaque|blood|onions?|bacteria)\\b",
+   "say": "Check that. That sounds like a different scientist. What did Hooke look at?",
+   "unless": "What he looked at",
+   "hit": [
+    "robert hooke looked at pond water and the cells were dead",
+    "hooke looked at an onion and saw dead cells"
+   ],
+   "miss": [
+    "robert hooke looked at thin slices of cork the cells were dead",
+    "hooke saw cork cells that were empty chambers",
+    "hooke looked at cork not pond water and the cells were dead"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bnever )(?<!\\bdidnt )invent\\w* (the |a )?(first )?microscopes?",
+   "say": "Check that. Is this note about what Hooke invented, or what he looked at?",
+   "hit": [
+    "robert hooke invented the microscope and looked at dead cells",
+    "hooke invented the first microscope"
+   ],
+   "miss": [
+    "robert hooke looked at thin slices of cork the cells were dead",
+    "hooke did not invent the microscope he looked at cork",
+    "hooke used a microscope to see dead cork cells"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "schleiden|schwann|\\bswan\\b|virchow|vir ?cow|pasteur",
+   "say": "Check that. That scientist is from a different part of the cell story. Who first saw living cells?",
+   "unless": "Who",
+   "hit": [
+    "schwann was the first to see living cells in pond water",
+    "virchow saw living cells in his mouth"
+   ],
+   "miss": [
+    "anton van leeuwenhoek was the first to see living cells in pond water",
+    "leeuwenhoek looked at pond water and his own mouth",
+    "van leeuwenhoek saw living cells in plaque from his teeth"
+   ]
+  },
+  {
+   "re": "\\bcork\\b",
+   "say": "Check that. Cork cells were dead. What did he look at to see living cells?",
+   "unless": "What he looked at",
+   "hit": [
+    "leeuwenhoek looked at cork",
+    "anton van leeuwenhoek saw living cells in cork"
+   ],
+   "miss": [
+    "anton van leeuwenhoek was the first to see living cells he looked at pond water",
+    "leeuwenhoek looked at pond water and his mouth not cork",
+    "he looked at spit and pond water"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "\\blight( microscopes?)? (shows?|has|gives?|sees?|can see) (way )?(more|better|higher|greater) (detail|magnif\\w*|resolution|zoom)",
+   "say": "Check that. Which microscope shows more detail?",
+   "hit": [
+    "a light microscope shows more detail but electron microscopes cannot see living cells",
+    "light microscope has higher magnification than an electron microscope"
+   ],
+   "miss": [
+    "a light microscope uses light and can show living cells an electron microscope shows more detail",
+    "the electron microscope shows more detail than the light microscope",
+    "light microscopes can see living cells"
+   ]
+  },
+  {
+   "re": "\\belectron microscopes? (uses?|shines?) (a |regular )?light\\b",
+   "say": "Check that. What does an electron microscope use instead of light?",
+   "hit": [
+    "an electron microscope uses light and shows more detail",
+    "electron microscopes use regular light to see dead cells"
+   ],
+   "miss": [
+    "an electron microscope uses a beam of electrons",
+    "a light microscope uses light and an electron microscope uses electrons",
+    "electron microscopes do not use light"
+   ]
+  },
+  {
+   "re": "\\blight microscopes? (can't|cant|cannot|can not|does not|doesn't|doesnt|do not|don't|dont) (show|see|view|look at) (living|live)",
+   "say": "Check that. Which microscope can show living cells?",
+   "hit": [
+    "light microscopes cannot show living cells",
+    "a light microscope can't see live cells"
+   ],
+   "miss": [
+    "a light microscope uses light and can show living cells",
+    "electron microscopes cannot show living cells",
+    "the light microscope can see living things but the electron microscope can not"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "(pro ?kary|pro ?carr|pro ?cary|procar)\\w*( cells?)? (has|have|contains?|contain) (a |its )?(nucle|new ?clear)",
+   "say": "Check that. Does a prokaryote have a nucleus?",
+   "hit": [
+    "a prokaryote has a nucleus example bacteria",
+    "prokaryotic cells have a nucleus"
+   ],
+   "miss": [
+    "a prokaryote has no nucleus its dna floats in the cytoplasm example bacteria",
+    "prokaryotes do not have a nucleus",
+    "eukaryotes have a nucleus and prokaryotes have none"
+   ]
+  },
+  {
+   "re": "(eu|you|u) ?kary\\w*( cells?)? ((do not|don't|dont|does not|doesn't|doesnt|never) have|lacks?|has no|have no) (a )?nucle",
+   "say": "Check that. Where does a eukaryote keep its DNA?",
+   "hit": [
+    "a eukaryote does not have a nucleus example plants",
+    "eukaryotic cells have no nucleus"
+   ],
+   "miss": [
+    "a eukaryote has a nucleus that holds its dna example plants",
+    "prokaryotes do not have a nucleus but eukaryotes do",
+    "eukaryotes keep dna in a nucleus"
+   ]
+  },
+  {
+   "re": "(eu|you|u) ?kary\\w*( cells?)?( are| is)?( an?)? (examples?|like|such as|for example|e g)( is| are)?( an?)? bacteri|bacteri\\w* (is|are) (an? )?(eu|you|u) ?kary|(pro ?kary|procar)\\w*( cells?)?( are| is)?( an?)? (examples?|like|such as|for example|e g)( is| are)?( an?)? (plants?|animals?|humans?)|(plants?|animals?|humans?) (is|are) (an? )?(pro ?kary|procar)",
+   "say": "Check that. Is your example in the right group? Which one has a nucleus?",
+   "hit": [
+    "prokaryote example plants eukaryote example bacteria",
+    "bacteria are eukaryotes and humans are prokaryotes"
+   ],
+   "miss": [
+    "a prokaryote has no nucleus example bacteria a eukaryote has a nucleus example plants",
+    "prokaryote example bacteria eukaryote example animals",
+    "bacteria are prokaryotes plants are eukaryotes"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\b(no |(do not|don't|dont|does not|doesn't|doesnt) have (a |any )?|lacks? (a |any )?)(cell )?walls?\\b",
+   "say": "Check that. Most bacteria do have a cell wall. What structure is missing?",
+   "hit": [
+    "prokaryotic cells do not have a cell wall",
+    "prokaryotes have no cell wall or nucleus"
+   ],
+   "miss": [
+    "prokaryotic cells do not have a nucleus they also have no membrane bound organelles",
+    "bacteria have a cell wall but no nucleus",
+    "prokaryotes lack a nucleus"
+   ]
+  },
+  {
+   "re": "\\b(do not|don't|dont|does not|doesn't|doesnt|lacks?|lack) (have )?(a |any )?(dna|cell membrane|plasma membrane|membrane(?! ?bound)(?! enclosed)|ribosomes?|cytoplasm)\\b",
+   "say": "Check that. Prokaryotes still have DNA, a membrane, cytoplasm, and ribosomes. What is missing?",
+   "hit": [
+    "prokaryotes do not have dna in them",
+    "bacteria don't have ribosomes or a nucleus"
+   ],
+   "miss": [
+    "prokaryotic cells do not have a nucleus they also have no membrane bound organelles",
+    "prokaryotes do not have membrane bound organelles",
+    "they lack a nucleus but have dna"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bbecause (they |it |human cells )?(has|have|contain|contains) (dna|ribosomes?|a cell membrane|cytoplasm)\\b",
+   "say": "Check that. All cells have that. What do human cells have that bacteria do not?",
+   "unless": "The reason",
+   "hit": [
+    "human cells are eukaryotic because they have dna",
+    "eukaryotic because they have ribosomes"
+   ],
+   "miss": [
+    "human cells are eukaryotic because they have a nucleus",
+    "human cells are eukaryotic because they have dna in a nucleus",
+    "eukaryotic because it has a nucleus"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bnever )\\b(has|have|with) (a )?(cell )?walls?\\b",
+   "say": "Check that. Do human cells have a cell wall?",
+   "hit": [
+    "human cells are eukaryotic because they have a cell wall",
+    "eukaryotic with a cell wall and a nucleus"
+   ],
+   "miss": [
+    "human cells are eukaryotic because they have a nucleus",
+    "human cells are eukaryotic they have a nucleus but do not have a cell wall",
+    "they don't have a cell wall but they have a nucleus"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\b(chloroplasts?|chloro ?plasts?|cell walls?|walls?|centrioles?|vacuoles?|lysosomes?|golgi) (is|are) (found )?in (all|every)",
+   "say": "Check that. Which organelle is found in ALL cells, even bacteria?",
+   "hit": [
+    "every cell has a cell membrane dna cytoplasm and ribosomes the chloroplast is in all cells",
+    "the cell wall is found in every cell"
+   ],
+   "miss": [
+    "every cell has a cell membrane dna cytoplasm and ribosomes the ribosome is the organelle found in all cells",
+    "ribosomes are found in all cells",
+    "chloroplasts are only in plant cells and ribosomes are in all cells"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\b(all|every) cells? (has|have|contain|contains) (a |an )?(nucle|mitochond|chloroplast)",
+   "say": "Check that. Does every cell, even a bacterium, have that?",
+   "hit": [
+    "every cell has a nucleus dna cytoplasm and ribosomes",
+    "all cells have mitochondria and a membrane"
+   ],
+   "miss": [
+    "every cell has a cell membrane dna cytoplasm and ribosomes",
+    "not every cell has a nucleus but all cells have ribosomes",
+    "all cells have ribosomes"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "(ribo ?som|rybo ?som|ribozome)\\w* (has|have|are|is) (a |an outer |wrapped in (a )?|surrounded by (a )?|covered (by|in|with) (a )?)?(membranes?|membrane ?bound|wrapped|surrounded)\\b",
+   "say": "Check that. Is a ribosome wrapped in a membrane?",
+   "hit": [
+    "ribosomes are membrane bound but bacteria still have them",
+    "ribosomes have a membrane around them"
+   ],
+   "miss": [
+    "ribosomes have no membrane around them mitochondria are wrapped in membranes",
+    "ribosomes are not wrapped in a membrane",
+    "ribosomes do not have a membrane"
+   ]
+  },
+  {
+   "re": "(mitochond|mito ?cond)\\w* ((has|have|are|is) (no|not) (a )?(membranes?|wrapped|membrane ?bound)|(don't|dont|do not|does not|doesn't|doesnt) have (a |any )?membranes?)",
+   "say": "Check that. Is a mitochondrion wrapped in a membrane?",
+   "hit": [
+    "mitochondria have no membrane",
+    "mitochondria do not have a membrane so bacteria cannot have them"
+   ],
+   "miss": [
+    "mitochondria are wrapped in membranes",
+    "mitochondria have two membranes",
+    "bacteria have no membrane bound organelles like mitochondria"
+   ]
+  },
+  {
+   "re": "\\btoo (small|tiny|little)\\b|\\bnot (big|large) enough\\b",
+   "say": "Check that. Is size the real reason, or is it about membranes?",
+   "unless": "The rule for bacteria",
+   "hit": [
+    "bacteria are too small to have mitochondria",
+    "bacteria are not big enough for mitochondria"
+   ],
+   "miss": [
+    "prokaryotes like bacteria have no membrane bound organelles so they can have ribosomes but not mitochondria",
+    "bacteria are small and have no membrane bound organelles",
+    "mitochondria are wrapped in membranes and ribosomes are not"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bcells?\\b.{0,20}\\borgans?\\b(?! system).{0,20}\\btissues?\\b",
+   "say": "Check that. What are organs made of?",
+   "hit": [
+    "cell organ tissue organ system",
+    "cells then organs then tissues then organ systems"
+   ],
+   "miss": [
+    "cell tissue organ organ system each level is built from the one before it",
+    "cells make tissues tissues make organs organs make organ systems",
+    "cell then tissue then organ then organ system"
+   ]
+  },
+  {
+   "re": "\\btissues? (are |is )?(made|built|composed) (up )?of organs?\\b",
+   "say": "Check that. What are tissues made of?",
+   "hit": [
+    "tissues are made of organs",
+    "cell tissue organ organ system tissues are made up of organs"
+   ],
+   "miss": [
+    "organs are made of tissues",
+    "tissues are made of cells",
+    "cell tissue organ organ system"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "\\borganelles? (is|are) (an? )?(type of |kind of )?cells?\\b(?! (structure|part|component|thing))",
+   "say": "Check that. Is an organelle a whole cell, or a part inside a cell?",
+   "hit": [
+    "an organelle is a cell that has a job",
+    "organelles are cells inside the body"
+   ],
+   "miss": [
+    "an organelle is a structure inside a cell that has a specific job",
+    "an organelle is a cell structure with a job",
+    "organelle means little organ"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(found |located |are |is )(outside|out side) (of )?(the |a )?cells?\\b",
+   "say": "Check that. Where are organelles found?",
+   "hit": [
+    "organelles are found outside the cell and have jobs",
+    "an organelle is outside of a cell"
+   ],
+   "miss": [
+    "an organelle is a structure inside a cell that has a specific job",
+    "organelles are not outside the cell they are inside",
+    "organelles are inside the cell"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "power ?house|(makes?|produces?|creates?|gives?) (the )?(cell )?(energy|atp|power)\\b",
+   "say": "Check that. Which organelle supplies energy? What does the nucleus hold?",
+   "hit": [
+    "the nucleus is the powerhouse of the cell",
+    "the nucleus makes energy and holds dna"
+   ],
+   "miss": [
+    "the nucleus holds the cell's dna it is the control center",
+    "the nucleus controls most of the cell's activities",
+    "the nucleus has dna with instructions for the cell"
+   ]
+  },
+  {
+   "re": "(?<!\\bto )(?<!\\bhelp )\\b(makes?|builds?|assembles?) (the )?proteins?\\b",
+   "say": "Check that. Which organelle builds proteins? What does the nucleus hold?",
+   "unless": "What it holds",
+   "hit": [
+    "the nucleus makes proteins for the cell",
+    "the nucleus builds proteins and controls the cell"
+   ],
+   "miss": [
+    "the nucleus holds the dna which has instructions that control the cell",
+    "the dna tells the cell how to make proteins",
+    "the nucleus is the control center"
+   ]
+  },
+  {
+   "re": "\\bonly (found )?(in )?animals?\\b|plants? (cells )?(do not|don't|dont|never|doesn't|doesnt) have (a )?nucle",
+   "say": "Check that. Do plant cells have a nucleus too?",
+   "hit": [
+    "the nucleus holds dna and is only found in animal cells",
+    "plant cells do not have a nucleus"
+   ],
+   "miss": [
+    "the nucleus holds the cell's dna it is the control center",
+    "plant and animal cells both have a nucleus",
+    "bacteria do not have a nucleus"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "\\bonly (lets?|allows?) (\\w+ )?(things |stuff |materials? |food )?in\\b|\\bonly (keeps?|lets?|sends?) (things |stuff |waste )?out\\b",
+   "say": "Check that. Does the membrane only work in one direction?",
+   "unless": "In and out",
+   "hit": [
+    "the cell membrane only lets things in",
+    "the membrane only keeps things out and is selectively permeable"
+   ],
+   "miss": [
+    "the cell membrane regulates what enters and leaves the cell",
+    "it lets some things in and out but not others",
+    "it lets only some things through"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdoesnt )(?<!\\bdont )\\blets? (everything|anything|all (things|molecules|substances|stuff)) (in|through|pass|go)",
+   "say": "Check that. Does everything get through, or only some things?",
+   "hit": [
+    "selectively permeable means it lets everything through",
+    "the membrane lets all molecules in and out"
+   ],
+   "miss": [
+    "selectively permeable means it lets some things through but not others",
+    "it does not let everything through",
+    "the membrane doesn't let everything in"
+   ]
+  }
+ ],
+ "15": [
+  {
+   "re": "(glycol|glyco ?lys|gly ?co ?lys)\\w*(?:(?!cytoplasm|cyto ?plasm).){0,30}(mitochond|mito\\b|nucle|chloroplast)",
+   "say": "Check that. Where does glycolysis happen?",
+   "hit": [
+    "the cytoplasm is the fluid in the cell glycolysis happens in the mitochondria",
+    "glycolysis takes place in the nucleus"
+   ],
+   "miss": [
+    "the cytoplasm is the fluid inside the cell membrane but outside the nucleus glycolysis happens in the cytoplasm",
+    "glycolysis happens in the cytoplasm not the mitochondria",
+    "organelles sit in the cytoplasm and glycolysis happens there"
+   ]
+  },
+  {
+   "re": "photo ?synth|photo ?sin",
+   "say": "Check that. Which energy process happens in the cytoplasm?",
+   "unless": "Energy process",
+   "hit": [
+    "the cytoplasm is jelly fluid and photosynthesis happens there",
+    "photosynthesis happens in the cytoplasm"
+   ],
+   "miss": [
+    "the cytoplasm is the fluid inside the cell glycolysis happens there",
+    "organelles float in the cytoplasm",
+    "glycolysis happens in the cytoplasm not photosynthesis"
+   ]
+  }
+ ],
+ "16": [
+  {
+   "re": "\\bwalls?\\b.{0,30}\\b(controls?|regulates?|decides?|chooses?) (what|which)",
+   "say": "Check that. Which structure controls what enters and leaves the cell?",
+   "hit": [
+    "the cell wall controls what enters and leaves the cell",
+    "the wall decides what gets in and out plant cells have one"
+   ],
+   "miss": [
+    "the cell wall is a strong layer outside the cell membrane that supports and protects the cell",
+    "the cell membrane controls what enters the cell and the wall supports it",
+    "plant cells have a cell wall animal cells never do"
+   ]
+  },
+  {
+   "re": "plants? (cells? )?(do not|don't|dont|doesn't|doesnt|never) have (a )?(cell )?membranes?|instead of (a )?(cell )?membrane",
+   "say": "Check that. Plant cells have a wall AND what else?",
+   "hit": [
+    "plant cells do not have a cell membrane they have a cell wall",
+    "plants have a cell wall instead of a cell membrane"
+   ],
+   "miss": [
+    "the cell wall is outside the cell membrane in plant cells",
+    "plant cells have a cell wall and a cell membrane",
+    "animal cells do not have a cell wall"
+   ]
+  }
+ ],
+ "17": [
+  {
+   "re": "\\b(packag|ship|sort)\\w*",
+   "say": "Check that. Packaging and shipping is another organelle's job. What does a ribosome do?",
+   "hit": [
+    "ribosomes package proteins and ship them out",
+    "the ribosome sorts proteins"
+   ],
+   "miss": [
+    "ribosomes build proteins by following instructions from dna",
+    "ribosomes assemble proteins",
+    "the ribosome makes proteins"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )\\b(break|breaks|breaking|digest|digests|destroy|destroys) (down )?(the )?proteins?",
+   "say": "Check that. Do ribosomes build proteins or break them down?",
+   "hit": [
+    "ribosomes break down proteins",
+    "the ribosome digests proteins"
+   ],
+   "miss": [
+    "ribosomes build proteins by following instructions from dna",
+    "ribosomes do not break down proteins they build them",
+    "ribosomes put together proteins"
+   ]
+  }
+ ],
+ "18": [
+  {
+   "re": "rough (er |endoplasmic reticulum )?(makes?|builds?|produces?|helps (build|make)) (lipids?|fats?)|smooth (er |endoplasmic reticulum )?(makes?|builds?|produces?|helps (build|make)) proteins",
+   "say": "Check that. Which kind of ER builds proteins, and which makes lipids?",
+   "hit": [
+    "rough er makes lipids and smooth er makes proteins",
+    "the smooth er helps build proteins"
+   ],
+   "miss": [
+    "rough er is covered with ribosomes and helps build proteins smooth er has no ribosomes it makes lipids",
+    "rough er makes proteins smooth er makes lipids",
+    "the er is an assembly line"
+   ]
+  },
+  {
+   "re": "rough (er |endoplasmic reticulum )?(has no|does not have|doesn't have|doesnt have|lacks?|is not covered (with|in|by)) ribo",
+   "say": "Check that. What makes rough ER look rough?",
+   "hit": [
+    "rough er has no ribosomes",
+    "the rough er does not have ribosomes on it"
+   ],
+   "miss": [
+    "rough er is covered with ribosomes smooth er has no ribosomes",
+    "smooth er does not have ribosomes",
+    "rough er has ribosomes"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "(golgi|goalie|goal ?g|golgie|gold ?g)\\w*.{0,30}\\b(break|breaks|breaking|digest|digests|destroy|destroys)\\b",
+   "say": "Check that. Breaking things down is the lysosome's job. What does the Golgi do?",
+   "hit": [
+    "the golgi apparatus breaks down old proteins",
+    "golgi digests waste in the cell"
+   ],
+   "miss": [
+    "the golgi apparatus modifies sorts and packages proteins for storage or to ship out of the cell",
+    "the golgi packages proteins to ship them out",
+    "the golgi finishes proteins"
+   ]
+  },
+  {
+   "re": "power ?house|(makes?|produces?|creates?) (the )?(cell'?s? )?(energy|atp|power)\\b",
+   "say": "Check that. Which organelle supplies energy? What does the Golgi do to proteins?",
+   "hit": [
+    "the golgi apparatus makes energy for the cell",
+    "the golgi is the powerhouse"
+   ],
+   "miss": [
+    "the golgi apparatus modifies sorts and packages proteins",
+    "golgi packages proteins for storage",
+    "the golgi ships proteins out of the cell"
+   ]
+  }
+ ],
+ "20": [
+  {
+   "re": "\\b(to|into|toward|towards) the (nucleus|nuclei)\\b",
+   "say": "Check that. Where does the vesicle take the waste so it can leave the cell?",
+   "hit": [
+    "a vesicle carries the waste to the nucleus",
+    "the vesicle takes waste into the nucleus and it is exocytosis"
+   ],
+   "miss": [
+    "a vesicle carries the waste to the cell membrane joins with it and releases the waste outside the cell",
+    "the vesicle goes to the membrane this is exocytosis",
+    "it fuses with the membrane and dumps waste out"
+   ]
+  },
+  {
+   "re": "(releas|dump|empt)\\w* (the |its )?(waste |stuff )?(in|into|inside) the (cytoplasm|cell)\\b",
+   "say": "Check that. Does the waste end up inside or outside the cell?",
+   "hit": [
+    "the vesicle releases the waste into the cytoplasm",
+    "it dumps the waste inside the cell exocytosis"
+   ],
+   "miss": [
+    "a vesicle carries the waste to the cell membrane joins with it and releases the waste outside the cell",
+    "the vesicle releases waste out of the cell",
+    "it dumps the waste outside the cell"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(make|makes|making|produce|produces|create|creates) (food|sugar|glucose)\\b",
+   "say": "Check that. Which organelle makes food? What does the mitochondrion do with food?",
+   "hit": [
+    "the mitochondrion makes food for the cell",
+    "mitochondria produce sugar and energy"
+   ],
+   "miss": [
+    "the mitochondrion converts the chemical energy in food into a form the cell can use",
+    "mitochondria do not make food they break it down for energy",
+    "the mitochondria turn sugar into usable energy"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot use )(?<!n't use )(?<!\\bdont use )(?<!\\bno )(?<!\\bwithout )\\b(sun ?light|sun|light energy|photo ?synth\\w*)\\b",
+   "say": "Check that. Which organelle captures sunlight? What does the mitochondrion use?",
+   "hit": [
+    "the mitochondrion uses sunlight to make energy",
+    "mitochondria do photosynthesis and plant cells have them"
+   ],
+   "miss": [
+    "the mitochondrion converts the chemical energy in food into a form the cell can use",
+    "mitochondria don't use sunlight they use food",
+    "plant cells have mitochondria too"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "power ?house|(break|breaks|breaking|burn|burns|burning) (down )?(the )?(food|sugar|glucose)",
+   "say": "Check that. That sounds like the mitochondrion. What does the chloroplast do?",
+   "hit": [
+    "the chloroplast is the powerhouse that makes food from sunlight",
+    "chloroplasts break down sugar to get energy"
+   ],
+   "miss": [
+    "the chloroplast captures energy from sunlight and uses it to make food this is photosynthesis",
+    "chloroplasts are like solar panels that make sugar",
+    "chloroplasts make glucose by photosynthesis"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!\\bno )\\b(animal cells?|animals) (also )?(have|has|contain|contains) (them|chloro)|\\bboth (plant and animal|animal and plant)",
+   "say": "Check that. Which cells have chloroplasts?",
+   "hit": [
+    "animal cells also have chloroplasts that capture sunlight",
+    "chloroplasts are in both plant and animal cells"
+   ],
+   "miss": [
+    "the chloroplast captures energy from sunlight and uses it to make food",
+    "only plant cells have chloroplasts animal cells do not",
+    "animal cells do not have chloroplasts"
+   ]
+  },
+  {
+   "re": "respiration",
+   "say": "Check that. Is that the process that makes food from sunlight?",
+   "unless": "The process",
+   "hit": [
+    "the chloroplast captures sunlight to make sugar by cellular respiration",
+    "respiration is the process"
+   ],
+   "miss": [
+    "the chloroplast captures energy from sunlight and uses it to make food this is photosynthesis",
+    "photosynthesis is the opposite of cellular respiration",
+    "chloroplasts do photosynthesis"
+   ]
+  }
+ ],
+ "23": [
+  {
+   "re": "(?<!\\bnot )\\bonly (found )?(in )?plants?\\b|animal cells? (do not|don't|dont|never|doesn't|doesnt) have (a |any )?vacu",
+   "say": "Check that. Do animal cells have vacuoles too, even small ones?",
+   "hit": [
+    "a vacuole is only in plant cells and stores water",
+    "animal cells do not have vacuoles"
+   ],
+   "miss": [
+    "a vacuole stores materials like water salts proteins and carbohydrates a plants large central vacuole keeps it firm",
+    "plants have a large central vacuole and animal cells have small ones",
+    "the vacuole stores water so the plant does not wilt"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )(?<!\\bdont )(?<!\\bdoesnt )\\b(makes?|produces?|creates?|builds?) (proteins?|energy|food|atp|sugar)\\b",
+   "say": "Check that. Does a vacuole make things, or store them?",
+   "hit": [
+    "the vacuole makes energy and stores water",
+    "a vacuole produces proteins"
+   ],
+   "miss": [
+    "a vacuole stores materials like water salts proteins and carbohydrates",
+    "the vacuole doesn't make food it stores it",
+    "the large central vacuole keeps the plant firm"
+   ]
+  },
+  {
+   "re": "(full|fills?|filled)(?:(?!\\bnot\\b|n't|\\bnever\\b|\\bdont\\b|\\bdoesnt\\b|\\bno\\b|\\bwon't\\b|\\bwont\\b).){0,30}\\bwilts?\\b",
+   "say": "Check that. Does a full vacuole make a plant wilt, or keep it firm?",
+   "hit": [
+    "when the vacuole is full of water the plant wilts",
+    "the vacuole fills up and makes the plant wilt"
+   ],
+   "miss": [
+    "a plants large central vacuole fills with water and pushes outward which keeps the plant firm so it does not wilt",
+    "the vacuole fills with water so the plant doesn't wilt",
+    "when the vacuole is empty the plant wilts"
+   ]
+  }
+ ],
+ "24": [
+  {
+   "re": "(?<!\\bnot )\\b(no|lose|loses|lack|lacks|run out of|runs out of|without|not have) (any |enough )?(energy|atp|power)\\b",
+   "say": "Check that. Lysosomes are not the energy makers. What is their job?",
+   "hit": [
+    "if lysosomes stopped working the cell would have no energy",
+    "the cell would run out of energy and die"
+   ],
+   "miss": [
+    "lysosomes break down waste if they stopped working waste would pile up",
+    "waste and worn out parts would build up in the cell",
+    "the cell would fill up with old parts"
+   ]
+  },
+  {
+   "re": "(couldn't|could not|can't|cannot|wouldn't|would not|won't|not) (be able to )?(make|build|assemble)\\w* (any )?proteins|\\bno (new )?proteins\\b",
+   "say": "Check that. Which organelle builds proteins? What do lysosomes do?",
+   "hit": [
+    "if lysosomes stopped the cell could not make proteins",
+    "there would be no proteins in the cell"
+   ],
+   "miss": [
+    "lysosomes are filled with enzymes that break down and recycle worn out parts and waste",
+    "old proteins and waste would pile up",
+    "worn out parts would build up inside the cell"
+   ]
+  }
+ ],
+ "25": [
+  {
+   "re": "(made|built) (up )?of (bones?|calcium)|\\bis (a |the )?bones? of",
+   "say": "Check that. The cytoskeleton is not bone. What are its fibers made of?",
+   "hit": [
+    "the cytoskeleton is made of bones and gives the cell shape",
+    "the cytoskeleton is the bones of the cell"
+   ],
+   "miss": [
+    "the cytoskeleton is a network of protein fibers that gives the cell its shape and support",
+    "it is like the skeleton of the cell and it moves materials",
+    "protein fibers act like beams and conveyor belts"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )\\bonly (found )?(in )?animals?\\b",
+   "say": "Check that. Do plant cells have a cytoskeleton too?",
+   "hit": [
+    "the cytoskeleton gives shape and is only in animal cells",
+    "only found in animal cells and moves things"
+   ],
+   "miss": [
+    "the cytoskeleton is a network of protein fibers that gives the cell its shape and support",
+    "plant and animal cells both have a cytoskeleton",
+    "it moves materials around the cell"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!\\bnot the )(?<!\\bnot an )\\b(outer (layer|wall|covering|shell)|is the (cell )?wall|outside (layer|of the cell))",
+   "say": "Check that. Is the cytoskeleton on the outside, or inside the cell?",
+   "hit": [
+    "the cytoskeleton is the outer layer that protects the cell",
+    "the cytoskeleton is the cell wall that gives shape"
+   ],
+   "miss": [
+    "the cytoskeleton is a network of protein fibers inside the cell that gives shape",
+    "it is not the outer layer it is inside the cell",
+    "the cytoskeleton moves materials around the cell"
+   ]
+  }
+ ],
+ "26": [
+  {
+   "re": "(?<!\\bnot )\\bonly (found )?(in )?plants?\\b|\\bonly plant cells? (have|has)",
+   "say": "Check that. Which cells have centrioles?",
+   "hit": [
+    "centrioles help cell division and only plant cells have them",
+    "centrioles are only in plants"
+   ],
+   "miss": [
+    "centrioles help organize cell division only animal cells have them not plant cells",
+    "only animal cells have centrioles",
+    "centrioles are in animal cells not plants"
+   ]
+  },
+  {
+   "re": "animal cells? (do not|don't|dont|never|doesn't|doesnt) have (them|centri)|\\bno animal cells?",
+   "say": "Check that. Do animal cells have centrioles?",
+   "hit": [
+    "centrioles help with division animal cells do not have them",
+    "animal cells don't have centrioles"
+   ],
+   "miss": [
+    "centrioles help organize cell division only animal cells have them not plant cells",
+    "plant cells do not have centrioles",
+    "animal cells have centrioles"
+   ]
+  }
+ ],
+ "27": [
+  {
+   "re": "(nucle|new ?clear)\\w* (makes?|builds?|assembles?|produces?) (the )?proteins?",
+   "say": "Check that. Where is the protein actually built?",
+   "hit": [
+    "the nucleus makes the protein then the rough er then the golgi",
+    "nucleus builds proteins and sends them to the er"
+   ],
+   "miss": [
+    "ribosome rough er vesicle golgi apparatus vesicle cell membrane then out of the cell",
+    "the ribosome builds the protein using instructions from the nucleus",
+    "ribosome to er to golgi to membrane"
+   ]
+  },
+  {
+   "re": "lyso ?som|liso ?som|mitochond|mito ?cond",
+   "say": "Check that. Is that organelle a stop on the protein's path out of the cell?",
+   "hit": [
+    "ribosome rough er mitochondria golgi vesicle membrane",
+    "ribosome er lysosome golgi cell membrane"
+   ],
+   "miss": [
+    "ribosome rough er vesicle golgi apparatus vesicle cell membrane then out of the cell",
+    "the protein goes from the ribosome to the er to the golgi",
+    "ribosome then er then vesicle then golgi then out"
+   ]
+  }
+ ],
+ "28": [
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(only )?animal cells? (also )?(have|has|contain|contains) (a |the )?(cell walls?|walls?|chloro ?plasts?|large (central )?vacuoles?|central vacuoles?|big vacuoles?)",
+   "say": "Check that. Which cells have that structure?",
+   "hit": [
+    "only animal cells have a cell wall and plant cells have centrioles",
+    "animal cells have chloroplasts"
+   ],
+   "miss": [
+    "only plant cells have a cell wall chloroplasts and a large central vacuole only animal cells have centrioles",
+    "animal cells have centrioles and do not have a cell wall",
+    "animal cells don't have chloroplasts"
+   ]
+  },
+  {
+   "re": "(?<!\\bnot )(?<!n't )\\b(only )?plant cells? (also )?(have|has|contain|contains) (a |the )?(centri ?ol|centrial|sentri ?ol)|\\bonly plant cells? (have|has) (a |the )?(mitochond|nucle|ribo)",
+   "say": "Check that. Which cells have that structure?",
+   "hit": [
+    "only plant cells have centrioles",
+    "plant cells have centrioles and a cell wall"
+   ],
+   "miss": [
+    "only plant cells have a cell wall chloroplasts and a large central vacuole only animal cells have centrioles",
+    "plant cells don't have centrioles",
+    "plant cells have a wall animal cells have centrioles"
+   ]
+  },
+  {
+   "re": "plants? (cells? )?(do not|don't|dont|doesn't|doesnt|never) have (any )?(mitochond|mito ?cond)|\\bonly animal cells? (have|has) (the )?(mitochond|mito ?cond)",
+   "say": "Check that. Do plant cells have mitochondria too?",
+   "hit": [
+    "plant cells do not have mitochondria they have chloroplasts",
+    "only animal cells have mitochondria and centrioles"
+   ],
+   "miss": [
+    "only plant cells have a cell wall chloroplasts and a large central vacuole only animal cells have centrioles",
+    "both plant and animal cells have mitochondria",
+    "plant cells have mitochondria and chloroplasts"
+   ]
+  }
+ ],
+ "29": [
+  {
+   "re": "\\bneeds? more (\\w+ )?(nucle\\w*|ribo ?som\\w*|vacuol\\w*|lyso ?som\\w*|golgi|cell walls?|centriol\\w*)",
+   "say": "Check that. Which organelle supplies the energy?",
+   "unless": "Which organelle",
+   "hit": [
+    "a muscle cell needs more ribosomes for energy",
+    "it needs more vacuoles to store energy"
+   ],
+   "miss": [
+    "a muscle cell needs more mitochondria because mitochondria supply the energy",
+    "muscle cells need more mitochondria to make atp",
+    "it needs more mitochondria"
+   ]
+  },
+  {
+   "re": "\\b(less|fewer|no) (mitochond|mito ?cond|mito\\b)",
+   "say": "Check that. Would a busy cell need more or fewer of them?",
+   "hit": [
+    "a muscle cell needs fewer mitochondria because it uses energy",
+    "muscle cells need less mitochondria"
+   ],
+   "miss": [
+    "a muscle cell needs more mitochondria because mitochondria supply the energy",
+    "busy cells have lots of mitochondria",
+    "it needs more mitochondria for more atp"
+   ]
+  }
+ ],
+ "30": [
+  {
+   "re": "\\b(has|have|with|having|see) (a |an )?(cell walls?|walls?|chloro ?plasts?|large central vacuoles?|central vacuoles?)\\b(?:(?!plant|\\bno\\b|without|\\bnot\\b).){0,40}\\b(it'?s|it is|then|means)( it'?s| it is)?( an?)? animal",
+   "say": "Check that. Which kind of cell has a wall and chloroplasts?",
+   "hit": [
+    "if it has a cell wall it is an animal cell",
+    "if you see chloroplasts then it's an animal"
+   ],
+   "miss": [
+    "if it has a cell wall chloroplasts and a large central vacuole it is a plant cell if it has centrioles and no cell wall it is an animal cell",
+    "if it has a wall its a plant if centrioles its an animal",
+    "has a wall and chloroplasts it is a plant"
+   ]
+  },
+  {
+   "re": "(centri ?ol|centrial|sentri ?ol)\\w*(?:(?!animal|\\bno\\b|without|\\bnot\\b).){0,30}\\b(it'?s|it is|then|means)( it'?s| it is)?( an?)? plant",
+   "say": "Check that. Which kind of cell has centrioles?",
+   "hit": [
+    "if it has centrioles it is a plant cell",
+    "centrioles means it's a plant"
+   ],
+   "miss": [
+    "if it has centrioles and no cell wall it is an animal cell",
+    "centrioles means its an animal and a wall means its a plant",
+    "if it has a cell wall it is a plant cell"
+   ]
+  },
+  {
+   "re": "(bacteri|prokary|pro ?kary)\\w*(?:(?!\\bno\\b|\\bnot\\b|n't|without|lack|eukary|plant|animal).){0,30}\\b(has|have|with) (a )?(nucle|mitochond|chloroplast)",
+   "say": "Check that. What would a bacterium be missing?",
+   "hit": [
+    "a bacterium has a nucleus and a cell wall",
+    "if it is a prokaryote with a nucleus it is a bacterium"
+   ],
+   "miss": [
+    "if it has no nucleus and no membrane bound organelles it is a bacterium",
+    "bacteria do not have a nucleus",
+    "a bacterium lacks a nucleus but a plant cell has a nucleus"
+   ]
+  }
+ ]
+}

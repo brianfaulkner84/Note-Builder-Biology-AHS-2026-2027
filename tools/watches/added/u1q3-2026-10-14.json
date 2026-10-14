@@ -1,0 +1,411 @@
+{
+ "1": [
+  {
+   "re": "(?<!never )(?<!not )(?<!n't )(?<!dont )(?<!doesnt )\\b(removes?|take?s? away|carr\\w* away|gets? rid of) (the )?oxygen\\b",
+   "say": "Check that. Does the circulatory system deliver oxygen or take it away?",
+   "hit": [
+    "the circulatory system removes oxygen from the body",
+    "it takes away oxygen and brings nutrients"
+   ],
+   "miss": [
+    "the circulatory system transports oxygen and nutrients and removes wastes",
+    "it carries oxygen to the cells and takes away carbon dioxide",
+    "it never removes oxygen it delivers it"
+   ]
+  },
+  {
+   "re": "\\b(deliver\\w*|brings?|carr\\w*|transports?) (carbon dioxide|co ?2|co two|wastes?) to (the )?(body|cells|tissues|organs)",
+   "say": "Check that. Is waste delivered to the cells or carried away from them?",
+   "hit": [
+    "it delivers carbon dioxide to the cells",
+    "the circulatory system brings waste to the tissues"
+   ],
+   "miss": [
+    "it carries oxygen and nutrients to the body and removes wastes from the tissues",
+    "blood carries carbon dioxide to the lungs",
+    "it takes waste away from the cells"
+   ]
+  }
+ ],
+ "2": [
+  {
+   "re": "\\b(has|have|there (is|are)) (only )?(one|1|three|3|four|4) atri",
+   "say": "Check that. How many atria does the heart have?",
+   "hit": [
+    "an atrium is the upper chamber the heart has one atrium",
+    "there are four atria in the heart"
+   ],
+   "miss": [
+    "an atrium is an upper chamber that receives blood the heart has two atria",
+    "the heart has 2 atria on top",
+    "there are four chambers two atria and two ventricles"
+   ]
+  },
+  {
+   "re": "\\batri(um|a)s? (is|are) (an? |the )?(blood vessels?|veins?|arter(y|ies)|valves?)\\b",
+   "say": "Check that. Is an atrium a chamber or a vessel?",
+   "hit": [
+    "an atrium is a blood vessel that brings blood in",
+    "atria are valves on top of the heart"
+   ],
+   "miss": [
+    "an atrium is an upper chamber of the heart that receives blood",
+    "the atria are upper chambers that get blood from veins",
+    "an atrium is not a valve it is a chamber"
+   ]
+  }
+ ],
+ "3": [
+  {
+   "re": "\\b(has|have|there (is|are)) (only )?(one|1|three|3|four|4) ventric",
+   "say": "Check that. How many ventricles does the heart have?",
+   "hit": [
+    "a ventricle is a lower chamber the heart has one ventricle",
+    "there are four ventricles that pump blood"
+   ],
+   "miss": [
+    "a ventricle is a lower chamber that pumps blood out the heart has two ventricles",
+    "there are 2 ventricles on the bottom",
+    "the heart has four chambers two of them are ventricles"
+   ]
+  },
+  {
+   "re": "\\bpumps? (the )?blood (into|in to|in|to) the heart\\b",
+   "say": "Check that. Do the ventricles pump blood into the heart or out of it?",
+   "hit": [
+    "a ventricle is a lower chamber that pumps blood into the heart",
+    "the ventricles pump the blood to the heart"
+   ],
+   "miss": [
+    "a ventricle is a lower chamber of the heart that pumps blood out of the heart",
+    "ventricles pump blood out to the lungs and body",
+    "the ventricle pumps blood away from the heart"
+   ]
+  }
+ ],
+ "4": [
+  {
+   "re": "(?<!\\b(left|right)\\b.{0,60})(\\b(top|upper) (and|from) (the )?(bottom|lower)\\b|\\b(separat\\w*|divid\\w*) (the )?atri\\w* (and|from) (the )?ventric\\w*)(?!.{0,40}\\b(left|right|middle|sides?)\\b)",
+   "say": "Check that. Does the septum separate top from bottom, or one side from the other?",
+   "hit": [
+    "the septum is a wall that divides the top and bottom of the heart",
+    "septum separates the atria from the ventricles"
+   ],
+   "miss": [
+    "the septum is the wall that divides the left and right sides of the heart",
+    "the septum separates the right side from the left so blood does not mix",
+    "a septum splits the heart into left and right it divides the atria and ventricles down the middle"
+   ]
+  },
+  {
+   "re": "(?<!\\b(not|never|doesn't|doesnt|don't|dont|from|to) )\\bmix(es|ing)? (the |up )?(oxygen|blood)|\\b(lets?|allows?|helps?) (the )?(oxygen \\w+ )?blood (to )?mix",
+   "say": "Check that. Does the septum mix the blood or keep it apart?",
+   "hit": [
+    "the septum mixes the oxygen rich and oxygen poor blood",
+    "it is a wall that lets blood mix between the sides"
+   ],
+   "miss": [
+    "the septum is the wall that divides the left and right sides it keeps oxygen rich blood from mixing with oxygen poor blood",
+    "it does not mix the blood",
+    "the septum keeps the blood from mixing",
+    "the septum makes sure the sides never mix blood"
+   ]
+  }
+ ],
+ "5": [
+  {
+   "re": "(?<!not )(?<!not a )\\bthin\\b",
+   "say": "Check that. Is the myocardium a thin layer or a thick layer?",
+   "hit": [
+    "the myocardium is a thin layer of cardiac muscle",
+    "myocardium is the thin outer covering of the heart muscle"
+   ],
+   "miss": [
+    "the myocardium is the thick layer of cardiac muscle that makes up most of the heart wall",
+    "it is not thin it is thick heart muscle",
+    "myocardium is the heart muscle"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!not a )(?<!not the )\\b(skeletal|smooth) muscle",
+   "say": "Check that. Which type of muscle is found only in the heart?",
+   "hit": [
+    "the myocardium is skeletal muscle that makes up the heart wall",
+    "it is a thick layer of smooth muscle"
+   ],
+   "miss": [
+    "the myocardium is the thick layer of cardiac muscle in the heart wall",
+    "it is cardiac muscle not skeletal muscle",
+    "myocardium heart muscle that pumps"
+   ]
+  }
+ ],
+ "6": [
+  {
+   "re": "\\b(both (ways|directions)|two (ways|directions)|2 (ways|directions)|back and forth|any direction)\\b",
+   "say": "Check that. How many directions does a valve let blood flow?",
+   "unless": "Its job",
+   "hit": [
+    "a valve is a flap that lets blood flow both ways",
+    "valves let blood go back and forth between chambers"
+   ],
+   "miss": [
+    "a valve is a flap that keeps blood flowing in only one direction so it cannot flow backward",
+    "a valve works like a one way door it does not let blood go both ways",
+    "valves stop blood from going backward"
+   ]
+  },
+  {
+   "re": "\\bvalves? (is|are) (an? |the )?(muscles?|chambers?|blood vessels?|vessels?)\\b|\\bvalves? pumps?\\b",
+   "say": "Check that. Is a valve a pump, or a flap that blood moves through?",
+   "hit": [
+    "a valve is a chamber that holds blood",
+    "the valve pumps blood to the body"
+   ],
+   "miss": [
+    "a valve is a flap that keeps blood flowing one way",
+    "valves are flaps that stop backflow when the heart pumps",
+    "a valve is not a chamber it is a flap"
+   ]
+  }
+ ],
+ "7": [
+  {
+   "re": "\\bleft (side|ventricle) (of the heart )?pumps? (the )?(oxygen \\w+ )?(blood )?(to|into) the lungs",
+   "say": "Check that. Which side of the heart sends blood to the lungs?",
+   "hit": [
+    "pulmonary circulation the left side of the heart pumps blood to the lungs",
+    "the left ventricle pumps oxygen poor blood to the lungs"
+   ],
+   "miss": [
+    "pulmonary circulation carries blood between the heart and the lungs the right side pumps oxygen poor blood to the lungs",
+    "the right side pumps blood to the lungs and it comes back to the left side",
+    "blood goes from the heart to the lungs to get oxygen"
+   ]
+  },
+  {
+   "re": "\\b(drops? off|gives?|delivers?|unloads?) (the )?oxygen (to|in|at|into) the lungs|\\bpicks? up (carbon dioxide|co ?2|co two) (in|from|at) the lungs|\\boxygen (rich|full) (blood )?(to|into) the lungs",
+   "say": "Check that. What does blood pick up in the lungs, and what does it drop off?",
+   "hit": [
+    "pulmonary circulation takes blood to the lungs to drop off oxygen in the lungs",
+    "blood goes to the heart and lungs and picks up carbon dioxide in the lungs"
+   ],
+   "miss": [
+    "pulmonary circulation carries blood between the heart and the lungs to pick up oxygen",
+    "the right side pumps oxygen poor blood to the lungs to pick up oxygen",
+    "blood drops off carbon dioxide in the lungs and picks up oxygen"
+   ]
+  }
+ ],
+ "8": [
+  {
+   "re": "\\bright (side|ventricle) (of the heart )?pumps? (the )?(oxygen \\w+ )?(blood )?(to|into|through|out to) the (rest of the )?body",
+   "say": "Check that. Which side of the heart pumps blood to the body?",
+   "hit": [
+    "systemic circulation the right side of the heart pumps blood to the body",
+    "the right ventricle pumps oxygen rich blood to the rest of the body"
+   ],
+   "miss": [
+    "systemic circulation carries blood between the heart and the rest of the body the left side pumps oxygen rich blood to the body",
+    "the left side pumps blood to the body and it returns to the right side",
+    "blood goes from the heart to the body and back"
+   ]
+  },
+  {
+   "re": "\\b(pumps?|carr\\w*|sends?|delivers?) (the )?oxygen (poor|less|low) (blood )?(to|into|out to) (the )?(rest of the )?body",
+   "say": "Check that. Is the blood sent out to the body oxygen rich or oxygen poor?",
+   "hit": [
+    "systemic circulation pumps oxygen poor blood to the body",
+    "the left side sends oxygen poor blood to the rest of the body"
+   ],
+   "miss": [
+    "the left side of the heart pumps oxygen rich blood to the body",
+    "systemic circulation carries blood between the heart and the body and brings oxygen poor blood back",
+    "oxygen poor blood returns from the body to the heart"
+   ]
+  }
+ ],
+ "9": [
+  {
+   "re": "\\bpulmonary veins? (carr\\w* |brings? |takes? |sends? )?(the )?(oxygen \\w+ )?(blood )?(to|into|toward) the lungs|\\bpulmonary arter\\w* (carr\\w* |brings? |returns? )?(the )?(oxygen \\w+ )?(blood )?(back|from the lungs|to the left|into the left)",
+   "say": "Check that. Which vessels carry blood to the lungs, and which bring it back?",
+   "hit": [
+    "the right ventricle pumps blood through the pulmonary veins to the lungs",
+    "pulmonary arteries bring oxygen rich blood back to the left atrium"
+   ],
+   "miss": [
+    "the right ventricle pumps oxygen poor blood through the pulmonary arteries to the lungs oxygen rich blood comes back through the pulmonary veins into the left atrium",
+    "pulmonary veins bring blood back from the lungs",
+    "the pulmonary artery carries blood to the lungs"
+   ]
+  },
+  {
+   "re": "\\b(back|returns?|comes?|goes?|enters?)\\w* .{0,30}\\b(into|to|in) the right atri",
+   "say": "Check that. Which chamber does blood from the lungs return to?",
+   "unless": "Comes back to",
+   "hit": [
+    "the right ventricle pumps blood to the lungs and it comes back into the right atrium",
+    "blood from the lungs returns to the right atrium"
+   ],
+   "miss": [
+    "the right ventricle pumps blood through the pulmonary arteries to the lungs and it comes back into the left atrium",
+    "oxygen rich blood comes back through the pulmonary veins into the left atrium",
+    "the right ventricle sends blood to the lungs"
+   ]
+  }
+ ],
+ "10": [
+  {
+   "re": "\\b(back|returns?|comes?|goes?|enters?)\\w* .{0,30}\\b(into|to|in) the left atri",
+   "say": "Check that. Which chamber does blood from the body return to?",
+   "unless": "Comes back to",
+   "hit": [
+    "the left ventricle pumps blood through the aorta and it comes back into the left atrium",
+    "blood from the body returns to the left atrium"
+   ],
+   "miss": [
+    "the left ventricle pumps oxygen rich blood through the aorta to the body oxygen poor blood comes back through veins into the right atrium",
+    "blood from the body returns to the right atrium",
+    "the left ventricle pumps blood to the aorta"
+   ]
+  },
+  {
+   "re": "\\baorta (is )?(an? |the )?(\\w+ )?vein\\b|\\bvein (called|named) the aorta|\\baorta (brings?|carr\\w*|returns?) (the )?(\\w+ )?(blood )?back|\\bpulmonary (arter\\w*|veins?) (to|into|out to) the body",
+   "say": "Check that. Which vessel carries blood out of the left ventricle to the body?",
+   "hit": [
+    "the aorta is a vein that brings blood back to the heart",
+    "the left ventricle pumps blood through the pulmonary artery to the body"
+   ],
+   "miss": [
+    "the left ventricle pumps oxygen rich blood through the aorta to the body",
+    "the aorta is the largest artery",
+    "blood comes back through veins into the right atrium"
+   ]
+  }
+ ],
+ "11": [
+  {
+   "re": "\\bventric\\w* (are|is|go|goes|sits?) (on )?(the )?(top|upper)\\b|\\bventric\\w* on (the )?(top|upper)\\b|\\batri(um|a)s? (are|is|go|goes|sits?) (on )?(the )?(bottom|lower)\\b|\\batri(um|a)s? on (the )?(bottom|lower)\\b|\\b(top|upper) (chambers? )?(are|is) (the )?(two )?(left and right |right and left )?ventric|\\b(bottom|lower) (chambers? )?(are|is) (the )?(two )?(left and right |right and left )?atri",
+   "say": "Check that. Which chambers are on top and which are on the bottom?",
+   "hit": [
+    "the ventricles are on top and the atria are on the bottom",
+    "the top chambers are the right and left ventricles"
+   ],
+   "miss": [
+    "top right atrium and left atrium bottom right ventricle and left ventricle the septum divides the sides",
+    "the atria are on top and the ventricles are on the bottom",
+    "the upper chambers are the atria the lower chambers are the ventricles"
+   ]
+  },
+  {
+   "re": "\\baorta (leaves|comes? (out )?of|exits|starts at|attached to|connects to) (the )?right\\b|\\bright ventricle .{0,15}(into|to|through) the aorta",
+   "say": "Check that. Which ventricle does the aorta leave from?",
+   "hit": [
+    "the aorta leaves the right ventricle",
+    "the right ventricle pumps into the aorta"
+   ],
+   "miss": [
+    "the aorta leaves the left ventricle",
+    "the left ventricle pumps blood into the aorta the right ventricle pumps to the lungs",
+    "the septum divides the left and right sides and the aorta comes out of the left ventricle"
+   ]
+  },
+  {
+   "re": "\\bright side (of the heart )?(is )?on (the |your |my |our )?(viewer'?s? )?right\\b",
+   "say": "Check that. When you face a heart diagram, which side is the heart's right side on?",
+   "hit": [
+    "on a diagram the heart's right side is on your right",
+    "the right side of the heart is on the right"
+   ],
+   "miss": [
+    "on a diagram the heart's right side is on the viewer's left",
+    "the right side is on your left when you look at it",
+    "the aorta leaves the left ventricle"
+   ]
+  }
+ ],
+ "12": [
+  {
+   "re": "(?<!not )(?<!not too )(?<!n't )\\bthin (walls?|elastic)|\\bwalls? (are |is )?(very )?thin\\b|(?<!not )(?<!n't )(?<!not a )\\blow (blood )?pressure",
+   "say": "Check that. Are artery walls thin or thick, and is the pressure inside high or low?",
+   "hit": [
+    "arteries carry blood away from the heart and have thin walls",
+    "arteries have elastic walls because of low pressure"
+   ],
+   "miss": [
+    "arteries carry blood away from the heart their walls are thick and elastic so they can withstand high pressure",
+    "artery walls are not thin they are thick",
+    "arteries handle high pressure from the heart pumping"
+   ]
+  },
+  {
+   "re": "\\b(arter\\w* (always|only) carr\\w* oxygen|all arter\\w* carr\\w* oxygen (rich|full))",
+   "say": "Check that. Do all arteries carry oxygen rich blood? Think about the pulmonary arteries.",
+   "hit": [
+    "arteries always carry oxygen rich blood away from the heart",
+    "all arteries carry oxygen rich blood"
+   ],
+   "miss": [
+    "arteries carry blood away from the heart with thick elastic walls",
+    "arteries carry blood away from the heart under high pressure",
+    "most arteries carry oxygen rich blood but not the pulmonary arteries"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bcapillar\\w* (carr\\w*|takes?|brings?|pumps?) (the )?blood (away from|back to|to|toward) the heart",
+   "say": "Check that. Which vessels carry blood to and from the heart? What do capillaries connect?",
+   "hit": [
+    "capillaries carry blood away from the heart",
+    "capillaries bring blood back to the heart and are one cell thick"
+   ],
+   "miss": [
+    "capillaries are the smallest blood vessels their walls are one cell thick so oxygen and nutrients can pass",
+    "capillaries connect arteries and veins",
+    "capillaries are tiny and let wastes pass into the blood"
+   ]
+  },
+  {
+   "re": "\\b(so|because) (the )?blood (can )?(flows?|moves?|goes?|travels?|runs?) (\\w+ )?(faster|quicker|quickly|fast)\\b",
+   "say": "Check that. What has to get through the thin wall? Is it about speed?",
+   "hit": [
+    "capillary walls are one cell thick so blood can flow faster",
+    "they are thin because blood moves faster through them"
+   ],
+   "miss": [
+    "capillaries are the smallest vessels with walls one cell thick so oxygen nutrients and wastes can pass between blood and cells",
+    "the walls are thin so things can diffuse through easily",
+    "capillaries are tiny and blood moves slowly through them so exchange can happen"
+   ]
+  }
+ ],
+ "14": [
+  {
+   "re": "(?<!not )(?<!n't )(?<!isnt )\\bblood (in (the )?veins )?(is|turns|looks) blue\\b|(?<!not )\\bblue blood",
+   "say": "Check that. Is blood ever really blue?",
+   "hit": [
+    "veins carry blue blood back to the heart",
+    "veins bring blood back to the heart and the blood is blue"
+   ],
+   "miss": [
+    "veins carry blood back toward the heart valves keep it from flowing backward and muscles squeeze the veins",
+    "veins look blue through the skin but the blood is dark red",
+    "blood is not blue"
+   ]
+  },
+  {
+   "re": "(?<!not )(?<!n't )(?<!not have )(?<!n't have )(?<!dont have )(?<!no )\\bhigh (blood )?pressure|(?<!not )(?<!n't )(?<!not as )(?<!not have )(?<!dont have )\\bthick(er)? (and elastic )?walls?",
+   "say": "Check that. Which vessels have thick walls for high pressure? Is that veins?",
+   "hit": [
+    "veins carry blood to the heart with thick walls and valves",
+    "veins have high pressure so blood moves back"
+   ],
+   "miss": [
+    "veins carry blood back toward the heart valves stop backflow and skeletal muscles squeeze the veins",
+    "veins have thinner walls and low pressure so valves help",
+    "veins do not have high pressure"
+   ]
+  }
+ ]
+}
