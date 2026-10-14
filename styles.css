@@ -176,3 +176,7 @@ label.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .dlg-status.ok{color:var(--ok)}
 .meter{height:14px;border-radius:999px;background:var(--accent-soft);overflow:hidden}
 .meter span{display:block;height:100%;background:var(--ok);border-radius:999px}
+
+/* Clean up the wording (after all key ideas are found) */
+.cleanup{background:var(--card);border-left:4px solid var(--ok);border-radius:0 10px 10px 0;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.cleanup p{margin:0}

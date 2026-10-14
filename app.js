@@ -45,7 +45,7 @@ function flushStats(){
 /* ---------- state (browser only; wrapped so it never breaks the page) ---------- */
 let unit = null, S = null, idx = 0, view = "start", lastResult = null, reveal = {clue:false, where:false}, confirmReset = false;
 const key = () => "bio-notes:" + unit.id;
-function blank(){ return {name:"", notes:{}, status:{}, misses:{}, tries:{}, lastText:{}, best:{}, revealed:{}, src:{}, idx:0}; }
+function blank(){ return {name:"", notes:{}, status:{}, misses:{}, tries:{}, lastText:{}, best:{}, revealed:{}, src:{}, cleaned:{}, orig:{}, idx:0}; }
 function load(){ try { const r = localStorage.getItem(key()); return r ? Object.assign(blank(), JSON.parse(r)) : blank(); } catch(e){ return blank(); } }
 /* Autosave: every change is written to this browser right away, so closing the
    tab, shutting down, or walking away keeps the work. Backup files cover a
@@ -230,6 +230,7 @@ function entryLine(Q){
   const parts = ["Entered: " + (how.join(" + ") || "not recorded")];
   const tries = (S.tries || {})[Q.n] || 0;
   if (tries) parts.push(tries + (tries === 1 ? " try" : " tries"));
+  if ((S.cleaned || {})[Q.n]) parts.push("wording cleaned up after all key ideas found");
   if ((S.revealed || {})[Q.n]) parts.push(nearSample(Q, S.notes[Q.n] || "") ? "sample shown, close copy of sample" : "sample shown");
   return parts.join(" | ");
 }
@@ -258,12 +259,24 @@ function stopSpeak(){ try { speechSynthesis.cancel(); } catch(e){} }
    builds clear that list after each pause (which used to erase earlier
    sentences). Typing, Cut the extra, Cross out, or Read aloud while the mic is
    on stops the mic first so a late result cannot overwrite the edit. */
-let rec = null, listening = false, micBlocked = false, micSession = 0;
+let rec = null, listening = false, micBlocked = false, micSession = 0, micStopping = false;
+/* Android phones report speech in a way that repeats earlier words, so on Android
+   the mic listens one phrase at a time and restarts itself until Stop is tapped. */
+const PHRASE_MODE = /Android/i.test(navigator.userAgent || "");
 function stopMic(discard){
-  if (!rec) return;
+  micStopping = true;
+  if (!rec){ listening = false; paintMic(); return; }
   const r = rec;
   if (discard) micSession++;            /* ignore anything this session says later */
   try { discard ? r.abort() : r.stop(); } catch(e){}
+}
+/* True when phrase t is phrase last said again with more words (some browsers
+   resend the whole sentence each time, sometimes with a word heard differently). */
+function resends(last, t){
+  const lw = norm(last).trim().split(" ").filter(Boolean), tw = norm(t).trim().split(" ").filter(Boolean);
+  if (lw.length < 3 || tw.length < lw.length) return false;
+  let same = 0; lw.forEach((w, i) => { if (tw[i] === w) same++; });
+  return same / lw.length >= 0.6;
 }
 function toggleMic(){
   if (listening){ stopMic(false); return; }
@@ -271,11 +284,10 @@ function toggleMic(){
   if (!SR || micBlocked){ showMicTip(); return; }
   stopSpeak();
   const n = q().n, my = ++micSession;
+  micStopping = false;
   const box0 = $("#note");
   const base = (box0 ? box0.value : (S.notes[n] || "")).replace(/\s+$/, "");
-  let finals = "", lastFinal = "", interim = "", heard = 0;
-  const r = new SR(); rec = r;
-  r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+  let finals = "", lastFinal = "", interim = "", heard = 0, quiet = 0;
   const liveBox = () => (my === micSession && unit && unit.questions[idx] && unit.questions[idx].n === n) ? $("#note") : null;
   const paint = () => {
     let t = (finals + " " + interim).replace(/\s+/g, " ").trim();
@@ -285,34 +297,44 @@ function toggleMic(){
     const b = liveBox(); if (b && b.value !== v) b.value = v;
     save();
   };
-  r.onresult = e => {
-    if (my !== micSession) return;
-    interim = "";
-    for (let i = e.resultIndex || 0; i < e.results.length; i++){
-      const t = String(e.results[i][0].transcript || "").trim(); if (!t) continue;
-      if (e.results[i].isFinal){
-        const a = norm(t), last = norm(lastFinal);
-        if (last && a === last) continue;                               /* same phrase sent twice */
-        if (last && last.split(" ").length >= 3 && a.indexOf(last) === 0)  /* phrase re-sent with more words */
-          finals = finals.slice(0, finals.length - lastFinal.length) + t;
-        else finals = finals ? finals + " " + t : t;
-        lastFinal = t;
-      } else interim += (interim ? " " : "") + t;
-    }
-    paint();
+  const addFinal = t => {
+    const a = norm(t), last = norm(lastFinal);
+    if (last && a === last) return;                                   /* same phrase sent twice */
+    if (lastFinal && resends(lastFinal, t)) finals = finals.slice(0, finals.length - lastFinal.length) + t;
+    else finals = finals ? finals + " " + t : t;
+    lastFinal = t;
   };
-  r.onerror = e => {
-    if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture"){ micBlocked = true; showMicTip(); }
-    else if (e.error === "no-speech") setTip("I did not hear anything. Tap Speak and try again.");
-    else if (e.error === "network") setTip("Speech needs the internet. Check Wi-Fi, or type your note.");
+  const startOne = () => {
+    const r = new SR(); rec = r;
+    r.lang = "en-US"; r.continuous = !PHRASE_MODE; r.interimResults = true;
+    let got = false;
+    r.onresult = e => {
+      if (my !== micSession) return;
+      got = true; interim = "";
+      for (let i = e.resultIndex || 0; i < e.results.length; i++){
+        const t = String(e.results[i][0].transcript || "").trim(); if (!t) continue;
+        if (e.results[i].isFinal) addFinal(t);
+        else interim += (interim ? " " : "") + t;
+      }
+      paint();
+    };
+    r.onerror = e => {
+      if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture"){ micBlocked = true; micStopping = true; showMicTip(); }
+      else if (e.error === "no-speech" && !heard) setTip("I did not hear anything. Tap Speak and try again.");
+      else if (e.error === "network"){ micStopping = true; setTip("Speech needs the internet. Check Wi-Fi, or type your note."); }
+    };
+    r.onend = () => {
+      if (my === micSession && interim){ addFinal(interim); interim = ""; paint(); }
+      quiet = got ? 0 : quiet + 1;
+      const again = PHRASE_MODE && !micStopping && my === micSession && rec === r && liveBox() && quiet < 3;
+      if (again){ try { startOne(); return; } catch(e){} }
+      if (rec === r){ rec = null; listening = false; paintMic(); }
+      if (heard){ srcOf(n).s += heard; heard = 0; }
+      writeNow();
+    };
+    r.start();
   };
-  r.onend = () => {
-    if (my === micSession && interim){ finals = finals ? finals + " " + interim : interim; interim = ""; paint(); }
-    if (rec === r){ rec = null; listening = false; paintMic(); }
-    if (heard) srcOf(n).s += heard;
-    writeNow();
-  };
-  try { r.start(); listening = true; paintMic(); setTip("Listening. Tap Stop when you finish."); } catch(e){ rec = null; showMicTip(); }
+  try { startOne(); listening = true; paintMic(); setTip("Listening. Tap Stop when you finish."); } catch(e){ rec = null; showMicTip(); }
 }
 function paintMic(){ const b = $("#mic"); if (!b) return; b.classList.toggle("on", listening); b.querySelector("span").textContent = listening ? "Stop" : "Speak"; b.setAttribute("aria-pressed", listening); }
 function setTip(t){ const el = $("#tip"); if (el) el.textContent = t; }
@@ -651,8 +673,9 @@ function paintFeedback(r, talk){
   const chips = got.length ? `<div class="chips">${got.map(i=>`<span class="chip">${ICON.check}${esc(i.label)}</span>`).join("")}</div>` : "";
   if (r.done){
     const title = tries >= 2 ? "You stuck with it. All the key ideas are in your note." : `All ${r.ideas.length} key ideas are in your note.`;
-    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}</div>`;
+    fb.innerHTML = `<div class="fb ok"><h3>${esc(title)}</h3>${chips}${markedNoteHTML(S.notes[Q.n] || "", r.marks, r)}${cleanupHTML(Q)}</div>`;
     if ($("#cutextra")) $("#cutextra").onclick = cutExtra;
+    wireCleanup(Q);
     if (talk) speak(tries >= 2 ? "You stuck with it, and it paid off. All the key ideas are in your note." : "Nice work. All the key ideas are in your note.");
     return;
   }
@@ -680,6 +703,51 @@ function paintFeedback(r, talk){
   if (talk) speak(said);
 }
 
+/* Clean up the wording. Offered only after the checker finds every key idea in
+   the student's own note, so the thinking is theirs. Speech-to-text often hears
+   words wrong ("child" for "job"); this swaps in the clean sample wording for the
+   printed sheet. Undo brings back their words. The sheet marks cleaned notes. */
+function cleanupHTML(Q){
+  const now = (S.notes[Q.n] || "").trim(), cleaned = (S.cleaned || {})[Q.n];
+  if (cleaned && now === Q.model.trim()) return `<div class="cleanup">
+    <p class="lead">Clean wording is in your note.</p>
+    <div class="row"><button class="btn" id="undoclean">Undo, use my words</button></div></div>`;
+  if (now === Q.model.trim()) return "";
+  return `<div class="cleanup">
+    <p class="eyebrow">Clean up the wording</p>
+    <p>You found every key idea yourself. If speech-to-text mixed up your words, you can use this clean version on your printed notes.</p>
+    <p class="sample-text">${esc(Q.model)}</p>
+    <div class="row">
+      <button class="btn primary" id="useclean">${ICON.check}<span>Use the clean version</span></button>
+      <button class="btn" id="readclean">${ICON.speak}<span>Read it to me</span></button>
+    </div></div>`;
+}
+function wireCleanup(Q){
+  const use = $("#useclean"), undo = $("#undoclean"), rd = $("#readclean");
+  if (rd) rd.onclick = () => speak(Q.model);
+  if (use) use.onclick = () => {
+    if (listening) stopMic(true);
+    S.cleaned = S.cleaned || {}; S.orig = S.orig || {};
+    S.orig[Q.n] = S.notes[Q.n] || ""; S.cleaned[Q.n] = true;
+    setNoteText(Q, Q.model);
+    speak("Done. Your note now uses the clean wording. Read it over so you know it.");
+  };
+  if (undo) undo.onclick = () => {
+    const back = (S.orig || {})[Q.n];
+    if (S.cleaned) delete S.cleaned[Q.n];
+    setNoteText(Q, back != null ? back : (S.notes[Q.n] || ""));
+  };
+}
+function setNoteText(Q, text){
+  const box = $("#note"); if (box) box.value = text;
+  S.notes[Q.n] = text; S.lastText[Q.n] = text.trim();
+  const r = checkNote(Q, text);
+  S.status[Q.n] = r.done ? "done" : "tried"; writeNow();
+  lastResult = {n:Q.n, r};
+  const d = app.querySelector(`.dot[data-i="${idx}"]`); if (d) d.className = `dot ${S.status[Q.n]} here`;
+  paintFeedback(r, false);
+}
+
 function renderSheet(){
   const {n, done} = counts();
   const date = new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
@@ -696,6 +764,7 @@ function renderSheet(){
   });
   const pasted = unit.questions.filter(Q => ((S.src||{})[Q.n]||{}).p).length;
   const samples = unit.questions.filter(Q => (S.revealed||{})[Q.n]).length;
+  const cleanedN = unit.questions.filter(Q => (S.cleaned||{})[Q.n]).length;
   const code = sheetCode(), who = (S.name || "").trim();
   const short = new Date().toLocaleDateString(undefined, {month:"numeric", day:"numeric", year:"numeric"});
   const wmText = `${who || "NO NAME"} \u00b7 ${short}`;
@@ -722,7 +791,7 @@ function renderSheet(){
   <article class="sheet" id="sheet">
     <h2>${esc(unit.title)}: My Notes</h2>
     <div class="meta"><span>Name: ${esc(who || "________________________")}</span><span>${esc(date)}</span><span>Complete: ${done} of ${n}</span></div>
-    <div class="meta2"><span>Sheet code: <b>${code}</b></span><span>Notes pasted: ${pasted}</span><span>Sample notes shown: ${samples}</span></div>
+    <div class="meta2"><span>Sheet code: <b>${code}</b></span><span>Notes pasted: ${pasted}</span><span>Sample notes shown: ${samples}</span><span>Wording cleaned up: ${cleanedN}</span></div>
     ${body}
     <p class="disc">${esc(unit.disclosure)}</p>
     ${wm}

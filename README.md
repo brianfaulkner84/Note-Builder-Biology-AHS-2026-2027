@@ -181,3 +181,11 @@ Started and finished count once per Chromebook per quiz (Start over resets them)
 ## Save and Print on every note
 
 Each note page has **Save** and **Print** buttons at the top. Both open a pop-up that shows how many notes are complete and which are not finished, then asks the student to confirm. Print asks for a name if one is missing, prints the notes sheet, and returns the student to the note they were on. The Save a backup file and Print my notes buttons on the start page and notes sheet use the same pop-up.
+
+## Clean up the wording
+
+Once the checker finds every key idea in a student's own note, a **Clean up the wording** box offers the sample note in place of speech-to-text mistakes. **Use the clean version** swaps it in; **Undo, use my words** brings the original back. The printed sheet marks each cleaned note ("wording cleaned up after all key ideas found") and counts them at the top.
+
+## Speech on Android phones
+
+Android Chrome resends earlier words while you talk, which caused repeated phrases. On Android the mic now listens one phrase at a time and restarts on its own until Stop is tapped. Chromebooks and computers are unchanged.
