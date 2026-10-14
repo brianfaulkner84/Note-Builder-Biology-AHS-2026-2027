@@ -26,7 +26,7 @@ A guided note-taking tool for students with an ISP printed-notes accommodation. 
 | `u2q2` | Unit 2 | Quiz 2: Cell Membrane and Transport | 18 |
 | `u2q3` | Unit 2 | Quiz 3: Energy, Photosynthesis, and Respiration | 28 |
 | `u2q4` | Unit 2 | Quiz 4: Glycolysis, Krebs Cycle, ETC, and Fermentation | 23 |
-| `u2t` | Unit 2 | Unit 2 Test: Cells and Energy | 32 |
+| `u2t` | Unit 2 | Unit 2 Test: Cells and Energy | 33 |
 
 Unit 2 quizzes follow the notebook guides prompt for prompt. Unit 1 study guides were topic checklists, so each checklist item became a prompt with a guiding question, and items that repeated a vocabulary word were merged into that word's prompt.
 

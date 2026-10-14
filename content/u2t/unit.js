@@ -13,6 +13,11 @@ var GLUCOSE = T.glucose, CO2 = T.co2, O2 = T.o2, H2O = T.water;
 var LIGHT_DEP = /light ?dependent|light reactions?|part 1|part one|first part/;
 var PYR = T.pyruvate, H = /\bh\b|\bh plus|hydrogen|protons?/;
 var SYNTHASE = /synthase|synthes[ae]s?|synth ?ace/;
+/* Not a mistake: any total from 29 to 38 is accepted, but the book's answer is about 36. */
+var ATP_N = "(?:29|3[0-57-8]|twenty ?nine|thirty(?: ?(?:one|two|three|four|five|seven|eight))?)";
+var ATP_TIP = { match: new RegExp("(?:total|altogether|overall|in all|per glucose|one glucose|with oxygen)\\D{0,25}\\b" + ATP_N + "\\b|\\b" + ATP_N + "\\b(?: atp)?(?: \\w+){0,2} (?:total|altogether|overall|in all|per glucose)"),
+  unless: /\b36\b|thirty ?six/,
+  say: "Your total is in the accepted range. The book's answer is about 36 ATP per glucose, so 36 is the number to remember for the test." };
 UNITS.push({
   id: "u2t",
   title: "Cells and Energy",
@@ -291,7 +296,7 @@ UNITS.push({
       W(/\brespiration (?:makes?|produces?|releases?|gives? off) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b|\bproducts? (?:are|is) (?:\w+ ){0,2}(?:oxygen|glucose|sugar)\b/, "Check that. Which molecules go in, and which come out of respiration?"),
       W(/(?<!\b(?:not|never|no|cannot|can't|cant|doesn't|doesnt|don't|dont|didn't|didnt|won't|wont|isn't|isnt|aren't|arent|wouldn't|wouldnt) )\b(?:needs?|uses?|requires?) (?:sun ?light|light)\b|\b(?:plus|and) (?:sun ?light|light) (?:makes|yields|gives|produces)/, "Check that. Does cellular respiration need light?"), W(near(/(carbon dioxide|co2).{0,25}(and|plus)? ?water|water.{0,25}(and|plus)? ?(carbon dioxide|co2)/, /(make|makes|yield|produce|into|become|gives?)\w*.{0,20}(glucose|sugar)/, 40), "Check that. That is the photosynthesis equation. Which way does respiration go?") ]},
   { n:21, heading:"Cellular Respiration Basics", prompt:"Sequence the three stages of cellular respiration.",
-    guide:"Which comes first, second, and third? Which happens in the cytoplasm, and which in the mitochondria? How many ATP does each stage make?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
+    guide:"Which comes first, second, and third? Which happens in the cytoplasm, and which in the mitochondria?", where:"Slide: Respiration 9 | Book: Stages of Cellular Respiration, p. 252",
     model:"1. Glycolysis, in the cytoplasm\n2. The Krebs cycle, in the mitochondria\n3. The electron transport chain, in the mitochondria",
     watch:[
       W(/\b(?:krebs|kreb|crebs|citric acid|electron transport|etc|e t c)\w*(?: cycle| chain)? (?:is |comes |happens |goes )?first\b|\bfirst (?:is |comes |stage is |step is )?(?:the )?(?:krebs|kreb|crebs|citric|electron transport)/, "Check that. Which stage comes first, in the cytoplasm?"),
@@ -393,7 +398,23 @@ UNITS.push({
       I("Who drops off", [T.nadh, /fadh/], "Who drops off electrons?", "Slide Krebs-ETC 11, DROP OFF."),
       I("What gets pumped", [near(/pump/, H, 40), near(H, /pump/, 40)], "What gets pumped?", "Slide Krebs-ETC 11, PUMP.")
     ]},
-  { n:30, heading:"Fermentation", prompt:"Explain why humans undergo fermentation.",
+  { n:30, heading:"ATP Totals", prompt:"Calculate the ATP made from one glucose with oxygen.",
+    guide:"How many ATP does each stage make? What is the total? Which stage makes the most?",
+    tips:[ATP_TIP], where:"Slide: Krebs-ETC 16 to 18 | Book: The Totals, p. 260",
+    model:"• Glycolysis: 2 ATP\n• Krebs cycle: 2 ATP\n• Electron transport chain: about 32 ATP, the most of any stage\n• Total: about 36 ATP per glucose (the book's answer; other sources give 29 to 38)",
+    watch:[
+      W(/\b(?:electron transport(?: chain)?|\betc\b|\be t c\b) (?:makes |gives |produces |is |nets )?(?:about |only )?(?:2|two|4|four|6|six)\b/, "Check that. Which stage makes the most ATP, and about how many?"),
+      W(/\b(?:glycolysis|krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is |nets )?(?:about |around )?(?:36|thirty six|38|thirty eight)\b(?! (?:total|in total|altogether|overall))/, "Check that. About 36 is the total for all three stages. How many does that one stage make?"),
+      W(/(?<!\bnot )\b(?:total|altogether|in all|adds? up to|overall)\b (?:is |of |equals |comes to )?(?:about |around |roughly |only )?(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred)\b(?! ?(?:\d|to\b))|(?<!\b(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety) )\b(?:6|six|8|eight|40|forty|42|72|seventy two|100|a hundred|one hundred) (?:atp )?(?:total|in total|altogether|in all)\b/, "Check that. Add the stages again: about 2 + 2 + 32. What is the total?"),
+      W(/\bglycolysis (?:makes |gives |produces |is |nets )?(?:about )?(?:4|four)\b(?!(?: atp)? (?:minus|but|and spends|and uses|total|in total|gross))|\b(?:krebs|kreb|crebs|citric acid)\w*(?: cycle)? (?:makes |gives |produces |is )?(?:about )?(?:32|thirty two|34|thirty four)\b/, "Check that. Use the net ATP for each stage from your notes. Which stage makes 32?"), W(/(glycolysis|krebs\w*( cycle)?) makes (the )?most/, "Check that. Which stage makes the most ATP?", "Makes the most") ],
+    ideas:[
+      I("Glycolysis", [either(/glycoly/, /\b(2|two)\b/, 30)], "How many ATP does glycolysis make (net)?", "Slide Krebs-ETC 18, answer 1. Glycolysis nets 2."),
+      I("Krebs cycle", [either(/krebs|kreb|crebs|citric/, /\b(2|two)\b/, 30)], "How many ATP does the Krebs cycle make from one glucose?", "Slide Krebs-ETC 18, answer 1. Two turns of the cycle, 1 ATP each."),
+      I("Electron transport chain", [either(T.etc, /\b(2[6-9]|3[0-4]|twenty ?(six|seven|eight|nine)|thirty ?(one|two|three|four)?)\b/, 40)], "How many ATP does the electron transport chain make?", "Slide Krebs-ETC 18, answer 1. The book uses about 32."),
+      I("Total", [/\b36\b|thirty ?six/, either(/total|altogether|all together|in all|overall|per glucose|one glucose|adds? up|equals?/, /\b(?:29|3[0-8]|twenty ?nine|thirty(?: ?(?:one|two|three|four|five|six|seven|eight))?)\b/, 40)], "What is the total from one glucose with oxygen? The book says about 36.", "Slide Krebs-ETC 16, KEY TERMS. Book p. 260: about 36 ATP per glucose."),
+      I("Makes the most", [either(T.etc, /most/, 60)], "Which stage makes the most ATP?", "Slide Krebs-ETC 18, answer 2.")
+    ]},
+  { n:31, heading:"Fermentation", prompt:"Explain why humans undergo fermentation.",
     guide:"What is missing? What does fermentation give back to glycolysis?", where:"Slide: Fermentation 4 to 5 | Book: Fermentation, p. 262",
     model:"• When oxygen is missing, fermentation turns NADH back into NAD+\n• That gives NAD+ back to glycolysis so it can keep going and keep making 2 ATP per glucose",
     watch:[
@@ -404,7 +425,7 @@ UNITS.push({
       I("What is missing", [/oxygen|\bo2\b/], "What is missing that makes the cell switch to fermentation?", "Slide Fermentation 4, the title."),
       I("What it gives back", [T.nad, /regenerat|back into nad|turns? .{0,15}back/], "What does fermentation give back to glycolysis?", "Slide Fermentation 5, WHAT IT DOES.")
     ]},
-  { n:31, heading:"Fermentation", prompt:"Identify the product of fermentation in human cells.",
+  { n:32, heading:"Fermentation", prompt:"Identify the product of fermentation in human cells.",
     guide:"Which type of fermentation happens in your muscles? What does it make?", where:"Slide: Fermentation 9 to 10 | Book: Lactic Acid Fermentation, p. 263",
     model:"• Human muscle cells do lactic acid fermentation\n• It makes lactic acid (and turns NADH back into NAD+)",
     watch:[
@@ -416,7 +437,7 @@ UNITS.push({
       I("Product", [T.lactic], "What does it make?", "Slide Fermentation 10, The reaction."),
       I("Where", [/muscle/], "Which human cells do it?", "Slide Fermentation 9: what part of you burns during a sprint?")
     ]},
-  { n:32, heading:"Fermentation", prompt:"Explain why ethyl alcohol cannot easily become pyruvic acid again.",
+  { n:33, heading:"Fermentation", prompt:"Explain why ethyl alcohol cannot easily become pyruvic acid again.",
     guide:"Count the carbons. Where does the missing carbon go?", where:"Slide: Fermentation 7 to 8 | Book: Alcoholic Fermentation, Figure 9-8, p. 263",
     model:"• Pyruvic acid has 3 carbons, but ethyl alcohol has only 2\n• One carbon leaves as carbon dioxide gas and floats away, so the cell cannot rebuild pyruvic acid",
     watch:[
