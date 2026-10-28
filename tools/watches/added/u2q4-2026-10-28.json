@@ -1,0 +1,47 @@
+{
+ "17": [
+  {
+   "re": "\\bfermentation (?:\\w+ ){0,3}(?:makes?|produces?|gives?|creates?|gets?) (?:the \\w+ |us |you )?(?:about |around )?(?:29|3[0-8]|thirty(?: \\w+)?)\\b",
+   "say": "Check that. Fermentation only keeps glycolysis going. How many ATP per glucose does the cell get?",
+   "hit": [
+    "fermentation makes 36 atp",
+    "fermentation gives the cell about 32 atp"
+   ],
+   "miss": [
+    "When oxygen is missing, fermentation turns NADH back into NAD+. That gives NAD+ back to glycolysis so it can keep making 2 ATP per glucose.",
+    "fermentation makes 2 atp, but with oxygen the cell makes 36",
+    "fermentation lets glycolysis make 4 atp total and 2 net"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\b(?:ethyl )?alcohol (?:\\w+ ){0,2}(?:has|have|contains) more carbons?\\b|\\bpyruvic acid (?:\\w+ ){0,2}(?:has|have) (?:fewer|less) carbons?\\b",
+   "say": "Check that. Count again. Pyruvic acid has 3 carbons. How many does ethyl alcohol have?",
+   "hit": [
+    "ethyl alcohol has more carbons than pyruvic acid",
+    "pyruvic acid has fewer carbons than alcohol"
+   ],
+   "miss": [
+    "Pyruvic acid has 3 carbons, but ethyl alcohol has only 2. One carbon leaves as carbon dioxide gas and floats away.",
+    "ethyl alcohol has fewer carbons than pyruvic acid",
+    "pyruvic acid has more carbons than alcohol"
+   ]
+  }
+ ],
+ "22": [
+  {
+   "re": "\\b(?:long|longer|endurance|marathon|distance)\\b(?: \\w+){0,3} (?:is |are )?(?:powered|fueled|fuelled|supplied) (?:\\w+ ){0,2}(?:by|on) (?:lactic acid )?fermentation\\b|\\b(?:marathons?|long (?:runs?|exercise|workouts?)) (?:\\w+ ){0,2}(?:uses?|runs? on|relies on) (?:lactic acid )?fermentation\\b",
+   "say": "Check that. Fermentation lasts about 90 seconds. What powers exercise longer than that?",
+   "hit": [
+    "long exercise is powered by lactic acid fermentation",
+    "a marathon runs on fermentation"
+   ],
+   "miss": [
+    "Stored ATP lasts only a few seconds. Lactic acid fermentation supplies ATP for about 90 seconds, like a sprint. Cellular respiration powers longer exercise.",
+    "a sprint is powered by lactic acid fermentation, long exercise by cellular respiration",
+    "fermentation powers short bursts, not long exercise"
+   ]
+  }
+ ]
+}

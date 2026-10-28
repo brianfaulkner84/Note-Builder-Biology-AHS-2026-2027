@@ -200,9 +200,13 @@ Marking works on phrases, not sentences, because spoken notes often have no peri
 - **Gray dotted underline:** extra information that earns no key idea: off-topic words (not in the prompt, clue, or sample note, even a single stray word like "broccoli"), filler ("so basically", "I think", "in class today"), or a phrase that just repeats the question ("the fluid mosaic model is an example of how to describe the cell membrane"). **Remove the extra** cuts it, keeping anything a key idea needs.
 - **Red, crossed out:** a phrase that matches a known mistake for that prompt (a watch in the unit file). **Cross out the red part** removes it. Red only catches mistakes listed in the unit file; add watches to catch more.
 
+### Slide tags follow the decks
+
+The `where` line and the hints quote slide numbers from the lecture decks. When a deck changes, update its numbers in every quiz and test that uses it. In October 2026 the energy decks gained a warm-up (Glycolysis, Fermentation, Photosynthesis and Respiration moved by +2), and the Krebs-ETC deck split into Lecture 5A (tags read `Krebs N`) and Lecture 5B (`ETC N`). Quiz 3, Quiz 4, the Unit 2 Test and their teacher keys were renumbered to match the notebook guides.
+
 ## Common mistakes (watches)
 
-Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 858 across the 10 quizzes and tests, and every question has at least one (except the two drag-and-sort questions).
+Each question has watches: patterns for mistakes students commonly state, shown in red with a "Check that." nudge. As of October 2026 there are 874 across the 10 quizzes and tests, and every question has at least one (except the two drag-and-sort questions).
 
 To add more, put a new batch in `tools/watches/<quiz id>.json` with examples that must be flagged (`hit`) and correct notes that must not be (`miss`), then run the two commands below and move the file into `tools/watches/added/` so it is not inserted twice:
 

@@ -1,0 +1,65 @@
+{
+ "8": [
+  {
+   "re": "\\batp (?:is )?(?:good|great|best|better|used|made) (?:for|at) (?:storing|long term)\\b|\\b(?:cells?|they) (?:store|keep|have|hold) (?:a lot of|lots of|large amounts of|huge amounts of|tons of|plenty of) atp\\b",
+   "say": "Check that. ATP is not good for long-term storage. Which molecule stores far more energy?",
+   "hit": [
+    "atp is good for storing energy for a long time",
+    "cells store large amounts of atp",
+    "ATP is best for long-term storage"
+   ],
+   "miss": [
+    "Glucose stores much more energy than ATP, more than 90 times as much. ATP is better for moving energy quickly. So cells store energy in glucose and remake ATP from ADP when they need it.",
+    "ATP is not good for storing energy long term, glucose is",
+    "cells keep only a small supply of atp",
+    "glucose is good for storing energy"
+   ]
+  }
+ ],
+ "13": [
+  {
+   "re": "\\bmushrooms? (?:(?!not\\b|cannot\\b|cant\\b|dont\\b|doesnt\\b|never\\b)\\w+ ){0,2}(?:make|makes|produce|produces|create|creates) (?:their|its) own food\\b",
+   "say": "Check that. Can a mushroom make its own food from sunlight? How does it get food?",
+   "hit": [
+    "mushrooms make their own food",
+    "mushrooms can make their own food from sunlight"
+   ],
+   "miss": [
+    "Mushrooms are heterotrophs. They cannot make their own food from sunlight, so they absorb food from dead matter.",
+    "mushrooms do not make their own food so they absorb it",
+    "algae make their own food but mushrooms don't"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\b(?:parts?|halves) (?:\\w+ ){0,3}(?:are|is|include) (?:\\w+ ){0,2}(?:glycolysis|krebs|electron transport)\\b",
+   "say": "Check that. Glycolysis and the Krebs cycle are stages of cellular respiration. What are the two parts of photosynthesis?",
+   "hit": [
+    "the two parts are glycolysis and the krebs cycle",
+    "part 1 is glycolysis and part 2 is the krebs cycle"
+   ],
+   "miss": [
+    "Part 1 is the light-dependent reactions. Part 2 is the light-independent reactions, also called the Calvin cycle.",
+    "the calvin cycle is part 2, not the krebs cycle",
+    "part 2 is the calvin cycle which is not part of cellular respiration like glycolysis"
+   ]
+  }
+ ],
+ "21": [
+  {
+   "re": "\\b(?:cells?|they|it) (?:(?!not\\b|cannot\\b|cant\\b|dont\\b|doesnt\\b|never\\b)\\w+ ){0,2}(?:release|releases|use|uses|let out|lets out) (?:all )?(?:\\w+ ){0,2}(?:all at once|at once|in one step|at one time)\\b",
+   "unless": "All at once",
+   "say": "Check that. Do cells release food energy all at once, or a little at a time?",
+   "hit": [
+    "cells release all the energy at once",
+    "the cell uses the energy in one step"
+   ],
+   "miss": [
+    "If a cell burned glucose all at once, it would release all the energy as heat and light and destroy the cell. So cells break glucose down in small steps.",
+    "cells do not release all the energy at once",
+    "if cells released all the energy at once it would destroy them"
+   ]
+  }
+ ]
+}

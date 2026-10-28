@@ -1,0 +1,62 @@
+{
+ "17": [
+  {
+   "re": "\\bmushrooms? (?:(?!not\\b|cannot\\b|cant\\b|dont\\b|doesnt\\b|never\\b)\\w+ ){0,2}(?:make|makes|produce|produces|create|creates) (?:their|its) own food\\b",
+   "say": "Check that. Can a mushroom make its own food from sunlight? How does it get food?",
+   "hit": [
+    "mushrooms make their own food",
+    "mushrooms can make their own food from sunlight"
+   ],
+   "miss": [
+    "Mushrooms are heterotrophs. They cannot make their own food from sunlight, so they absorb food from dead matter.",
+    "mushrooms do not make their own food so they absorb it",
+    "algae make their own food but mushrooms don't"
+   ]
+  }
+ ],
+ "19": [
+  {
+   "re": "\\b(?:parts?|halves) (?:\\w+ ){0,3}(?:are|is|include) (?:\\w+ ){0,2}(?:glycolysis|krebs|electron transport)\\b",
+   "say": "Check that. Glycolysis and the Krebs cycle are stages of cellular respiration. What are the two parts of photosynthesis?",
+   "hit": [
+    "the two parts are glycolysis and the krebs cycle",
+    "part 1 is glycolysis and part 2 is the krebs cycle"
+   ],
+   "miss": [
+    "Part 1 is the light-dependent reactions. Part 2 is the light-independent reactions, also called the Calvin cycle.",
+    "the calvin cycle is part 2, not the krebs cycle",
+    "part 2 is the calvin cycle which is not part of cellular respiration like glycolysis"
+   ]
+  }
+ ],
+ "31": [
+  {
+   "re": "\\bfermentation (?:\\w+ ){0,3}(?:makes?|produces?|gives?|creates?|gets?) (?:the \\w+ |us |you )?(?:about |around )?(?:29|3[0-8]|thirty(?: \\w+)?)\\b",
+   "say": "Check that. Fermentation only keeps glycolysis going. How many ATP per glucose does the cell get?",
+   "hit": [
+    "fermentation makes 36 atp",
+    "fermentation gives the cell about 32 atp"
+   ],
+   "miss": [
+    "When oxygen is missing, fermentation turns NADH back into NAD+. That gives NAD+ back to glycolysis so it can keep making 2 ATP per glucose.",
+    "fermentation makes 2 atp, but with oxygen the cell makes 36",
+    "fermentation lets glycolysis make 4 atp total and 2 net"
+   ]
+  }
+ ],
+ "33": [
+  {
+   "re": "\\b(?:ethyl )?alcohol (?:\\w+ ){0,2}(?:has|have|contains) more carbons?\\b|\\bpyruvic acid (?:\\w+ ){0,2}(?:has|have) (?:fewer|less) carbons?\\b",
+   "say": "Check that. Count again. Pyruvic acid has 3 carbons. How many does ethyl alcohol have?",
+   "hit": [
+    "ethyl alcohol has more carbons than pyruvic acid",
+    "pyruvic acid has fewer carbons than alcohol"
+   ],
+   "miss": [
+    "Pyruvic acid has 3 carbons, but ethyl alcohol has only 2. One carbon leaves as carbon dioxide gas and floats away.",
+    "ethyl alcohol has fewer carbons than pyruvic acid",
+    "pyruvic acid has more carbons than alcohol"
+   ]
+  }
+ ]
+}
